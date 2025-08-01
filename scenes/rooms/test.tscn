@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://h1dvwi2n2ugk"]
+[gd_scene load_steps=11 format=3 uid="uid://h1dvwi2n2ugk"]
 
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_24j5q"]
 [ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="1_ylcux"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c4qpbj5epsp55" path="res://scenes/tiles/question_block.tscn" id="5_3fj7c"]
 [ext_resource type="Shader" uid="uid://wukfukct4ngr" path="res://shaders/shadows.gdshader" id="5_bflcn"]
 [ext_resource type="PackedScene" uid="uid://b107v6eucpho2" path="res://scenes/sprouts/rise_sprout.tscn" id="6_3fj7c"]
+[ext_resource type="AudioStream" uid="uid://bbml0t642mivw" path="res://audio/music/ground.ogg" id="9_3fj7c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_30tst"]
 shader = ExtResource("5_bflcn")
@@ -363,5 +364,10 @@ limit_left = 0
 limit_bottom = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="Ground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3fj7c")
+autoplay = true
+parameters/looping = true
 
 [editable path="Foreground/Map/QuestionBlock"]

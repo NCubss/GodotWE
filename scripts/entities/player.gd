@@ -36,20 +36,20 @@ var spin_jump := false
 func _physics_process(delta: float) -> void:
 	super(delta)
 	move_and_slide()
+
 	var direction := Input.get_axis("player_left", "player_right")
 	var running := Input.is_action_pressed("player_run")
 	var ducking := Input.is_action_pressed("player_down")
 	can_jump = is_on_floor()
-	
+
 	if spin_jump and is_on_floor():
 		spin_jump = false
-	
-	
+
 	$CollShapeNormal.disabled = ducking
 	$CollShapeDucking.disabled = not ducking
-	
-	var max_speed = (RUN_SPEED if Input.is_action_pressed("player_run") else WALK_SPEED)
-	
+
+	var max_speed = (RUN_SPEED if running else WALK_SPEED)
+
 	if skidding:
 		velocity.x = move_toward(velocity.x, 0, SKID_ACCEL)
 		if direction == 0 or velocity.x == 0:
@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 			if $Sounds.stream == preload("res://audio/player/skid.ogg"):
 				$Sounds.stop()
 	else:
-		if direction != 0 and not (Input.is_action_pressed("player_down") and can_jump):
+		if direction != 0 and not (ducking and can_jump):
 			velocity.x = move_toward(velocity.x, max_speed * direction, ACCEL)
 		elif can_jump:
 			velocity.x = move_toward(velocity.x, 0, DECEL)
@@ -68,44 +68,41 @@ func _physics_process(delta: float) -> void:
 		if p_meter > 5 and is_on_floor():
 			$Sounds.stream = preload("res://audio/player/skid.ogg")
 			$Sounds.play()
-	
+
 	velocity.y = min(velocity.y + (LONG_JUMP_GRAVITY if long_jump else GRAVITY), MAX_FALL_SPEED)
-	
+
 	if Input.is_action_just_pressed("player_spin_jump") and can_jump:
-		long_jump = true;
-		spin_jump = true;
+		long_jump = true
+		spin_jump = true
 		if not running and velocity.y < WALK_SPEED:
 			velocity.y = -IDLE_JUMP_SPEED
-		elif (
-			(not running and velocity.y >= WALK_SPEED)
-			or (running and velocity.y < RUN_SPEED)
-		):
+		elif (not running and velocity.y >= WALK_SPEED) or (running and velocity.y < RUN_SPEED):
 			velocity.y = -SLOW_JUMP_SPEED
 		elif running and velocity.y >= RUN_SPEED:
 			velocity.y = -FAST_JUMP_SPEED
 		$Sounds.stream = preload("res://audio/player/spin_jump.ogg")
 		$Sounds.play()
-	
+
 	if Input.is_action_just_pressed("player_jump") and can_jump:
-		long_jump = true;
+		long_jump = true
 		if not running and velocity.y < WALK_SPEED:
 			velocity.y = -IDLE_JUMP_SPEED
-		elif (
-			(not running and velocity.y >= WALK_SPEED)
-			or (running and velocity.y < RUN_SPEED)
-		):
+		elif (not running and velocity.y >= WALK_SPEED) or (running and velocity.y < RUN_SPEED):
 			velocity.y = -SLOW_JUMP_SPEED
 		elif running and velocity.y >= RUN_SPEED:
 			velocity.y = -FAST_JUMP_SPEED
 		$Sounds.stream = preload("res://audio/player/jump.ogg")
 		$Sounds.play()
-	
-	if long_jump and (velocity.y > -60 or not (Input.is_action_pressed("player_jump") || Input.is_action_pressed("player_spin_jump"))):
+
+	if long_jump and (velocity.y > -60 or not (Input.is_action_pressed("player_jump") or Input.is_action_pressed("player_spin_jump"))):
 		long_jump = false
-	
+
+	# SPRITE ANIMATION LOGIC
+	# Set default speed scale
+	$Sprite.speed_scale = 1
+
 	if velocity.x == 0 or is_on_wall():
 		$Sprite.play("idle")
-		$Sprite.speed_scale = 1
 	else:
 		if p_meter > 5:
 			$Sprite.play("run")
@@ -116,25 +113,27 @@ func _physics_process(delta: float) -> void:
 			$Sprite.flip_h = true
 		elif direction == 1:
 			$Sprite.flip_h = false
-	
-	if not can_jump and not spin_jump:
-		if p_meter > 5:
-			$Sprite.play("p_jump")
-		else:
-			if velocity.y < 0:
-				$Sprite.play("jump")
-			elif velocity.y > 0:
-				$Sprite.play("fall")
-	elif not can_jump and spin_jump:
-		$Sprite.play("spin_jump")
-		$Sprite.speed_scale = 10
 
-	if Input.is_action_pressed("player_down"):
+	if not can_jump:
+		if spin_jump:
+			if $Sprite.animation != "spin_jump":
+				$Sprite.play("spin_jump")
+			$Sprite.speed_scale = 2
+		else:
+			if p_meter > 5:
+				$Sprite.play("p_jump")
+			else:
+				if velocity.y < 0:
+					$Sprite.play("jump")
+				else:
+					$Sprite.play("fall")
+
+	if can_jump and ducking:
 		$Sprite.play("duck")
-	
+
 	if skidding and is_on_floor() and p_meter > 5:
 		$Sprite.play("skid")
-	
+
 	# P-Meter Logic
 	do_p_meter(delta)
 	

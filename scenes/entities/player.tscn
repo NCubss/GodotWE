@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b2cwk2viytb57"]
+[gd_scene load_steps=29 format=3 uid="uid://b2cwk2viytb57"]
 
 [ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/entities/player.gd" id="1_ucweq"]
 [ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://sprites/player/mario/small/idle.png" id="2_1ie0h"]
@@ -9,11 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dsbpgg6geewwj" path="res://sprites/player/mario/small/p_jump.png" id="6_c5rqy"]
 [ext_resource type="Texture2D" uid="uid://cmr57i1et5gyy" path="res://sprites/player/mario/small/skid.png" id="6_ss7kx"]
 [ext_resource type="Texture2D" uid="uid://ckyxmkostqpdd" path="res://sprites/player/mario/small/run.png" id="7_b6tgf"]
-[ext_resource type="Texture2D" uid="uid://mhnclmprp56v" path="res://0.png" id="9_saib0"]
+[ext_resource type="Texture2D" uid="uid://d4gyuxu12h8wy" path="res://sprites/player/mario/small/spin_jump.png" id="9_73kkf"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="10_b6tgf"]
-[ext_resource type="Texture2D" uid="uid://2ejterw5jntt" path="res://2.png" id="10_ogpgs"]
-[ext_resource type="Texture2D" uid="uid://dtkqjbmbxu6jh" path="res://3.png" id="11_spk56"]
-[ext_resource type="Texture2D" uid="uid://c7vsruwng1fg8" path="res://1.png" id="12_1yk18"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qees"]
 size = Vector2(12, 15)
@@ -52,6 +49,22 @@ region = Rect2(16, 0, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_73kkf"]
 atlas = ExtResource("6_ss7kx")
 region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogpgs"]
+atlas = ExtResource("9_73kkf")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spk56"]
+atlas = ExtResource("9_73kkf")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yk18"]
+atlas = ExtResource("9_73kkf")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4o2o"]
+atlas = ExtResource("9_73kkf")
+region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4qa6"]
 atlas = ExtResource("3_42nxq")
@@ -124,20 +137,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_saib0")
+"texture": SubResource("AtlasTexture_ogpgs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_ogpgs")
+"texture": SubResource("AtlasTexture_spk56")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_spk56")
+"texture": SubResource("AtlasTexture_1yk18")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_1yk18")
+"texture": SubResource("AtlasTexture_b4o2o")
 }],
 "loop": true,
 "name": &"spin_jump",
-"speed": 15.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -168,7 +181,6 @@ position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_dnykm")
 animation = &"spin_jump"
 autoplay = "idle"
-frame_progress = 0.00620829
 script = ExtResource("10_b6tgf")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
