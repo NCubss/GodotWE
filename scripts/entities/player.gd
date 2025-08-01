@@ -31,10 +31,7 @@ var p_extra_timer_enabled := false
 var skidding := false
 var long_jump := false
 var can_jump := false
-
-func _ready() -> void:
-	Engine.time_scale = 0.1
-	pass
+var spin_jump := false
 
 func _physics_process(delta: float) -> void:
 	super(delta)
@@ -43,6 +40,10 @@ func _physics_process(delta: float) -> void:
 	var running := Input.is_action_pressed("player_run")
 	var ducking := Input.is_action_pressed("player_down")
 	can_jump = is_on_floor()
+	
+	if spin_jump and is_on_floor():
+		spin_jump = false
+	
 	
 	$CollShapeNormal.disabled = ducking
 	$CollShapeDucking.disabled = not ducking
@@ -70,6 +71,21 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y = min(velocity.y + (LONG_JUMP_GRAVITY if long_jump else GRAVITY), MAX_FALL_SPEED)
 	
+	if Input.is_action_just_pressed("player_spin_jump") and can_jump:
+		long_jump = true;
+		spin_jump = true;
+		if not running and velocity.y < WALK_SPEED:
+			velocity.y = -IDLE_JUMP_SPEED
+		elif (
+			(not running and velocity.y >= WALK_SPEED)
+			or (running and velocity.y < RUN_SPEED)
+		):
+			velocity.y = -SLOW_JUMP_SPEED
+		elif running and velocity.y >= RUN_SPEED:
+			velocity.y = -FAST_JUMP_SPEED
+		$Sounds.stream = preload("res://audio/player/spin_jump.ogg")
+		$Sounds.play()
+	
 	if Input.is_action_just_pressed("player_jump") and can_jump:
 		long_jump = true;
 		if not running and velocity.y < WALK_SPEED:
@@ -84,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		$Sounds.stream = preload("res://audio/player/jump.ogg")
 		$Sounds.play()
 	
-	if long_jump and (velocity.y > -60 or not Input.is_action_pressed("player_jump")):
+	if long_jump and (velocity.y > -60 or not (Input.is_action_pressed("player_jump") || Input.is_action_pressed("player_spin_jump"))):
 		long_jump = false
 	
 	if velocity.x == 0 or is_on_wall():
@@ -101,7 +117,7 @@ func _physics_process(delta: float) -> void:
 		elif direction == 1:
 			$Sprite.flip_h = false
 	
-	if not can_jump:
+	if not can_jump and not spin_jump:
 		if p_meter > 5:
 			$Sprite.play("p_jump")
 		else:
@@ -109,7 +125,10 @@ func _physics_process(delta: float) -> void:
 				$Sprite.play("jump")
 			elif velocity.y > 0:
 				$Sprite.play("fall")
-	
+	elif not can_jump and spin_jump:
+		$Sprite.play("spin_jump")
+		$Sprite.speed_scale = 10
+
 	if Input.is_action_pressed("player_down"):
 		$Sprite.play("duck")
 	

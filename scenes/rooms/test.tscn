@@ -16,6 +16,7 @@ shader_parameter/shadow_color = Color(0, 0, 0, 0.3)
 shader_parameter/shadow_offset = Vector2(3, 3)
 
 [node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-289.0]
 
 [node name="Background" type="Node" parent="."]
 
