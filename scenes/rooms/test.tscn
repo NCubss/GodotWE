@@ -1,0 +1,366 @@
+[gd_scene load_steps=10 format=3 uid="uid://h1dvwi2n2ugk"]
+
+[ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_24j5q"]
+[ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="1_ylcux"]
+[ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/map.gd" id="3_24j5q"]
+[ext_resource type="PackedScene" uid="uid://bpy1sebdq7k7s" path="res://scenes/tiles/ground_tile.tscn" id="4_bflcn"]
+[ext_resource type="PackedScene" uid="uid://d1pyovyuwelpw" path="res://scenes/tiles/turn_block_tile.tscn" id="5_0dnrn"]
+[ext_resource type="PackedScene" uid="uid://c4qpbj5epsp55" path="res://scenes/tiles/question_block.tscn" id="5_3fj7c"]
+[ext_resource type="Shader" uid="uid://wukfukct4ngr" path="res://shaders/shadows.gdshader" id="5_bflcn"]
+[ext_resource type="PackedScene" uid="uid://b107v6eucpho2" path="res://scenes/sprouts/rise_sprout.tscn" id="6_3fj7c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_30tst"]
+shader = ExtResource("5_bflcn")
+shader_parameter/zoom_factor = Vector2(3, 3)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.3)
+shader_parameter/shadow_offset = Vector2(3, 3)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background"]
+z_index = -2
+scroll_scale = Vector2(0.5, 1)
+scroll_offset = Vector2(256, 0)
+repeat_size = Vector2(512, 0)
+
+[node name="Background" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(0, -432)
+texture = ExtResource("1_24j5q")
+centered = false
+region_rect = Rect2(0, 0, 512, 432)
+
+[node name="Background2" type="Sprite2D" parent="Background/Parallax2D"]
+position = Vector2(512, -432)
+texture = ExtResource("1_24j5q")
+centered = false
+region_rect = Rect2(0, 0, 512, 432)
+
+[node name="Shadows" type="CanvasGroup" parent="." groups=["shadows"]]
+self_modulate = Color(0, 0, 0, 0.301961)
+z_index = -1
+
+[node name="Foreground" type="Node" parent="."]
+
+[node name="Map" type="Node2D" parent="Foreground" groups=["map"]]
+script = ExtResource("3_24j5q")
+metadata/_custom_type_script = "uid://cebyi7qjgdqix"
+
+[node name="GroundTile3" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(192, -80)
+
+[node name="GroundTile4" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(208, -64)
+
+[node name="GroundTile5" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(240, -96)
+
+[node name="GroundTile6" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(256, -80)
+
+[node name="GroundTile11" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(208, -80)
+
+[node name="GroundTile12" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(192, -64)
+
+[node name="GroundTile" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(16, -32)
+
+[node name="GroundTile2" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(32, -16)
+
+[node name="GroundTile13" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(0, -16)
+
+[node name="GroundTile14" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(0, -32)
+
+[node name="GroundTile15" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(16, -16)
+
+[node name="GroundTile16" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(32, -32)
+
+[node name="GroundTile17" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(64, -32)
+
+[node name="GroundTile18" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(80, -16)
+
+[node name="GroundTile19" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(48, -16)
+
+[node name="GroundTile20" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(48, -32)
+
+[node name="GroundTile21" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(64, -16)
+
+[node name="GroundTile22" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(80, -32)
+
+[node name="GroundTile23" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(112, -32)
+
+[node name="GroundTile24" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(128, -16)
+
+[node name="GroundTile25" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(96, -16)
+
+[node name="GroundTile26" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(96, -32)
+
+[node name="GroundTile27" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(112, -16)
+
+[node name="GroundTile28" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(128, -32)
+
+[node name="GroundTile29" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(160, -32)
+
+[node name="GroundTile30" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(176, -16)
+
+[node name="GroundTile31" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(144, -16)
+
+[node name="GroundTile32" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(144, -32)
+
+[node name="GroundTile33" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(160, -16)
+
+[node name="GroundTile34" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(176, -32)
+
+[node name="GroundTile35" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(208, -32)
+
+[node name="GroundTile36" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(224, -16)
+
+[node name="GroundTile37" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(192, -16)
+
+[node name="GroundTile38" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(192, -32)
+
+[node name="GroundTile39" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(208, -16)
+
+[node name="GroundTile40" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(224, -32)
+
+[node name="GroundTile41" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(256, -32)
+
+[node name="GroundTile42" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(272, -16)
+
+[node name="GroundTile43" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(240, -16)
+
+[node name="GroundTile44" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(240, -32)
+
+[node name="GroundTile45" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(256, -16)
+
+[node name="GroundTile46" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(272, -32)
+
+[node name="GroundTile47" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(304, -32)
+
+[node name="GroundTile48" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(320, -16)
+
+[node name="GroundTile49" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(288, -16)
+
+[node name="GroundTile50" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(288, -32)
+
+[node name="GroundTile51" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(304, -16)
+
+[node name="GroundTile52" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(320, -32)
+
+[node name="GroundTile53" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -32)
+
+[node name="GroundTile54" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(368, -16)
+
+[node name="GroundTile55" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(336, -16)
+
+[node name="GroundTile56" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(336, -32)
+
+[node name="GroundTile57" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -16)
+
+[node name="GroundTile58" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(368, -32)
+
+[node name="GroundTile59" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(400, -32)
+
+[node name="GroundTile60" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(416, -16)
+
+[node name="GroundTile61" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(384, -16)
+
+[node name="GroundTile62" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(384, -32)
+
+[node name="GroundTile63" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(400, -16)
+
+[node name="GroundTile64" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(416, -32)
+
+[node name="GroundTile65" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(448, -32)
+
+[node name="GroundTile66" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(464, -16)
+
+[node name="GroundTile67" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(432, -16)
+
+[node name="GroundTile68" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(432, -32)
+
+[node name="GroundTile69" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(448, -16)
+
+[node name="GroundTile70" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(464, -32)
+
+[node name="GroundTile71" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(240, -80)
+
+[node name="GroundTile72" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(256, -96)
+
+[node name="GroundTile7" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(288, -112)
+
+[node name="GroundTile8" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(304, -96)
+
+[node name="GroundTile73" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(288, -96)
+
+[node name="GroundTile74" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(304, -112)
+
+[node name="GroundTile9" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(336, -128)
+
+[node name="GroundTile10" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -112)
+
+[node name="GroundTile75" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(336, -112)
+
+[node name="GroundTile76" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -128)
+
+[node name="GroundTile77" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(480, -32)
+
+[node name="GroundTile78" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(496, -16)
+
+[node name="GroundTile79" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(480, -16)
+
+[node name="GroundTile80" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(496, -32)
+
+[node name="GroundTile81" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(528, -32)
+
+[node name="GroundTile82" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(544, -16)
+
+[node name="GroundTile83" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(512, -16)
+
+[node name="GroundTile84" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(512, -32)
+
+[node name="GroundTile85" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(528, -16)
+
+[node name="GroundTile86" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(544, -32)
+
+[node name="GroundTile87" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(576, -32)
+
+[node name="GroundTile88" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(592, -16)
+
+[node name="GroundTile89" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(560, -16)
+
+[node name="GroundTile90" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(560, -32)
+
+[node name="GroundTile91" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(576, -16)
+
+[node name="GroundTile92" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(592, -32)
+
+[node name="TurnBlockTile" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
+position = Vector2(128, -96)
+
+[node name="TurnBlockTile2" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
+position = Vector2(397, -103)
+
+[node name="TurnBlockTile3" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
+position = Vector2(413, -99)
+
+[node name="TurnBlockTile4" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
+position = Vector2(429, -95)
+
+[node name="TurnBlockTile5" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
+position = Vector2(445, -91)
+
+[node name="TurnBlockTile6" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
+position = Vector2(480, -48)
+
+[node name="QuestionBlock" parent="Foreground/Map" instance=ExtResource("5_3fj7c")]
+position = Vector2(320, -192)
+
+[node name="BlockComponent" parent="Foreground/Map/QuestionBlock" index="2"]
+release_sprout = true
+sprout = ExtResource("6_3fj7c")
+
+[node name="QuestionBlock2" parent="Foreground/Map" instance=ExtResource("5_3fj7c")]
+position = Vector2(368, -192)
+
+[node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
+material = SubResource("ShaderMaterial_30tst")
+position = Vector2(102, -32)
+
+[node name="Camera2D" type="Camera2D" parent="Foreground/Player"]
+position = Vector2(88, -76)
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_bottom = 0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[editable path="Foreground/Map/QuestionBlock"]

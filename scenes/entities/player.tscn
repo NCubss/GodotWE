@@ -1,0 +1,155 @@
+[gd_scene load_steps=24 format=3 uid="uid://b2cwk2viytb57"]
+
+[ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/entities/player.gd" id="1_ucweq"]
+[ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://sprites/player/mario/small/idle.png" id="2_1ie0h"]
+[ext_resource type="Texture2D" uid="uid://geq1roewmv1k" path="res://sprites/player/mario/small/fall.png" id="2_5u6hq"]
+[ext_resource type="Texture2D" uid="uid://p3po536g3vlu" path="res://sprites/player/mario/small/duck.png" id="2_d4qa6"]
+[ext_resource type="Texture2D" uid="uid://du3cmcu5y6hsm" path="res://sprites/player/mario/small/walk.png" id="3_42nxq"]
+[ext_resource type="Texture2D" uid="uid://cv5q4gi6k8oi1" path="res://sprites/player/mario/small/jump.png" id="4_d4qa6"]
+[ext_resource type="Texture2D" uid="uid://dsbpgg6geewwj" path="res://sprites/player/mario/small/p_jump.png" id="6_c5rqy"]
+[ext_resource type="Texture2D" uid="uid://cmr57i1et5gyy" path="res://sprites/player/mario/small/skid.png" id="6_ss7kx"]
+[ext_resource type="Texture2D" uid="uid://ckyxmkostqpdd" path="res://sprites/player/mario/small/run.png" id="7_b6tgf"]
+[ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="10_b6tgf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qees"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5rqy"]
+size = Vector2(12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6tgf"]
+atlas = ExtResource("2_d4qa6")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnykm"]
+atlas = ExtResource("2_5u6hq")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u6hq"]
+atlas = ExtResource("2_1ie0h")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5rqy"]
+atlas = ExtResource("4_d4qa6")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5sgd"]
+atlas = ExtResource("6_c5rqy")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ki56"]
+atlas = ExtResource("7_b6tgf")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_saib0"]
+atlas = ExtResource("7_b6tgf")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73kkf"]
+atlas = ExtResource("6_ss7kx")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4qa6"]
+atlas = ExtResource("3_42nxq")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss7kx"]
+atlas = ExtResource("3_42nxq")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnykm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6tgf")
+}],
+"loop": true,
+"name": &"duck",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnykm")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u6hq")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5rqy")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5sgd")
+}],
+"loop": false,
+"name": &"p_jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ki56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_saib0")
+}],
+"loop": true,
+"name": &"run",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73kkf")
+}],
+"loop": false,
+"name": &"skid",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4qa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss7kx")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 1.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ucweq")
+
+[node name="CollShapeNormal" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_0qees")
+
+[node name="CollShapeDucking" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_c5rqy")
+disabled = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_dnykm")
+animation = &"p_jump"
+autoplay = "idle"
+script = ExtResource("10_b6tgf")
+metadata/_custom_type_script = "uid://vedwoxfxibus"
+
+[node name="Sounds" type="AudioStreamPlayer" parent="."]
+
+[connection signal="just_collided" from="." to="." method="_just_collided"]
