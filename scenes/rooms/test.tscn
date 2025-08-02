@@ -367,6 +367,7 @@ drag_vertical_enabled = true
 
 [node name="Ground" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_3fj7c")
+volume_db = -80.0
 autoplay = true
 parameters/looping = true
 

@@ -118,7 +118,7 @@ func _physics_process(delta: float) -> void:
 		if spin_jump:
 			if $Sprite.animation != "spin_jump":
 				$Sprite.play("spin_jump")
-			$Sprite.speed_scale = 2
+				$Sprite.speed_scale = 2
 		else:
 			if p_meter > 5:
 				$Sprite.play("p_jump")
