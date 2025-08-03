@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2cwk2viytb57"]
+[gd_scene load_steps=34 format=3 uid="uid://b2cwk2viytb57"]
 
 [ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/entities/player.gd" id="1_ucweq"]
 [ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://sprites/player/mario/small/idle.png" id="2_1ie0h"]
@@ -11,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://ckyxmkostqpdd" path="res://sprites/player/mario/small/run.png" id="7_b6tgf"]
 [ext_resource type="Texture2D" uid="uid://d4gyuxu12h8wy" path="res://sprites/player/mario/small/spin_jump.png" id="9_73kkf"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="10_b6tgf"]
+[ext_resource type="Script" uid="uid://cnsky0lpl5fbm" path="res://scripts/states/state_machine.gd" id="12_n5sgd"]
+[ext_resource type="Script" uid="uid://ckwnsvmkobqkq" path="res://scripts/states/player_moving_state.gd" id="13_5ki56"]
+[ext_resource type="Script" uid="uid://duougpjkgpmhj" path="res://scripts/states/player_idle_state.gd" id="13_ogpgs"]
+[ext_resource type="Script" uid="uid://nhyxn7n2fqbr" path="res://scripts/components/gravity_component.gd" id="14_saib0"]
+[ext_resource type="Script" uid="uid://bvglap1mqxxav" path="res://scripts/states/player_jumping_state.gd" id="15_spk56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qees"]
 size = Vector2(12, 15)
@@ -150,7 +155,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"spin_jump",
-"speed": 1.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -177,6 +182,7 @@ shape = SubResource("RectangleShape2D_c5rqy")
 disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_dnykm")
 animation = &"spin_jump"
@@ -185,5 +191,28 @@ script = ExtResource("10_b6tgf")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
 [node name="Sounds" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("12_n5sgd")
+current_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://cnsky0lpl5fbm"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("13_ogpgs")
+metadata/_custom_type_script = "uid://duougpjkgpmhj"
+
+[node name="Moving" type="Node" parent="StateMachine"]
+script = ExtResource("13_5ki56")
+metadata/_custom_type_script = "uid://ckwnsvmkobqkq"
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("15_spk56")
+metadata/_custom_type_script = "uid://bvglap1mqxxav"
+
+[node name="GravityComponent" type="Node" parent="."]
+script = ExtResource("14_saib0")
+max_fall_speed = 42.0
+metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
 
 [connection signal="just_collided" from="." to="." method="_just_collided"]

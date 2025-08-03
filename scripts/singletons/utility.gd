@@ -2,6 +2,7 @@ extends Node
 ## A class that holds utility functions.
 
 ## Represents the 4 possible axis-aligned directions in a 2D space.
+## @deprecated: Just use vectors lol ([constant Vector2.UP], [constant Vector2.RIGHT], [constant Vector2.DOWN], [constant Vector2.LEFT])
 enum Direction {
 	UP,
 	RIGHT,
@@ -9,33 +10,28 @@ enum Direction {
 	LEFT
 }
 
+
 # Cursor :v
-var cursor_sheet = preload("res://sprites/cursor.png")
-var cursor_normal := AtlasTexture.new()
-var cursor_grabbing := AtlasTexture.new()
+var _cursor_normal := AtlasTexture.new()
+var _cursor_grabbing := AtlasTexture.new()
 
 func _ready():
 	# Frame 0 (normal)
-	cursor_normal.atlas = cursor_sheet
-	cursor_normal.region = Rect2(0, 0, 69, 69)
+	_cursor_normal.atlas = preload("res://sprites/ui/cursor.png")
+	_cursor_normal.region = Rect2(0, 0, 69, 69)
 
 	# Frame 1 (grabbing)
-	cursor_grabbing.atlas = cursor_sheet
-	cursor_grabbing.region = Rect2(69, 0, 69, 69)
+	_cursor_grabbing.atlas = preload("res://sprites/ui/cursor.png")
+	_cursor_grabbing.region = Rect2(69, 0, 69, 69)
 
-	Input.set_custom_mouse_cursor(cursor_normal)
+	Input.set_custom_mouse_cursor(_cursor_normal)
 
-func set_cursor_frame(frame: int) -> void:
-	if frame == 0:
-		Input.set_custom_mouse_cursor(cursor_normal)
-	elif frame == 1:
-		Input.set_custom_mouse_cursor(cursor_grabbing)
 
 func _process(_delta):
 	if Input.is_action_pressed("mb_left"):
-		set_cursor_frame(1)  # Grabbing
+		Input.set_custom_mouse_cursor(_cursor_grabbing)
 	else:
-		set_cursor_frame(0)  # Normal
+		Input.set_custom_mouse_cursor(_cursor_normal)
 
 ## Finds a child in the node [param parent] of [param type] type. This function
 ## only looks at direct children, not descendants.
@@ -53,8 +49,19 @@ func find_child_by_class(parent: Node, type: Variant) -> Node:
 ## Utility.id("map")
 ## [/codeblock]
 func id(group_name: StringName) -> Node:
-	print(get_tree().get_first_node_in_group(name))
-	return get_tree().get_first_node_in_group(name)
+	return get_tree().get_first_node_in_group(group_name)
+
+
+## Shorthand for getting a group of nodes:
+## [codeblock]
+## # Long syntax:
+## get_tree().get_nodes_in_group("ui")
+## # Short syntax:
+## Utility.group("ui")
+## [/codeblock]
+func group(group_name: StringName) -> Array[Node]:
+	return get_tree().get_nodes_in_group(group_name)
+
 
 ## Merges two arrays together. If an element in [param array2] is in
 ## [param array1], it is not included. Returns a new shallow-copied array.
@@ -65,6 +72,6 @@ func array_merge(array1: Array, array2: Array) -> Array:
 			new_array.push_back(i)
 	return new_array
 
+
 func _enter_tree():
-	get_tree().root.max_size = Vector2i(1153, 648)
-	Input.set_custom_mouse_cursor(load("res://sprites/ui/cursor.png"));
+	Input.set_custom_mouse_cursor(preload("res://sprites/ui/cursor.png"))

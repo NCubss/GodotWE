@@ -14,12 +14,14 @@ var turning := false:
 			$CollShape.disabled = false
 var turns_done := 0
 
-func _sprout_end(eject_direction: Vector2, activator: PhysicsBody2D) -> void:
+func _sprout_end(_eject_direction: Vector2, _activator: PhysicsBody2D) -> void:
 	turning = true
 
 func _sprite_animation_looped() -> void:
 	turns_done += 1
-	if turns_done >= TURNS and not $PlayerCheckArea.overlaps_body(get_tree().get_first_node_in_group("player")):
+	if turns_done >= TURNS and not $PlayerCheckArea.overlaps_body(
+			Utility.id("player")
+	):
 		turning = false
 
 func _animation_finished(anim_name: StringName) -> void:

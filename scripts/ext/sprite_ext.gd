@@ -7,12 +7,12 @@ func _enter_tree() -> void:
 	if not get_tree().root.is_node_ready():
 		await get_tree().root.ready
 	_shadow_clone = duplicate(0)
-	get_tree().get_first_node_in_group("shadows").add_child(_shadow_clone)
+	Utility.id("shadows").add_child(_shadow_clone)
 
 func _exit_tree() -> void:
 	_shadow_clone.queue_free()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _shadow_clone != null:
 		_shadow_clone.centered = centered
 		_shadow_clone.offset = offset
