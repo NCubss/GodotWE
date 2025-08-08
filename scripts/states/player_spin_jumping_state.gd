@@ -1,6 +1,6 @@
-class_name PlayerJumpingState
+class_name PlayerSpinJumpingState
 extends State
-## Provides jumping behavior to the player.
+## Provides a spin jumping behavior to the player.
 
 # The type of jump that should be buffered
 enum _JumpBufferType {
@@ -20,23 +20,16 @@ func start(entity: Node2D) -> Variant:
 	assert(player != null,
 			"Using a player state on a non-player entity is not allowed")
 	
-	var running = Input.is_action_pressed("player_run")
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	
+	# animations
+	player.sprite.speed_scale = 1
+	player.sprite.flip_h = false
+	player.sprite.play("spin_jump")
+	
 	# apply jump speed
-	if not running and abs(player.velocity.x) < player.max_walk_speed:
-		player.velocity.y = -player.idle_jump_speed
-		print("a")
-	elif (
-			(not running and abs(player.velocity.x) >= player.max_walk_speed)
-			or (running and abs(player.velocity.x) < player.max_run_speed)
-	):
-		player.velocity.y = -player.slow_jump_speed
-		print("b")
-	elif running and abs(player.velocity.x) >= player.max_run_speed:
-		player.velocity.y = -player.fast_jump_speed
-		print("c")
+	player.velocity.y = -player.spin_jump_speed
 	
 	return
 
@@ -45,6 +38,7 @@ func end(entity: Node2D) -> void:
 	# type hinting
 	var player = entity as Player
 	
+	player.modulate = Color.WHITE
 	# reset gravity
 	var grav = Utility.find_child_by_class(player, GravityComponent)
 	grav.gravity = Vector2(0, player.gravity)
@@ -56,10 +50,12 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	var direction = Input.get_axis("player_left", "player_right")
 	var max_speed = (
-		player.max_run_speed
-		if Input.is_action_pressed("player_run")
-		else player.max_walk_speed
+			player.max_run_speed
+			if Input.is_action_pressed("player_run")
+			else player.max_walk_speed
 	)
+	
+	player.modulate = Color.RED if _jump_buffer != _JumpBufferType.NONE else Color.WHITE
 	
 	# jump buffer stuff
 	if _jump_buffer != _JumpBufferType.NONE:
@@ -75,7 +71,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 		_jump_buffer_timer = 0
 	
 	if (
-		not Input.is_action_pressed("player_jump")
+		not Input.is_action_pressed("player_spin_jump")
 		or player.velocity.y >= -player.long_jump_stop_speed
 	):
 		_long_jump = false
@@ -110,15 +106,5 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 				max_speed * direction,
 				player.acceleration
 		)
-	
-	# animations
-	if player.velocity.y < 0:
-		player.sprite.play("jump")
-	else:
-		player.sprite.play("fall")
-	if direction < 0:
-		player.sprite.flip_h = true
-	elif direction > 0:
-		player.sprite.flip_h = false
 	
 	return

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d1pyovyuwelpw" path="res://scenes/tiles/turn_block_tile.tscn" id="5_0dnrn"]
 [ext_resource type="PackedScene" uid="uid://c4qpbj5epsp55" path="res://scenes/tiles/question_block.tscn" id="5_3fj7c"]
 [ext_resource type="Shader" uid="uid://wukfukct4ngr" path="res://shaders/shadows.gdshader" id="5_bflcn"]
-[ext_resource type="PackedScene" uid="uid://b107v6eucpho2" path="res://scenes/sprouts/rise_sprout.tscn" id="6_3fj7c"]
+[ext_resource type="PackedScene" uid="uid://bp83ylgnahiv3" path="res://scenes/entities/mushroom_sprout.tscn" id="6_3fj7c"]
 [ext_resource type="AudioStream" uid="uid://bbml0t642mivw" path="res://audio/music/ground.ogg" id="9_3fj7c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_30tst"]
@@ -78,6 +78,9 @@ position = Vector2(0, -16)
 
 [node name="GroundTile14" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(0, -32)
+
+[node name="GroundTile96" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(27, -48)
 
 [node name="GroundTile15" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(16, -16)
@@ -351,14 +354,22 @@ release_sprout = true
 sprout = ExtResource("6_3fj7c")
 
 [node name="QuestionBlock2" parent="Foreground/Map" instance=ExtResource("5_3fj7c")]
-position = Vector2(368, -192)
+position = Vector2(368, -160)
+
+[node name="GroundTile93" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -96)
+
+[node name="GroundTile94" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -80)
+
+[node name="GroundTile95" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -64)
 
 [node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
 material = SubResource("ShaderMaterial_30tst")
 position = Vector2(102, -32)
 
 [node name="Camera2D" type="Camera2D" parent="Foreground/Player"]
-position = Vector2(88, -76)
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_bottom = 0

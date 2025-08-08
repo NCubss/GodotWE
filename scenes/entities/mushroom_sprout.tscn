@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp83ylgnahiv3"]
+
+[ext_resource type="PackedScene" uid="uid://b107v6eucpho2" path="res://scenes/sprouts/rise_sprout.tscn" id="1_dmlgj"]
+[ext_resource type="PackedScene" uid="uid://eu7xxlwcq05b" path="res://scenes/entities/mushroom.tscn" id="2_0fdnx"]
+[ext_resource type="Texture2D" uid="uid://b757gbkr1a7j0" path="res://sprites/entities/mushroom.png" id="3_i343q"]
+
+[node name="MushroomSprout" instance=ExtResource("1_dmlgj")]
+item = ExtResource("2_0fdnx")
+texture = ExtResource("3_i343q")

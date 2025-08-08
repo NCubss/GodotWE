@@ -1,17 +1,17 @@
 [gd_scene load_steps=5 format=3 uid="uid://b107v6eucpho2"]
 
-[ext_resource type="Script" uid="uid://dupeycm1rrsbu" path="res://scenes/sprouts/rise_sprout.gd" id="1_ugouh"]
+[ext_resource type="Script" uid="uid://dupeycm1rrsbu" path="res://scripts/sprouts/rise_sprout.gd" id="1_ugouh"]
 [ext_resource type="Texture2D" uid="uid://ch4vaq40ak0qo" path="res://sprites/test.png" id="2_fe2ge"]
 [ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_yhfmp"]
 [ext_resource type="AudioStream" uid="uid://bexd6cvyd4onk" path="res://audio/tiles/sprout.ogg" id="4_fe2ge"]
 
 [node name="RiseSprout" type="Node2D"]
-visible = false
 script = ExtResource("1_ugouh")
 metadata/_custom_type_script = "uid://cku75vxdp1oyx"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 texture = ExtResource("2_fe2ge")
 script = ExtResource("3_yhfmp")
 metadata/_custom_type_script = "uid://ct8v8svsomclf"

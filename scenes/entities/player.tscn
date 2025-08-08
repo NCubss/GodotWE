@@ -1,191 +1,32 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2cwk2viytb57"]
+[gd_scene load_steps=12 format=3 uid="uid://b2cwk2viytb57"]
 
 [ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/entities/player.gd" id="1_ucweq"]
-[ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://sprites/player/mario/small/idle.png" id="2_1ie0h"]
-[ext_resource type="Texture2D" uid="uid://geq1roewmv1k" path="res://sprites/player/mario/small/fall.png" id="2_5u6hq"]
-[ext_resource type="Texture2D" uid="uid://p3po536g3vlu" path="res://sprites/player/mario/small/duck.png" id="2_d4qa6"]
-[ext_resource type="Texture2D" uid="uid://du3cmcu5y6hsm" path="res://sprites/player/mario/small/walk.png" id="3_42nxq"]
-[ext_resource type="Texture2D" uid="uid://cv5q4gi6k8oi1" path="res://sprites/player/mario/small/jump.png" id="4_d4qa6"]
-[ext_resource type="Texture2D" uid="uid://dsbpgg6geewwj" path="res://sprites/player/mario/small/p_jump.png" id="6_c5rqy"]
-[ext_resource type="Texture2D" uid="uid://cmr57i1et5gyy" path="res://sprites/player/mario/small/skid.png" id="6_ss7kx"]
-[ext_resource type="Texture2D" uid="uid://ckyxmkostqpdd" path="res://sprites/player/mario/small/run.png" id="7_b6tgf"]
-[ext_resource type="Texture2D" uid="uid://d4gyuxu12h8wy" path="res://sprites/player/mario/small/spin_jump.png" id="9_73kkf"]
+[ext_resource type="SpriteFrames" uid="uid://b8ka66cx00t43" path="res://sprites/player/mario/small.tres" id="2_b6tgf"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="10_b6tgf"]
 [ext_resource type="Script" uid="uid://cnsky0lpl5fbm" path="res://scripts/states/state_machine.gd" id="12_n5sgd"]
 [ext_resource type="Script" uid="uid://ckwnsvmkobqkq" path="res://scripts/states/player_moving_state.gd" id="13_5ki56"]
 [ext_resource type="Script" uid="uid://duougpjkgpmhj" path="res://scripts/states/player_idle_state.gd" id="13_ogpgs"]
 [ext_resource type="Script" uid="uid://nhyxn7n2fqbr" path="res://scripts/components/gravity_component.gd" id="14_saib0"]
+[ext_resource type="Script" uid="uid://drnhgymryv5kx" path="res://scripts/states/player_falling_state.gd" id="15_1yk18"]
 [ext_resource type="Script" uid="uid://bvglap1mqxxav" path="res://scripts/states/player_jumping_state.gd" id="15_spk56"]
+[ext_resource type="Script" uid="uid://cnpxggqelnnfx" path="res://scripts/states/player_spin_jumping_state.gd" id="17_b4o2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qees"]
 size = Vector2(12, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5rqy"]
-size = Vector2(12, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6tgf"]
-atlas = ExtResource("2_d4qa6")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dnykm"]
-atlas = ExtResource("2_5u6hq")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5u6hq"]
-atlas = ExtResource("2_1ie0h")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5rqy"]
-atlas = ExtResource("4_d4qa6")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5sgd"]
-atlas = ExtResource("6_c5rqy")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ki56"]
-atlas = ExtResource("7_b6tgf")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_saib0"]
-atlas = ExtResource("7_b6tgf")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_73kkf"]
-atlas = ExtResource("6_ss7kx")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ogpgs"]
-atlas = ExtResource("9_73kkf")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_spk56"]
-atlas = ExtResource("9_73kkf")
-region = Rect2(32, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1yk18"]
-atlas = ExtResource("9_73kkf")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b4o2o"]
-atlas = ExtResource("9_73kkf")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d4qa6"]
-atlas = ExtResource("3_42nxq")
-region = Rect2(0, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ss7kx"]
-atlas = ExtResource("3_42nxq")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dnykm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6tgf")
-}],
-"loop": true,
-"name": &"duck",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dnykm")
-}],
-"loop": false,
-"name": &"fall",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5u6hq")
-}],
-"loop": false,
-"name": &"idle",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5rqy")
-}],
-"loop": false,
-"name": &"jump",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n5sgd")
-}],
-"loop": false,
-"name": &"p_jump",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ki56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_saib0")
-}],
-"loop": true,
-"name": &"run",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_73kkf")
-}],
-"loop": false,
-"name": &"skid",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ogpgs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_spk56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1yk18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b4o2o")
-}],
-"loop": true,
-"name": &"spin_jump",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d4qa6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ss7kx")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 1.0
-}]
-
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_ucweq")
 
-[node name="CollShapeNormal" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_0qees")
-
-[node name="CollShapeDucking" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6.5)
-shape = SubResource("RectangleShape2D_c5rqy")
-disabled = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -15)
-sprite_frames = SubResource("SpriteFrames_dnykm")
-animation = &"spin_jump"
+sprite_frames = ExtResource("2_b6tgf")
+animation = &"skid"
 autoplay = "idle"
 script = ExtResource("10_b6tgf")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
@@ -206,13 +47,20 @@ metadata/_custom_type_script = "uid://duougpjkgpmhj"
 script = ExtResource("13_5ki56")
 metadata/_custom_type_script = "uid://ckwnsvmkobqkq"
 
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("15_1yk18")
+metadata/_custom_type_script = "uid://drnhgymryv5kx"
+
 [node name="Jumping" type="Node" parent="StateMachine"]
 script = ExtResource("15_spk56")
 metadata/_custom_type_script = "uid://bvglap1mqxxav"
 
+[node name="SpinJumping" type="Node" parent="StateMachine"]
+script = ExtResource("17_b4o2o")
+metadata/_custom_type_script = "uid://cnpxggqelnnfx"
+
 [node name="GravityComponent" type="Node" parent="."]
 script = ExtResource("14_saib0")
-max_fall_speed = 42.0
 metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
 
 [connection signal="just_collided" from="." to="." method="_just_collided"]

@@ -73,5 +73,12 @@ func array_merge(array1: Array, array2: Array) -> Array:
 	return new_array
 
 
+## Equivalent to [method Node.add_sibling], except that it adds the
+## [param sibling] above the [param node] in the tree.
+func add_sibling_up(node: Node, sibling: Node) -> void:
+	node.add_sibling(sibling)
+	node.get_parent().move_child(sibling, node.get_index() - 1)
+
+
 func _enter_tree():
 	Input.set_custom_mouse_cursor(preload("res://sprites/ui/cursor.png"))

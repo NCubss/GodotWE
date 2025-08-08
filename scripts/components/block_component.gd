@@ -49,8 +49,11 @@ static func animate_sprout_start(spr: Node2D) -> Tween:
 
 ## Animates the given [param spr] with the ending sprout animation.
 static func animate_sprout_end(spr: Node2D) -> Tween:
+	spr.position = Vector2(8, 5)
+	spr.scale = Vector2(1.375, 1.375)
+	
 	var tween = spr.create_tween()
-	#tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(spr, "position", Vector2(8, 8), 4/60.0) 
 	tween.parallel().tween_property(spr, "scale", Vector2(1, 1), 4/60.0)
 	return tween
@@ -69,16 +72,19 @@ func _just_collided(data: KinematicCollision2D):
 	if entity is Player and data.get_normal().y == 1:
 		if release_sprout and sprout != null:
 			_sprout = sprout.instantiate()
-			owner.add_child(_sprout)
-			_sprout.position = Vector2(8, 8)
-			owner.move_child(_sprout, 0)
+			Utility.add_sibling_up(owner, _sprout)
+			_sprout.position = owner.position + Vector2(8, 8)
 			_sprout.start_sprout(Vector2(0, -1))
 		sprout_start.emit(data.get_normal(), entity)
 		animate_sprout_start(sprite).finished.connect(
-				_finish_sprout.bind(Vector2(0, -1), entity))
+				_finish_sprout.bind(data.get_normal(), Vector2(0, -1), entity))
 
 
-func _finish_sprout(eject_direction: Vector2, activator: PhysicsBody2D) -> void:
+func _finish_sprout(
+		normal: Vector2,
+		eject_direction: Vector2,
+		activator: PhysicsBody2D
+) -> void:
 	animate_sprout_end(sprite)
 	if release_sprout and sprout != null:
 		#if sprout.empty_container != null:
@@ -92,14 +98,13 @@ func _finish_sprout(eject_direction: Vector2, activator: PhysicsBody2D) -> void:
 		var data = _sprout.end_sprout(eject_direction)
 		if data.new_tile != null:
 			var new_tile = data.new_tile.instantiate()
-			_sprout.reparent(new_tile)
-			new_tile.move_child(_sprout, 0)
 			var tile_comp = Utility.find_child_by_class(owner, TileComponent)
 			if tile_comp != null:
 				tile_comp.map.set_tile(tile_comp.position, new_tile)
 			else:
-				add_sibling(new_tile)
-				queue_free()
-			animate_sprout_end(new_tile.get_node("Sprite"))
+				owner.add_sibling(new_tile)
+				owner.queue_free()
+			owner.get_parent().move_child(_sprout, new_tile.get_index() - 1)
+			animate_sprout_end(new_tile.get_node(^"Sprite"))
 	else:
-		sprout_end.emit(eject_direction, activator)
+		sprout_end.emit(normal, activator)

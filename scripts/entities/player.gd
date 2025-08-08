@@ -2,10 +2,74 @@ class_name Player
 extends CharacterBodyExt
 ## Represents a controllable player.
 
+## Represents a powerup. Most of these are exclusive and can only be found in
+## their respective game styles.
+enum Powerup {
+	## The default powerup. Uses the small hitbox size.
+	SMALL,
+	## The powerup obtained from the Super Mushroom ([Mushroom]). Uses the big
+	## hitbox size.
+	SUPER,
+	## The powerup obtained from the Fire Flower ([FireFlower]). Can shoot
+	## fireballs. Uses the big hitbox size.
+	FIRE,
+	## The powerup obtained from the Cape Feather ([CapeFeather]). Exclusive to
+	## the [i]Super Mario World[/i] game style. Can spin to attack with the
+	## cape. Can fly using the cape. Uses the big hitbox size.
+	CAPE,
+	## The powerup obtained from the P-Balloon ([PBalloon]). Exclusive to the
+	## [i]Super Mario World[/i] game style. Can fly in the cardinal and ordinal
+	## directions.
+	P_BALLOON,
+	## The powerup obtained from the Cloud Flower ([CloudFlower]). Exclusive to
+	## the [i]Super Mario World[/i] game style. Can spin to summon a wide cloud
+	## under the player's feet. Uses the big hitbox size.
+	CLOUD,
+	## The powerup obtained from the Mega Mushroom ([MegaMushroom]). Exclusive
+	## to the [i]Super Mario Bros.[/i] game style. Can destroy hard blocks and
+	## kill enemies by falling on them. Uses the big hitbox size.
+	MEGA,
+	## The powerup obtained from the Weird Mushroom ([WeirdMushroom]). Exclusive
+	## to the [i]Super Mario Bros.[/i] game style. Can jump significantly
+	## higher. Uses the big hitbox size.
+	WEIRD,
+	## The powerup obtained from the Superball Flower ([SuperballFlower]).
+	## Exclusive to the [i]Super Mario Bros.[/] game style. Can shoot superballs
+	## that bounce off of walls. Uses the big hitbox size.
+	SUPERBALL,
+	## The powerup obtained from the Master Sword ([MasterSword]). Exclusive to
+	## the [i]Super Mario Bros.[/i] game style. Can attack with a sword,
+	## ground-pound, use a shield, summon bombs and fire arrows. Uses the small
+	## hitbox size.
+	LINK,
+	## The powerup obtained from the Super Leaf ([SuperLeaf]). Exclusive to the
+	## [i]Super Mario Bros. 3[/i] game style. Can spin to attack with the tail
+	## and fly. Uses the big hitbox size.
+	RACCOON,
+	## The powerup obtained from the Frog Suit ([FrogSuit]). Exclusive to the
+	## [i]Super Mario Bros. 3[/i] game style. 
+	FROG,
+	## The powerup obtained from the Hammer Suit ([HammerSuit]). Exclusive to
+	## the [i]Super Mario Bros. 3[/i] game style.
+	HAMMER,
+	## The powerup obtained from the Propeller Mushroom ([PropellerMushroom]).
+	## Exclusive to the [i]New Super Mario Bros. U[/i] game style.
+	PROPELLER,
+	## The powerup obtained from the Super Acorn ([SuperAcorn]). Exclusive to
+	## the [i]New Super Mario Bros. U[/i] game style.
+	ACORN,
+	## The powerup obtained from the Penguin Suit ([PenguinSuit]). Exclusive to
+	## the [i]Nwe Super Mario Bros. U[/i] game style.
+	PENGUIN
+}
+
 ## The player's sprite.
 @onready var sprite: AnimatedSpriteExt = %Sprite
 ## The player's sound player.
 @onready var sounds: AudioStreamPlayer = %Sounds
+
+## The player's current powerup.
+@export var powerup := Powerup.SMALL
 
 @export_group("Maximum Speed")
 ## The maximum horizontal speed when walking.
@@ -54,112 +118,53 @@ var slow_jump_speed := 243.0
 var idle_jump_speed := 237.0
 ## The vertical speed at which the player will start applying
 ## [member Player.gravity] instead of [member Player.long_jump_gravity].
+## Includes spin jumps.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
 var long_jump_stop_speed := 60.0
+## The regular spin jump speed.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
+var spin_jump_speed := 198.0
+## The spin jump speed used when the level has low gravity.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
+var night_spin_jump_speed := 138.0
 
 @export_group("Gravity")
 ## The default gravity.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s²")
-var gravity = 18.0
+var gravity := 18.0
 ## The gravity used for variable jump height.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s²")
-var long_jump_gravity = 6.0
+var long_jump_gravity := 6.0
+
+@export_group("Enhancements")
+## The amount of body corner overlap to push the player to the side. Only
+## applied on the Y axis.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px")
+var corner_correction := 3
+## The maximum amount of time the player will allow when it has jumped
+## too [i]early[/i].
+@export_custom(PROPERTY_HINT_NONE, "suffix:s")
+var jump_buffer_time := 2.0/60
+## The maximum amount of time the player will allow when it has jumped too
+## [i]late[/i].
+@export_custom(PROPERTY_HINT_NONE, "suffix:s")
+var coyote_time := 4.0/60
 
 ## The player's P-Meter value, from 0 to 7.
 var p_meter := 0
 var _p_timer := 0.0
+# For coyote time
+@warning_ignore("unused_private_class_variable")
+var _just_fell := false
 
-var skidding := false
-var long_jump := false
-var can_jump := false
-var spin_jump := false
+const SMALL_HITBOX_SIZE = Rect2(Vector2(0, -7.5), Vector2(12, 15))
+const BIG_HITBOX_SIZE = Rect2(Vector2(0, -13.5), Vector2(12, 27))
 
 func _physics_process(delta: float) -> void:
 	super(delta)
 	_attempt_correction(delta, 2)
 	move_and_slide()
 	_p_timer += delta
-#
-	#var direction := Input.get_axis("player_left", "player_right")
-	#var running := Input.is_action_pressed("player_run")
-	#var ducking := Input.is_action_pressed("player_down")
-	#can_jump = is_on_floor()
-#
-	#if spin_jump and is_on_floor():
-		#spin_jump = false
-#
-	#$CollShapeNormal.disabled = ducking
-	#$CollShapeDucking.disabled = not ducking
-#
-	#velocity.y = min(velocity.y + (LONG_JUMP_GRAVITY if long_jump else GRAVITY), MAX_FALL_SPEED)
-#
-	#if Input.is_action_just_pressed("player_spin_jump") and can_jump:
-		#long_jump = true
-		#spin_jump = true
-		#if not running and velocity.y < WALK_SPEED:
-			#velocity.y = -IDLE_JUMP_SPEED
-		#elif (not running and velocity.y >= WALK_SPEED) or (running and velocity.y < RUN_SPEED):
-			#velocity.y = -SLOW_JUMP_SPEED
-		#elif running and velocity.y >= RUN_SPEED:
-			#velocity.y = -FAST_JUMP_SPEED
-		#$Sounds.stream = preload("res://audio/player/spin_jump.ogg")
-		#$Sounds.play()
-#
-	#if Input.is_action_just_pressed("player_jump") and can_jump:
-		#long_jump = true
-
-		#$Sounds.stream = preload("res://audio/player/jump.ogg")
-		#$Sounds.play()
-#
-	#if long_jump and (velocity.y > -60 or not (Input.is_action_pressed("player_jump") or Input.is_action_pressed("player_spin_jump"))):
-		#long_jump = false
-#
-	## SPRITE ANIMATION LOGIC
-	## Set default speed scale
-	#$Sprite.speed_scale = 1
-#
-	#if velocity.x == 0 or is_on_wall():
-		#$Sprite.play("idle")
-	#else:
-		#if p_meter > 5:
-			#$Sprite.play("run")
-		#else:
-			#$Sprite.play("walk")
-		#$Sprite.speed_scale = abs(velocity.x) * 12 * delta
-		#if direction == -1:
-			#$Sprite.flip_h = true
-		#elif direction == 1:
-			#$Sprite.flip_h = false
-#
-	#if not can_jump:
-		#if spin_jump:
-			#if $Sprite.animation != "spin_jump":
-				#$Sprite.play("spin_jump")
-				#$Sprite.speed_scale = 2
-		#else:
-			#if p_meter > 5:
-				#$Sprite.play("p_jump")
-			#else:
-				#if velocity.y < 0:
-					#$Sprite.play("jump")
-				#else:
-					#$Sprite.play("fall")
-#
-	#if can_jump and ducking:
-		#$Sprite.play("duck")
-#
-	#if skidding and is_on_floor() and p_meter > 5:
-		#$Sprite.play("skid")
-#
-	## P-Meter Logic
-	#do_p_meter(delta)
-	
-	#adaprint("%.2f" % (velocity.x * delta))
-	#print("%.2f" % (velocity.y * delta))
-
-func _process(_delta: float) -> void:
-	$Sprite.position = Vector2(-fmod(position.x, 1), -fmod(position.y, 1) - 15)
-	$Camera2D.position = Vector2(-fmod(position.x, 1), -fmod(position.y, 1))
 
 
 func _just_collided(collision: KinematicCollision2D) -> void:

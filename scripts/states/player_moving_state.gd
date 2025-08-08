@@ -11,7 +11,11 @@ func start(entity: Node2D) -> Variant:
 	return
 
 
-func physics_process(entity: Node2D, _delta: float) -> Variant:
+func end(_entity: Node2D) -> void:
+	_skidding = false
+
+
+func physics_process(entity: Node2D, delta: float) -> Variant:
 	# type hinting
 	var player = entity as Player
 	
@@ -19,15 +23,27 @@ func physics_process(entity: Node2D, _delta: float) -> Variant:
 	var running := Input.is_action_pressed("player_run")
 	var max_speed = player.max_run_speed if running else player.max_walk_speed
 	
-	# player is idle, go to the idle state
-	if direction == 0:
-		return PlayerIdleState
-	
 	# player is jumping, go to the jumping state
 	if Input.is_action_just_pressed("player_jump"):
 		player.sounds.stream = preload("res://audio/player/jump.ogg")
 		player.sounds.play()
+		player.sprite.speed_scale = 1
 		return PlayerJumpingState
+	
+	# player is spin jumping, go to the spin jumping state
+	if Input.is_action_just_pressed("player_spin_jump"):
+		player.sounds.stream = preload("res://audio/player/spin_jump.ogg")
+		player.sounds.play()
+		return PlayerSpinJumpingState
+	
+	# player is idle, go to the idle state
+	if direction == 0:
+		return PlayerIdleState
+	
+	# player is not on floor, go to the falling state
+	if not player.is_on_floor():
+		player._just_fell = true
+		return PlayerFallingState
 	
 	if _skidding:
 		# skidding logic
@@ -64,7 +80,21 @@ func physics_process(entity: Node2D, _delta: float) -> Variant:
 			player.sounds.stream = preload("res://audio/player/skid.ogg")
 			player.sounds.play()
 	
-	_do_p_meter(player)
+	# animations
+	if direction < 0:
+		player.sprite.flip_h = true
+	elif direction > 0:
+		player.sprite.flip_h = false
+	if player.p_meter > 5:
+		player.sprite.play("run")
+	else:
+		player.sprite.play("walk")
+	if not player.is_on_wall():
+		player.sprite.speed_scale = abs(player.velocity.x) * 12 * delta
+	else:
+		player.sprite.play("idle")
+	
+	do_p_meter(player)
 	return null
 
 
@@ -78,7 +108,8 @@ func _do_skid_smoke(player: Player) -> void:
 		get_tree().create_timer(0.1).timeout.connect(_do_skid_smoke)
 
 
-func _do_p_meter(player: Player) -> void:
+## Basic P-Meter logic.
+static func do_p_meter(player: Player) -> void:
 	if player._p_timer != 0 and (player.velocity.x != 0 or player.p_meter != 0):
 		player._p_timer = 0
 	
@@ -100,5 +131,3 @@ func _do_p_meter(player: Player) -> void:
 		if player._p_timer >= 0.4:
 			player._p_timer = 0
 			player.p_meter -= 1
-	
-	print(player.p_meter)
