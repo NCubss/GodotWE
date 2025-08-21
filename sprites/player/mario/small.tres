@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://b8ka66cx00t43"]
+[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://b8ka66cx00t43"]
 
 [ext_resource type="Texture2D" uid="uid://p3po536g3vlu" path="res://sprites/player/mario/small/duck.png" id="1_dojcj"]
+[ext_resource type="Texture2D" uid="uid://c2ghbdcbsyk30" path="res://sprites/player/mario/dead.png" id="1_hgfbl"]
 [ext_resource type="Texture2D" uid="uid://geq1roewmv1k" path="res://sprites/player/mario/small/fall.png" id="2_hgfbl"]
 [ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://sprites/player/mario/small/idle.png" id="3_lungf"]
 [ext_resource type="Texture2D" uid="uid://cv5q4gi6k8oi1" path="res://sprites/player/mario/small/jump.png" id="4_ouou7"]
@@ -9,6 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://cmr57i1et5gyy" path="res://sprites/player/mario/small/skid.png" id="7_wms1a"]
 [ext_resource type="Texture2D" uid="uid://d4gyuxu12h8wy" path="res://sprites/player/mario/small/spin_jump.png" id="8_qfgb1"]
 [ext_resource type="Texture2D" uid="uid://du3cmcu5y6hsm" path="res://sprites/player/mario/small/walk.png" id="9_lnd0r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lungf"]
+atlas = ExtResource("1_hgfbl")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouou7"]
+atlas = ExtResource("1_hgfbl")
+region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b6tgf"]
 atlas = ExtResource("1_dojcj")
@@ -68,6 +77,17 @@ region = Rect2(16, 0, 16, 32)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lungf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouou7")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 7.5
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b6tgf")

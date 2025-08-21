@@ -2,74 +2,76 @@ class_name Player
 extends CharacterBodyExt
 ## Represents a controllable player.
 
-## Represents a powerup. Most of these are exclusive and can only be found in
-## their respective game styles.
-enum Powerup {
-	## The default powerup. Uses the small hitbox size.
-	SMALL,
-	## The powerup obtained from the Super Mushroom ([Mushroom]). Uses the big
-	## hitbox size.
-	SUPER,
-	## The powerup obtained from the Fire Flower ([FireFlower]). Can shoot
-	## fireballs. Uses the big hitbox size.
-	FIRE,
-	## The powerup obtained from the Cape Feather ([CapeFeather]). Exclusive to
-	## the [i]Super Mario World[/i] game style. Can spin to attack with the
-	## cape. Can fly using the cape. Uses the big hitbox size.
-	CAPE,
-	## The powerup obtained from the P-Balloon ([PBalloon]). Exclusive to the
-	## [i]Super Mario World[/i] game style. Can fly in the cardinal and ordinal
-	## directions.
-	P_BALLOON,
-	## The powerup obtained from the Cloud Flower ([CloudFlower]). Exclusive to
-	## the [i]Super Mario World[/i] game style. Can spin to summon a wide cloud
-	## under the player's feet. Uses the big hitbox size.
-	CLOUD,
-	## The powerup obtained from the Mega Mushroom ([MegaMushroom]). Exclusive
-	## to the [i]Super Mario Bros.[/i] game style. Can destroy hard blocks and
-	## kill enemies by falling on them. Uses the big hitbox size.
-	MEGA,
-	## The powerup obtained from the Weird Mushroom ([WeirdMushroom]). Exclusive
-	## to the [i]Super Mario Bros.[/i] game style. Can jump significantly
-	## higher. Uses the big hitbox size.
-	WEIRD,
-	## The powerup obtained from the Superball Flower ([SuperballFlower]).
-	## Exclusive to the [i]Super Mario Bros.[/] game style. Can shoot superballs
-	## that bounce off of walls. Uses the big hitbox size.
-	SUPERBALL,
-	## The powerup obtained from the Master Sword ([MasterSword]). Exclusive to
-	## the [i]Super Mario Bros.[/i] game style. Can attack with a sword,
-	## ground-pound, use a shield, summon bombs and fire arrows. Uses the small
-	## hitbox size.
-	LINK,
-	## The powerup obtained from the Super Leaf ([SuperLeaf]). Exclusive to the
-	## [i]Super Mario Bros. 3[/i] game style. Can spin to attack with the tail
-	## and fly. Uses the big hitbox size.
-	RACCOON,
-	## The powerup obtained from the Frog Suit ([FrogSuit]). Exclusive to the
-	## [i]Super Mario Bros. 3[/i] game style. 
-	FROG,
-	## The powerup obtained from the Hammer Suit ([HammerSuit]). Exclusive to
-	## the [i]Super Mario Bros. 3[/i] game style.
-	HAMMER,
-	## The powerup obtained from the Propeller Mushroom ([PropellerMushroom]).
-	## Exclusive to the [i]New Super Mario Bros. U[/i] game style.
-	PROPELLER,
-	## The powerup obtained from the Super Acorn ([SuperAcorn]). Exclusive to
-	## the [i]New Super Mario Bros. U[/i] game style.
-	ACORN,
-	## The powerup obtained from the Penguin Suit ([PenguinSuit]). Exclusive to
-	## the [i]Nwe Super Mario Bros. U[/i] game style.
-	PENGUIN
-}
+### Represents a powerup. Most of these are exclusive and can only be found in
+### their respective game styles.
+#enum Powerup {
+	### The default powerup. Uses the small hitbox size.
+	#SMALL,
+	### The powerup obtained from the Super Mushroom ([Mushroom]). Uses the big
+	### hitbox size.
+	#SUPER,
+	### The powerup obtained from the Fire Flower ([FireFlower]). Can shoot
+	### fireballs. Uses the big hitbox size.
+	#FIRE,
+	### The powerup obtained from the Cape Feather ([CapeFeather]). Exclusive to
+	### the [i]Super Mario World[/i] game style. Can spin to attack with the
+	### cape. Can fly using the cape. Uses the big hitbox size.
+	#CAPE,
+	### The powerup obtained from the P-Balloon ([PBalloon]). Exclusive to the
+	### [i]Super Mario World[/i] game style. Can fly in the cardinal and ordinal
+	### directions.
+	#P_BALLOON,
+	### The powerup obtained from the Cloud Flower ([CloudFlower]). Exclusive to
+	### the [i]Super Mario World[/i] game style. Can spin to summon a wide cloud
+	### under the player's feet. Uses the big hitbox size.
+	#CLOUD,
+	### The powerup obtained from the Mega Mushroom ([MegaMushroom]). Exclusive
+	### to the [i]Super Mario Bros.[/i] game style. Can destroy hard blocks and
+	### kill enemies by falling on them. Uses the big hitbox size.
+	#MEGA,
+	### The powerup obtained from the Weird Mushroom ([WeirdMushroom]). Exclusive
+	### to the [i]Super Mario Bros.[/i] game style. Can jump significantly
+	### higher. Uses the big hitbox size.
+	#WEIRD,
+	### The powerup obtained from the Superball Flower ([SuperballFlower]).
+	### Exclusive to the [i]Super Mario Bros.[/] game style. Can shoot superballs
+	### that bounce off of walls. Uses the big hitbox size.
+	#SUPERBALL,
+	### The powerup obtained from the Master Sword ([MasterSword]). Exclusive to
+	### the [i]Super Mario Bros.[/i] game style. Can attack with a sword,
+	### ground-pound, use a shield, summon bombs and fire arrows. Uses the small
+	### hitbox size.
+	#LINK,
+	### The powerup obtained from the Super Leaf ([SuperLeaf]). Exclusive to the
+	### [i]Super Mario Bros. 3[/i] game style. Can spin to attack with the tail
+	### and fly. Uses the big hitbox size.
+	#RACCOON,
+	### The powerup obtained from the Frog Suit ([FrogSuit]). Exclusive to the
+	### [i]Super Mario Bros. 3[/i] game style. 
+	#FROG,
+	### The powerup obtained from the Hammer Suit ([HammerSuit]). Exclusive to
+	### the [i]Super Mario Bros. 3[/i] game style.
+	#HAMMER,
+	### The powerup obtained from the Propeller Mushroom ([PropellerMushroom]).
+	### Exclusive to the [i]New Super Mario Bros. U[/i] game style.
+	#PROPELLER,
+	### The powerup obtained from the Super Acorn ([SuperAcorn]). Exclusive to
+	### the [i]New Super Mario Bros. U[/i] game style.
+	#ACORN,
+	### The powerup obtained from the Penguin Suit ([PenguinSuit]). Exclusive to
+	### the [i]Nwe Super Mario Bros. U[/i] game style.
+	#PENGUIN
+#}
 
 ## The player's sprite.
 @onready var sprite: AnimatedSpriteExt = %Sprite
 ## The player's sound player.
 @onready var sounds: AudioStreamPlayer = %Sounds
+@onready var graphics: Node = %Graphics
+@onready var state_machine: StateMachine = %StateMachine
 
 ## The player's current powerup.
-@export var powerup := Powerup.SMALL
+@export var _powerup: Powerup = SmallPowerup.new(self)
 
 @export_group("Maximum Speed")
 ## The maximum horizontal speed when walking.
@@ -160,11 +162,42 @@ var _just_fell := false
 const SMALL_HITBOX_SIZE = Rect2(Vector2(0, -7.5), Vector2(12, 15))
 const BIG_HITBOX_SIZE = Rect2(Vector2(0, -13.5), Vector2(12, 27))
 
+
+func set_powerup(powerup: Powerup, animate := false) -> void:
+	_powerup.end()
+	powerup.start(animate)
+	_powerup = powerup
+
+
+func get_powerup() -> Powerup:
+	return _powerup
+
+
+func damage() -> void:
+	sounds.stream = preload("res://audio/player/warp.ogg")
+	sounds.play()
+
+
+func kill() -> void:
+	sounds.stream = preload("res://audio/player/dead.ogg")
+	sounds.play()
+
+
+func _ready() -> void:
+	_powerup.start()
+	print($CollShape.shape.get_rect())
+
+
 func _physics_process(delta: float) -> void:
 	super(delta)
 	_attempt_correction(delta, 2)
 	move_and_slide()
+	_powerup.physics_process(delta)
 	_p_timer += delta
+
+
+func _process(delta: float) -> void:
+	_powerup.process(delta)
 
 
 func _just_collided(collision: KinematicCollision2D) -> void:

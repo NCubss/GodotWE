@@ -10,20 +10,28 @@
 size = Vector2(10, 15)
 
 [node name="Mushroom" type="CharacterBody2D"]
-position = Vector2(-1, 0)
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1_y41n4")
 metadata/_custom_type_script = "uid://bjdqtobc8xf0n"
+
+[node name="CollShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_qfenl")
+
+[node name="PlayerCheckArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_qfenl")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2_y41n4")
 script = ExtResource("3_ohtko")
 metadata/_custom_type_script = "uid://ct8v8svsomclf"
-
-[node name="CollShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7.5)
-shape = SubResource("RectangleShape2D_qfenl")
 
 [node name="GravityComponent" type="Node" parent="."]
 script = ExtResource("4_w3dyv")
@@ -32,3 +40,5 @@ metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
 [node name="SlideComponent" type="Node" parent="."]
 script = ExtResource("5_y41n4")
 metadata/_custom_type_script = "uid://sv7f6f65t1eb"
+
+[connection signal="body_entered" from="PlayerCheckArea" to="." method="_body_entered"]

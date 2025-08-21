@@ -12,7 +12,7 @@ var max_fall_speed := 258.0
 
 
 ## Returns the default gravity value from the project settings as a vector.
-func default() -> Vector2:
+static func default() -> Vector2:
 	return (
 		ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 		* ProjectSettings.get_setting("physics/2d/default_gravity")

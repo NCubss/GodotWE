@@ -15,26 +15,31 @@
 size = Vector2(12, 15)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_ucweq")
 
 [node name="CollShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_0qees")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Graphics" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Graphics"]
 unique_name_in_owner = true
 position = Vector2(0, -15)
 sprite_frames = ExtResource("2_b6tgf")
-animation = &"skid"
+animation = &"idle"
 autoplay = "idle"
 script = ExtResource("10_b6tgf")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
 [node name="Sounds" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+process_mode = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+unique_name_in_owner = true
 script = ExtResource("12_n5sgd")
 current_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://cnsky0lpl5fbm"

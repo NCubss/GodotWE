@@ -160,6 +160,8 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_idixh")
 
 [node name="PlayerCheckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea"]
 position = Vector2(8, 8)
