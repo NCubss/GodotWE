@@ -12,18 +12,23 @@ config_version=5
 
 config/name="Super Secret"
 run/main_scene="uid://h1dvwi2n2ugk"
-config/features=PackedStringArray("4.4", "Mobile")
+config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Utility="*res://scripts/singletons/utility.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+Utility="*res://scripts/static/utility.gd"
+UISoundPlayer="*res://scripts/singletons/ui_sound_player.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
+mouse_cursor/custom_image_hotspot=Vector2(15, 18)
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
@@ -40,6 +45,13 @@ folder_colors={
 map=""
 player=""
 shadows=""
+camera=""
+editor="The Editor control node"
+
+[gui]
+
+theme/custom="uid://cpr7p83ljnpes"
+theme/custom_font="uid://ckdcj75mlg3p0"
 
 [input]
 
@@ -105,3 +117,7 @@ mb_left={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[svgsprite]
+
+compress=false

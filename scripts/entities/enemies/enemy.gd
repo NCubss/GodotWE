@@ -20,8 +20,8 @@ func kill() -> void:
 	var tween = create_tween()
 	# shadows
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_property(%Graphics, "rotation", 0, 0)
-	tween.tween_property(%Graphics, "rotation", 2 * PI, 0.5)
+	tween.tween_property($Graphics, "rotation", 0, 0)
+	tween.tween_property($Graphics, "rotation", 2 * PI, 0.5)
 	tween.set_loops()
 	grav.gravity = Vector2(0, 10)
 
@@ -32,10 +32,26 @@ func _ready() -> void:
 				"Please add one via the \"hitbox\" variable.")
 		return
 	hitbox.body_entered.connect(_body_entered)
-	stomped.connect(kill.unbind(1))
+	stomped.connect(_stomped)
+	$SlideComponent.turned.connect(_turned)
 
 
-func _physics_process(delta: float) -> void:
+func _stomped(player: Player) -> void:
+	player.velocity.y = -200
+	var dead_graphics: Node2D = $Graphics.duplicate()
+	dead_graphics.set_script(DeadEntity)
+	add_sibling(dead_graphics)
+	queue_free()
+
+
+func _turned(direction: Vector2) -> void:
+	if direction == Vector2.LEFT:
+		$Graphics/Sprite.flip_h = true
+	elif direction == Vector2.RIGHT:
+		$Graphics/Sprite.flip_h = false
+	
+
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 

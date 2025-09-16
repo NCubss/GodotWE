@@ -2,7 +2,7 @@ class_name SuperPowerup
 extends Powerup
 
 
-func start(animate := false) -> void:
+func start(animate := true) -> void:
 	var coll_shape = player.get_node("CollShape") as CollisionShape2D
 	coll_shape.position = player.BIG_HITBOX_SIZE.position
 	coll_shape.shape.size = player.BIG_HITBOX_SIZE.size

@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dh7cadmdc362"
+path="res://.godot/imported/btn_mask_circular.svg-df79e57af71e9df005fbad6283b28888.res"
+
+[deps]
+
+source_file="res://sprites/ui/btn_mask_circular.svg"
+dest_files=["res://.godot/imported/btn_mask_circular.svg-df79e57af71e9df005fbad6283b28888.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://nifft0lri45b"
+path="res://.godot/imported/rect3.svg-067067152206d7a6e238d349f12a0763.res"
+
+[deps]
+
+source_file="res://sprites/ui/rect3.svg"
+dest_files=["res://.godot/imported/rect3.svg-067067152206d7a6e238d349f12a0763.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

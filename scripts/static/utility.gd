@@ -1,15 +1,9 @@
 extends Node
 ## A class that holds utility functions.
 
-## Represents the 4 possible axis-aligned directions in a 2D space.
-## @deprecated: Just use vectors lol ([constant Vector2.UP], [constant Vector2.RIGHT], [constant Vector2.DOWN], [constant Vector2.LEFT])
-enum Direction {
-	UP,
-	RIGHT,
-	DOWN,
-	LEFT
-}
-
+## The primary yellow color in the game.
+const COLOR_YELLOW = Color("#facd00")
+const COLOR_DARK = Color("#")
 
 # Cursor :v
 var _cursor_normal := AtlasTexture.new()
@@ -24,14 +18,15 @@ func _ready():
 	_cursor_grabbing.atlas = preload("res://sprites/ui/cursor.png")
 	_cursor_grabbing.region = Rect2(69, 0, 69, 69)
 
-	Input.set_custom_mouse_cursor(_cursor_normal)
+	#Input.set_custom_mouse_cursor(_cursor_normal,
+			#Input.CursorShape.CURSOR_ARROW, Vector2(32, 32))
 
 
-func _process(_delta):
-	if Input.is_action_pressed("mb_left"):
-		Input.set_custom_mouse_cursor(_cursor_grabbing)
-	else:
-		Input.set_custom_mouse_cursor(_cursor_normal)
+#func _process(_delta):
+	#if Input.is_action_pressed("mb_left"):
+		#Input.set_custom_mouse_cursor(_cursor_grabbing)
+	#else:
+		#Input.set_custom_mouse_cursor(_cursor_normal)
 
 ## Finds a child in the node [param parent] of [param type] type. This function
 ## only looks at direct children, not descendants.
@@ -80,5 +75,19 @@ func add_sibling_up(node: Node, sibling: Node) -> void:
 	node.get_parent().move_child(sibling, node.get_index() - 1)
 
 
-func _enter_tree():
-	Input.set_custom_mouse_cursor(preload("res://sprites/ui/cursor.png"))
+## Returns a [Rect2] representing the currently visible screen space. Supports
+## viewport skew and rotation.
+func get_visible_rect() -> Rect2:
+	return (
+			get_viewport().canvas_transform.affine_inverse()
+			* get_viewport().get_visible_rect()
+	)
+
+## Returns an array with the given range.
+## This function returns an [Array] of [float]s unlike [method @GDScript.range]
+## and works identically.
+func rangef(x: float, y := NAN, step := 1.0) -> Array[float]:
+	var arr: Array[float] = [0.0 if is_nan(y) else x]
+	while arr[-1] + step < (x if is_nan(y) else y):
+		arr.append(arr[-1] + step)
+	return arr

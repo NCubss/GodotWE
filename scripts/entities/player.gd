@@ -185,7 +185,6 @@ func kill() -> void:
 
 func _ready() -> void:
 	_powerup.start()
-	print($CollShape.shape.get_rect())
 
 
 func _physics_process(delta: float) -> void:
@@ -198,6 +197,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_powerup.process(delta)
+	#queue_redraw()
 
 
 func _just_collided(collision: KinematicCollision2D) -> void:

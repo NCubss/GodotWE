@@ -20,8 +20,8 @@ shape = SubResource("RectangleShape2D_qfenl")
 
 [node name="PlayerCheckArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 4
 
 [node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea"]
 position = Vector2(0, -7.5)

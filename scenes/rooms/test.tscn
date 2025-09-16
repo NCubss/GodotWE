@@ -362,7 +362,7 @@ position = Vector2(352, -64)
 [node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
 position = Vector2(102, -32)
 
-[node name="Camera2D" type="Camera2D" parent="Foreground/Player"]
+[node name="Camera2D" type="Camera2D" parent="Foreground/Player" groups=["camera"]]
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_bottom = 0
@@ -379,9 +379,6 @@ stream = ExtResource("9_3fj7c")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
-
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
 
 [editable path="Foreground/Map/QuestionBlock"]
 [editable path="Foreground/Player"]
