@@ -21,9 +21,8 @@ static func default() -> Vector2:
 
 func _physics_process(_delta: float) -> void:
 	# absolute cinema
-	var parent = get_parent()
-	if parent == null:
+	if get_parent() == null:
 		return
-	parent.velocity += gravity
-	if parent.velocity.y > max_fall_speed:
-		parent.velocity.y = max_fall_speed
+	get_parent().velocity += gravity
+	if get_parent().velocity.y > max_fall_speed:
+		get_parent().velocity.y = max_fall_speed

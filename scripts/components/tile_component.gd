@@ -18,7 +18,7 @@ signal disconnected(map: Map, pos: Vector2i)
 
 func _ready() -> void:
 	# prepare to disconnect in case tile gets freed for some reason
-	owner.tree_exiting.connect(map_disconnect)
+	get_parent().tree_exiting.connect(map_disconnect)
 
 
 ## Disconnects from the map this tile is currently in, if any.

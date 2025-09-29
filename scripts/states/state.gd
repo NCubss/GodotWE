@@ -1,3 +1,4 @@
+@abstract
 class_name State
 extends Node
 ## Represents a specific behavior for an entity, used in a [StateMachine].
@@ -20,10 +21,16 @@ extends Node
 ## [/codeblock]
 ## If the state isn't found in the [StateMachine], it will throw an error.
 
+## The class this state is designed for. The state will raise an error if this
+## class does not match the node this state is applied to.
+var intended_class: Variant = Node2D
+
 
 ## Runs once the state has just been enabled.
 @warning_ignore("unused_parameter")
 func start(entity: Node2D) -> Variant:
+	assert(is_instance_of(entity, intended_class),
+			"Using a state not applied to its intended class")
 	return null
 
 

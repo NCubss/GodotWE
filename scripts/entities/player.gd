@@ -67,11 +67,11 @@ extends CharacterBodyExt
 @onready var sprite: AnimatedSpriteExt = %Sprite
 ## The player's sound player.
 @onready var sounds: AudioStreamPlayer = %Sounds
-@onready var graphics: Node = %Graphics
+## The player's state machine.
 @onready var state_machine: StateMachine = %StateMachine
 
-## The player's current powerup.
-@export var _powerup: Powerup = SmallPowerup.new(self)
+## The powerup the player will start with.
+@export var starting_powerup: Powerup = SmallPowerup.new(self)
 
 @export_group("Maximum Speed")
 ## The maximum horizontal speed when walking.
@@ -82,7 +82,7 @@ var max_walk_speed := 78.0
 var max_run_speed := 180.0
 ## The maximum vertical speed when falling.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
-var max_fall_speed = 258.0
+var max_fall_speed := 258.0
 
 @export_group("Acceleration")
 ## The usual horizontal acceleration speed.
@@ -129,6 +129,9 @@ var spin_jump_speed := 198.0
 ## The spin jump speed used when the level has low gravity.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
 var night_spin_jump_speed := 138.0
+## The bounce speed used when an enemy is stomped.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
+var stomp_bounce_speed := 235.5
 
 @export_group("Gravity")
 ## The default gravity.
@@ -154,36 +157,49 @@ var coyote_time := 4.0/60
 
 ## The player's P-Meter value, from 0 to 7.
 var p_meter := 0
-var _p_timer := 0.0
-# For coyote time
-@warning_ignore("unused_private_class_variable")
-var _just_fell := false
+## The currently held item, if the player can hold items.
+var held_item: Entity = null
+## Used in processing coyote time.
+var just_fell := false
+## The tween used to move the held item side to side when moving and turning.
+var held_item_tween: Tween
 
+var _powerup: Powerup
+var _p_timer := 0.0
+
+## The hitbox size used when the player is on a small powerup.
 const SMALL_HITBOX_SIZE = Rect2(Vector2(0, -7.5), Vector2(12, 15))
+## The hitbox size used when the player is on a big powerup.
 const BIG_HITBOX_SIZE = Rect2(Vector2(0, -13.5), Vector2(12, 27))
 
 
-func set_powerup(powerup: Powerup, animate := false) -> void:
+## Sets the player's current [Powerup]. If [param animate] is [code]false[/code],
+## the powering up animation will not be played.
+func set_powerup(powerup: Powerup, animate := true) -> void:
 	_powerup.end()
 	powerup.start(animate)
 	_powerup = powerup
 
 
+## Gets the player's current [Powerup].
 func get_powerup() -> Powerup:
 	return _powerup
 
 
+## Downgrades the player into a lower-tier powerup.
 func damage() -> void:
 	sounds.stream = preload("res://audio/player/warp.ogg")
 	sounds.play()
 
 
+## Forcibly kills the player, regardless of any powerups.
 func kill() -> void:
 	sounds.stream = preload("res://audio/player/dead.ogg")
 	sounds.play()
 
 
 func _ready() -> void:
+	_powerup = starting_powerup
 	_powerup.start()
 
 

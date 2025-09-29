@@ -3,7 +3,7 @@ extends Node
 
 ## The primary yellow color in the game.
 const COLOR_YELLOW = Color("#facd00")
-const COLOR_DARK = Color("#")
+const COLOR_DARK = Color("#5d1c1c")
 
 # Cursor :v
 var _cursor_normal := AtlasTexture.new()
@@ -86,8 +86,17 @@ func get_visible_rect() -> Rect2:
 ## Returns an array with the given range.
 ## This function returns an [Array] of [float]s unlike [method @GDScript.range]
 ## and works identically.
-func rangef(x: float, y := NAN, step := 1.0) -> Array[float]:
-	var arr: Array[float] = [0.0 if is_nan(y) else x]
-	while arr[-1] + step < (x if is_nan(y) else y):
-		arr.append(arr[-1] + step)
+func rangef(...args: Array) -> Array[float]:
+	# invalid argument count
+	assert(args.size() < 3 and args.size() > 1,
+			"Utility.rangef() may have 1-3 arguments.")
+	var min_value = 0.0 if args.size() == 1 else args[0]
+	var max_value = args[0] if args.size() == 1 else args[2]
+	# return empty array if condition is impossible
+	if min_value > max_value:
+		return []
+	var step_value = args[2] if args.size() == 3 else 1.0
+	var arr: Array[float] = [min_value]
+	while arr[-1] + step_value < max_value:
+		arr.append(arr[-1] + step_value)
 	return arr

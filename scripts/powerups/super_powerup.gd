@@ -20,6 +20,5 @@ func start(animate := true) -> void:
 		new_graphics.add_child(new_sprite)
 		player.add_child(new_graphics)
 		player.sprite = new_sprite
-		default_animate(player.get_tree(), player.graphics, new_graphics)
-		player.graphics = new_graphics
-		
+		default_animate(player.get_tree(),
+				player.get_node("Graphics"), new_graphics)

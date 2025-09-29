@@ -5,10 +5,8 @@ extends State
 var _skidding := false
 
 
-func start(entity: Node2D) -> Variant:
-	assert(entity is Player,
-			"Using a player state on a non-player entity is not allowed")
-	return
+func _init() -> void:
+	intended_class = Player
 
 
 func end(_entity: Node2D) -> void:
@@ -42,7 +40,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# player is not on floor, go to the falling state
 	if not player.is_on_floor():
-		player._just_fell = true
+		player.just_fell = true
 		return PlayerFallingState
 	
 	if _skidding:

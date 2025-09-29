@@ -5,18 +5,17 @@ extends State
 var _coyote_timer := -1.0
 
 
+func _init() -> void:
+	intended_class = Player
+
+
 func start(entity: Node2D) -> Variant:
-	# type hinting
 	var player = entity as Player
-	assert(player != null,
-			"Using a player state on a non-player entity is not allowed")
-	
+
 	# enable coyote time
-	if player._just_fell:
+	if player.just_fell:
 		_coyote_timer = 0
-		player._just_fell = false
-		print("#### IT'S COYOTE TIME !!!!!!! ####")
-	
+		player.just_fell = false
 	return
 
 
@@ -64,6 +63,4 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 			player.sprite.flip_h = true
 		elif direction > 0:
 			player.sprite.flip_h = false
-	
-	#print(player._just_fell, _coyote_timer)
 	return

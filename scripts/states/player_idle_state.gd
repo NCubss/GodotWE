@@ -3,10 +3,8 @@ extends State
 ## Provides a basic idle behavior to the player.
 
 
-func start(entity: Node2D) -> Variant:
-	assert(entity is Player,
-			"Using a player state on a non-player entity is not allowed")
-	return
+func _init() -> void:
+	intended_class = Player
 
 
 func physics_process(entity: Node2D, delta: float) -> Variant:
@@ -21,7 +19,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# player is spin jumping, go to the spin jumping state
 	if Input.is_action_just_pressed("player_spin_jump"):
-		player._just_fell = true
+		player.just_fell = true
 		player.sounds.stream = preload("res://audio/player/spin_jump.ogg")
 		player.sounds.play()
 		return PlayerSpinJumpingState

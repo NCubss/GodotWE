@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
-Utility="*res://scripts/static/utility.gd"
+Utility="*res://scripts/singletons/utility.gd"
 UISoundPlayer="*res://scripts/singletons/ui_sound_player.gd"
 
 [display]

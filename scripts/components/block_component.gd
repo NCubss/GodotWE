@@ -60,11 +60,11 @@ static func animate_sprout_end(spr: Node2D) -> Tween:
 
 
 func _enter_tree() -> void:
-	if owner is CharacterBodyExt or owner is StaticBodyExt:
-		owner.just_collided.connect(_just_collided)
+	if get_parent() is CharacterBodyExt or owner is StaticBodyExt:
+		get_parent().just_collided.connect(_just_collided)
 	else:
-		printerr("Owner is not a BodyExt! ",
-				"I will not be able to check for collisions!")
+		assert(false, "Owner is not a BodyExt!"
+				+ "I will not be able to check for collisions!")
 
 
 func _just_collided(data: KinematicCollision2D):
@@ -87,14 +87,6 @@ func _finish_sprout(
 ) -> void:
 	animate_sprout_end(sprite)
 	if release_sprout and sprout != null:
-		#if sprout.empty_container != null:
-			#var empty = sprout.empty_container.instantiate()
-			#var empty_comp = Utility.find_child_by_class(empty, BlockComponent)
-			#sprout.container = empty_comp
-			#animate_sprout_end(empty.get_node("Sprite"))
-			#var tile_comp = Utility.find_child_by_class(owner, TileComponent)
-			#if tile_comp != null:
-				#tile_comp.map.set_tile(tile_comp.position, empty)
 		var data = _sprout.end_sprout(eject_direction)
 		if data.new_tile != null:
 			var new_tile = data.new_tile.instantiate()
@@ -102,9 +94,10 @@ func _finish_sprout(
 			if tile_comp != null:
 				tile_comp.map.set_tile(tile_comp.position, new_tile)
 			else:
-				owner.add_sibling(new_tile)
-				owner.queue_free()
-			owner.get_parent().move_child(_sprout, new_tile.get_index() - 1)
+				get_parent().add_sibling(new_tile)
+				get_parent().queue_free()
+			get_parent().get_parent() \
+					.move_child(_sprout, new_tile.get_index() - 1)
 			animate_sprout_end(new_tile.get_node(^"Sprite"))
 	else:
 		sprout_end.emit(normal, activator)

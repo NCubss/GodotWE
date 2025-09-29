@@ -14,12 +14,14 @@ var _grav_comp: GravityComponent
 var _jump_buffer: _JumpBufferType
 var _jump_buffer_timer := 0.0
 
+
+func _init() -> void:
+	intended_class = Player
+
+
 func start(entity: Node2D) -> Variant:
-	# type hinting
+	super(entity)
 	var player = entity as Player
-	assert(player != null,
-			"Using a player state on a non-player entity is not allowed")
-	
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	

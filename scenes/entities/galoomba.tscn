@@ -56,8 +56,6 @@ position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_hyga4")
 animation = &"walk"
 autoplay = "walk"
-frame = 1
-frame_progress = 0.7453
 script = ExtResource("3_jq00e")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://h1dvwi2n2ugk"]
+[gd_scene load_steps=12 format=3 uid="uid://h1dvwi2n2ugk"]
 
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_24j5q"]
 [ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="1_ylcux"]
@@ -7,8 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://d1pyovyuwelpw" path="res://scenes/tiles/turn_block_tile.tscn" id="5_0dnrn"]
 [ext_resource type="PackedScene" uid="uid://c4qpbj5epsp55" path="res://scenes/tiles/question_block.tscn" id="5_3fj7c"]
 [ext_resource type="PackedScene" uid="uid://bp83ylgnahiv3" path="res://scenes/entities/mushroom_sprout.tscn" id="6_3fj7c"]
+[ext_resource type="PackedScene" uid="uid://d2p4v7v1baic6" path="res://scenes/entities/galoomba.tscn" id="8_eyqv6"]
 [ext_resource type="AudioStream" uid="uid://bbml0t642mivw" path="res://audio/music/ground.ogg" id="9_3fj7c"]
-[ext_resource type="PackedScene" uid="uid://d2p4v7v1baic6" path="res://scenes/entities/galoomba.tscn" id="10_eyqv6"]
+[ext_resource type="Script" uid="uid://bpy2tvh67k4oh" path="res://scripts/components/pickup_component.gd" id="9_eyqv6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d8l4"]
 
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-289.0]
@@ -371,8 +374,27 @@ position_smoothing_speed = 2.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="Galoomba" parent="Foreground" instance=ExtResource("10_eyqv6")]
-position = Vector2(413, -42)
+[node name="Galoomba" parent="Foreground" instance=ExtResource("8_eyqv6")]
+position = Vector2(185, -58)
+
+[node name="Node2D" type="Node2D" parent="Foreground"]
+position = Vector2(67, -83)
+
+[node name="PickupComponent" type="Node" parent="Foreground/Node2D" node_paths=PackedStringArray("check_area")]
+script = ExtResource("9_eyqv6")
+check_area = NodePath("../Area2D")
+metadata/_custom_type_script = "uid://bpy2tvh67k4oh"
+
+[node name="Area2D" type="Area2D" parent="Foreground/Node2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Node2D/Area2D"]
+shape = SubResource("RectangleShape2D_0d8l4")
+
+[node name="Polygon2D" type="Polygon2D" parent="Foreground/Node2D"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
 [node name="Ground" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_3fj7c")
