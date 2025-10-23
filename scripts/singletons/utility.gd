@@ -88,10 +88,10 @@ func get_visible_rect() -> Rect2:
 ## and works identically.
 func rangef(...args: Array) -> Array[float]:
 	# invalid argument count
-	assert(args.size() < 3 and args.size() > 1,
+	assert(args.size() <= 3 and args.size() >= 1,
 			"Utility.rangef() may have 1-3 arguments.")
 	var min_value = 0.0 if args.size() == 1 else args[0]
-	var max_value = args[0] if args.size() == 1 else args[2]
+	var max_value = args[0] if args.size() == 1 else args[1]
 	# return empty array if condition is impossible
 	if min_value > max_value:
 		return []

@@ -78,7 +78,7 @@ enum Tag {
 # probably should make a class for this
 @export var clear_condition := ClearCondition.NONE
 
-var _sub_areas = Array[SubArea]
+var _sub_areas: Array[SubArea] = []
 
 
 func _init(_level_name: String, _author: String, _game_style := GameStyle.SMW):

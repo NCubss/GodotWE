@@ -1,5 +1,5 @@
 class_name Player
-extends CharacterBodyExt
+extends Entity
 ## Represents a controllable player.
 
 ### Represents a powerup. Most of these are exclusive and can only be found in
@@ -157,20 +157,47 @@ var coyote_time := 4.0/60
 
 ## The player's P-Meter value, from 0 to 7.
 var p_meter := 0
-## The currently held item, if the player can hold items.
-var held_item: Entity = null
+## The direction the player is facing. This value is either -1 or 1, and
+## represents which side of the X axis is the player facing.
+var direction := 1:
+	set(value):
+		if value != direction and _held_item != null:
+			if held_item_tween is Tween and held_item_tween.is_running():
+				held_item_tween.kill()
+			held_item_tween = create_tween()
+			held_item_tween.tween_property(self._held_item, "position", Vector2(0, -1.5), 0)
+			held_item_tween.tween_interval(7/60.0)
+			held_item_tween.tween_property(self._held_item, "position", Vector2(-11 * direction, -1.5), 0)
+			direction = value
+			
 ## Used in processing coyote time.
 var just_fell := false
 ## The tween used to move the held item side to side when moving and turning.
 var held_item_tween: Tween
 
 var _powerup: Powerup
+var _held_item: Entity = null
+var _held_item_z_index: int
 var _p_timer := 0.0
+
 
 ## The hitbox size used when the player is on a small powerup.
 const SMALL_HITBOX_SIZE = Rect2(Vector2(0, -7.5), Vector2(12, 15))
 ## The hitbox size used when the player is on a big powerup.
 const BIG_HITBOX_SIZE = Rect2(Vector2(0, -13.5), Vector2(12, 27))
+const HELD_ITEM_OFFSET = Vector2(11, -1.5)
+
+
+## Downgrades the player into a lower-tier powerup.
+func damage() -> void:
+	#sounds.stream = preload("res://audio/player/warp.ogg")
+	sounds.play()
+
+
+## Forcibly kills the player, regardless of any powerups.
+func kill() -> void:
+	#sounds.stream = preload("res://audio/player/dead.ogg")
+	sounds.play()
 
 
 ## Sets the player's current [Powerup]. If [param animate] is [code]false[/code],
@@ -186,16 +213,43 @@ func get_powerup() -> Powerup:
 	return _powerup
 
 
-## Downgrades the player into a lower-tier powerup.
-func damage() -> void:
-	sounds.stream = preload("res://audio/player/warp.ogg")
-	sounds.play()
+## Gives the player an item to hold.
+func give_item(item: Entity) -> void:
+	var pickup_comp = Utility.find_child_by_class(item, PickupComponent) \
+			as PickupComponent
+	assert(pickup_comp != null,
+			"Attempting to give player item without it having a Pickup" +
+			"Component")
+	call_deferred("_deferred_hold", item, pickup_comp)
 
 
-## Forcibly kills the player, regardless of any powerups.
-func kill() -> void:
-	sounds.stream = preload("res://audio/player/dead.ogg")
-	sounds.play()
+## Drops whatever item the player is currently holding and returns it. The
+## release type ([enum PickupComponent.ReleaseType]) depends on what actions
+## the player is currently executing.
+func drop_item() -> Entity:
+	if _held_item == null:
+		return
+	var pickup_comp = Utility.find_child_by_class(_held_item, PickupComponent) \
+			as PickupComponent
+	held_item_tween.kill()
+	_held_item.reparent(get_parent())
+	_held_item.position += Vector2(2, -1.5)
+	_held_item.velocity = Vector2(120 * direction, -60)
+	_held_item.z_index = _held_item_z_index
+	if pickup_comp != null:
+		pickup_comp.dropped.emit(PickupComponent.ReleaseType.KICKED)
+	var last_held = _held_item
+	_held_item = null
+	return last_held
+
+
+## Spawns the spin thump effect at [param position] in global coordinates, at
+## the player's feet by default.
+func spawn_spin_thump(pos := global_position) -> void:
+	var spin_thump = preload("res://scenes/particles/spin_thump.tscn") \
+			.instantiate()
+	get_parent().add_sibling(spin_thump)
+	spin_thump.global_position = pos
 
 
 func _ready() -> void:
@@ -205,6 +259,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
+	if _held_item != null and not Input.is_action_pressed("player_run"):
+		drop_item()
 	_attempt_correction(delta, 2)
 	move_and_slide()
 	_powerup.physics_process(delta)
@@ -217,9 +273,10 @@ func _process(delta: float) -> void:
 
 
 func _just_collided(collision: KinematicCollision2D) -> void:
-	if collision.get_normal().y == 1:
-		$Sounds.stream = preload("res://audio/player/bump.ogg")
-		$Sounds.play()
+	var coll = collision.get_collider()
+	if collision.get_normal().y == 1 and (coll is CollisionObject2D and coll.collision_layer == 1):
+		sounds.stream = preload("res://audio/player/bump.ogg")
+		sounds.play()
 
 
 func _attempt_correction(delta: float, amount: int) -> void:
@@ -237,3 +294,12 @@ func _attempt_correction(delta: float, amount: int) -> void:
 					if velocity.x * j / 2 < 0:
 						velocity.x = 0
 					return
+
+
+func _deferred_hold(item: Entity, pickup_comp: PickupComponent) -> void:
+	item.reparent(self)
+	item.position = HELD_ITEM_OFFSET * Vector2(direction, 1)
+	_held_item = item
+	_held_item_z_index = item.z_index
+	item.z_index = 9
+	pickup_comp.picked_up.emit(self)

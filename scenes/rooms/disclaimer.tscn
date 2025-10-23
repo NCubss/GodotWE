@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://qepmxcf7odg6"]
+
+[ext_resource type="Script" uid="uid://c25jk353o6v18" path="res://scripts/ui/disclaimer.gd" id="1_1kyrh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3diux"]
+font_size = 48
+font_color = Color(0.8980392, 0.09019608, 0.16470589, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1kyrh"]
+font_size = 24
+
+[node name="Disclaimer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1kyrh")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="IntroTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -218.0
+offset_top = 87.0
+offset_right = 218.0
+offset_bottom = 157.0
+grow_horizontal = 2
+text = "DISCLAIMER_TITLE"
+label_settings = SubResource("LabelSettings_3diux")
+horizontal_alignment = 1
+
+[node name="TextContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 207.0
+offset_right = 20.0
+offset_bottom = 247.0
+grow_horizontal = 2
+theme_override_constants/separation = 31
+
+[node name="Sosumi" type="Label" parent="TextContainer"]
+layout_mode = 2
+text = "DISCLAIMER_DESCRIPTION"
+label_settings = SubResource("LabelSettings_1kyrh")
+horizontal_alignment = 1
+
+[node name="Scammed" type="Label" parent="TextContainer"]
+layout_mode = 2
+text = "DISCLAIMER_SCAM_WARNING"
+label_settings = SubResource("LabelSettings_1kyrh")
+horizontal_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://h1dvwi2n2ugk"]
+[gd_scene load_steps=15 format=3 uid="uid://h1dvwi2n2ugk"]
 
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_24j5q"]
 [ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="1_ylcux"]
@@ -10,8 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://d2p4v7v1baic6" path="res://scenes/entities/galoomba.tscn" id="8_eyqv6"]
 [ext_resource type="AudioStream" uid="uid://bbml0t642mivw" path="res://audio/music/ground.ogg" id="9_3fj7c"]
 [ext_resource type="Script" uid="uid://bpy2tvh67k4oh" path="res://scripts/components/pickup_component.gd" id="9_eyqv6"]
+[ext_resource type="Script" uid="uid://bybnf6troxwg1" path="res://scripts/entities/entity.gd" id="9_gorjh"]
+[ext_resource type="PackedScene" uid="uid://x314ug2d52hj" path="res://scenes/entities/stomped_galoomba.tscn" id="12_r7jnd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d8l4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7jnd"]
 
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-289.0]
@@ -20,6 +24,7 @@ metadata/_edit_horizontal_guides_ = [-289.0]
 
 [node name="Parallax2D" type="Parallax2D" parent="Background"]
 z_index = -2
+z_as_relative = false
 scroll_scale = Vector2(0.5, 1)
 scroll_offset = Vector2(256, 0)
 repeat_size = Vector2(512, 0)
@@ -39,6 +44,7 @@ region_rect = Rect2(0, 0, 512, 432)
 [node name="Shadows" type="CanvasGroup" parent="." groups=["shadows"]]
 self_modulate = Color(0, 0, 0, 0.301961)
 z_index = -1
+z_as_relative = false
 
 [node name="Foreground" type="Node" parent="."]
 
@@ -373,12 +379,24 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="Galoomba" parent="Foreground" instance=ExtResource("8_eyqv6")]
 position = Vector2(185, -58)
 
-[node name="Node2D" type="Node2D" parent="Foreground"]
-position = Vector2(67, -83)
+[node name="Node2D" type="CharacterBody2D" parent="Foreground"]
+z_index = 9
+z_as_relative = false
+position = Vector2(46, -174)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("9_gorjh")
+metadata/_custom_type_script = "uid://bybnf6troxwg1"
 
 [node name="PickupComponent" type="Node" parent="Foreground/Node2D" node_paths=PackedStringArray("check_area")]
 script = ExtResource("9_eyqv6")
@@ -386,6 +404,7 @@ check_area = NodePath("../Area2D")
 metadata/_custom_type_script = "uid://bpy2tvh67k4oh"
 
 [node name="Area2D" type="Area2D" parent="Foreground/Node2D"]
+position = Vector2(0, -10)
 collision_layer = 0
 collision_mask = 4
 
@@ -393,14 +412,22 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_0d8l4")
 
 [node name="Polygon2D" type="Polygon2D" parent="Foreground/Node2D"]
+position = Vector2(0, -10)
 color = Color(1, 0, 0, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Foreground/Node2D"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_r7jnd")
 
 [node name="Ground" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_3fj7c")
 volume_db = -80.0
 autoplay = true
 parameters/looping = true
+
+[node name="StompedGaloomba" parent="." instance=ExtResource("12_r7jnd")]
+position = Vector2(248, -96)
 
 [editable path="Foreground/Map/QuestionBlock"]
 [editable path="Foreground/Player"]

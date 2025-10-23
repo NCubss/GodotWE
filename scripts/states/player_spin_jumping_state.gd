@@ -40,7 +40,6 @@ func end(entity: Node2D) -> void:
 	# type hinting
 	var player = entity as Player
 	
-	player.modulate = Color.WHITE
 	# reset gravity
 	var grav = Utility.find_child_by_class(player, GravityComponent)
 	grav.gravity = Vector2(0, player.gravity)
@@ -56,8 +55,6 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 			if Input.is_action_pressed("player_run")
 			else player.max_walk_speed
 	)
-	
-	player.modulate = Color.RED if _jump_buffer != _JumpBufferType.NONE else Color.WHITE
 	
 	# jump buffer stuff
 	if _jump_buffer != _JumpBufferType.NONE:
@@ -103,6 +100,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# accelerate
 	if direction != 0:
+		player.direction = direction
 		player.velocity.x = move_toward(
 				player.velocity.x,
 				max_speed * direction,

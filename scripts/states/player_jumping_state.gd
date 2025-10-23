@@ -29,16 +29,13 @@ func start(entity: Node2D) -> Variant:
 	# apply jump speed
 	if not running and abs(player.velocity.x) < player.max_walk_speed:
 		player.velocity.y = -player.idle_jump_speed
-		print("a")
 	elif (
 			(not running and abs(player.velocity.x) >= player.max_walk_speed)
 			or (running and abs(player.velocity.x) < player.max_run_speed)
 	):
 		player.velocity.y = -player.slow_jump_speed
-		print("b")
 	elif running and abs(player.velocity.x) >= player.max_run_speed:
 		player.velocity.y = -player.fast_jump_speed
-		print("c")
 	
 	return
 
@@ -107,6 +104,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# accelerate
 	if direction != 0:
+		player.direction = direction
 		player.velocity.x = move_toward(
 				player.velocity.x,
 				max_speed * direction,

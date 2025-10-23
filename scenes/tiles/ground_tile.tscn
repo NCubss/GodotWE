@@ -14,6 +14,8 @@ atlas = ExtResource("2_a75co")
 region = Rect2(64, 32, 16, 16)
 
 [node name="GroundTile" type="StaticBody2D"]
+z_index = 20
+z_as_relative = false
 script = ExtResource("1_8n0yu")
 
 [node name="CollShape" type="CollisionShape2D" parent="."]

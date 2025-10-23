@@ -20,12 +20,32 @@ extends Component
 ## and the player node [b]takes control of the entity node's position[/b]. The
 ## entity's body collisions will also be disabled.
 
-## Emitted when the player picks up the item.
+## Represents the way an item was released by the player.
+enum ReleaseType {
+	## The item was kicked in the player's direction. This release type happens
+	## when the player lets go of the item with no additional actions.
+	KICKED,
+	## The item was thrown up above the player. This release type happens when
+	## the player lets go and is looking up simultaneously.
+	THROWN_UP,
+	## The item was dropped next to the player. This release type happens when
+	## the player lets go and is ducking simultaneously.
+	DROPPED,
+}
+
+## Emitted when the player picks up the item. The player emits this signal when
+## [member Player.held_item] is set to a new item.
 signal picked_up(player: Player)
+## Emitted when the player lets go of the item. The player emits this signal
+## when 
+signal dropped(release_type: ReleaseType)
 
 ## The area used to detect the player for pick-ups. Must have the player
 ## collision mask selected.
 @export var check_area: Area2D
+## Whether the player can hold this item. If this is set to [code]false[/code],
+## the player will not pick up the item even in the right conditions.
+var can_be_held := true
 
 ## Whether this item is currently held by the player. If the item is held,
 ## the player takes control of the item's position and shouldn't be changed by
@@ -35,27 +55,12 @@ var held := false
 
 func _ready() -> void:
 	check_area.body_entered.connect(_body_entered)
-	randf()
-
+	picked_up.connect(func(_player): held = true)
+	dropped.connect(func(_player): held = false)
+	
 
 func _body_entered(body: Node2D) -> void:
-	body = body as Player
-	if body == null:
+	var player = body as Player
+	if player == null or not can_be_held or not get_parent().is_on_floor():
 		return
-	var area_coll_shape = Utility.find_child_by_class(
-			check_area, CollisionShape2D) as CollisionShape2D
-	if area_coll_shape == null:
-		return
-	var area_rect = area_coll_shape.shape.get_rect()
-	area_rect.position += area_coll_shape.global_position
-	var player_coll_shape = Utility.find_child_by_class(
-			body, CollisionShape2D) as CollisionShape2D
-	if player_coll_shape == null:
-		return
-	var player_rect = player_coll_shape.shape.get_rect()
-	player_rect.position += player_coll_shape.global_position
-	var midpoint = area_rect.get_center().lerp(player_rect.get_center(), 0.5)
-	var spin_thump = preload("res://scenes/particles/spin_thump.tscn") \
-			.instantiate()
-	get_parent().add_sibling(spin_thump)
-	spin_thump.global_position = midpoint
+	player.give_item(get_parent())

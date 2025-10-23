@@ -32,6 +32,8 @@ animations = [{
 }]
 
 [node name="Galoomba" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+z_index = 30
+z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_bs2gg")
 hitbox = NodePath("KillArea")

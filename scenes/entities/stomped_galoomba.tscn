@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://x314ug2d52hj"]
+[gd_scene load_steps=10 format=3 uid="uid://x314ug2d52hj"]
 
-[ext_resource type="Script" uid="uid://bjdqtobc8xf0n" path="res://scripts/ext/character_body_ext.gd" id="1_epgry"]
+[ext_resource type="Script" uid="uid://bis5sol2yr48j" path="res://scripts/entities/stomped_galoomba.gd" id="1_epgry"]
 [ext_resource type="Texture2D" uid="uid://d3s6tog37hohi" path="res://sprites/entities/galoomba.png" id="2_chdf6"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_s0lek"]
 [ext_resource type="Script" uid="uid://nhyxn7n2fqbr" path="res://scripts/components/gravity_component.gd" id="4_p6kv4"]
-[ext_resource type="Script" uid="uid://sv7f6f65t1eb" path="res://scripts/components/slide_component.gd" id="5_lxism"]
 [ext_resource type="Script" uid="uid://bpy2tvh67k4oh" path="res://scripts/components/pickup_component.gd" id="6_ha18w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhl1y"]
@@ -33,6 +32,8 @@ animations = [{
 }]
 
 [node name="StompedGaloomba" type="CharacterBody2D"]
+z_index = 30
+z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_epgry")
 metadata/_custom_type_script = "uid://bjdqtobc8xf0n"
@@ -42,8 +43,8 @@ position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_mhl1y")
 
 [node name="CheckArea" type="Area2D" parent="."]
-monitoring = false
-monitorable = false
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollShape" type="CollisionShape2D" parent="CheckArea"]
 position = Vector2(0, -7.5)
@@ -62,12 +63,9 @@ metadata/_custom_type_script = "uid://vedwoxfxibus"
 
 [node name="GravityComponent" type="Node" parent="."]
 script = ExtResource("4_p6kv4")
+gravity = Vector2(0, 10)
+max_fall_speed = 249.0
 metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
-
-[node name="SlideComponent" type="Node" parent="."]
-script = ExtResource("5_lxism")
-speed = 30.0
-metadata/_custom_type_script = "uid://sv7f6f65t1eb"
 
 [node name="PickupComponent" type="Node" parent="." node_paths=PackedStringArray("check_area")]
 script = ExtResource("6_ha18w")

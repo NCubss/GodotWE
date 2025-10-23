@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bexd6cvyd4onk" path="res://audio/tiles/sprout.ogg" id="4_fe2ge"]
 
 [node name="RiseSprout" type="Node2D"]
+z_index = 19
+z_as_relative = false
 script = ExtResource("1_ugouh")
 metadata/_custom_type_script = "uid://cku75vxdp1oyx"
 

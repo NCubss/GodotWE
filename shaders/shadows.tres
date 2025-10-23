@@ -1,9 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b00pvea4pf2b4"]
-
-[ext_resource type="Shader" uid="uid://wukfukct4ngr" path="res://shaders/shadows.gdshader" id="1_bbwvp"]
-
-[resource]
-shader = ExtResource("1_bbwvp")
-shader_parameter/zoom_factor = Vector2(3, 3)
-shader_parameter/shadow_color = Color(0, 0, 0, 0.3)
-shader_parameter/shadow_offset = Vector2(3, 3)

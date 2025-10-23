@@ -9,6 +9,8 @@
 size = Vector2(16, 16)
 
 [node name="EmptyBlock" type="StaticBody2D"]
+z_index = 20
+z_as_relative = false
 script = ExtResource("1_v0k4p")
 metadata/_custom_type_script = "uid://bvwombbno8x7s"
 

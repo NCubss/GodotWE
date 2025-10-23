@@ -40,6 +40,8 @@ animations = [{
 }]
 
 [node name="SpinThump" type="AnimatedSprite2D"]
+z_index = 40
+z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_n4kg2")
 autoplay = "default"
 frame = 3

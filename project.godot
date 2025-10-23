@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Super Secret"
-run/main_scene="uid://h1dvwi2n2ugk"
+run/main_scene="uid://qepmxcf7odg6"
 config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -20,11 +24,17 @@ config/icon="res://icon.svg"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Utility="*res://scripts/singletons/utility.gd"
 UISoundPlayer="*res://scripts/singletons/ui_sound_player.gd"
+SceneManager="*res://scripts/singletons/scene_manager.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
 mouse_cursor/custom_image_hotspot=Vector2(15, 18)
+
+[editor]
+
+movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/Intro.ogv"
 
 [editor_plugins]
 
@@ -51,7 +61,7 @@ editor="The Editor control node"
 [gui]
 
 theme/custom="uid://cpr7p83ljnpes"
-theme/custom_font="uid://ckdcj75mlg3p0"
+theme/custom_font="uid://bk3vwucreh07k"
 
 [input]
 
@@ -101,6 +111,10 @@ mb_left={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.es.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Solids"
@@ -117,6 +131,7 @@ mb_left={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 
 [svgsprite]
 

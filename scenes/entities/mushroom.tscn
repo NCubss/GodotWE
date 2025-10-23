@@ -10,6 +10,8 @@
 size = Vector2(10, 15)
 
 [node name="Mushroom" type="CharacterBody2D"]
+z_index = 30
+z_as_relative = false
 collision_layer = 8
 script = ExtResource("1_y41n4")
 metadata/_custom_type_script = "uid://bjdqtobc8xf0n"

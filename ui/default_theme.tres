@@ -1,25 +1,9 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cpr7p83ljnpes"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpr7p83ljnpes"]
 
-[ext_resource type="FontFile" uid="uid://ckdcj75mlg3p0" path="res://ui/text.otf" id="1_vos2p"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vos2p"]
-content_margin_left = 18.0
-content_margin_top = 9.0
-content_margin_right = 18.0
-content_margin_bottom = 9.0
-bg_color = Color(0.983106, 0.69955, 3.85046e-07, 1)
-border_width_bottom = 6
-border_color = Color(0, 0, 0, 0.215686)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-corner_detail = 16
-expand_margin_bottom = 6.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y5boi"]
 
 [resource]
 default_font_size = 24
 Button/colors/font_color = Color(0.352941, 0.0784314, 0.109804, 1)
-Button/styles/normal = SubResource("StyleBoxFlat_vos2p")
+Button/styles/normal = SubResource("StyleBoxTexture_y5boi")
 Label/font_sizes/font_size = 24
-Label/fonts/font = ExtResource("1_vos2p")

@@ -54,6 +54,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	else:
 		# normal logic
 		if direction != 0:
+			player.direction = direction
 			# accelerate
 			player.velocity.x = move_toward(
 					player.velocity.x,

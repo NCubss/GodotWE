@@ -33,6 +33,7 @@ signal sprout_end(eject_direction: Vector2, activator: PhysicsBody2D)
 @export var sprite: Node2D
 
 var _sprout: Sprout = null
+var _old_z: int
 
 ## Animates the given [param spr] with the starting sprout animation.
 static func animate_sprout_start(spr: Node2D) -> Tween:
@@ -41,21 +42,22 @@ static func animate_sprout_start(spr: Node2D) -> Tween:
 	var tween = spr.create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.tween_property(spr, "position", Vector2(8, -2), 4/60.0) 
-	tween.parallel().tween_property(spr, "scale", Vector2(1.1875, 1.1875), 4/60.0) 
+	tween.parallel() \
+			.tween_property(spr, "scale", Vector2(1.1875, 1.1875), 4/60.0)
 	tween.tween_property(spr, "position", Vector2(8, 5), 4/60.0) 
-	tween.parallel().tween_property(spr, "scale", Vector2(1.375, 1.375), 4/60.0)
+	tween.parallel() \
+			.tween_property(spr, "scale", Vector2(1.375, 1.375), 4/60.0)
 	return tween
 
 
 ## Animates the given [param spr] with the ending sprout animation.
 static func animate_sprout_end(spr: Node2D) -> Tween:
-	spr.position = Vector2(8, 5)
-	spr.scale = Vector2(1.375, 1.375)
-	
 	var tween = spr.create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_property(spr, "position", Vector2(8, 8), 4/60.0) 
-	tween.parallel().tween_property(spr, "scale", Vector2(1, 1), 4/60.0)
+	tween.tween_property(spr, "position", Vector2(8, 8), 4/60.0) \
+			.from(Vector2(8, 5))
+	tween.parallel().tween_property(spr, "scale", Vector2(1, 1), 4/60.0) \
+			.from(Vector2(1.375, 1.375))
 	return tween
 
 
@@ -72,12 +74,14 @@ func _just_collided(data: KinematicCollision2D):
 	if entity is Player and data.get_normal().y == 1:
 		if release_sprout and sprout != null:
 			_sprout = sprout.instantiate()
-			Utility.add_sibling_up(owner, _sprout)
+			get_parent().add_sibling(_sprout)
 			_sprout.position = owner.position + Vector2(8, 8)
-			_sprout.start_sprout(Vector2(0, -1))
+			_sprout.start_sprout(Vector2.UP)
+		_old_z = get_parent().z_index
+		get_parent().z_index = GameConstants.Layers.Z_ANIM_BLOCKS
 		sprout_start.emit(data.get_normal(), entity)
 		animate_sprout_start(sprite).finished.connect(
-				_finish_sprout.bind(data.get_normal(), Vector2(0, -1), entity))
+				_finish_sprout.bind(data.get_normal(), Vector2.UP, entity))
 
 
 func _finish_sprout(
@@ -85,7 +89,8 @@ func _finish_sprout(
 		eject_direction: Vector2,
 		activator: PhysicsBody2D
 ) -> void:
-	animate_sprout_end(sprite)
+	animate_sprout_end(sprite) \
+			.tween_property(get_parent(), "z_index", _old_z, 0)
 	if release_sprout and sprout != null:
 		var data = _sprout.end_sprout(eject_direction)
 		if data.new_tile != null:
@@ -98,6 +103,7 @@ func _finish_sprout(
 				get_parent().queue_free()
 			get_parent().get_parent() \
 					.move_child(_sprout, new_tile.get_index() - 1)
-			animate_sprout_end(new_tile.get_node(^"Sprite"))
+			animate_sprout_end(new_tile.get_node(^"Sprite")) \
+					.tween_property(get_parent(), "z_index", _old_z, 0)
 	else:
 		sprout_end.emit(normal, activator)

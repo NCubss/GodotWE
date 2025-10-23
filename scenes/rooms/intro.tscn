@@ -1,0 +1,278 @@
+[gd_scene load_steps=28 format=3 uid="uid://dtq1i14h6pmvn"]
+
+[ext_resource type="Script" uid="uid://46u20dtv31sb" path="res://scripts/ui/intro/intro.gd" id="1_63hat"]
+[ext_resource type="Shader" uid="uid://euyudj0kkdr6" path="res://shaders/circle_transition.gdshader" id="2_duawr"]
+[ext_resource type="Texture2D" uid="uid://dvva2pouu4mrs" path="res://sprites/ui/intro/calendar.svg" id="3_646do"]
+[ext_resource type="Script" uid="uid://imtq6gf8pnq3" path="res://scripts/ui/logo.gd" id="3_hv022"]
+[ext_resource type="Texture2D" uid="uid://d1t7qnxkp67wj" path="res://sprites/ui/intro/btn_globe.svg" id="4_2q4qt"]
+[ext_resource type="Texture2D" uid="uid://caicrvs32vwn5" path="res://sprites/ui/intro/btn_globe_hover.svg" id="5_60qwf"]
+[ext_resource type="Script" uid="uid://c5e248w3nm1tq" path="res://scripts/ui/intro/intro_button.gd" id="6_0i2tv"]
+[ext_resource type="Texture2D" uid="uid://0opsxp8rerjn" path="res://sprites/ui/intro/btn_play.svg" id="6_r0cr4"]
+[ext_resource type="Texture2D" uid="uid://dtdxfmwley10o" path="res://sprites/ui/intro/btn_link_website.svg" id="7_0i2tv"]
+[ext_resource type="Texture2D" uid="uid://ba3mheouc6ly3" path="res://sprites/ui/intro/btn_play_hover.svg" id="7_60qwf"]
+[ext_resource type="Texture2D" uid="uid://drtwd6vyoac66" path="res://sprites/ui/intro/btn_link_website_hover.svg" id="8_v04hj"]
+[ext_resource type="Texture2D" uid="uid://epvbkprbk5bo" path="res://sprites/ui/intro/btn_link_facebook.svg" id="9_duawr"]
+[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://ui/text.ttf" id="9_v04hj"]
+[ext_resource type="Texture2D" uid="uid://ueoj1sysn3by" path="res://sprites/ui/intro/btn_link_facebook_hover.svg" id="10_1sgqr"]
+[ext_resource type="Texture2D" uid="uid://cn8og0wqiascu" path="res://sprites/ui/intro/btn_link_discord.svg" id="11_tcqqm"]
+[ext_resource type="Texture2D" uid="uid://dhuj7udlcx42p" path="res://sprites/ui/intro/btn_link_discord_hover.svg" id="12_4mgms"]
+[ext_resource type="Texture2D" uid="uid://bno876h6syj6i" path="res://sprites/ui/intro/btn_link_youtube.svg" id="13_cg2vd"]
+[ext_resource type="Texture2D" uid="uid://bwyegq0ln2v8a" path="res://sprites/ui/intro/btn_link_youtube_hover.svg" id="14_tgdcd"]
+[ext_resource type="Texture2D" uid="uid://d4f1cs174r5fp" path="res://sprites/ui/intro/btn_settings.svg" id="15_mdh5t"]
+[ext_resource type="Texture2D" uid="uid://bamv2gwsfn8oj" path="res://sprites/ui/intro/btn_settings_hover.svg" id="16_rh4yj"]
+[ext_resource type="AudioStream" uid="uid://dvgebyg0umdr6" path="res://audio/ui/coin.ogg" id="19_0i2tv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0i2tv"]
+blend_mode = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sgqr"]
+shader = ExtResource("2_duawr")
+shader_parameter/transition_color = Color(0, 0, 0, 1)
+shader_parameter/smoothness = 0.0
+shader_parameter/progress = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_apfq8"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_duawr"]
+font = ExtResource("9_v04hj")
+font_size = 24
+
+[sub_resource type="InputEventKey" id="InputEventKey_v04hj"]
+device = -1
+keycode = 86
+unicode = 118
+
+[sub_resource type="Shortcut" id="Shortcut_duawr"]
+events = [SubResource("InputEventKey_v04hj")]
+
+[node name="Intro" type="Control"]
+material = SubResource("CanvasItemMaterial_0i2tv")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_63hat")
+
+[node name="Background" type="ColorRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 2
+material = SubResource("ShaderMaterial_1sgqr")
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.7921569, 0.12941177, 1)
+
+[node name="AnimContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="Control" parent="."]
+unique_name_in_owner = true
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.5
+offset_top = -225.0
+offset_right = 313.5
+offset_bottom = 27.0
+grow_horizontal = 2
+script = ExtResource("3_hv022")
+white = false
+metadata/_custom_type_script = "uid://imtq6gf8pnq3"
+
+[node name="Calendar" type="Control" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+texture_filter = 2
+use_parent_material = true
+anchors_preset = 0
+offset_right = 167.0
+offset_bottom = 97.0
+
+[node name="Icon" type="TextureRect" parent="Calendar"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 87.0
+offset_bottom = 81.0
+texture = ExtResource("3_646do")
+expand_mode = 1
+
+[node name="Weekday" type="Label" parent="Calendar"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 1
+offset_left = 102.0
+offset_top = 32.0
+offset_right = 167.0
+offset_bottom = 97.0
+label_settings = SubResource("LabelSettings_apfq8")
+vertical_alignment = 1
+
+[node name="UI" type="Control" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="Center" type="HBoxContainer" parent="UI"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -411.0
+offset_top = 414.0
+offset_right = 411.0
+offset_bottom = 558.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="OnlineBtn" type="TextureButton" parent="UI/Center"]
+texture_filter = 2
+use_parent_material = true
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("4_2q4qt")
+texture_hover = ExtResource("5_60qwf")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("6_0i2tv")
+
+[node name="PlayBtn" type="TextureButton" parent="UI/Center"]
+texture_filter = 2
+use_parent_material = true
+custom_minimum_size = Vector2(336, 72)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("6_r0cr4")
+texture_hover = ExtResource("7_60qwf")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("6_0i2tv")
+
+[node name="Label" type="Label" parent="UI/Center/PlayBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TITLE_PLAY"
+label_settings = SubResource("LabelSettings_duawr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomRight" type="HBoxContainer" parent="UI"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -294.0
+offset_top = -96.0
+offset_right = -48.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 18
+alignment = 2
+
+[node name="WebsiteBtn" type="TextureButton" parent="UI/BottomRight"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 2
+shortcut = SubResource("Shortcut_duawr")
+texture_normal = ExtResource("7_0i2tv")
+texture_hover = ExtResource("8_v04hj")
+script = ExtResource("6_0i2tv")
+link = "https://www.smmwe.xyz/legal/terms/"
+
+[node name="FacebookBtn" type="TextureButton" parent="UI/BottomRight"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 2
+texture_normal = ExtResource("9_duawr")
+texture_hover = ExtResource("10_1sgqr")
+script = ExtResource("6_0i2tv")
+link = "https://facebook.com/groups/488458248636741/?ref=share"
+
+[node name="DiscordBtn" type="TextureButton" parent="UI/BottomRight"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 2
+texture_normal = ExtResource("11_tcqqm")
+texture_hover = ExtResource("12_4mgms")
+script = ExtResource("6_0i2tv")
+link = "https://discord.com/invite/YwpyCfHgSr"
+
+[node name="YoutubeBtn" type="TextureButton" parent="UI/BottomRight"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 2
+texture_normal = ExtResource("13_cg2vd")
+texture_hover = ExtResource("14_tgdcd")
+script = ExtResource("6_0i2tv")
+link = "https://www.youtube.com/@enginekingdom"
+
+[node name="TopRight" type="HBoxContainer" parent="UI"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 48.0
+offset_right = -48.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_constants/separation = 18
+alignment = 2
+
+[node name="SettingsBtn" type="TextureButton" parent="UI/TopRight"]
+texture_filter = 2
+use_parent_material = true
+layout_mode = 2
+texture_normal = ExtResource("15_mdh5t")
+texture_hover = ExtResource("16_rh4yj")
+script = ExtResource("6_0i2tv")
+
+[node name="IntroFinishSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("19_0i2tv")
