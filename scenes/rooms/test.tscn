@@ -42,6 +42,7 @@ centered = false
 region_rect = Rect2(0, 0, 512, 432)
 
 [node name="Shadows" type="CanvasGroup" parent="." groups=["shadows"]]
+process_mode = 3
 self_modulate = Color(0, 0, 0, 0.301961)
 z_index = -1
 z_as_relative = false
@@ -367,6 +368,12 @@ position = Vector2(352, -80)
 
 [node name="GroundTile95" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(352, -64)
+
+[node name="GroundTile97" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(336, -144)
+
+[node name="GroundTile98" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -144)
 
 [node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
 position = Vector2(102, -32)

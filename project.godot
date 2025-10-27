@@ -21,10 +21,15 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 Utility="*res://scripts/singletons/utility.gd"
 UISoundPlayer="*res://scripts/singletons/ui_sound_player.gd"
 SceneManager="*res://scripts/singletons/scene_manager.gd"
+GameSettings="*res://scripts/singletons/game_settings.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="user://game.log"
 
 [display]
 
@@ -35,10 +40,6 @@ mouse_cursor/custom_image_hotspot=Vector2(15, 18)
 [editor]
 
 movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/Intro.ogv"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
@@ -62,6 +63,12 @@ editor="The Editor control node"
 
 theme/custom="uid://cpr7p83ljnpes"
 theme/custom_font="uid://bk3vwucreh07k"
+
+[importer_defaults]
+
+texture={
+&"svg/scale": 3.0
+}
 
 [input]
 
@@ -114,6 +121,7 @@ mb_left={
 [internationalization]
 
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.es.translation")
+locale/test="es"
 
 [layer_names]
 

@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
-/android/
+android/
+
+# Plugins which don't affect the project itself:
+# Discord rich presence plugin
+addons/discord-rpc-gd
+# Script UI improvement plugin
+addons/script-ide
