@@ -33,7 +33,7 @@ func _ready() -> void:
 		6:
 			weekday = tr("CALENDAR_SATURDAY")
 			path = "uid://bsxujjyxpynda"
-		0:
+		7:
 			weekday = tr("CALENDAR_SUNDAY")
 			path = "uid://brbx1wivbstu6"
 	anim = (load(path) as PackedScene).instantiate()
@@ -97,22 +97,18 @@ func _skip() -> void:
 	skipped = true
 	UISoundPlayer.stop()
 	%IntroFinishSound.play()
-	
 	# kill everything in progress
 	anim.queue_free()
 	if timer != null:
 		timer.timeout.disconnect(_play_animation)
 	if tween != null:
 		tween.kill()
-	
 	# prepare final UI
 	%Background.hide()
 	%Calendar.hide()
 	%Logo.position.y = 81
 	%Logo.white = true
 	%UI.show()
-	
 	# fade in UI
 	var ui_tween = create_tween()
-	ui_tween.tween_property(%UI, "modulate", Color.WHITE, 0.5) \
-			.from(Color(Color.WHITE, 0))
+	ui_tween.tween_property(%UI, "modulate", Color.WHITE, 0.5)

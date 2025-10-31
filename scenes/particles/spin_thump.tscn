@@ -36,7 +36,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 21.0
+"speed": 20.0
 }]
 
 [node name="SpinThump" type="AnimatedSprite2D"]

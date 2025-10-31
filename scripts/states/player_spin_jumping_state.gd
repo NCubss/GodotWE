@@ -9,75 +9,75 @@ enum _JumpBufferType {
 	SPIN_JUMP
 }
 
-var _long_jump := false
+var _long_jump: bool = false
 var _grav_comp: GravityComponent
-var _jump_buffer: _JumpBufferType
-var _jump_buffer_timer := 0.0
-
+var _jump_buffer: _JumpBufferType = _JumpBufferType.NONE
+var _jump_buffer_timer: float = 0.0
 
 func _init() -> void:
 	intended_class = Player
 
-
 func start(entity: Node2D) -> Variant:
 	super(entity)
-	var player = entity as Player
+	var player: Player = entity as Player
+	player.is_spinning = true
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
-	
-	# animations
-	player.sprite.speed_scale = 1
+
+	# Animación siempre
+	player.sprite.speed_scale = 1.0
 	player.sprite.flip_h = false
 	player.sprite.play("spin_jump")
-	
-	# apply jump speed
-	player.velocity.y = -player.spin_jump_speed
-	
-	return
 
+	# Aplica la velocidad de salto: usa pending si existe, si no spin_jump_speed
+	if player.has_pending_jump:
+		player.velocity.y = -float(player.pending_jump_speed)
+		player.has_pending_jump = false
+	else:
+		player.velocity.y = -float(player.spin_jump_speed)
+
+	return null
 
 func end(entity: Node2D) -> void:
-	# type hinting
-	var player = entity as Player
-	
+	var player: Player = entity as Player
+	player.is_spinning = false  # <- importante para no dejar el flag activo
 	# reset gravity
-	var grav = Utility.find_child_by_class(player, GravityComponent)
-	grav.gravity = Vector2(0, player.gravity)
-
+	var grav: GravityComponent = Utility.find_child_by_class(player, GravityComponent)
+	grav.gravity = Vector2(0.0, player.gravity)
 
 func physics_process(entity: Node2D, delta: float) -> Variant:
-	# type hinting
-	var player = entity as Player
+	var player: Player = entity as Player
 	
-	var direction = Input.get_axis("player_left", "player_right")
-	var max_speed = (
-			player.max_run_speed
-			if Input.is_action_pressed("player_run")
-			else player.max_walk_speed
-	)
+	var direction: float = Input.get_axis("player_left", "player_right")
+	var max_speed: float
+	if Input.is_action_pressed("player_run"):
+		max_speed = float(player.max_run_speed)
+	else:
+		max_speed = float(player.max_walk_speed)
 	
-	# jump buffer stuff
+	# jump buffer
 	if _jump_buffer != _JumpBufferType.NONE:
 		_jump_buffer_timer += delta
-		# time's up!
-		if _jump_buffer_timer > player.jump_buffer_time:
+		if _jump_buffer_timer > float(player.jump_buffer_time):
 			_jump_buffer = _JumpBufferType.NONE
+
 	if Input.is_action_just_pressed("player_jump"):
 		_jump_buffer = _JumpBufferType.JUMP
-		_jump_buffer_timer = 0
+		_jump_buffer_timer = 0.0
 	elif Input.is_action_just_pressed("player_spin_jump"):
 		_jump_buffer = _JumpBufferType.SPIN_JUMP
-		_jump_buffer_timer = 0
+		_jump_buffer_timer = 0.0
 	
-	if (
-		not Input.is_action_pressed("player_spin_jump")
-		or player.velocity.y >= -player.long_jump_stop_speed
-	):
+	# Mantener long jump si se mantiene jump o spin_jump
+	var holding_jump: bool = (
+		Input.is_action_pressed("player_spin_jump")
+		or Input.is_action_pressed("player_jump")
+	)
+	if (not holding_jump) or (player.velocity.y >= -float(player.long_jump_stop_speed)):
 		_long_jump = false
 	
-	# switch to other states
+	# Cambios de estado en piso
 	if player.is_on_floor():
-		# jump if the player jumped close enough
 		if _jump_buffer == _JumpBufferType.JUMP:
 			player.sounds.stream = preload("res://audio/player/jump.ogg")
 			player.sounds.play()
@@ -87,24 +87,24 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 			player.sounds.play()
 			return PlayerSpinJumpingState
 		else:
-			if direction == 0:
+			if direction == 0.0:
 				return PlayerIdleState
 			else:
 				return PlayerMovingState
 	
-	# change gravity for variable jump height
+	# Gravedad variable para long jump
 	if _long_jump:
-		_grav_comp.gravity = Vector2(0, player.long_jump_gravity)
+		_grav_comp.gravity = Vector2(0.0, float(player.long_jump_gravity))
 	else:
-		_grav_comp.gravity = Vector2(0, player.gravity)
+		_grav_comp.gravity = Vector2(0.0, float(player.gravity))
 	
-	# accelerate
-	if direction != 0:
-		player.direction = direction
+	# Aceleración horizontal
+	if direction != 0.0:
+		player.direction = int(sign(direction))  # conserva -1/1 para tu lógica
 		player.velocity.x = move_toward(
-				player.velocity.x,
-				max_speed * direction,
-				player.acceleration
+			player.velocity.x,
+			max_speed * direction,
+			float(player.acceleration)
 		)
 	
-	return
+	return null

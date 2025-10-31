@@ -1,4 +1,3 @@
-@abstract
 class_name GameConstants
 ## Defines various constants used across the game.
 
@@ -41,6 +40,3 @@ enum Layers {
 	## Various particles.
 	Z_PARTICLES = 40,
 }
-
-# The game's config file path.
-const GAME_CONFIG_PATH = "user://SMMWE.cfg"

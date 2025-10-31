@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://co2yu7wummsap"]
+
+[ext_resource type="Script" uid="uid://dfp34vkju076n" path="res://flip_grid_transition.gd" id="1_p2jg2"]
+
+[sub_resource type="Shader" id="Shader_wnckp"]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D from_tex;
+uniform float progress_sec = 0.0;
+uniform float tile_delay = 0.03;
+uniform float tile_duration = 0.35;
+uniform float perspective = 0.18;
+uniform float gloss = 0.18;
+
+void fragment() {
+    vec2 uv = SCREEN_UV;
+
+    // 🧮 Tamaño real de la pantalla en píxeles
+    vec2 screen_size = vec2(textureSize(SCREEN_TEXTURE, 0));
+
+    // 🔹 Cada celda mide 16x16 píxeles reales, así que calculamos cuántas celdas caben
+    vec2 grid = screen_size / 32.0;
+
+    // ✅ Convertimos a espacio UV (0–1)
+    vec2 cell_f = floor(uv * grid);
+    vec2 cell_uv = fract(uv * grid);
+
+    // Efecto de retardo diagonal
+    float start_time = (cell_f.x + cell_f.y) * tile_delay;
+    float t = clamp((progress_sec - start_time) / tile_duration, 0.0, 1.0);
+
+    float ang = t * PI;
+    float sx = cos(ang);
+    float face = step(0.5, t);
+
+    vec2 local = cell_uv - 0.5;
+    float persp = 1.0 - perspective * (1.0 - abs(sx));
+    vec2 warped = vec2(local.x * sx, local.y * persp) + 0.5;
+
+    vec2 warped_back = warped;
+    warped_back.x = 1.0 - warped_back.x;
+
+    vec2 screen_uv_front = (cell_f + warped) / grid;
+    vec2 screen_uv_back  = (cell_f + warped_back) / grid;
+
+    vec4 col_from = texture(from_tex, screen_uv_front);
+    vec4 col_to   = texture(SCREEN_TEXTURE, screen_uv_back);
+
+    float shade = mix(0.55, 1.0, abs(sx));
+    float spec = pow(1.0 - abs(sx), 8.0) * gloss;
+
+    vec4 col = mix(col_from, col_to, face);
+    col.rgb = col.rgb * shade + spec;
+
+    COLOR = col;
+}
+
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt5ti"]
+shader = SubResource("Shader_wnckp")
+shader_parameter/progress_sec = 0.0
+shader_parameter/tile_delay = 0.03
+shader_parameter/tile_duration = 0.35
+shader_parameter/perspective = 0.18
+shader_parameter/gloss = 0.18
+
+[node name="FlipGridTransition" type="CanvasLayer"]
+script = ExtResource("1_p2jg2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_yt5ti")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

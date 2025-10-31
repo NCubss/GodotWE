@@ -2,11 +2,11 @@ class_name GroundTile
 extends StaticBody2D
 ## A connecting ground tile.
 
-@onready var tile: TileComponent = $TileComponent
-@onready var tex: AtlasTexture = $Sprite.texture
+@onready var tile := $TileComponent as TileComponent
+@onready var tex := $Sprite.texture as AtlasTexture
 
 func _ready() -> void:
-	_atlas(5, 6)
+	atlas(64, 32)
 
 func _on_tile_connected() -> void:
 	# wait for every node to be added to the map, then do the thing
@@ -16,10 +16,13 @@ func _on_tile_connected() -> void:
 
 func _on_tile_disconnected(_map: Map, _pos: Vector2i) -> void:
 	# reset to single block
-	_atlas(5, 6)
+	atlas(64, 32)
 
-func _atlas(x: int, y: int) -> void:
-	tex.region.position = Vector2(x, y) * 16
+func atlas(x: float, y: float) -> void:
+	tex.region.position = Vector2(x, y)
+
+func choose() -> float:
+	return abs(fmod((tile.position.x + tile.position.y), 4)) * 16
 
 func refresh_sprite() -> void:
 	var tp := tile.position
@@ -27,12 +30,10 @@ func refresh_sprite() -> void:
 	var top = tile.map.get_tile(Vector2i(tp.x, tp.y - 1)) != null
 	var top_right = tile.map.get_tile(Vector2i(tp.x + 1, tp.y - 1)) != null
 	var right = tile.map.get_tile(Vector2i(tp.x + 1, tp.y)) != null
-	var right_right = tile.map.get_tile(Vector2i(tp.x + 2, tp.y)) != null
 	var bottom_right = tile.map.get_tile(Vector2i(tp.x + 1, tp.y + 1)) != null
 	var bottom = tile.map.get_tile(Vector2i(tp.x, tp.y + 1)) != null
 	var bottom_left = tile.map.get_tile(Vector2i(tp.x - 1, tp.y + 1)) != null
 	var left = tile.map.get_tile(Vector2i(tp.x - 1, tp.y)) != null
-	var left_left = tile.map.get_tile(Vector2i(tp.x - 2, tp.y)) != null
 	
 	if tp.y + 1 >= 0:
 		bottom_left = true
@@ -42,143 +43,98 @@ func refresh_sprite() -> void:
 		top_left = true
 		left = true
 		bottom_left = true
-	if tp.x - 2 < 0:
-		left_left = false
 	
-	if top:
-		if right:
-			if top_right:
-				if bottom:
-					if bottom_right:
-						if left:
-							if bottom_left:
-								if top_left:
-									_atlas(randi_range(1, 4), 1)
-								else:
-									_atlas(2, 9)
-							elif top_left:
-								_atlas(2, 10)
-							else:
-								_atlas(2, 8)
-						elif right_right:
-							_atlas(0, randi_range(1, 4))
-						else:
-							_atlas(1, 3)
-					elif left:
-						if bottom_left:
-							if top_left:
-								_atlas(3, 10)
-							else:
-								_atlas(4, 4)
-						elif top_left:
-							_atlas(1, 10)
-						else:
-							_atlas(4, 2)
-					else:
-						_atlas(0, 10)
-				elif left:
-					if top_left:
-						_atlas(randi_range(1, 4), 5)
-					else:
-						_atlas(2, 11)
-				elif right_right or bottom_right:
-					_atlas(0, 5)
-				else:
-					_atlas(1, 4)
-			elif bottom:
-				if bottom_right:
-					if left:
-						if bottom_left:
-							if top_left:
-								_atlas(3, 9)
-							else:
-								_atlas(1, 9)
-						elif top_left:
-							_atlas(3, 4)
-						else:
-							_atlas(4, 3)
-					else:
-						_atlas(0, 9)
-				elif left:
-					if bottom_left:
-						if top_left:
-							_atlas(3, 8)
-						else:
-							_atlas(3, 3)
-					elif top_left:
-						_atlas(3, 2)
-					else:
-						_atlas(1, 8)
-				else:
-					_atlas(0, 8)
-			elif left:
-				if top_left:
-					_atlas(3, 11)
-				else:
-					_atlas(1, 11)
-			else:
-				_atlas(0, 11)
-		elif bottom:
-			if left:
-				if bottom_left:
-					if top_left:
-						if left_left:
-							_atlas(5, randi_range(1, 4))
-						else:
-							_atlas(2, 3)
-					else:
-						_atlas(4, 9)
-				elif top_left:
-					_atlas(4, 10)
-				else:
-					_atlas(4, 8)
-			else:
-				_atlas(5, 8)
-		elif left:
-			if top_left:
-				if left_left or bottom_left:
-					_atlas(5, 5)
-				else:
-					_atlas(2, 4)
-			else:
-				_atlas(4, 11)
-		else:
-			_atlas(5, 9)
-	elif right:
-		if bottom:
-			if bottom_right:
-				if left:
-					if bottom_left:
-						_atlas(randi_range(1, 4), 0)
-					else:
-						_atlas(2, 7)
-				elif right_right or top_right:
-					_atlas(0, 0)
-				else:
-					_atlas(1, 2)
-			elif left:
-				if bottom_left:
-					_atlas(3, 7)
-				else:
-					_atlas(1, 7)
-			else:
-				_atlas(0, 7)
-		elif left:
-			_atlas(randi_range(1, 4), 6)
-		else:
-			_atlas(0, 6)
-	elif bottom:
-		if left:
-			if bottom_left:
-				if left_left or top_left:
-					_atlas(5, 0)
-				else:
-					_atlas(2, 2)
-			else:
-				_atlas(4, 7)
-		else:
-			_atlas(5, 7)
-	elif left:
-		_atlas(5, 6)
-	else:
-		_atlas(5, 10)
+	if not top and right and bottom_right and bottom and not left:
+		atlas(0, 0)
+	if not top and right and bottom_right and bottom and bottom_left and left:
+		atlas(16 + choose(), 0)
+	if not top and not right and bottom and bottom_left and left:
+		atlas(80, 0)
+	if not top and right and not bottom_right and bottom and not left:
+		atlas(96, 0)
+	if not top and right and not bottom_right and bottom and not bottom_left and left:
+		atlas(112, 0)
+	if not top and right and bottom_right and bottom and not bottom_left and left:
+		atlas(128, 0)
+	if not top and right and not bottom_right and bottom and bottom_left and left:
+		atlas(144, 0)
+	if not top and not right and bottom and not bottom_left and left:
+		atlas(160, 0)
+	if top and top_right and right and bottom_right and bottom and not left:
+		atlas(0, 16 + (randi() % 4) * 16)
+	if top and top_right and right and bottom_right and bottom and bottom_left and left and top_left:
+		atlas(16 + (randi() % 4) * 16, 16)
+	if top and not right and bottom and bottom_left and left and top_left:
+		atlas(80, 16 + (randi() % 4) * 16)
+	if top and not top_right and right and not bottom_right and bottom and not left:
+		atlas(96, 16)
+	if top and not top_right and right and not bottom_right and bottom and not bottom_left and left and not top_left:
+		atlas(112, 16)
+	if top and top_right and right and bottom_right and bottom and not bottom_left and left and not top_left:
+		atlas(128, 16)
+	if top and not top_right and right and not bottom_right and bottom and bottom_left and left and top_left:
+		atlas(144, 16)
+	if top and not right and bottom and not bottom_left and left and not bottom_left:
+		atlas(160, 16)
+	if not top and not right and bottom and not left:
+		atlas(16, 32)
+	if top and not top_right and right and not bottom_right and bottom and not bottom_left and left and top_left:
+		atlas(32, 32)
+	if top and top_right and right and not bottom_right and bottom and not bottom_left and left and not top_left:
+		atlas(48, 32)
+	if not top and not right and not bottom and not left:
+		atlas(64, 32)
+	if top and not top_right and right and bottom_right and bottom and not left:
+		atlas(96, 32)
+	if top and not top_right and right and bottom_right and bottom and bottom_left and left and not top_left:
+		atlas(112, 32)
+	if top and top_right and right and bottom_right and bottom and bottom_left and left and not top_left:
+		atlas(128, 32)
+	if top and not top_right and right and bottom_right and bottom and bottom_left and left and top_left:
+		atlas(144, 32)
+	if top and not right and bottom and bottom_left and left and not top_left:
+		atlas(160, 32)
+	if top and not right and bottom and not left:
+		atlas(16, 48)
+	if top and not top_right and right and not bottom_right and bottom and bottom_left and left and not top_left:
+		atlas(32, 48)
+	if top and not top_right and right and bottom_right and bottom and not bottom_left and left and not top_left:
+		atlas(48, 48)
+	if top and top_right and right and not bottom_right and bottom and not left:
+		atlas(96, 48)
+	if top and top_right and right and not bottom_right and bottom and not bottom_left and left and top_left:
+		atlas(112, 48)
+	if top and top_right and right and bottom_right and bottom and not bottom_left and left and top_left:
+		atlas(128, 48)
+	if top and top_right and right and not bottom_right and bottom and bottom_left and left and top_left:
+		atlas(144, 48)
+	if top and not right and bottom and not bottom_left and left and top_left:
+		atlas(160, 48)
+	if top and not right and not bottom and not left:
+		atlas(16, 64)
+	if top and not top_right and right and bottom_right and bottom and not bottom_left and left and top_left:
+		atlas(32, 64)
+	if top and top_right and right and not bottom_right and bottom and bottom_left and left and not top_left:
+		atlas(48, 64)
+	if not top and right and not bottom and not left:
+		atlas(64, 64)
+	if top and not top_right and right and not bottom and not left:
+		atlas(96, 64)
+	if top and not top_right and right and not bottom and left and top_left:
+		atlas(112, 64)
+	if top and top_right and right and not bottom and left and top_left:
+		atlas(128, 64)
+	if top and not top_right and right and not bottom and left and top_left:
+		atlas(144, 64)
+	if top and not right and not bottom and left and not top_left:
+		atlas(160, 64)
+	if top and top_right and right and not bottom and not left:
+		atlas(0, 80)
+	if top and top_right and right and not bottom and left and top_left:
+		atlas(16 + (randi() % 4) * 16, 80)
+	if top and not right and not bottom and left and top_left:
+		atlas(80, 80)
+	if not top and right and not bottom and left:
+		atlas(96 + (randi() % 4) * 16, 80)
+	if not top and not right and not bottom and left:
+		atlas(160, 80)

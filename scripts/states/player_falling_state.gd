@@ -11,7 +11,7 @@ func _init() -> void:
 
 func start(entity: Node2D) -> Variant:
 	var player = entity as Player
-
+	
 	# enable coyote time
 	if player.just_fell:
 		_coyote_timer = 0

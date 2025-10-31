@@ -1,4 +1,3 @@
-class_name IntroButton
 extends TextureButton
 
 @export var link: String

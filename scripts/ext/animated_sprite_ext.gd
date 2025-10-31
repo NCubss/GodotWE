@@ -1,3 +1,4 @@
+
 class_name AnimatedSpriteExt
 extends AnimatedSprite2D
 
