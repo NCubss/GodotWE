@@ -1,5 +1,7 @@
 @tool
+class_name Intro
 extends Control
+## The intro scene.
 
 var background = load("uid://chxg81fg1vwfv") as Texture2D
 var anim: Node
@@ -60,11 +62,19 @@ func _draw() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not event.is_action_pressed("ui_accept"):
-		return
+	
+	if (
+			((event is InputEventAction and event.is_action_pressed("ui_accept"))
+			or (event is InputEventScreenTouch and event.pressed))
+			and not SceneManager.fade_in_progress()
+	):
+		_skip()
 	if SceneManager.fade_in_progress():
 		return
-	_skip()
+	if event.is_action_pressed("ui_accept"):
+		_skip()
+	if event is InputEventScreenTouch and event.pressed == true:
+		_skip()
 
 
 func _play_animation() -> void:

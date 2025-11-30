@@ -62,7 +62,7 @@ static func animate_sprout_end(spr: Node2D) -> Tween:
 
 
 func _enter_tree() -> void:
-	if get_parent() is CharacterBodyExt or owner is StaticBodyExt:
+	if get_parent() is CharacterBodyExt or get_parent() is StaticBodyExt:
 		get_parent().just_collided.connect(_just_collided)
 	else:
 		assert(false, "Owner is not a BodyExt!"
@@ -70,12 +70,12 @@ func _enter_tree() -> void:
 
 
 func _just_collided(data: KinematicCollision2D):
-	var entity = data.get_local_shape().owner as PhysicsBody2D
+	var entity = data.get_local_shape().get_parent() as PhysicsBody2D
 	if entity is Player and data.get_normal().y == 1:
 		if release_sprout and sprout != null:
 			_sprout = sprout.instantiate()
 			get_parent().add_sibling(_sprout)
-			_sprout.position = owner.position + Vector2(8, 8)
+			_sprout.position = get_parent().position + Vector2(8, 8)
 			_sprout.start_sprout(Vector2.UP)
 		_old_z = get_parent().z_index
 		get_parent().z_index = GameConstants.Layers.Z_ANIM_BLOCKS

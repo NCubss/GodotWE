@@ -7,6 +7,8 @@ func _enter_tree() -> void:
 	if not get_tree().root.is_node_ready():
 		await get_tree().root.ready
 	_shadow_clone = duplicate(0)
+	_shadow_clone.z_index = 0
+	_shadow_clone.z_as_relative = true
 	Utility.id("shadows").add_child(_shadow_clone)
 
 func _exit_tree() -> void:

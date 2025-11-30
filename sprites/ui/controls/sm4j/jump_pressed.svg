@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="31.999998"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer3"><ellipse
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:3;stroke-linecap:square;stroke-miterlimit:5;paint-order:markers fill stroke"
+       id="path1"
+       cx="16"
+       cy="15.999999"
+       rx="16"
+       ry="15.999999" /><ellipse
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:3;stroke-linecap:square;stroke-miterlimit:5;paint-order:markers fill stroke"
+       id="path2"
+       cx="16"
+       cy="15.999999"
+       rx="13"
+       ry="12.999999" /><ellipse
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke-width:3;stroke-linecap:square;stroke-miterlimit:5;paint-order:markers fill stroke"
+       id="path3"
+       cx="16"
+       cy="15.999999"
+       rx="11"
+       ry="10.999999" /><path
+       id="path4"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke-width:3;stroke-linecap:square;stroke-miterlimit:5;paint-order:markers fill stroke"
+       d="m 15.000004,10.000003 -3,3.000001 v 8.999998 h 2 v -4 h 4 v 4 h 2 v -8.999998 l -3,-3.000001 z m 0.66602,2.000001 h 0.66796 l 1.66602,1.66602 v 2.33398 h -4 v -2.33203 z" /></g></svg>

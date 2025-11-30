@@ -1,3 +1,4 @@
+@icon("uid://dgfxxtttchbse")
 class_name SlideComponent
 extends Component
 ## Provides sliding and turning around behavior.

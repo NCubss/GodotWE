@@ -1,8 +1,23 @@
 class_name IntroPlayButton
-extends IntroButton
+extends TextureButton
+
+@onready var _effect = ButtonHoverEffect.new(self)
+
+
+func _ready() -> void:
+	mouse_entered.connect(_effect.start)
+	mouse_exited.connect(_effect.stop)
 
 
 func _pressed() -> void:
-	super()
-	SceneManager.fade_to("uid://h1dvwi2n2ugk", SceneManager.Transition.FADE,
-			SceneManager.Transition.CIRCLE)
+	if not SceneManager.fade_in_progress():
+		SceneManager.fade_to("uid://h1dvwi2n2ugk", SceneManager.Transition.FADE,
+				SceneManager.Transition.CIRCLE)
+
+
+func _process(_delta: float) -> void:
+	_effect.check_redraw()
+
+
+func _draw() -> void:
+	_effect.draw()
