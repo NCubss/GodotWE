@@ -234,8 +234,12 @@ func drop_item() -> Entity:
 	held_item_tween.kill()
 	_held_item.reparent(get_parent())
 	_held_item.position += Vector2(2, -1.5)
-	_held_item.velocity = Vector2(120 * direction, -60)
+	_held_item.velocity = Vector2((120 + abs(velocity.x)) * direction, -60)
 	_held_item.z_index = _held_item_z_index
+	var coll = KinematicCollision2D.new()
+	if _held_item.test_move(global_transform,
+			_held_item.global_position - global_position, coll):
+		_held_item.global_position = global_position + coll.get_travel()
 	if pickup_comp != null:
 		pickup_comp.dropped.emit(PickupComponent.ReleaseType.KICKED)
 	var last_held = _held_item
@@ -301,5 +305,5 @@ func _deferred_hold(item: Entity, pickup_comp: PickupComponent) -> void:
 	item.position = HELD_ITEM_OFFSET * Vector2(direction, 1)
 	_held_item = item
 	_held_item_z_index = item.z_index
-	item.z_index = 9
+	item.z_index = GameConstants.Layers.Z_AFTER_PLAYER
 	pickup_comp.picked_up.emit(self)

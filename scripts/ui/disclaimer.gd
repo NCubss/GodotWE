@@ -1,4 +1,6 @@
+class_name Disclaimer
 extends Control
+## The disclaimer scene.
 
 
 func _ready() -> void:
