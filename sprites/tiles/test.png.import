@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sfvb8irpqme7"
-path="res://.godot/imported/spr_keyup_sm4j_Strip2.png-dd9acebb5e6b12a709de4070f3e46838.ctex"
+uid="uid://bd32bdg1hr5al"
+path="res://.godot/imported/test.png-56f39376cb625d3316cc5d78d3f2ec2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/android botones/spr_keyup_sm4j_Strip2.png"
-dest_files=["res://.godot/imported/spr_keyup_sm4j_Strip2.png-dd9acebb5e6b12a709de4070f3e46838.ctex"]
+source_file="res://sprites/tiles/test.png"
+dest_files=["res://.godot/imported/test.png-56f39376cb625d3316cc5d78d3f2ec2d.ctex"]
 
 [params]
 

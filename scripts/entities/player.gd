@@ -160,16 +160,15 @@ var p_meter := 0
 ## The direction the player is facing. This value is either -1 or 1, and
 ## represents which side of the X axis is the player facing.
 var direction := 1:
-
 	set(value):
 		if value != direction and _held_item != null:
-			_kill_held_tween()
+			if held_item_tween is Tween and held_item_tween.is_running():
+				held_item_tween.kill()
 			held_item_tween = create_tween()
-			held_item_tween.tween_property(self._held_item, "position", Vector2(0, -1.5), 0.0)
-			held_item_tween.tween_interval(7.0 / 60.0)
-			held_item_tween.tween_property(self._held_item, "position", Vector2(-11 * direction, -1.5), 0.0)
+			held_item_tween.tween_property(self._held_item, "position", Vector2(0, -1.5), 0)
+			held_item_tween.tween_interval(7/60.0)
+			held_item_tween.tween_property(self._held_item, "position", Vector2(-11 * direction, -1.5), 0)
 			direction = value
-
 			
 ## Used in processing coyote time.
 var just_fell := false
@@ -180,9 +179,6 @@ var _powerup: Powerup
 var _held_item: Entity = null
 var _held_item_z_index: int
 var _p_timer := 0.0
-var is_spinning: bool = false
-var has_pending_jump: bool = false
-var pending_jump_speed: float = 0.0
 
 
 ## The hitbox size used when the player is on a small powerup.
@@ -196,12 +192,6 @@ const HELD_ITEM_OFFSET = Vector2(11, -1.5)
 func damage() -> void:
 	#sounds.stream = preload("res://audio/player/warp.ogg")
 	sounds.play()
-# --- función auxiliar para matar el tween de forma segura ---
-func _kill_held_tween() -> void:
-	if held_item_tween != null:
-		if held_item_tween.is_running():
-			held_item_tween.kill()
-		held_item_tween = null
 
 
 ## Forcibly kills the player, regardless of any powerups.
@@ -238,9 +228,10 @@ func give_item(item: Entity) -> void:
 ## the player is currently executing.
 func drop_item() -> Entity:
 	if _held_item == null:
-		return null
-	var pickup_comp = Utility.find_child_by_class(_held_item, PickupComponent) as PickupComponent
-	_kill_held_tween()
+		return
+	var pickup_comp = Utility.find_child_by_class(_held_item, PickupComponent) \
+			as PickupComponent
+	held_item_tween.kill()
 	_held_item.reparent(get_parent())
 	_held_item.position += Vector2(2, -1.5)
 	_held_item.velocity = Vector2(120 * direction, -60)

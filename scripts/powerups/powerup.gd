@@ -5,7 +5,11 @@ extends Resource
 var player: Player
 
 
-static func default_animate(tree: SceneTree, old_graphics: Node2D, new_graphics: Node2D) -> void:
+static func default_animate(
+		tree: SceneTree,
+		old_graphics: Node2D,
+		new_graphics: Node2D
+) -> void:
 	tree.paused = true
 	var tween = tree.create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
