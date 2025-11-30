@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://h1dvwi2n2ugk"]
+[gd_scene load_steps=15 format=3 uid="uid://h1dvwi2n2ugk"]
 
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_24j5q"]
 [ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="1_ylcux"]
@@ -12,9 +12,6 @@
 [ext_resource type="Script" uid="uid://bpy2tvh67k4oh" path="res://scripts/components/pickup_component.gd" id="9_eyqv6"]
 [ext_resource type="Script" uid="uid://bybnf6troxwg1" path="res://scripts/entities/entity.gd" id="9_gorjh"]
 [ext_resource type="PackedScene" uid="uid://x314ug2d52hj" path="res://scenes/entities/stomped_galoomba.tscn" id="12_r7jnd"]
-[ext_resource type="Script" uid="uid://dvdb2qgwrjjby" path="res://scripts/ui/camera_2d.gd" id="13_0d8l4"]
-[ext_resource type="PackedScene" uid="uid://cggf2fqsyow8w" path="res://scenes/entities/goomba.tscn" id="14_4r8vb"]
-[ext_resource type="PackedScene" uid="uid://bxfummq5ag7js" path="res://scenes/buttons/button_sm4jtscn.tscn" id="15_yvre6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0d8l4"]
 
@@ -45,6 +42,7 @@ centered = false
 region_rect = Rect2(0, 0, 512, 432)
 
 [node name="Shadows" type="CanvasGroup" parent="." groups=["shadows"]]
+process_mode = 3
 self_modulate = Color(0, 0, 0, 0.301961)
 z_index = -1
 z_as_relative = false
@@ -86,7 +84,7 @@ position = Vector2(0, -16)
 position = Vector2(0, -32)
 
 [node name="GroundTile96" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
-position = Vector2(96, -48)
+position = Vector2(27, -48)
 
 [node name="GroundTile15" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(16, -16)
@@ -253,9 +251,6 @@ position = Vector2(432, -32)
 [node name="GroundTile69" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(448, -16)
 
-[node name="GroundTile98" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
-position = Vector2(318, -284)
-
 [node name="GroundTile70" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(464, -32)
 
@@ -335,7 +330,7 @@ position = Vector2(560, -32)
 position = Vector2(576, -16)
 
 [node name="GroundTile92" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
-position = Vector2(592, -33)
+position = Vector2(592, -32)
 
 [node name="TurnBlockTile" parent="Foreground/Map" instance=ExtResource("5_0dnrn")]
 position = Vector2(128, -96)
@@ -374,13 +369,37 @@ position = Vector2(352, -80)
 [node name="GroundTile95" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(352, -64)
 
-[node name="Player" parent="Foreground" instance=ExtResource("1_ylcux")]
-position = Vector2(195, -104)
+[node name="GroundTile97" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(336, -144)
+
+[node name="GroundTile98" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
+position = Vector2(352, -144)
+
+[node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
+position = Vector2(102, -32)
+
+[node name="Camera2D" type="Camera2D" parent="Foreground/Player" groups=["camera"]]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_bottom = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Galoomba" parent="Foreground" instance=ExtResource("8_eyqv6")]
+position = Vector2(185, -58)
 
 [node name="Node2D" type="CharacterBody2D" parent="Foreground"]
 z_index = 9
 z_as_relative = false
-position = Vector2(68, -75)
+position = Vector2(46, -174)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("9_gorjh")
@@ -415,32 +434,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="StompedGaloomba" parent="." instance=ExtResource("12_r7jnd")]
-position = Vector2(254, -97)
-
-[node name="Camera2d" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(196, -107)
-zoom = Vector2(2.99, 2.99)
-limit_left = 0
-limit_right = 9999999
-limit_bottom = 1
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.05
-drag_top_margin = 0.32
-drag_right_margin = 0.04
-drag_bottom_margin = 0.36
-editor_draw_limits = true
-editor_draw_drag_margin = true
-script = ExtResource("13_0d8l4")
-target = NodePath("../Foreground/Player")
-
-[node name="Goomba" parent="." instance=ExtResource("14_4r8vb")]
-position = Vector2(136, -57)
-
-[node name="Galoomba" parent="." instance=ExtResource("8_eyqv6")]
-position = Vector2(-17, 52)
-
-[node name="CanvasLayer" parent="." instance=ExtResource("15_yvre6")]
+position = Vector2(248, -96)
 
 [editable path="Foreground/Map/QuestionBlock"]
 [editable path="Foreground/Player"]

@@ -25,12 +25,7 @@ func start(entity: Node2D) -> Variant:
 	var running = Input.is_action_pressed("player_run")
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
-		# --- NUEVO: si hay un salto pendiente (por pisotón, trampolín, etc.)
-	if player.has_pending_jump:
-		player.velocity.y = -player.pending_jump_speed
-		player.has_pending_jump = false
-		return
-
+	
 	# apply jump speed
 	if not running and abs(player.velocity.x) < player.max_walk_speed:
 		player.velocity.y = -player.idle_jump_speed
