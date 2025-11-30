@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://0fkg2nu7lukq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mn8m"]
+size = Vector2(192, 192)
+
+[node name="SM4JControls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="DPad" type="Node2D" parent="Left"]
+
+[node name="Right" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Jump" type="TouchScreenButton" parent="Right"]
+position = Vector2(-96, 570)
+shape = SubResource("RectangleShape2D_1mn8m")
+action = "player_jump"
+visibility_mode = 1
+
+[node name="RunToggle" type="TouchScreenButton" parent="Right"]
+position = Vector2(-96, 378)
+shape = SubResource("RectangleShape2D_1mn8m")
+action = "player_run_toggle"
+visibility_mode = 1
+
+[node name="RunToggle2" type="TouchScreenButton" parent="Right"]
+position = Vector2(-96, 186)
+shape = SubResource("RectangleShape2D_1mn8m")
+action = "pause"
+visibility_mode = 1
+
+[node name="RunGrab" type="TouchScreenButton" parent="Right"]
+position = Vector2(-288, 570)
+shape = SubResource("RectangleShape2D_1mn8m")
+action = "player_run"
+visibility_mode = 1

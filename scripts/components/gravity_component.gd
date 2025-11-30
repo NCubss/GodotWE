@@ -1,3 +1,4 @@
+@icon("uid://bsp0i5axp4cgp")
 class_name GravityComponent
 extends Component
 ## Provides customizable gravity.

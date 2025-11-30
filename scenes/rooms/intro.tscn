@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dtq1i14h6pmvn"]
+[gd_scene load_steps=27 format=3 uid="uid://dtq1i14h6pmvn"]
 
 [ext_resource type="Script" uid="uid://46u20dtv31sb" path="res://scripts/ui/intro/intro.gd" id="1_63hat"]
 [ext_resource type="Shader" uid="uid://euyudj0kkdr6" path="res://shaders/circle_transition.gdshader" id="2_duawr"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://imtq6gf8pnq3" path="res://scripts/ui/logo.gd" id="3_hv022"]
 [ext_resource type="Texture2D" uid="uid://d1t7qnxkp67wj" path="res://sprites/ui/intro/btn_globe.svg" id="4_2q4qt"]
 [ext_resource type="Texture2D" uid="uid://caicrvs32vwn5" path="res://sprites/ui/intro/btn_globe_hover.svg" id="5_60qwf"]
-[ext_resource type="Script" uid="uid://c5e248w3nm1tq" path="res://scripts/ui/intro/intro_button.gd" id="6_0i2tv"]
+[ext_resource type="Script" uid="uid://c5e248w3nm1tq" path="res://scripts/ui/intro/intro_link_button.gd" id="6_0i2tv"]
 [ext_resource type="Texture2D" uid="uid://0opsxp8rerjn" path="res://sprites/ui/intro/btn_play.svg" id="6_r0cr4"]
 [ext_resource type="Texture2D" uid="uid://dtdxfmwley10o" path="res://sprites/ui/intro/btn_link_website.svg" id="7_0i2tv"]
 [ext_resource type="Texture2D" uid="uid://ba3mheouc6ly3" path="res://sprites/ui/intro/btn_play_hover.svg" id="7_60qwf"]
@@ -30,7 +30,9 @@ blend_mode = 4
 shader = ExtResource("2_duawr")
 shader_parameter/size = Vector2(0, 0)
 shader_parameter/center = Vector2(0.5, 0.5)
-shader_parameter/progress = 0.0
+shader_parameter/active = false
+shader_parameter/radius = 0.0
+shader_parameter/smoothness = 0.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_apfq8"]
 font_size = 24
@@ -38,14 +40,6 @@ font_size = 24
 [sub_resource type="LabelSettings" id="LabelSettings_duawr"]
 font = ExtResource("9_v04hj")
 font_size = 24
-
-[sub_resource type="InputEventKey" id="InputEventKey_v04hj"]
-device = -1
-keycode = 86
-unicode = 118
-
-[sub_resource type="Shortcut" id="Shortcut_duawr"]
-events = [SubResource("InputEventKey_v04hj")]
 
 [node name="Intro" type="Control"]
 material = SubResource("CanvasItemMaterial_0i2tv")
@@ -202,7 +196,6 @@ alignment = 2
 [node name="WebsiteBtn" type="TextureButton" parent="UI/BottomRight"]
 texture_filter = 2
 layout_mode = 2
-shortcut = SubResource("Shortcut_duawr")
 texture_normal = ExtResource("7_0i2tv")
 texture_hover = ExtResource("8_v04hj")
 script = ExtResource("6_0i2tv")

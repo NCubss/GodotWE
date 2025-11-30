@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cbc3kaegk4jn3"]
+[gd_scene load_steps=29 format=3 uid="uid://cbc3kaegk4jn3"]
 
 [ext_resource type="Script" uid="uid://dl24hxmntjo1g" path="res://scripts/other/grid.gd" id="1_df8yj"]
 [ext_resource type="Script" uid="uid://cwdxlb3bg48lf" path="res://scripts/ui/editor/editor_camera.gd" id="2_hf1b4"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://sprites/ui/editor/btn_rocket.svg" id="15_ieb30"]
 [ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://sprites/ui/editor/btn_palette.svg" id="16_7kynf"]
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
-[ext_resource type="Texture2D" uid="uid://5mh6wpqqoc7e" path="res://sprites/ui/editor/btn_card.svg" id="18_aln61"]
 [ext_resource type="Texture2D" uid="uid://cy4xwj1nrr0pc" path="res://sprites/ui/editor/popout.svg" id="19_x0vm4"]
 [ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://sprites/ui/btn_close.svg" id="20_wrbvm"]
 [ext_resource type="Texture2D" uid="uid://ct7nsivikgx8h" path="res://sprites/ui/editor/style_cards/smb.svg" id="21_j70um"]
@@ -25,6 +24,15 @@
 [ext_resource type="Texture2D" uid="uid://b548gpt5xh0v2" path="res://sprites/ui/editor/style_cards/smw.svg" id="23_j3lkm"]
 [ext_resource type="Texture2D" uid="uid://upsn5uu41qe6" path="res://sprites/ui/editor/style_cards/nsmbu.svg" id="24_641cv"]
 [ext_resource type="Texture2D" uid="uid://b8smlpumep0mu" path="res://sprites/ui/editor/style_cards/sm3dw.svg" id="25_u3stv"]
+[ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="26_ljufs"]
+[ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="27_ljufs"]
+[ext_resource type="Script" uid="uid://4ld0tmaadxvg" path="res://scripts/ui/editor/part.gd" id="28_q43qg"]
+
+[sub_resource type="Resource" id="Resource_sqdok"]
+script = ExtResource("28_q43qg")
+icon = ExtResource("27_ljufs")
+icon_filter = 1
+metadata/_custom_type_script = "uid://4ld0tmaadxvg"
 
 [node name="Node2D" type="Node2D"]
 
@@ -43,6 +51,7 @@ script = ExtResource("2_hf1b4")
 [node name="EditorLayer" type="CanvasLayer" parent="."]
 
 [node name="Editor" type="Control" parent="EditorLayer" groups=["editor"]]
+texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -53,11 +62,14 @@ script = ExtResource("3_sqdok")
 
 [node name="RightPanel" type="NinePatchRect" parent="EditorLayer/Editor"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1047.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
 offset_top = 108.0
-offset_right = 1152.0
 offset_bottom = 648.0
+grow_horizontal = 0
 texture = ExtResource("4_ljufs")
 region_rect = Rect2(0, 0, 18, 12)
 patch_margin_left = 15
@@ -95,7 +107,6 @@ texture_normal = ExtResource("9_wtof8")
 texture_pressed = ExtResource("10_au04s")
 texture_click_mask = ExtResource("7_t1mpb")
 script = ExtResource("11_aofq0")
-hover_offset = Rect2(0, 0, 0, -6)
 
 [node name="EraserBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel"]
 layout_mode = 0
@@ -138,9 +149,11 @@ hover_offset = Rect2(0, 0, 0, -6)
 
 [node name="TopPanel" type="NinePatchRect" parent="EditorLayer/Editor"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 1152.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 108.0
+grow_horizontal = 2
 texture = ExtResource("4_ljufs")
 region_rect = Rect2(15, 9, 3, 18)
 patch_margin_bottom = 15
@@ -148,11 +161,15 @@ script = ExtResource("5_w57a8")
 closed_pos = Vector2(0, -102)
 
 [node name="PaletteBtn" type="TextureButton" parent="EditorLayer/Editor/TopPanel"]
-layout_mode = 0
-offset_left = 1068.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
 offset_top = 15.0
-offset_right = 1137.0
+offset_right = -15.0
 offset_bottom = 90.0
+grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 texture_normal = ExtResource("16_7kynf")
@@ -160,77 +177,81 @@ script = ExtResource("17_xu0b2")
 hover_offset = Rect2(0, 0, 0, -6)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorLayer/Editor/TopPanel"]
-layout_mode = 0
-offset_left = 114.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -462.0
 offset_top = 15.0
-offset_right = 1038.0
+offset_right = 462.0
 offset_bottom = 90.0
+grow_horizontal = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect2" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton2" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect3" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton3" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect4" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton4" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect5" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton5" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect6" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton6" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect7" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton7" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect8" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton8" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect9" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton9" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect10" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton10" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect11" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton11" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
-[node name="TextureRect12" type="TextureRect" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
+[node name="TextureButton12" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("18_aln61")
-stretch_mode = 3
+script = ExtResource("26_ljufs")
+part = SubResource("Resource_sqdok")
 
 [node name="LeftPanel" type="NinePatchRect" parent="EditorLayer/Editor"]
 unique_name_in_owner = true
-layout_mode = 0
+layout_mode = 1
 offset_top = 108.0
 offset_right = 168.0
 offset_bottom = 546.0

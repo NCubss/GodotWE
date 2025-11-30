@@ -1,3 +1,4 @@
+@icon("uid://dkksfwlo1l87c")
 class_name Sprout
 extends Node2D
 

@@ -40,6 +40,10 @@ enum Layers {
 	Z_AFTER_PLAYER = 39,
 	## Various particles.
 	Z_PARTICLES = 40,
+	## Dead enemies.
+	Z_DEAD = 45,
+	## The gameplay HUD.
+	Z_HUD = 50,
 }
 
 # The game's config file path.

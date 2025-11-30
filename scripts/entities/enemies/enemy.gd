@@ -5,11 +5,11 @@ extends Entity
 
 ## Defines what type of stomping is allowed on an enemy.
 enum Stompability {
-	## Allows the player to stomp this enemy with any kind of jump. Triggers
-	## the [signal Enemy.stomped] signal.
+	## Allows the player to stomp this enemy with any kind of jump. Triggers the
+	## [signal Enemy.stomped] signal.
 	STOMPABLE,
-	## Allows the player to stomp this enemy only with a spin jump. Triggers
-	## the [signal Enemy.stomped] signal.
+	## Allows the player to stomp this enemy only with a spin jump. Triggers the
+	## [signal Enemy.stomped] signal.
 	SPIN_JUMP_ONLY,
 	## Does not allow the player to stomp this enemy. Does not trigger the
 	## [signal Enemy.stomped] signal.
@@ -45,6 +45,8 @@ func kill() -> void:
 	var graphics = $Graphics.duplicate() as Node2D
 	graphics.global_position = $Graphics.global_position
 	graphics.name = "DeadEntity"
+	graphics.z_index = GameConstants.Layers.Z_DEAD
+	graphics.z_as_relative = false
 	graphics.set_script(DeadEntity)
 	graphics.velocity = Vector2(60 * -sign(Utility.id("player").velocity.x), -240)
 	add_sibling(graphics)
@@ -68,15 +70,10 @@ func _stomped(player: Player) -> void:
 	player.sounds.play()
 	var spin_thump = preload("res://scenes/particles/spin_thump.tscn") \
 		.instantiate()
-	#var stomped_enemy = preload("res://scenes/entities/stomped_galoomba.tscn") \
-	#	.instantiate()
-	# debugger yells at me if i dont use call deferreds
+	player.state_machine.switch(PlayerJumpingState)
 	call_deferred("add_sibling", spin_thump)
-	#call_deferred("add_sibling", stomped_enemy)
 	spin_thump.global_position = player.global_position
-	#stomped_enemy.global_position = global_position
-	#queue_free()
-	#kill()
+	kill()
 
 
 func _turned(direction: Vector2) -> void:

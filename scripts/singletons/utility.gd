@@ -5,28 +5,7 @@ extends Node
 const COLOR_YELLOW = Color("#facd00")
 const COLOR_DARK = Color("#5d1c1c")
 
-# Cursor :v
-var _cursor_normal := AtlasTexture.new()
-var _cursor_grabbing := AtlasTexture.new()
 
-func _ready():
-	# Frame 0 (normal)
-	_cursor_normal.atlas = preload("res://sprites/ui/cursor.png")
-	_cursor_normal.region = Rect2(0, 0, 69, 69)
-
-	# Frame 1 (grabbing)
-	_cursor_grabbing.atlas = preload("res://sprites/ui/cursor.png")
-	_cursor_grabbing.region = Rect2(69, 0, 69, 69)
-
-	#Input.set_custom_mouse_cursor(_cursor_normal,
-			#Input.CursorShape.CURSOR_ARROW, Vector2(32, 32))
-
-
-#func _process(_delta):
-	#if Input.is_action_pressed("mb_left"):
-		#Input.set_custom_mouse_cursor(_cursor_grabbing)
-	#else:
-		#Input.set_custom_mouse_cursor(_cursor_normal)
 
 ## Finds a child in the node [param parent] of [param type] type. This function
 ## only looks at direct children, not descendants.
@@ -35,6 +14,7 @@ func find_child_by_class(parent: Node, type: Variant) -> Node:
 		if is_instance_of(i, type):
 			return i
 	return null
+
 
 ## Shorthand for getting the first node from a group:
 ## [codeblock]
@@ -82,6 +62,7 @@ func get_visible_rect() -> Rect2:
 			get_viewport().canvas_transform.affine_inverse()
 			* get_viewport().get_visible_rect()
 	)
+
 
 ## Returns an array with the given range.
 ## This function returns an [Array] of [float]s unlike [method @GDScript.range]
