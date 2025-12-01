@@ -370,7 +370,7 @@ position = Vector2(336, -144)
 position = Vector2(352, -144)
 
 [node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
-position = Vector2(102, -32)
+position = Vector2(64, -32)
 
 [node name="Galoomba" parent="Foreground" instance=ExtResource("8_eyqv6")]
 position = Vector2(185, -58)
@@ -386,7 +386,6 @@ limit_bottom = 0
 position_smoothing_speed = 2.0
 script = ExtResource("10_eyqv6")
 target = NodePath("../Foreground/Player")
-top_padding_pixels = null
 
 [editable path="Foreground/Map/QuestionBlock"]
 [editable path="Foreground/Player"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://h4t4thecwdfc"]
+
+[ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_nwhb5"]
+[ext_resource type="Script" uid="uid://c1vevfranvnvu" path="res://scripts/level/sub_area.gd" id="2_1e485"]
+[ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/other/map.gd" id="3_thwhe"]
+[ext_resource type="PackedScene" uid="uid://bpy1sebdq7k7s" path="res://scenes/tiles/ground_tile.tscn" id="4_1e485"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_nwhb5")
+level_name = "Test"
+author = "NCubs"
+description = "A test level!"
+metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
+
+[node name="SubArea" type="Node2D" parent="."]
+script = ExtResource("2_1e485")
+metadata/_custom_type_script = "uid://c1vevfranvnvu"
+
+[node name="Foreground" type="Node" parent="SubArea"]
+
+[node name="Map" type="Node2D" parent="SubArea/Foreground" groups=["map"]]
+script = ExtResource("3_thwhe")
+metadata/_custom_type_script = "uid://cebyi7qjgdqix"
+
+[node name="GroundTile" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(0, -16)
+
+[node name="GroundTile2" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(16, -32)
+
+[node name="GroundTile3" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(32, -16)
+
+[node name="GroundTile4" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(48, -32)
+
+[node name="GroundTile5" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(64, -48)
+
+[node name="GroundTile6" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(80, -32)
+
+[node name="GroundTile7" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(96, -16)
+
+[node name="GroundTile8" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(112, -32)
+
+[node name="GroundTile9" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(112, -16)
+
+[node name="GroundTile10" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(80, -16)
+
+[node name="GroundTile11" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(64, -32)
+
+[node name="GroundTile12" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(64, -16)
+
+[node name="GroundTile13" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(48, -16)
+
+[node name="GroundTile14" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+position = Vector2(16, -16)
