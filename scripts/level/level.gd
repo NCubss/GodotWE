@@ -110,10 +110,13 @@ enum Tag {
 # probably should make a class for this
 @export var clear_condition := ClearCondition.NONE
 
-var _sub_areas: Array[SubArea] = []
+## The level's automatically assigned sub-areas.
+var sub_areas: Array[SubArea] = []
+## The current [SubArea], that is, the [SubArea] in which entities are active
+## and the player is in.
+var current_sub_area: SubArea
 
-
-func _init(_level_name: String, _author: String, _game_style := GameStyle.SMW):
+func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 	game_style = _game_style
 	level_name = _level_name
 	author = _author
@@ -122,5 +125,11 @@ func _init(_level_name: String, _author: String, _game_style := GameStyle.SMW):
 func _ready() -> void:
 	for i in get_children():
 		if i is SubArea:
-			_sub_areas.append(i)
-	assert(not _sub_areas.is_empty(), "Level does not have any sub-areas.")
+			sub_areas.append(i)
+			i.load(self)
+	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
+	current_sub_area = sub_areas[0]
+	var player: Player = load("uid://b2cwk2viytb57").instantiate()
+	
+	current_sub_area.spawn(player, Vector2(64, -32))
+	add_child(PlayerCamera.new())

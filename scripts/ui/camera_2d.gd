@@ -1,3 +1,4 @@
+class_name PlayerCamera
 extends Camera2D
 
 ## The target body to track. Defaults to the `player` group.
@@ -17,6 +18,10 @@ var _extra_y_offset: float = 0.0
 var _max_floor_y: float = INF
 
 func _ready() -> void:
+	zoom = Vector2(3, 3)
+	limit_enabled = true
+	limit_left = 0
+	limit_bottom = 0
 	_time_left = max_time
 	# Calcula el bloque más alto (menor Y) de todo lo que esté en
 	# floor_layer_mask.

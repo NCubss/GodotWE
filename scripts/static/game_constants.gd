@@ -46,5 +46,226 @@ enum Layers {
 	Z_HUD = 50,
 }
 
-# The game's config file path.
+## The game's config file path.
 const GAME_CONFIG_PATH = "user://SMMWE.cfg"
+## A registry of all background scene paths. The hierarchy goes
+## [enum Level.GameStyle], [enum Level.LevelTheme], then a [bool] table for
+## whether [member SubArea.night_mode] is enabled.
+const BACKGROUNDS = {
+	Level.GameStyle.SMB: {
+		Level.LevelTheme.OVERWORLD: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERGROUND: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERWATER: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.CASTLE: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SKY: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.AIRSHIP: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.DESERT: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SNOW: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MANSION: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FOREST: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FALL: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.BEACH: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MOUNTAIN: {
+			true: "",
+			false: "",
+		},
+	},
+	Level.GameStyle.SMB3: {
+		Level.LevelTheme.OVERWORLD: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERGROUND: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERWATER: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.CASTLE: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SKY: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.AIRSHIP: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.DESERT: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SNOW: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MANSION: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FOREST: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FALL: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.BEACH: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MOUNTAIN: {
+			true: "",
+			false: "",
+		},
+	},
+	Level.GameStyle.SMW: {
+		Level.LevelTheme.OVERWORLD: {
+			true: "",
+			false: "uid://ctnffmabe0h4f",
+		},
+		Level.LevelTheme.UNDERGROUND: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERWATER: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.CASTLE: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SKY: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.AIRSHIP: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.DESERT: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SNOW: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MANSION: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FOREST: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FALL: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.BEACH: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MOUNTAIN: {
+			true: "",
+			false: "",
+		},
+	},
+	Level.GameStyle.NSMBU: {
+		Level.LevelTheme.OVERWORLD: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERGROUND: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.UNDERWATER: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.CASTLE: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SKY: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.AIRSHIP: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.DESERT: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.SNOW: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MANSION: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FOREST: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.FALL: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.BEACH: {
+			true: "",
+			false: "",
+		},
+		Level.LevelTheme.MOUNTAIN: {
+			true: "",
+			false: "",
+		},
+	},
+}
