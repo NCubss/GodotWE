@@ -10,7 +10,8 @@ signal connected
 @warning_ignore("unused_signal")
 signal disconnected(map: Map, pos: Vector2i)
 
-## The map the tile is currently in.
+## The map the tile is currently in. This will be always the parent of the 
+## tile if it is in a [Map].
 @export var map: Map
 ## The position of the tile in the map.
 @export var position: Vector2i = Vector2i(0, 0)

@@ -5,7 +5,7 @@ extends TextureButton
 static var card_group := ButtonGroup.new()
 
 ## The part this card represents.
-@export var part: Part
+@export var part: PartInfo
 
 var _card_offset := Vector2(0, 0)
 var _icon_offset := Vector2(0, 0)
@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 
 func _draw() -> void:
 	draw_texture(_card_top, _card_offset,
-			Part.get_category_color(part.category))
+			PartInfo.get_category_color(part.category))
 	draw_texture(_card_pressed if button_pressed else _card,
 			_card_offset + Vector2(0, 6))
 

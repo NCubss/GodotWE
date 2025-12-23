@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://jr7c4ykh8awq"]
+
+[ext_resource type="Script" uid="uid://dnhf1isfdvgo2" path="res://scripts/ui/editor/part.gd" id="1_dwemf"]
+[ext_resource type="Texture2D" uid="uid://ch4vaq40ak0qo" path="res://sprites/test.png" id="3_xsax5"]
+[ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="4_q68sn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p834g"]
+size = Vector2(16, 16)
+
+[node name="Part" type="Area2D"]
+z_index = 50
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("1_dwemf")
+
+[node name="CollShape" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_p834g")
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2(8, 8)
+
+[node name="Sprite" type="Sprite2D" parent="Graphics"]
+z_index = 20
+texture = ExtResource("3_xsax5")
+script = ExtResource("4_q68sn")
+metadata/_custom_type_script = "uid://ct8v8svsomclf"

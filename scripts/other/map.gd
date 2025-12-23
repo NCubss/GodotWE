@@ -27,14 +27,15 @@ var is_initialized := false:
 
 ## Fires when [member Map.is_initialized] is set to [code]true[/code].
 signal initialized
-
 ## Fires when a tile has been set, cleared, disconnected, moved, or switched.
 ## Only fired once for each method call, so [method Map.clear_rect] will only
 ## fire this signal once, for example. Does not fire with
 ## [signal Map.initialized].
 signal changed
 
+
 func _ready() -> void:
+	# find tiles and connect them
 	for i in get_children():
 		var comp = Utility.find_child_by_class(i, TileComponent) as TileComponent
 		if comp == null:
@@ -46,66 +47,118 @@ func _ready() -> void:
 		comp.connected.emit()
 	is_initialized = true
 
+
 ## Sets a space in the map to the given [param node]. If there already is a tile
 ## at the given [param pos], it will clear it from the map. If the node is
 ## [code]null[/code], the tile at the position will not be affected.
 func set_tile(pos: Vector2i, node: Node2D) -> void:
-	clear_tile(pos)
-	if node != null:
+	# check if tile exists already
+	if tiles.has(pos):
+		tiles[pos].queue_free()
+		tiles.erase(pos)
+	var comp: TileComponent = Utility.find_child_by_class(node, TileComponent)
+	# force TileComponent
+	if comp == null:
+		assert(false, "Tile does not have a TileComponent")
+		return
+	# make node child of map
+	if node.get_parent() == null:
 		add_child(node)
-		tiles[pos] = node
-		# update node and component
-		var comp = Utility.find_child_by_class(node, TileComponent)
-		assert(comp != null, "Tile does not have a TileComponent")
-		node.position = Vector2(pos) * tile_size
-		comp.map = self
-		comp.position = pos
-		comp.connected.emit()
-		changed.emit()
+	else:
+		node.reparent(self)
+	# check if tile is already on the map
+	if comp.map == self:
+		tiles.erase(comp.position)
+	# update node and component
+	tiles[pos] = node
+	node.position = Vector2(pos) * tile_size
+	comp.map = self
+	comp.position = pos
+	comp.connected.emit()
+	# prevent null tiles
+	node.tree_exiting.connect(func(): tiles.erase(pos),
+			ConnectFlags.CONNECT_ONE_SHOT)
+	changed.emit(pos)
+
 
 ## Clears a space in the map, disconnecting the node at the position and freeing
 ## it. To clear a rectangular space of tiles, see [method Map.clear_rect].
 func clear_tile(pos: Vector2i) -> void:
-	var node = tiles[pos]
-	if node == null:
+	# do nothing if it is already empty
+	if not tiles.has(pos):
 		return
+	# find and erase
+	var node = tiles[pos]
 	tiles.erase(pos)
 	node.queue_free()
-	changed.emit()
+	# notify
+	changed.emit(pos)
+
 
 ## Clears a rectangular space of tiles in the map.
-func clear_rect(top_left: Vector2i, bottom_right: Vector2i) -> void:
-	for x in range(top_left.x, bottom_right.x + 1):
-		for y in range(top_left.y, bottom_right.y + 1):
-			clear_tile(Vector2i(x, y));
+func clear_rect(rect: Rect2i) -> void:
+	for x in range(rect.position.x, rect.end.x + 1):
+		for y in range(rect.position.y, rect.end.y + 1):
+			clear_tile(Vector2i(x, y))
+
 
 ## Disconnects a tile from the map. The tile will remain existing as a child of
 ## the map node, but will not be kept in the [member Map.tiles] dictionary.
 ## Returns the disconnected node. To additionally free the node, see
 ## [method Map.clear_tile].
 func disconnect_tile(pos: Vector2i) -> Node2D:
-	var node = tiles[pos]
-	if node == null:
+	# do nothing if it is already empty
+	if not tiles.has(pos):
 		return null
+	var node = tiles[pos]
 	tiles.erase(pos)
-	var comp = Utility.find_child_by_class(node, TileComponent) as TileComponent
-	assert(comp != null, "Tile does not have a TileComponent")
+	var comp: TileComponent = Utility.find_child_by_class(node, TileComponent)
+	if comp == null:
+		assert(false, "Tile does not have a TileComponent")
+		return node
 	comp.map = null
 	comp.position = Vector2i(0, 0)
 	comp.disconnected.emit(self, pos)
-	changed.emit()
+	changed.emit(pos)
 	return node
 
-## Moves the tile at the given [param old_pos] to the given [param new_pos].
-## The tile at [param new_pos] will be cleared if there is one. Will trigger
+
+## Moves the tile at the given [param current_pos] to the given [param new_pos].
+## The tile at [param new_pos] will be cleared if there is one. Attempting to
+## move an empty tile will clear the tile at [param new_pos]. Will trigger
 ## [signal TileComponent.disconnected] and [signal TileComponent.connected].
 ## Returns the moved node.
-func move_tile(old_pos: Vector2i, new_pos: Vector2i) -> Node2D:
-	var node = disconnect_tile(old_pos)
-	if node == null:
-		return null
+func move_tile(current_pos: Vector2i, new_pos: Vector2i) -> Node2D:
+	var node = disconnect_tile(current_pos)
 	set_tile(new_pos, node)
 	return node
+	#var emit_current = false
+	#var emit_new = false
+	#if tiles[new_pos] != null:
+		#tiles[new_pos].queue_free()
+		#tiles.erase(new_pos)
+		#emit_new = true
+	#var node = tiles[current_pos]
+	#if node != null:
+		#tiles.erase(current_pos)
+		#var comp: TileComponent = Utility.find_child_by_class(
+				#node, TileComponent)
+		#assert(comp != null, "Tile does not have a TileComponent")
+		#comp.map = null
+		#comp.position = Vector2i(0, 0)
+		#comp.disconnected.emit(self, current_pos)
+		#emit_current = true
+		#tiles[new_pos] = node
+		#comp.map = self
+		#comp.position = new_pos
+		#comp.connected.emit()
+		#emit_new = true
+	#if emit_current:
+		#changed.emit(current_pos)
+	#if emit_new:
+		#changed.emit(new_pos)
+	#return node
+
 
 ## Switches the tiles at [param pos1] and [param pos2] around. Will trigger
 ## [signal TileComponent.disconnected] and [signal TileComponent.connected] for
@@ -116,6 +169,7 @@ func switch_tiles(pos1: Vector2i, pos2: Vector2i) -> void:
 	set_tile(pos1, node2)
 	set_tile(pos2, node1)
 
+
 ## Returns the tile at the given [param pos]. Returns [code]null[/code] if there
 ## is not a tile at the position.
 func get_tile(pos: Vector2i) -> Node2D:
@@ -123,3 +177,9 @@ func get_tile(pos: Vector2i) -> Node2D:
 		return tiles[pos]
 	else:
 		return null
+
+
+## Converts the [param pos] from global coordinates to this [Map]'s tile
+## coordinates.
+func coords(pos: Vector2) -> Vector2i:
+	return Vector2i((to_local(pos) / tile_size).floor())

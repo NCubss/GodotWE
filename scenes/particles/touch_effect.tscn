@@ -1,0 +1,132 @@
+[gd_scene load_steps=19 format=3 uid="uid://c7ihme8t0h4r5"]
+
+[ext_resource type="Texture2D" uid="uid://cce2pn0gyf2sb" path="res://sprites/ui/editor/touch_effect.svg" id="1_hvc2u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5wbt"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(0, 0, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5eve"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(138, 0, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41yc0"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(276, 0, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41bqf"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(414, 0, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh0x7"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(0, 138, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5jub"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(138, 138, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8m43"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(276, 138, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgt32"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(414, 138, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x23rv"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(0, 276, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bhc8"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(138, 276, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojwvs"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(276, 276, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1y6r"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(414, 276, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dugep"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(0, 414, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35f5c"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(138, 414, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inmpg"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(276, 414, 138, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erhin"]
+atlas = ExtResource("1_hvc2u")
+region = Rect2(414, 414, 138, 138)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofdl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5wbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5eve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41yc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41bqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh0x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5jub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8m43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgt32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x23rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bhc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojwvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1y6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dugep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35f5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inmpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erhin")
+}],
+"loop": false,
+"name": &"default",
+"speed": 27.0
+}]
+
+[node name="TouchEffect" type="AnimatedSprite2D"]
+z_index = 59
+texture_filter = 2
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_ofdl0")
+autoplay = "default"
+frame = 15
+frame_progress = 1.0
