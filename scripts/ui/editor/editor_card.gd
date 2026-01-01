@@ -28,8 +28,14 @@ func _init() -> void:
 	button_group = card_group
 	add_child(_sound_player, false, Node.INTERNAL_MODE_BACK)
 	add_child(_icon, false, Node.INTERNAL_MODE_FRONT)
+	_icon.centered = false
 	mouse_entered.connect(_entered)
 	mouse_exited.connect(_exited)
+
+
+func _ready() -> void:
+	_icon.texture = part.icon
+	_icon.texture_filter = part.icon_filter
 
 
 func _get_minimum_size() -> Vector2:
@@ -39,9 +45,6 @@ func _get_minimum_size() -> Vector2:
 func _process(_delta: float) -> void:
 	if _card_offset_tween != null and _card_offset_tween.is_running():
 		queue_redraw()
-	_icon.centered = false
-	_icon.texture = part.icon
-	_icon.texture_filter = part.icon_filter
 	_icon.position = _card_offset + _icon_offset + Vector2(3, 6)
 
 

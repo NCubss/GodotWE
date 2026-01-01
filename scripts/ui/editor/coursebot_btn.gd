@@ -1,10 +1,11 @@
 class_name CoursebotBtn
 extends TextureButton
 
-var panel: EditorPopout = null
 var _extend_size := 0.0
 var _tween: Tween
 var _effect := ButtonHoverEffect.new(self, Rect2(0, 0, size.x, size.y - 6))
+
+@onready var panel: EditorPopout = %CoursebotPanel
 
 
 func _ready() -> void:
@@ -25,21 +26,20 @@ func _pressed() -> void:
 		UISoundPlayer.stream = load("uid://dun72febcjtln")
 		_tween = create_tween()
 		_tween.tween_property(self, "_extend_size", 30, 0.1) \
-			.set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-		panel = EditorPopout.new(Vector2.RIGHT,
-				Rect2(global_position - Vector2(462, 108), Vector2(444, 495)))
-		panel.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		panel.open()
 	else:
 		UISoundPlayer.stream = load("uid://dvblsjft053ru")
 		_tween.kill()
 		_extend_size = 0
-		panel.queue_free()
+		panel.close()
 		queue_redraw()
 	UISoundPlayer.play()
 
 
 func _draw() -> void:
 	# reset transformations
+	get_canvas_transform()
 	draw_set_transform_matrix(Transform2D.IDENTITY)
 	# draw button extension to the popout
 	draw_rect(Rect2(12 - _extend_size, 0, _extend_size, 60), Color("#590f10"))

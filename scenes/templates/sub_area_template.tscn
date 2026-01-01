@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmjolsltwwkx1"]
+
+[ext_resource type="Script" uid="uid://c1vevfranvnvu" path="res://scripts/level/sub_area.gd" id="1_d1g1m"]
+[ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/other/map.gd" id="2_baxk1"]
+
+[node name="SubArea" type="Node2D"]
+script = ExtResource("1_d1g1m")
+metadata/_custom_type_script = "uid://c1vevfranvnvu"
+
+[node name="Foreground" type="Node" parent="."]
+
+[node name="Map" type="Node2D" parent="Foreground" groups=["map"]]
+script = ExtResource("2_baxk1")
+limit_left = -1
+limit_bottom = 0
+metadata/_custom_type_script = "uid://cebyi7qjgdqix"

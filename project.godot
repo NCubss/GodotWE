@@ -12,13 +12,14 @@ config_version=5
 
 config/name="Super Secret"
 config/version="0.1.0"
-run/main_scene="uid://qepmxcf7odg6"
+run/main_scene="uid://cbc3kaegk4jn3"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="uid://god0ayqmlgrj"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
@@ -34,6 +35,7 @@ file_logging/log_path="user://game.log"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 mouse_cursor/custom_image_hotspot=Vector2(15, 18)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://h1dvwi2n2ugk"]
+[gd_scene load_steps=12 format=3 uid="uid://h1dvwi2n2ugk"]
 
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_24j5q"]
 [ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="1_ylcux"]
+[ext_resource type="Script" uid="uid://doyf61ive406y" path="res://shadows.gd" id="2_gorjh"]
 [ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/other/map.gd" id="3_24j5q"]
 [ext_resource type="PackedScene" uid="uid://bpy1sebdq7k7s" path="res://scenes/tiles/ground_tile.tscn" id="4_bflcn"]
 [ext_resource type="PackedScene" uid="uid://d1pyovyuwelpw" path="res://scenes/tiles/turn_block_tile.tscn" id="5_0dnrn"]
@@ -17,6 +18,7 @@ metadata/_edit_horizontal_guides_ = [-289.0]
 [node name="Background" type="Node" parent="."]
 
 [node name="Parallax2D" type="Parallax2D" parent="Background"]
+visible = false
 z_index = -2
 z_as_relative = false
 scroll_scale = Vector2(0.5, 1)
@@ -35,11 +37,14 @@ texture = ExtResource("1_24j5q")
 centered = false
 region_rect = Rect2(0, 0, 512, 432)
 
-[node name="Shadows" type="CanvasGroup" parent="." groups=["shadows"]]
+[node name="ShadowContainer" type="CanvasGroup" parent="."]
 process_mode = 3
-self_modulate = Color(0, 0, 0, 0.301961)
+self_modulate = Color(0, 0, 0, 0.2784314)
 z_index = -1
 z_as_relative = false
+
+[node name="Shadows" type="Node2D" parent="ShadowContainer" groups=["shadows"]]
+script = ExtResource("2_gorjh")
 
 [node name="Foreground" type="Node" parent="."]
 
@@ -369,8 +374,11 @@ position = Vector2(336, -144)
 [node name="GroundTile98" parent="Foreground/Map" instance=ExtResource("4_bflcn")]
 position = Vector2(352, -144)
 
-[node name="Player" parent="Foreground" groups=["player"] instance=ExtResource("1_ylcux")]
+[node name="Player" parent="Foreground" instance=ExtResource("1_ylcux")]
 position = Vector2(64, -32)
+
+[node name="Sprite" parent="Foreground/Player/Graphics" index="0"]
+animation = &"idle"
 
 [node name="Galoomba" parent="Foreground" instance=ExtResource("8_eyqv6")]
 position = Vector2(185, -58)

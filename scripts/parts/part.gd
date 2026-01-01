@@ -5,7 +5,12 @@ extends Area2D
 ## [TileComponent], the part will not check for existing tiles in new positions
 ## and will allow overlapping, as it can't be part of the [Map] without a
 ## [TileComponent].
-@onready var tile_comp = Utility.find_child_by_class(self, TileComponent)
+@onready var tile_comp: TileComponent = Utility.find_child_by_class(self,
+		TileComponent):
+	set(value):
+		tile_comp = value
+		if value == null:
+			_valid_space = true
 ## This part's graphics node.
 @onready var graphics: Node2D = $Graphics
 @onready var _editor: Editor = Utility.id("editor")
@@ -21,8 +26,8 @@ var held := false:
 		if held == value:
 			return
 		held = value
+		queue_redraw()
 		if value:
-			queue_redraw()
 			if tile_comp != null:
 				_original_pos = tile_comp.position
 				tile_comp.map_disconnect()
@@ -52,11 +57,10 @@ var held := false:
 			UISoundPlayer.stream = load("uid://cjtdcx7crghtw")
 			UISoundPlayer.play()
 		else:
-			queue_redraw()
 			graphics.z_index = _original_z
 			Utility.id("editor").held_part = null
 			_tween.kill()
-			place_anim()
+			_place_anim()
 			graphics.rotation = 0
 			if tile_comp != null:
 				_map.set_tile(
@@ -69,56 +73,41 @@ var held := false:
 var _tween: Tween
 var _grab_offset: Vector2
 var _grid_pos: Vector2i
-var _valid_space: bool
+var _valid_space: bool = true
 var _original_pos: Vector2i
 var _mouse_in: bool
 var _moved_out: bool
+var _start_frame := Engine.get_frames_drawn()
 
 
 func _ready() -> void:
 	mouse_entered.connect(_mouse_update.bind(true))
 	mouse_exited.connect(_mouse_update.bind(false))
-	place_anim()
+	_place_anim()
 
 
-func _mouse_update(state: bool) -> void:
-	_mouse_in = state
-	if _mouse_in:
-		_editor.hovered_part = self
-		if _editor.erasing:
-			queue_free()
-			UISoundPlayer.stream = load("uid://2axkkfi5xrx8")
-			UISoundPlayer.play()
-	elif _editor.hovered_part == self:
-		_editor.hovered_part = null
-
-
-func place_anim() -> void:
-	var tween = create_tween().set_ease(Tween.EASE_OUT) \
-			.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(graphics, "scale", Vector2(1, 1), 0.1) \
-			.from(Vector2(0.1, 0.1))
+func erase() -> void:
+	queue_free()
+	UISoundPlayer.stream = load("uid://2axkkfi5xrx8")
+	UISoundPlayer.play()
 
 
 func _process(_delta: float) -> void:
-	if not is_node_ready():
-		return
 	if held:
+		queue_redraw()
 		global_position = get_global_mouse_position() - _grab_offset
-	queue_redraw()
-	var new_grid_pos = _map.coords(_coll_shape.global_position)
-	if new_grid_pos != _grid_pos and held and not UISoundPlayer.playing:
-		var path = "uid://rlah407gh46u"
-		if _moved_out == false:
-			_moved_out = true
-			path = "uid://b87gjrl17xs2k"
-		UISoundPlayer.stream = load(path)
-		UISoundPlayer.play()
-	_grid_pos = new_grid_pos
-	if tile_comp != null:
-		_valid_space = _map.get_tile(_grid_pos) == null
-	else:
-		_valid_space = true
+		var new_grid_pos = _map.coords(_coll_shape.global_position)
+		if new_grid_pos != _grid_pos:
+			var path = "uid://rlah407gh46u"
+			if _moved_out == false:
+				_moved_out = true
+				path = "uid://b87gjrl17xs2k"
+			if not UISoundPlayer.playing:
+				UISoundPlayer.stream = load(path)
+				UISoundPlayer.play()
+			_grid_pos = new_grid_pos
+		if tile_comp != null:
+			_valid_space = _map.is_free(Rect2i(_grid_pos, tile_comp.size))
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -131,25 +120,42 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	if Engine.get_frames_drawn() == _start_frame:
+		return
 	if event is not InputEventMouseButton:
 		return
-	match event.button_index:
-		MouseButton.MOUSE_BUTTON_LEFT:
-			held = event.pressed and _mouse_in and _editor.held_part == null and not held
-		MouseButton.MOUSE_BUTTON_RIGHT:
-			queue_free()
+	if event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		held = event.pressed and _mouse_in and _editor.held_part == null and not held
+	elif event.button_index == MouseButton.MOUSE_BUTTON_RIGHT and not held:
+		erase()
 
 
 func _notification(what: int) -> void:
-	match what:
-		NOTIFICATION_PREDELETE:
-			if held:
-				_editor.held_part = null
+	if what == NOTIFICATION_PREDELETE and held:
+		_editor.held_part = null
 
 
 func _draw():
-	if held or (_mouse_in and Utility.id("editor").held_part == null):
-		draw_rect(Rect2(
-				(Vector2(_grid_pos) * get_parent().tile_size) - global_position,
-				get_parent().tile_size),
-				Color(0, 0, 1, 0.5) if _valid_space or not held else Color(1, 0, 0, 0.5))
+	if held or (_mouse_in and _editor.held_part == null and get_viewport().gui_get_focus_owner() == _editor):
+		var rect = Rect2((Vector2(_grid_pos) * get_parent().tile_size) - global_position, _map.tile_size)
+		if tile_comp != null:
+			rect.size *= Vector2(tile_comp.size)
+		draw_rect(rect, Color(0, 0, 1, 0.5) if _valid_space or not held else Color(1, 0, 0, 0.5))
+
+
+func _place_anim() -> void:
+	var tween = create_tween().set_ease(Tween.EASE_OUT) \
+			.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(graphics, "scale", Vector2(1, 1), 0.1) \
+			.from(Vector2(0.1, 0.1))
+
+
+func _mouse_update(state: bool) -> void:
+	_mouse_in = state
+	queue_redraw()
+	if _mouse_in:
+		_editor.hovered_part = self
+		if _editor.erasing and not held:
+			erase()
+	elif _editor.hovered_part == self:
+		_editor.hovered_part = null

@@ -1,65 +1,374 @@
 [gd_scene load_steps=5 format=3 uid="uid://h4t4thecwdfc"]
 
-[ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_nwhb5"]
-[ext_resource type="Script" uid="uid://c1vevfranvnvu" path="res://scripts/level/sub_area.gd" id="2_1e485"]
-[ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/other/map.gd" id="3_thwhe"]
+[ext_resource type="PackedScene" uid="uid://b16kyjui2n3qv" path="res://scenes/templates/level_template.tscn" id="1_1e485"]
 [ext_resource type="PackedScene" uid="uid://bpy1sebdq7k7s" path="res://scenes/tiles/ground_tile.tscn" id="4_1e485"]
+[ext_resource type="PackedScene" uid="uid://d1pyovyuwelpw" path="res://scenes/tiles/turn_block_tile.tscn" id="5_tg81s"]
+[ext_resource type="PackedScene" uid="uid://c4qpbj5epsp55" path="res://scenes/tiles/question_block.tscn" id="6_nv3ik"]
 
-[node name="Level" type="Node2D"]
-script = ExtResource("1_nwhb5")
-level_name = "Test"
+[node name="Level" node_paths=PackedStringArray("player", "current_sub_area") instance=ExtResource("1_1e485")]
+level_name = "Test Level"
 author = "NCubs"
-description = "A test level!"
-metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
+description = "A test level"
+time = 430
+player = NodePath("SubArea/Foreground/Player")
+current_sub_area = NodePath("SubArea")
 
-[node name="SubArea" type="Node2D" parent="."]
-script = ExtResource("2_1e485")
-metadata/_custom_type_script = "uid://c1vevfranvnvu"
+[node name="GroundTile" parent="SubArea/Foreground/Map" index="0" instance=ExtResource("4_1e485")]
+position = Vector2(0, -32)
 
-[node name="Foreground" type="Node" parent="SubArea"]
-
-[node name="Map" type="Node2D" parent="SubArea/Foreground" groups=["map"]]
-script = ExtResource("3_thwhe")
-metadata/_custom_type_script = "uid://cebyi7qjgdqix"
-
-[node name="GroundTile" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(0, -16)
-
-[node name="GroundTile2" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+[node name="GroundTile2" parent="SubArea/Foreground/Map" index="1" instance=ExtResource("4_1e485")]
 position = Vector2(16, -32)
 
-[node name="GroundTile3" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(32, -16)
+[node name="GroundTile3" parent="SubArea/Foreground/Map" index="2" instance=ExtResource("4_1e485")]
+position = Vector2(32, -32)
 
-[node name="GroundTile4" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+[node name="GroundTile4" parent="SubArea/Foreground/Map" index="3" instance=ExtResource("4_1e485")]
 position = Vector2(48, -32)
 
-[node name="GroundTile5" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(64, -48)
-
-[node name="GroundTile6" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(80, -32)
-
-[node name="GroundTile7" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(96, -16)
-
-[node name="GroundTile8" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(112, -32)
-
-[node name="GroundTile9" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(112, -16)
-
-[node name="GroundTile10" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(80, -16)
-
-[node name="GroundTile11" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+[node name="GroundTile5" parent="SubArea/Foreground/Map" index="4" instance=ExtResource("4_1e485")]
 position = Vector2(64, -32)
 
-[node name="GroundTile12" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(64, -16)
+[node name="GroundTile6" parent="SubArea/Foreground/Map" index="5" instance=ExtResource("4_1e485")]
+position = Vector2(80, -32)
 
-[node name="GroundTile13" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
+[node name="GroundTile7" parent="SubArea/Foreground/Map" index="6" instance=ExtResource("4_1e485")]
+position = Vector2(96, -32)
+
+[node name="GroundTile8" parent="SubArea/Foreground/Map" index="7" instance=ExtResource("4_1e485")]
+position = Vector2(112, -32)
+
+[node name="GroundTile9" parent="SubArea/Foreground/Map" index="8" instance=ExtResource("4_1e485")]
+position = Vector2(128, -32)
+
+[node name="GroundTile10" parent="SubArea/Foreground/Map" index="9" instance=ExtResource("4_1e485")]
+position = Vector2(144, -32)
+
+[node name="GroundTile11" parent="SubArea/Foreground/Map" index="10" instance=ExtResource("4_1e485")]
+position = Vector2(160, -32)
+
+[node name="GroundTile12" parent="SubArea/Foreground/Map" index="11" instance=ExtResource("4_1e485")]
+position = Vector2(176, -32)
+
+[node name="GroundTile13" parent="SubArea/Foreground/Map" index="12" instance=ExtResource("4_1e485")]
+position = Vector2(192, -32)
+
+[node name="GroundTile14" parent="SubArea/Foreground/Map" index="13" instance=ExtResource("4_1e485")]
+position = Vector2(208, -32)
+
+[node name="GroundTile15" parent="SubArea/Foreground/Map" index="14" instance=ExtResource("4_1e485")]
+position = Vector2(224, -32)
+
+[node name="GroundTile16" parent="SubArea/Foreground/Map" index="15" instance=ExtResource("4_1e485")]
+position = Vector2(240, -32)
+
+[node name="GroundTile17" parent="SubArea/Foreground/Map" index="16" instance=ExtResource("4_1e485")]
+position = Vector2(256, -32)
+
+[node name="GroundTile18" parent="SubArea/Foreground/Map" index="17" instance=ExtResource("4_1e485")]
+position = Vector2(272, -32)
+
+[node name="GroundTile19" parent="SubArea/Foreground/Map" index="18" instance=ExtResource("4_1e485")]
+position = Vector2(288, -32)
+
+[node name="GroundTile20" parent="SubArea/Foreground/Map" index="19" instance=ExtResource("4_1e485")]
+position = Vector2(304, -32)
+
+[node name="GroundTile21" parent="SubArea/Foreground/Map" index="20" instance=ExtResource("4_1e485")]
+position = Vector2(320, -32)
+
+[node name="GroundTile22" parent="SubArea/Foreground/Map" index="21" instance=ExtResource("4_1e485")]
+position = Vector2(336, -32)
+
+[node name="GroundTile23" parent="SubArea/Foreground/Map" index="22" instance=ExtResource("4_1e485")]
+position = Vector2(352, -32)
+
+[node name="GroundTile24" parent="SubArea/Foreground/Map" index="23" instance=ExtResource("4_1e485")]
+position = Vector2(368, -32)
+
+[node name="GroundTile25" parent="SubArea/Foreground/Map" index="24" instance=ExtResource("4_1e485")]
+position = Vector2(384, -32)
+
+[node name="GroundTile26" parent="SubArea/Foreground/Map" index="25" instance=ExtResource("4_1e485")]
+position = Vector2(400, -32)
+
+[node name="GroundTile27" parent="SubArea/Foreground/Map" index="26" instance=ExtResource("4_1e485")]
+position = Vector2(416, -32)
+
+[node name="GroundTile28" parent="SubArea/Foreground/Map" index="27" instance=ExtResource("4_1e485")]
+position = Vector2(432, -32)
+
+[node name="GroundTile29" parent="SubArea/Foreground/Map" index="28" instance=ExtResource("4_1e485")]
+position = Vector2(448, -32)
+
+[node name="GroundTile30" parent="SubArea/Foreground/Map" index="29" instance=ExtResource("4_1e485")]
+position = Vector2(464, -32)
+
+[node name="GroundTile31" parent="SubArea/Foreground/Map" index="30" instance=ExtResource("4_1e485")]
+position = Vector2(480, -32)
+
+[node name="GroundTile32" parent="SubArea/Foreground/Map" index="31" instance=ExtResource("4_1e485")]
+position = Vector2(496, -32)
+
+[node name="GroundTile33" parent="SubArea/Foreground/Map" index="32" instance=ExtResource("4_1e485")]
+position = Vector2(512, -32)
+
+[node name="GroundTile34" parent="SubArea/Foreground/Map" index="33" instance=ExtResource("4_1e485")]
+position = Vector2(528, -32)
+
+[node name="GroundTile35" parent="SubArea/Foreground/Map" index="34" instance=ExtResource("4_1e485")]
+position = Vector2(544, -32)
+
+[node name="GroundTile36" parent="SubArea/Foreground/Map" index="35" instance=ExtResource("4_1e485")]
+position = Vector2(560, -32)
+
+[node name="GroundTile37" parent="SubArea/Foreground/Map" index="36" instance=ExtResource("4_1e485")]
+position = Vector2(576, -32)
+
+[node name="GroundTile38" parent="SubArea/Foreground/Map" index="37" instance=ExtResource("4_1e485")]
+position = Vector2(592, -32)
+
+[node name="GroundTile39" parent="SubArea/Foreground/Map" index="38" instance=ExtResource("4_1e485")]
+position = Vector2(608, -32)
+
+[node name="GroundTile40" parent="SubArea/Foreground/Map" index="39" instance=ExtResource("4_1e485")]
+position = Vector2(624, -32)
+
+[node name="GroundTile41" parent="SubArea/Foreground/Map" index="40" instance=ExtResource("4_1e485")]
+position = Vector2(640, -32)
+
+[node name="GroundTile42" parent="SubArea/Foreground/Map" index="41" instance=ExtResource("4_1e485")]
+position = Vector2(656, -32)
+
+[node name="GroundTile43" parent="SubArea/Foreground/Map" index="42" instance=ExtResource("4_1e485")]
+position = Vector2(672, -32)
+
+[node name="GroundTile44" parent="SubArea/Foreground/Map" index="43" instance=ExtResource("4_1e485")]
+position = Vector2(688, -32)
+
+[node name="GroundTile45" parent="SubArea/Foreground/Map" index="44" instance=ExtResource("4_1e485")]
+position = Vector2(704, -32)
+
+[node name="GroundTile46" parent="SubArea/Foreground/Map" index="45" instance=ExtResource("4_1e485")]
+position = Vector2(720, -32)
+
+[node name="GroundTile47" parent="SubArea/Foreground/Map" index="46" instance=ExtResource("4_1e485")]
+position = Vector2(736, -32)
+
+[node name="GroundTile48" parent="SubArea/Foreground/Map" index="47" instance=ExtResource("4_1e485")]
+position = Vector2(752, -32)
+
+[node name="GroundTile49" parent="SubArea/Foreground/Map" index="48" instance=ExtResource("4_1e485")]
+position = Vector2(768, -32)
+
+[node name="GroundTile50" parent="SubArea/Foreground/Map" index="49" instance=ExtResource("4_1e485")]
+position = Vector2(784, -32)
+
+[node name="GroundTile51" parent="SubArea/Foreground/Map" index="50" instance=ExtResource("4_1e485")]
+position = Vector2(800, -32)
+
+[node name="GroundTile52" parent="SubArea/Foreground/Map" index="51" instance=ExtResource("4_1e485")]
+position = Vector2(816, -32)
+
+[node name="GroundTile53" parent="SubArea/Foreground/Map" index="52" instance=ExtResource("4_1e485")]
+position = Vector2(832, -32)
+
+[node name="GroundTile54" parent="SubArea/Foreground/Map" index="53" instance=ExtResource("4_1e485")]
+position = Vector2(848, -32)
+
+[node name="GroundTile55" parent="SubArea/Foreground/Map" index="54" instance=ExtResource("4_1e485")]
+position = Vector2(864, -32)
+
+[node name="GroundTile56" parent="SubArea/Foreground/Map" index="55" instance=ExtResource("4_1e485")]
+position = Vector2(880, -32)
+
+[node name="GroundTile57" parent="SubArea/Foreground/Map" index="56" instance=ExtResource("4_1e485")]
+position = Vector2(0, -16)
+
+[node name="GroundTile58" parent="SubArea/Foreground/Map" index="57" instance=ExtResource("4_1e485")]
+position = Vector2(16, -16)
+
+[node name="GroundTile59" parent="SubArea/Foreground/Map" index="58" instance=ExtResource("4_1e485")]
+position = Vector2(32, -16)
+
+[node name="GroundTile60" parent="SubArea/Foreground/Map" index="59" instance=ExtResource("4_1e485")]
 position = Vector2(48, -16)
 
-[node name="GroundTile14" parent="SubArea/Foreground/Map" instance=ExtResource("4_1e485")]
-position = Vector2(16, -16)
+[node name="GroundTile61" parent="SubArea/Foreground/Map" index="60" instance=ExtResource("4_1e485")]
+position = Vector2(64, -16)
+
+[node name="GroundTile62" parent="SubArea/Foreground/Map" index="61" instance=ExtResource("4_1e485")]
+position = Vector2(80, -16)
+
+[node name="GroundTile63" parent="SubArea/Foreground/Map" index="62" instance=ExtResource("4_1e485")]
+position = Vector2(96, -16)
+
+[node name="GroundTile64" parent="SubArea/Foreground/Map" index="63" instance=ExtResource("4_1e485")]
+position = Vector2(112, -16)
+
+[node name="GroundTile65" parent="SubArea/Foreground/Map" index="64" instance=ExtResource("4_1e485")]
+position = Vector2(128, -16)
+
+[node name="GroundTile66" parent="SubArea/Foreground/Map" index="65" instance=ExtResource("4_1e485")]
+position = Vector2(144, -16)
+
+[node name="GroundTile67" parent="SubArea/Foreground/Map" index="66" instance=ExtResource("4_1e485")]
+position = Vector2(160, -16)
+
+[node name="GroundTile68" parent="SubArea/Foreground/Map" index="67" instance=ExtResource("4_1e485")]
+position = Vector2(176, -16)
+
+[node name="GroundTile69" parent="SubArea/Foreground/Map" index="68" instance=ExtResource("4_1e485")]
+position = Vector2(192, -16)
+
+[node name="GroundTile70" parent="SubArea/Foreground/Map" index="69" instance=ExtResource("4_1e485")]
+position = Vector2(208, -16)
+
+[node name="GroundTile71" parent="SubArea/Foreground/Map" index="70" instance=ExtResource("4_1e485")]
+position = Vector2(224, -16)
+
+[node name="GroundTile72" parent="SubArea/Foreground/Map" index="71" instance=ExtResource("4_1e485")]
+position = Vector2(240, -16)
+
+[node name="GroundTile73" parent="SubArea/Foreground/Map" index="72" instance=ExtResource("4_1e485")]
+position = Vector2(256, -16)
+
+[node name="GroundTile74" parent="SubArea/Foreground/Map" index="73" instance=ExtResource("4_1e485")]
+position = Vector2(272, -16)
+
+[node name="GroundTile75" parent="SubArea/Foreground/Map" index="74" instance=ExtResource("4_1e485")]
+position = Vector2(288, -16)
+
+[node name="GroundTile76" parent="SubArea/Foreground/Map" index="75" instance=ExtResource("4_1e485")]
+position = Vector2(304, -16)
+
+[node name="GroundTile77" parent="SubArea/Foreground/Map" index="76" instance=ExtResource("4_1e485")]
+position = Vector2(320, -16)
+
+[node name="GroundTile78" parent="SubArea/Foreground/Map" index="77" instance=ExtResource("4_1e485")]
+position = Vector2(336, -16)
+
+[node name="GroundTile79" parent="SubArea/Foreground/Map" index="78" instance=ExtResource("4_1e485")]
+position = Vector2(352, -16)
+
+[node name="GroundTile80" parent="SubArea/Foreground/Map" index="79" instance=ExtResource("4_1e485")]
+position = Vector2(368, -16)
+
+[node name="GroundTile81" parent="SubArea/Foreground/Map" index="80" instance=ExtResource("4_1e485")]
+position = Vector2(384, -16)
+
+[node name="GroundTile82" parent="SubArea/Foreground/Map" index="81" instance=ExtResource("4_1e485")]
+position = Vector2(400, -16)
+
+[node name="GroundTile83" parent="SubArea/Foreground/Map" index="82" instance=ExtResource("4_1e485")]
+position = Vector2(416, -16)
+
+[node name="GroundTile84" parent="SubArea/Foreground/Map" index="83" instance=ExtResource("4_1e485")]
+position = Vector2(432, -16)
+
+[node name="GroundTile85" parent="SubArea/Foreground/Map" index="84" instance=ExtResource("4_1e485")]
+position = Vector2(448, -16)
+
+[node name="GroundTile86" parent="SubArea/Foreground/Map" index="85" instance=ExtResource("4_1e485")]
+position = Vector2(464, -16)
+
+[node name="GroundTile87" parent="SubArea/Foreground/Map" index="86" instance=ExtResource("4_1e485")]
+position = Vector2(480, -16)
+
+[node name="GroundTile88" parent="SubArea/Foreground/Map" index="87" instance=ExtResource("4_1e485")]
+position = Vector2(496, -16)
+
+[node name="GroundTile89" parent="SubArea/Foreground/Map" index="88" instance=ExtResource("4_1e485")]
+position = Vector2(512, -16)
+
+[node name="GroundTile90" parent="SubArea/Foreground/Map" index="89" instance=ExtResource("4_1e485")]
+position = Vector2(528, -16)
+
+[node name="GroundTile91" parent="SubArea/Foreground/Map" index="90" instance=ExtResource("4_1e485")]
+position = Vector2(544, -16)
+
+[node name="GroundTile92" parent="SubArea/Foreground/Map" index="91" instance=ExtResource("4_1e485")]
+position = Vector2(560, -16)
+
+[node name="GroundTile93" parent="SubArea/Foreground/Map" index="92" instance=ExtResource("4_1e485")]
+position = Vector2(576, -16)
+
+[node name="GroundTile94" parent="SubArea/Foreground/Map" index="93" instance=ExtResource("4_1e485")]
+position = Vector2(592, -16)
+
+[node name="GroundTile95" parent="SubArea/Foreground/Map" index="94" instance=ExtResource("4_1e485")]
+position = Vector2(608, -16)
+
+[node name="GroundTile96" parent="SubArea/Foreground/Map" index="95" instance=ExtResource("4_1e485")]
+position = Vector2(624, -16)
+
+[node name="GroundTile97" parent="SubArea/Foreground/Map" index="96" instance=ExtResource("4_1e485")]
+position = Vector2(640, -16)
+
+[node name="GroundTile98" parent="SubArea/Foreground/Map" index="97" instance=ExtResource("4_1e485")]
+position = Vector2(656, -16)
+
+[node name="GroundTile99" parent="SubArea/Foreground/Map" index="98" instance=ExtResource("4_1e485")]
+position = Vector2(672, -16)
+
+[node name="GroundTile100" parent="SubArea/Foreground/Map" index="99" instance=ExtResource("4_1e485")]
+position = Vector2(688, -16)
+
+[node name="GroundTile101" parent="SubArea/Foreground/Map" index="100" instance=ExtResource("4_1e485")]
+position = Vector2(704, -16)
+
+[node name="GroundTile102" parent="SubArea/Foreground/Map" index="101" instance=ExtResource("4_1e485")]
+position = Vector2(720, -16)
+
+[node name="GroundTile103" parent="SubArea/Foreground/Map" index="102" instance=ExtResource("4_1e485")]
+position = Vector2(736, -16)
+
+[node name="GroundTile104" parent="SubArea/Foreground/Map" index="103" instance=ExtResource("4_1e485")]
+position = Vector2(752, -16)
+
+[node name="GroundTile105" parent="SubArea/Foreground/Map" index="104" instance=ExtResource("4_1e485")]
+position = Vector2(768, -16)
+
+[node name="GroundTile106" parent="SubArea/Foreground/Map" index="105" instance=ExtResource("4_1e485")]
+position = Vector2(784, -16)
+
+[node name="GroundTile107" parent="SubArea/Foreground/Map" index="106" instance=ExtResource("4_1e485")]
+position = Vector2(800, -16)
+
+[node name="GroundTile108" parent="SubArea/Foreground/Map" index="107" instance=ExtResource("4_1e485")]
+position = Vector2(816, -16)
+
+[node name="GroundTile109" parent="SubArea/Foreground/Map" index="108" instance=ExtResource("4_1e485")]
+position = Vector2(832, -16)
+
+[node name="GroundTile110" parent="SubArea/Foreground/Map" index="109" instance=ExtResource("4_1e485")]
+position = Vector2(848, -16)
+
+[node name="GroundTile111" parent="SubArea/Foreground/Map" index="110" instance=ExtResource("4_1e485")]
+position = Vector2(864, -16)
+
+[node name="GroundTile112" parent="SubArea/Foreground/Map" index="111" instance=ExtResource("4_1e485")]
+position = Vector2(880, -16)
+
+[node name="TurnBlockTile" parent="SubArea/Foreground/Map" index="112" instance=ExtResource("5_tg81s")]
+position = Vector2(144, -96)
+
+[node name="TurnBlockTile2" parent="SubArea/Foreground/Map" index="113" instance=ExtResource("5_tg81s")]
+position = Vector2(176, -96)
+
+[node name="TurnBlockTile3" parent="SubArea/Foreground/Map" index="114" instance=ExtResource("5_tg81s")]
+position = Vector2(208, -96)
+
+[node name="QuestionBlock" parent="SubArea/Foreground/Map" index="115" instance=ExtResource("6_nv3ik")]
+position = Vector2(160, -96)
+
+[node name="QuestionBlock2" parent="SubArea/Foreground/Map" index="116" instance=ExtResource("6_nv3ik")]
+position = Vector2(192, -96)
+
+[node name="QuestionBlock3" parent="SubArea/Foreground/Map" index="117" instance=ExtResource("6_nv3ik")]
+position = Vector2(176, -160)
+
+[node name="PlayerCamera" parent="." index="1"]
+ignore_rotation = false
+zoom = Vector2(3, 3)
+
+[editable path="SubArea"]

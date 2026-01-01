@@ -4,7 +4,10 @@ extends Node
 ## The primary yellow color in the game.
 const COLOR_YELLOW = Color("#facd00")
 const COLOR_DARK = Color("#5d1c1c")
-
+## The smallest possible [int] number.
+const INT_MIN = Vector2i.MIN.x
+## The largest possible [int] number.
+const INT_MAX = Vector2i.MAX.x
 
 
 ## Finds a child in the node [param parent] of [param type] type. This function

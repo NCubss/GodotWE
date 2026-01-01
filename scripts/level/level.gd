@@ -2,6 +2,9 @@ class_name Level
 extends Node2D
 ## Represents a level.
 
+## Emitted when the level timer ends.
+signal times_up
+
 ## Represents a game style. Applies across the entire level.
 enum GameStyle {
 	## The "Super Mario Bros." game style.
@@ -101,20 +104,34 @@ enum Tag {
 @export var tag_1: Tag = Tag.STANDARD
 ## The second tag of the level.
 @export var tag_2: Tag = Tag.NONE
-## The description of the level, with a maximum of 92 characters in-game.
-@export_multiline var description := ""
+## The description of the level, with a maximum of 92 characters. Attempting to
+## set a string of higher length will cut it to the first 92 characters.
+@export_multiline var description := "":
+	set(value):
+		description = value.substr(0, 92)
 ## The game style of the level. See [member SubArea.game_theme] for the game
 ## theme.
 @export var game_style := GameStyle.SMW
-@export var time := 430
-# probably should make a class for this
+## The level's timer, in seconds. The player is forcibly killed once it arrives
+## to zero.
+@export_range(10, 500) var time := -430:
+	set(value):
+		time = clamp(value, 10, 500)
+## The clear condition for this level.
 @export var clear_condition := ClearCondition.NONE
+## A reference to the current [Player]. If this is not filled in with the
+## inspector, a player will be automatically spawned in the
+## [member current_sub_area].
+@export var player: Player
+## The current [SubArea], that is, the [SubArea] in which entities are active
+## and the player is in.
+@export var current_sub_area: SubArea
 
 ## The level's automatically assigned sub-areas.
 var sub_areas: Array[SubArea] = []
-## The current [SubArea], that is, the [SubArea] in which entities are active
-## and the player is in.
-var current_sub_area: SubArea
+
+var _timer: Timer
+
 
 func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 	game_style = _game_style
@@ -128,8 +145,33 @@ func _ready() -> void:
 			sub_areas.append(i)
 			i.load(self)
 	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
-	current_sub_area = sub_areas[0]
-	var player: Player = load("uid://b2cwk2viytb57").instantiate()
-	
-	current_sub_area.spawn(player, Vector2(64, -32))
-	add_child(PlayerCamera.new())
+	if current_sub_area == null:
+		current_sub_area = sub_areas[0]
+	if player == null:
+		player = load("uid://b2cwk2viytb57").instantiate()
+		current_sub_area.spawn(player, Vector2(64, -32))
+	var hud: HUD = load(GameConstants.HUDS[game_style]).instantiate()
+	hud.level = self
+	add_child(hud)
+	_timer = Timer.new()
+	add_child(_timer)
+	_timer.wait_time = time + 1
+	_timer.one_shot = true
+	_timer.start()
+	_timer.timeout.connect(_timeout)
+
+
+func get_current_time() -> int:
+	if _timer == null:
+		return time
+	else:
+		return int(_timer.time_left)
+
+
+func reload() -> void:
+	SceneManager.fade_to_scene(load(scene_file_path))
+
+
+func _timeout() -> void:
+	times_up.emit()
+	player.kill()

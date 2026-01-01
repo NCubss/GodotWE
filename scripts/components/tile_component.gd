@@ -14,7 +14,9 @@ signal disconnected(map: Map, pos: Vector2i)
 ## tile if it is in a [Map].
 @export var map: Map
 ## The position of the tile in the map.
-@export var position: Vector2i = Vector2i(0, 0)
+@export var position: Vector2i = Vector2i.MIN
+## The size of the tile in the map.
+@export var size: Vector2i = Vector2i(1, 1)
 
 
 func _ready() -> void:

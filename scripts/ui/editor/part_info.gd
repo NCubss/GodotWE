@@ -20,6 +20,11 @@ enum Category {
 @export var category: Category
 ## The scene containing the spawnable part.
 @export var part: PackedScene
+## The size of this part. This must match the part's
+## [member TileComponent.size].
+@export var size := Vector2i(1, 1)
+## Whether this part should be placed multiple times in one mouse press.
+@export var multi_place := false
 
 ## Gets the specified category's ([param c]) color.
 static func get_category_color(c: Category) -> Color:

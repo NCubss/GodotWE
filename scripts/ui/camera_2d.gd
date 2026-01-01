@@ -38,7 +38,7 @@ func _ready() -> void:
 	
 	if target == null:
 		target = Utility.id("player")
-	
+
 
 func _process(delta: float) -> void:
 	if target == null:

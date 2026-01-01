@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dum5n4l06f2t8"]
+
+[ext_resource type="Script" uid="uid://wiwjmf62tfm0" path="res://popup_test.gd" id="1_n2voa"]
+[ext_resource type="Script" uid="uid://ccaio2xspqw30" path="res://scripts/crash_window.gd" id="2_efstl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efstl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.23921569, 0.23921569, 0.29803923, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_n2voa")
+
+[node name="Window" type="Window" parent="."]
+oversampling_override = 1.0
+title = "Hello"
+initial_position = 1
+script = ExtResource("2_efstl")
+
+[node name="Container" type="PanelContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efstl")
+
+[node name="Control" type="VBoxContainer" parent="Window/Container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/Container/Control"]
+layout_mode = 2
+text = "The game crashed!"

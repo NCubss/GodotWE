@@ -1,31 +1,29 @@
 class_name AnimatedSpriteExt
 extends AnimatedSprite2D
-
-var _shadow_clone: AnimatedSprite2D
-
-func _enter_tree() -> void:
-	if not get_tree().root.is_node_ready():
-		await get_tree().root.ready
-	_shadow_clone = duplicate(0)
-	_shadow_clone.z_index = 0
-	_shadow_clone.z_as_relative = true
-	Utility.id("shadows").add_child(_shadow_clone)
-
-func _exit_tree() -> void:
-	_shadow_clone.queue_free()
-
-func _process(_delta: float) -> void:
-	if _shadow_clone != null:
-		_shadow_clone.animation = animation
-		_shadow_clone.frame = frame
-		_shadow_clone.speed_scale = speed_scale
-		_shadow_clone.centered = centered
-		_shadow_clone.offset = offset
-		_shadow_clone.flip_h = flip_h
-		_shadow_clone.flip_v = flip_v
-		_shadow_clone.position = global_position + Vector2(3, 3)
-		_shadow_clone.rotation = global_rotation
-		_shadow_clone.scale = global_scale
-		_shadow_clone.skew = global_skew
-		_shadow_clone.visible = visible
-		_shadow_clone.modulate = modulate
+#
+#var shadows: Shadows
+#
+#
+#func _notification(what: int) -> void:
+	#match what:
+		#NOTIFICATION_ENTER_CANVAS:
+			#if shadows == null:
+				#shadows = Utility.id("shadows") as Shadows
+			#shadows.draw.connect(_draw_self)
+			#print("entered")
+		#NOTIFICATION_EXIT_CANVAS:
+			#shadows.draw.disconnect(_draw_self)
+			#print("exited")
+#
+#
+#func _draw_self() -> void:
+	#if sprite_frames == null:
+		#return
+	#var texture = sprite_frames.get_frame_texture(animation, frame)
+	#var flips = Vector2(-1.0 if flip_h else 1.0, -1.0 if flip_v else 1.0)
+	#var matrix = global_transform\
+			#.scaled(flips) \
+			#.translated(shadows.offset) \
+			#.translated(global_transform.basis_xform(texture.get_size() / -2) if centered else Vector2.ZERO)
+	#shadows.draw_set_transform_matrix(matrix)
+	#shadows.draw_texture(texture, Vector2.ZERO)
