@@ -23,8 +23,8 @@ var level: Level
 func load(_level: Level) -> void:
 	level = _level
 	if not has_node("Background"):
-		var scn = load(GameConstants.BACKGROUNDS \
-				[level.game_style][level_theme][night_mode]) as PackedScene
+		var scn: PackedScene = load(GameConstants.BACKGROUNDS \
+				[level.game_style][level_theme][night_mode])
 		if scn != null:
 			var bg = scn.instantiate()
 			bg.name = "Background"
@@ -42,12 +42,21 @@ func load(_level: Level) -> void:
 		add_child(shadows)
 	if not has_node("Foreground"):
 		var foreground = Node.new()
+		foreground.name = "Foreground"
 		add_child(foreground)
-	if has_node("Foreground") and not has_node("Map"):
+	if not $Foreground.has_node("Map"):
 		var map = Map.new()
+		map.limit_left = -1
+		map.limit_bottom = 0
 		map.name = "Map"
 		map.add_to_group("map")
-		add_child(map)
+		$Foreground.add_child(map)
+	for i: Node in $Foreground.get_children():
+		i = i as Entity
+		if i == null:
+			continue
+		i.level = level
+		i.sub_area = self
 
 
 ## Freezes this sub-area. All entities will stop processing and the sub-area

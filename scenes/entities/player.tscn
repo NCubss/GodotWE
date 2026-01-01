@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2cwk2viytb57"]
+[gd_scene load_steps=15 format=3 uid="uid://b2cwk2viytb57"]
 
 [ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/entities/player.gd" id="1_ucweq"]
 [ext_resource type="SpriteFrames" uid="uid://b8ka66cx00t43" path="res://sprites/player/mario/small.tres" id="2_b6tgf"]
+[ext_resource type="Script" uid="uid://3qd0kam8273n" path="res://scripts/powerups/small_powerup.gd" id="2_n5sgd"]
+[ext_resource type="Script" uid="uid://df1xqrsuaou5x" path="res://scripts/states/player_death_state.gd" id="10_73kkf"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="10_b6tgf"]
 [ext_resource type="Script" uid="uid://cnsky0lpl5fbm" path="res://scripts/states/state_machine.gd" id="12_n5sgd"]
 [ext_resource type="Script" uid="uid://ckwnsvmkobqkq" path="res://scripts/states/player_moving_state.gd" id="13_5ki56"]
@@ -11,14 +13,19 @@
 [ext_resource type="Script" uid="uid://bvglap1mqxxav" path="res://scripts/states/player_jumping_state.gd" id="15_spk56"]
 [ext_resource type="Script" uid="uid://cnpxggqelnnfx" path="res://scripts/states/player_spin_jumping_state.gd" id="17_b4o2o"]
 
+[sub_resource type="Resource" id="Resource_5ki56"]
+script = ExtResource("2_n5sgd")
+metadata/_custom_type_script = "uid://3qd0kam8273n"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qees"]
 size = Vector2(12, 15)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 38
 z_as_relative = false
 collision_layer = 4
 script = ExtResource("1_ucweq")
+starting_powerup = SubResource("Resource_5ki56")
 
 [node name="CollShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7.5)
@@ -65,6 +72,10 @@ metadata/_custom_type_script = "uid://bvglap1mqxxav"
 [node name="SpinJumping" type="Node" parent="StateMachine"]
 script = ExtResource("17_b4o2o")
 metadata/_custom_type_script = "uid://cnpxggqelnnfx"
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("10_73kkf")
+metadata/_custom_type_script = "uid://df1xqrsuaou5x"
 
 [node name="GravityComponent" type="Node" parent="."]
 script = ExtResource("14_saib0")

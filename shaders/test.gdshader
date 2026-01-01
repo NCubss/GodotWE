@@ -1,26 +1,28 @@
 shader_type canvas_item;
 
-uniform float progress;
-uniform vec2 tile_size;
-uniform vec2 texture_size;
-
+uniform vec4 background_color : source_color;
+uniform vec4 shadow_color : source_color;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+// Currently pixels always in application size, so zooming in further wouldn't increase the size of the dropdown
+// but changing that would also be relatively trivial
+uniform vec2 offset_in_pixels;
 
 void fragment() {
-	vec2 size = tile_size / texture_size;
-	float ratio = texture_size.x / texture_size.y;
-	vec2 segment = vec2(
-		(floor(UV.x / size.x) * size.x),
-		(floor(UV.y / size.y) * size.y)
-	);
-	float angle = radians(45);
-	float prog = smoothstep((segment.x + segment.y) / 2.0, (segment.x + segment.y + size.x + size.y) / 2.0, progress);
-	mat2 rotate = mat2(vec2(cos(angle), -sin(angle)),
-						vec2(sin(angle), cos(angle)));
-	mat2 scale = mat2(vec2(1.0 / prog, 0), vec2(0, 1));
-	vec2 new_uv = (UV - segment - (size / 2.0)) * vec2(ratio, 1) * inverse(rotate) * scale * rotate * vec2(1.0 / ratio, 1);
-	if (new_uv == clamp(new_uv, size / -2.0, size / 2.0)) {
-		COLOR = texture(TEXTURE, new_uv + segment + (size / 2.0));
-	} else {
-		COLOR = vec4(0, 0, 0, 0);
+	
+	// Read screen texture
+	vec4 current_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
+	
+	// Check if the current color is our background color
+	if (length(current_color - background_color) < 0.01) {
+		
+		vec4 offset_color = textureLod(SCREEN_TEXTURE, SCREEN_UV - offset_in_pixels * SCREEN_PIXEL_SIZE, 0.0);
+		
+		// Check if at our offset position we have a color which is not the background (meaning here we need a shadow actually)
+		if (length(offset_color - background_color) > 0.01) {
+			// If so set it to our shadow color
+			current_color = shadow_color;
+		}
 	}
+	
+	COLOR = current_color;
 }

@@ -1,13 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://cbc3kaegk4jn3"]
+[gd_scene load_steps=26 format=3 uid="uid://cbc3kaegk4jn3"]
 
 [ext_resource type="Script" uid="uid://dl24hxmntjo1g" path="res://scripts/other/grid.gd" id="1_df8yj"]
 [ext_resource type="Script" uid="uid://cwdxlb3bg48lf" path="res://scripts/ui/editor/editor_camera.gd" id="2_hf1b4"]
 [ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/other/map.gd" id="2_w57a8"]
-[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="3_q43qg"]
 [ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="3_sqdok"]
 [ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://sprites/ui/editor/panel.svg" id="4_ljufs"]
 [ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="5_w57a8"]
-[ext_resource type="PackedScene" uid="uid://bpy1sebdq7k7s" path="res://scenes/tiles/ground_tile.tscn" id="6_klwx7"]
 [ext_resource type="Texture2D" uid="uid://d2a3nvs4we076" path="res://sprites/ui/btn_menu.svg" id="6_q43qg"]
 [ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://sprites/ui/btn_mask_generic.svg" id="7_t1mpb"]
 [ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="8_klwx7"]
@@ -20,110 +18,31 @@
 [ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://sprites/ui/editor/btn_rocket.svg" id="15_ieb30"]
 [ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://sprites/ui/editor/btn_palette.svg" id="16_7kynf"]
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
-[ext_resource type="Texture2D" uid="uid://cy4xwj1nrr0pc" path="res://sprites/ui/editor/popout.svg" id="19_x0vm4"]
-[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://sprites/ui/btn_close.svg" id="20_wrbvm"]
-[ext_resource type="Texture2D" uid="uid://ct7nsivikgx8h" path="res://sprites/ui/editor/style_cards/smb.svg" id="21_j70um"]
-[ext_resource type="Texture2D" uid="uid://ce4hyhrbcmjlt" path="res://sprites/ui/editor/style_cards/smb3.svg" id="22_ouktm"]
-[ext_resource type="Texture2D" uid="uid://b548gpt5xh0v2" path="res://sprites/ui/editor/style_cards/smw.svg" id="23_j3lkm"]
-[ext_resource type="Texture2D" uid="uid://upsn5uu41qe6" path="res://sprites/ui/editor/style_cards/nsmbu.svg" id="24_641cv"]
-[ext_resource type="Texture2D" uid="uid://b8smlpumep0mu" path="res://sprites/ui/editor/style_cards/sm3dw.svg" id="25_u3stv"]
+[ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="19_wtof8"]
+[ext_resource type="PackedScene" uid="uid://dpfaa6qawfnk1" path="res://scenes/parts/ground_part.tscn" id="23_df8yj"]
 [ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="26_ljufs"]
 [ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="27_ljufs"]
 [ext_resource type="Script" uid="uid://4ld0tmaadxvg" path="res://scripts/ui/editor/part_info.gd" id="28_q43qg"]
-[ext_resource type="Texture2D" uid="uid://chag02f03q22q" path="res://sprites/ui/editor/variant_window.svg" id="31_klwx7"]
 [ext_resource type="PackedScene" uid="uid://ctnffmabe0h4f" path="res://scenes/backgrounds/smw/overworld.tscn" id="31_t1mpb"]
 
 [sub_resource type="Resource" id="Resource_sqdok"]
 script = ExtResource("28_q43qg")
 icon = ExtResource("27_ljufs")
 icon_filter = 1
-part = ExtResource("3_q43qg")
+part = ExtResource("23_df8yj")
+size = Vector2i(2, 2)
 metadata/_custom_type_script = "uid://4ld0tmaadxvg"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wtof8"]
-content_margin_left = 12.0
-content_margin_top = 12.0
-content_margin_right = 54.0
-content_margin_bottom = 54.0
-texture = ExtResource("31_klwx7")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 54.0
-texture_margin_bottom = 54.0
+[node name="EditorContainer" type="Node2D"]
 
-[node name="Node2D" type="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
 
-[node name="Shadows" type="CanvasGroup" parent="." groups=["shadows"]]
-self_modulate = Color(0, 0, 0, 0.3019608)
-
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
-self_modulate = Color(1, 1, 1, 0.25098)
-
-[node name="Grid" type="Node2D" parent="CanvasGroup"]
-script = ExtResource("1_df8yj")
-minor_color = Color(0, 0, 0, 0.6)
-major_color = Color(0, 0, 0, 1)
-major_grid_size = Vector2i(0, 0)
-metadata/_custom_type_script = "uid://dl24hxmntjo1g"
-
-[node name="EditorMap" type="Node2D" parent="." groups=["editor_map"]]
-script = ExtResource("2_w57a8")
-metadata/_custom_type_script = "uid://cebyi7qjgdqix"
-
-[node name="Part" parent="EditorMap" instance=ExtResource("3_q43qg")]
-
-[node name="Part2" parent="EditorMap" instance=ExtResource("3_q43qg")]
-position = Vector2(16, 0)
-
-[node name="GroundTile" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(0, -16)
-
-[node name="GroundTile2" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(16, -32)
-
-[node name="GroundTile3" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(32, -16)
-
-[node name="GroundTile4" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(48, -32)
-
-[node name="GroundTile5" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(64, -48)
-
-[node name="GroundTile6" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(80, -32)
-
-[node name="GroundTile7" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(96, -16)
-
-[node name="GroundTile8" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(112, -32)
-
-[node name="GroundTile9" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(112, -16)
-
-[node name="GroundTile10" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(80, -16)
-
-[node name="GroundTile11" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(64, -32)
-
-[node name="GroundTile12" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(64, -16)
-
-[node name="GroundTile13" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(48, -16)
-
-[node name="GroundTile14" parent="EditorMap" instance=ExtResource("6_klwx7")]
-position = Vector2(16, -16)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-limit_left = 0
-limit_bottom = 0
-script = ExtResource("2_hf1b4")
+[node name="Background" parent="CanvasLayer" instance=ExtResource("31_t1mpb")]
 
 [node name="EditorLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="Editor" type="Control" parent="EditorLayer" groups=["editor"]]
 texture_filter = 2
@@ -225,6 +144,17 @@ texture_normal = ExtResource("15_ieb30")
 texture_click_mask = ExtResource("7_t1mpb")
 script = ExtResource("8_klwx7")
 hover_offset = Rect2(0, 0, 0, -6)
+
+[node name="CoursebotPanel" type="NinePatchRect" parent="EditorLayer/Editor/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -435.0
+offset_right = 9.0
+offset_bottom = 495.0
+focus_mode = 1
+mouse_filter = 1
+script = ExtResource("19_wtof8")
+title = "Save | Load"
 
 [node name="TopPanel" type="NinePatchRect" parent="EditorLayer/Editor"]
 unique_name_in_owner = true
@@ -359,77 +289,25 @@ script = ExtResource("5_w57a8")
 open_pos = Vector2(0, 108)
 closed_pos = Vector2(-162, 108)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="EditorLayer/Editor"]
-visible = false
-layout_mode = 0
-offset_left = 159.0
-offset_top = 108.0
-offset_right = 667.0
-offset_bottom = 546.0
-texture = ExtResource("19_x0vm4")
-region_rect = Rect2(27, 0, 27, 72)
-patch_margin_left = 9
-patch_margin_top = 54
-patch_margin_right = 15
-patch_margin_bottom = 15
+[node name="EditorMap" type="Node2D" parent="." groups=["editor_map"]]
+unique_name_in_owner = true
+script = ExtResource("2_w57a8")
+limit_left = -1
+limit_bottom = 0
+metadata/_custom_type_script = "uid://cebyi7qjgdqix"
 
-[node name="TextureRect" type="TextureRect" parent="EditorLayer/Editor/NinePatchRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -54.0
-offset_top = 8.0
-offset_right = -15.0
-offset_bottom = 50.0
-grow_horizontal = 0
-texture = ExtResource("20_wrbvm")
-stretch_mode = 2
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_bottom = 0
+script = ExtResource("2_hf1b4")
 
-[node name="Smb" type="Sprite2D" parent="EditorLayer/Editor/NinePatchRect"]
-position = Vector2(113, 239)
-texture = ExtResource("21_j70um")
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+self_modulate = Color(1, 1, 1, 0.25098)
 
-[node name="Smb3" type="Sprite2D" parent="EditorLayer/Editor/NinePatchRect"]
-position = Vector2(90, 118)
-texture = ExtResource("22_ouktm")
-
-[node name="Smw" type="Sprite2D" parent="EditorLayer/Editor/NinePatchRect"]
-position = Vector2(68, 344)
-texture = ExtResource("23_j3lkm")
-
-[node name="Nsmbu" type="Sprite2D" parent="EditorLayer/Editor/NinePatchRect"]
-position = Vector2(185, 419)
-texture = ExtResource("24_641cv")
-
-[node name="Sm3Dw" type="Sprite2D" parent="EditorLayer/Editor/NinePatchRect"]
-position = Vector2(195, 192)
-texture = ExtResource("25_u3stv")
-
-[node name="PanelContainer" type="PanelContainer" parent="EditorLayer/Editor"]
-layout_mode = 0
-offset_left = -116.0
-offset_top = -44.0
-offset_right = 156.0
-offset_bottom = 88.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_wtof8")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="EditorLayer/Editor/PanelContainer"]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="TextureRect" type="TextureRect" parent="EditorLayer/Editor/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("27_ljufs")
-stretch_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="EditorLayer/Editor/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("9_wtof8")
-stretch_mode = 2
-
-[node name="Background" parent="." instance=ExtResource("31_t1mpb")]
+[node name="Grid" type="Node2D" parent="CanvasGroup"]
+script = ExtResource("1_df8yj")
+minor_color = Color(0, 0, 0, 0.6)
+major_color = Color(0, 0, 0, 1)
+major_grid_size = Vector2i(0, 0)
+metadata/_custom_type_script = "uid://dl24hxmntjo1g"

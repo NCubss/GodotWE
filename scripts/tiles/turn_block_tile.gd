@@ -21,6 +21,5 @@ func _sprout_end(_eject_direction: Vector2, _activator: PhysicsBody2D) -> void:
 func _sprite_animation_looped() -> void:
 	turns_done += 1
 	if turns_done >= TURNS and not $PlayerCheckArea.overlaps_body(
-			Utility.id("player")
-	):
+			Utility.id("player")):
 		turning = false

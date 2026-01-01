@@ -188,6 +188,25 @@ const BIG_HITBOX_SIZE = Rect2(Vector2(0, -13.5), Vector2(12, 27))
 const HELD_ITEM_OFFSET = Vector2(11, -1.5)
 
 
+func _ready() -> void:
+	_powerup = starting_powerup
+	_powerup.start()
+
+
+func _physics_process(delta: float) -> void:
+	super(delta)
+	if _held_item != null and not Input.is_action_pressed("player_run"):
+		drop_item()
+	_attempt_correction(delta, 2)
+	move_and_slide()
+	_powerup.physics_process(delta)
+	_p_timer += delta
+
+
+func _process(delta: float) -> void:
+	_powerup.process(delta)
+
+
 ## Downgrades the player into a lower-tier powerup.
 func damage() -> void:
 	#sounds.stream = preload("res://audio/player/warp.ogg")
@@ -196,8 +215,7 @@ func damage() -> void:
 
 ## Forcibly kills the player, regardless of any powerups.
 func kill() -> void:
-	#sounds.stream = preload("res://audio/player/dead.ogg")
-	sounds.play()
+	state_machine.switch(PlayerDeathState)
 
 
 ## Sets the player's current [Powerup]. If [param animate] is [code]false[/code],
@@ -254,26 +272,6 @@ func spawn_spin_thump(pos := global_position) -> void:
 			.instantiate()
 	get_parent().add_sibling(spin_thump)
 	spin_thump.global_position = pos
-
-
-func _ready() -> void:
-	_powerup = starting_powerup
-	_powerup.start()
-
-
-func _physics_process(delta: float) -> void:
-	super(delta)
-	if _held_item != null and not Input.is_action_pressed("player_run"):
-		drop_item()
-	_attempt_correction(delta, 2)
-	move_and_slide()
-	_powerup.physics_process(delta)
-	_p_timer += delta
-
-
-func _process(delta: float) -> void:
-	_powerup.process(delta)
-	#queue_redraw()
 
 
 func _just_collided(collision: KinematicCollision2D) -> void:

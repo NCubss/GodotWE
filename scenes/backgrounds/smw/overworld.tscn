@@ -8,7 +8,7 @@
 z_index = -2
 z_as_relative = false
 scroll_scale = Vector2(0.5, 1)
-scroll_offset = Vector2(256, 0)
+scroll_offset = Vector2(-256, 0)
 repeat_size = Vector2(512, 0)
 
 [node name="Background" type="Sprite2D" parent="Parallax2D"]

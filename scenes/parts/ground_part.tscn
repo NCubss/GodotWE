@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpfaa6qawfnk1"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_6ie8e"]
+[ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://sprites/tiles/ground.png" id="2_83ppi"]
+[ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/parts/ground_part.gd" id="2_akctd"]
+[ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_akctd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83ppi"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0kg4"]
+resource_local_to_scene = true
+atlas = ExtResource("2_83ppi")
+region = Rect2(80, 160, 16, 16)
+
+[node name="GroundPart" instance=ExtResource("1_6ie8e")]
+script = ExtResource("2_akctd")
+
+[node name="CollShape" parent="." index="0"]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_83ppi")
+
+[node name="Graphics" parent="." index="1"]
+position = Vector2(16, 16)
+
+[node name="Sprite" type="Sprite2D" parent="Graphics" index="0"]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_a0kg4")
+script = ExtResource("3_akctd")
+metadata/_custom_type_script = "uid://ct8v8svsomclf"
+
+[node name="TileComponent" parent="." index="2"]
+size = Vector2i(2, 2)

@@ -269,3 +269,10 @@ const BACKGROUNDS = {
 		},
 	},
 }
+## A registry of all HUDs.
+const HUDS = {
+	Level.GameStyle.SMB: "",
+	Level.GameStyle.SMB3: "",
+	Level.GameStyle.SMW: "uid://dfiig7kqobf07",
+	Level.GameStyle.NSMBU: "",
+}
