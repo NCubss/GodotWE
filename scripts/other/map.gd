@@ -62,14 +62,10 @@ func _ready() -> void:
 			if not is_in_bounds(comp.position):
 				push_warning("Tile is outside of this Map's bounds")
 				continue
+		clear_rect(Rect2i(comp.position, comp.size))
 		for x in range(comp.position.x, comp.position.x + comp.size.x):
 			for y in range(comp.position.y, comp.position.y + comp.size.y):
-				var pos = Vector2i(x, y)
-				if tiles.has(pos):
-					# spooky
-					tiles[pos].queue_free()
-					tiles.erase(pos)
-				tiles[pos] = i
+				tiles[Vector2i(x, y)] = i
 		comp.map = self
 		comp.connected.emit()
 	is_initialized = true
@@ -97,14 +93,10 @@ func set_tile(pos: Vector2i, node: Node2D) -> void:
 	node.position = Vector2(pos) * tile_size
 	comp.map = self
 	comp.position = pos
+	clear_rect(Rect2i(comp.position, comp.size))
 	for x in range(comp.position.x, comp.position.x + comp.size.x):
 		for y in range(comp.position.y, comp.position.y + comp.size.y):
-			var pos2 = Vector2i(x, y)
-			if tiles.has(pos2) and not tiles[pos2].is_queued_for_deletion():
-				var comp2 = Utility.find_child_by_class(tiles[pos2], TileComponent)
-				tiles[pos2].tree_exiting.disconnect(_tile_exited.bind(comp2, comp2.position))
-				tiles[pos2].queue_free()
-			tiles[pos2] = node
+			tiles[Vector2i(x, y)] = node
 	comp.connected.emit()
 	# prevent null tiles
 	if not node.tree_exiting.is_connected(_tile_exited.bind(comp, comp.position)):
