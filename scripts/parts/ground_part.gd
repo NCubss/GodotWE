@@ -2,36 +2,15 @@ class_name GroundPart
 extends Part
 
 @onready var _tex: Texture2D = %Sprite.texture
-@onready var _tile: TileComponent = Utility.find_child_by_class(self,
-		TileComponent)
 
 
-func _enter_tree() -> void:
-	if not is_node_ready():
-		await ready
-	await _tile.connected
+func _ready() -> void:
+	super()
 	refresh_sprite()
-	_tile.map.changed.connect(_changed)
-	_tile.connected.connect(_connected)
-	_tile.disconnected.connect(_disconnected)
-
-
-func _exit_tree() -> void:
-	refresh_sprite()
-
-
-func _connected() -> void:
-	refresh_sprite()
-	_tile.map.changed.connect(_changed)
-
-
-func _disconnected(map: Map, _pos: Vector2i) -> void:
-	refresh_sprite()
-	map.changed.disconnect(_changed)
 
 
 func _changed(coords: Vector2i) -> void:
-	var tp = _tile.position
+	var tp = tile.rect.position
 	if coords.x <= tp.x + 4 and coords.x >= tp.x - 4 and coords.y <= tp.y + 2 and coords.y >= tp.y - 2:
 		refresh_sprite()
 
@@ -40,32 +19,27 @@ func _atlas(x: int, y: int) -> void:
 	_tex.region.position = Vector2(x, y) * 16
 
 
+func _check(x: int, y: int) -> bool:
+	return map.get_tiles(Rect2i(x, y, 2, 2)) \
+			.any(func(t: Tile): return get_node(t.node_path) is GroundPart)
+
+
 func refresh_sprite() -> void:
-	if _tile.map == null:
+	if tile == null:
 		_atlas(5, 10)
 		return
 	
-	var tp := _tile.position
-	var top_left = _tile.map.get_tile(Vector2i(tp.x - 2, tp.y - 2)) \
-			is GroundPart
-	var top = _tile.map.get_tile(Vector2i(tp.x, tp.y - 2)) \
-			is GroundPart
-	var top_right = _tile.map.get_tile(Vector2i(tp.x + 2, tp.y - 2)) \
-			is GroundPart
-	var right = _tile.map.get_tile(Vector2i(tp.x + 2, tp.y)) \
-			is GroundPart
-	var right_right = _tile.map.get_tile(Vector2i(tp.x + 4, tp.y)) \
-			is GroundPart
-	var bottom_right = _tile.map.get_tile(Vector2i(tp.x + 2, tp.y + 2)) \
-			is GroundPart
-	var bottom = _tile.map.get_tile(Vector2i(tp.x, tp.y + 2)) \
-			is GroundPart
-	var bottom_left = _tile.map.get_tile(Vector2i(tp.x - 2, tp.y + 2)) \
-			is GroundPart
-	var left = _tile.map.get_tile(Vector2i(tp.x - 2, tp.y)) \
-			is GroundPart
-	var left_left = _tile.map.get_tile(Vector2i(tp.x - 4, tp.y)) \
-			is GroundPart
+	var tp := tile.rect.position
+	var top_left = _check(tp.x - 2, tp.y - 2)
+	var top = _check(tp.x, tp.y - 2)
+	var top_right = _check(tp.x + 2, tp.y - 2)
+	var right = _check(tp.x + 2, tp.y)
+	var right_right = _check(tp.x + 4, tp.y)
+	var bottom_right = _check(tp.x + 2, tp.y + 2)
+	var bottom = _check(tp.x, tp.y + 2)
+	var bottom_left = _check(tp.x - 2, tp.y + 2)
+	var left = _check(tp.x - 2, tp.y)
+	var left_left = _check(tp.x - 4, tp.y)
 	
 	if tp.y + 1 >= 0:
 		bottom_left = true

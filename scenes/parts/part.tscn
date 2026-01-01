@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://jr7c4ykh8awq"]
+[gd_scene load_steps=3 format=3 uid="uid://jr7c4ykh8awq"]
 
 [ext_resource type="Script" uid="uid://dnhf1isfdvgo2" path="res://scripts/parts/part.gd" id="1_dwemf"]
-[ext_resource type="Script" uid="uid://crxc20f4jyeky" path="res://scripts/components/tile_component.gd" id="4_xsax5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p834g"]
 size = Vector2(16, 16)
@@ -19,7 +18,3 @@ shape = SubResource("RectangleShape2D_p834g")
 
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2(8, 8)
-
-[node name="TileComponent" type="Node" parent="."]
-script = ExtResource("4_xsax5")
-metadata/_custom_type_script = "uid://crxc20f4jyeky"

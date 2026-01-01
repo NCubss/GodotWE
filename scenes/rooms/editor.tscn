@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dl24hxmntjo1g" path="res://scripts/other/grid.gd" id="1_df8yj"]
 [ext_resource type="Script" uid="uid://cwdxlb3bg48lf" path="res://scripts/ui/editor/editor_camera.gd" id="2_hf1b4"]
-[ext_resource type="Script" uid="uid://cebyi7qjgdqix" path="res://scripts/other/map.gd" id="2_w57a8"]
 [ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="3_sqdok"]
 [ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://sprites/ui/editor/panel.svg" id="4_ljufs"]
 [ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="5_w57a8"]
@@ -19,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://sprites/ui/editor/btn_palette.svg" id="16_7kynf"]
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
 [ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="19_wtof8"]
+[ext_resource type="Script" uid="uid://2uppwojay5er" path="res://scripts/other/fast_map.gd" id="22_dgj68"]
 [ext_resource type="PackedScene" uid="uid://dpfaa6qawfnk1" path="res://scenes/parts/ground_part.tscn" id="23_df8yj"]
 [ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="26_ljufs"]
 [ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="27_ljufs"]
@@ -30,7 +30,7 @@ script = ExtResource("28_q43qg")
 icon = ExtResource("27_ljufs")
 icon_filter = 1
 part = ExtResource("23_df8yj")
-size = Vector2i(2, 2)
+multi_place = true
 metadata/_custom_type_script = "uid://4ld0tmaadxvg"
 
 [node name="EditorContainer" type="Node2D"]
@@ -291,10 +291,8 @@ closed_pos = Vector2(-162, 108)
 
 [node name="EditorMap" type="Node2D" parent="." groups=["editor_map"]]
 unique_name_in_owner = true
-script = ExtResource("2_w57a8")
-limit_left = -1
-limit_bottom = 0
-metadata/_custom_type_script = "uid://cebyi7qjgdqix"
+script = ExtResource("22_dgj68")
+metadata/_custom_type_script = "uid://2uppwojay5er"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
