@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d1pyovyuwelpw"]
 
-[ext_resource type="Script" uid="uid://cij4fce4dx1vh" path="res://scripts/tiles/turn_block_tile.gd" id="1_jh353"]
+[ext_resource type="Script" uid="uid://cij4fce4dx1vh" path="res://scripts/level/tiles/turn_block_tile.gd" id="1_jh353"]
 [ext_resource type="Texture2D" uid="uid://3gg35twlis0l" path="res://sprites/tiles/turn_block.png" id="2_idixh"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_o4nxb"]
 [ext_resource type="Script" uid="uid://dedgj7iu2ix2b" path="res://scripts/components/block_component.gd" id="4_6rsai"]

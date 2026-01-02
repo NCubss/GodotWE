@@ -11,6 +11,10 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	# type hinting
 	var player = entity as Player
 	
+	# check for void
+	if player.global_position.y > player.VOID_LEVEL:
+		return PlayerDeathState
+	
 	# player is jumping, go to the jumping state
 	if Input.is_action_just_pressed("player_jump"):
 		player.sounds.stream = preload("res://audio/player/jump.ogg")

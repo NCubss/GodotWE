@@ -23,6 +23,10 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	# type hinting
 	var player = entity as Player
 	
+	# check for void
+	if player.global_position.y > player.VOID_LEVEL:
+		return PlayerDeathState
+	
 	var direction = Input.get_axis("player_left", "player_right")
 	var max_speed = (
 			player.max_run_speed

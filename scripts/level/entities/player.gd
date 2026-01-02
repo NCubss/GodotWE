@@ -186,6 +186,8 @@ const SMALL_HITBOX_SIZE = Rect2(Vector2(0, -7.5), Vector2(12, 15))
 ## The hitbox size used when the player is on a big powerup.
 const BIG_HITBOX_SIZE = Rect2(Vector2(0, -13.5), Vector2(12, 27))
 const HELD_ITEM_OFFSET = Vector2(11, -1.5)
+## The y height at which the player will be killed.
+const VOID_LEVEL = 64
 
 
 func _ready() -> void:

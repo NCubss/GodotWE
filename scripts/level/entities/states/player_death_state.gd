@@ -10,9 +10,12 @@ func start(entity: Node2D) -> Variant:
 	var player: Player = entity
 	player.process_mode = Node.PROCESS_MODE_ALWAYS
 	player.level.process_mode = Node.PROCESS_MODE_DISABLED
-	player.sprite.play("dead", 0)
-	player.sounds.stream = load("uid://cpvqy2k0d2cju")
-	player.sounds.play()
+	if player.global_position.y > player.VOID_LEVEL:
+		player.sprite.hide()
+	else:
+		player.sprite.play("dead", 0)
+	UISoundPlayer.stream = load("uid://cpvqy2k0d2cju")
+	UISoundPlayer.play()
 	var grav_comp: GravityComponent = Utility.find_child_by_class(player,
 			GravityComponent)
 	grav_comp.gravity = Vector2.ZERO

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://x314ug2d52hj"]
 
-[ext_resource type="Script" uid="uid://bis5sol2yr48j" path="res://scripts/entities/stomped_galoomba.gd" id="1_epgry"]
+[ext_resource type="Script" uid="uid://bis5sol2yr48j" path="res://scripts/level/entities/stomped_galoomba.gd" id="1_epgry"]
 [ext_resource type="Texture2D" uid="uid://d3s6tog37hohi" path="res://sprites/entities/galoomba.png" id="2_chdf6"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_s0lek"]
 [ext_resource type="Script" uid="uid://nhyxn7n2fqbr" path="res://scripts/components/gravity_component.gd" id="4_p6kv4"]

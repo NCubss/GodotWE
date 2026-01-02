@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Super Secret"
 config/version="0.1.0"
-run/main_scene="uid://cbc3kaegk4jn3"
+run/main_scene="uid://qepmxcf7odg6"
 config/features=PackedStringArray("4.5", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -62,6 +62,7 @@ shadows=""
 camera=""
 editor="The Editor control node"
 editor_map=""
+level=""
 
 [gui]
 

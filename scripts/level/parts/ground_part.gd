@@ -20,7 +20,7 @@ func _atlas(x: int, y: int) -> void:
 
 
 func _check(x: int, y: int) -> bool:
-	return map.get_tiles(Rect2i(x, y, 2, 2)) \
+	return map.get_tiles(Rect2i(x, y, 1, 1)) \
 			.any(func(t: Tile): return get_node(t.node_path) is GroundPart)
 
 
@@ -30,16 +30,16 @@ func refresh_sprite() -> void:
 		return
 	
 	var tp := tile.rect.position
-	var top_left = _check(tp.x - 2, tp.y - 2)
-	var top = _check(tp.x, tp.y - 2)
-	var top_right = _check(tp.x + 2, tp.y - 2)
-	var right = _check(tp.x + 2, tp.y)
-	var right_right = _check(tp.x + 4, tp.y)
-	var bottom_right = _check(tp.x + 2, tp.y + 2)
-	var bottom = _check(tp.x, tp.y + 2)
-	var bottom_left = _check(tp.x - 2, tp.y + 2)
-	var left = _check(tp.x - 2, tp.y)
-	var left_left = _check(tp.x - 4, tp.y)
+	var top_left = _check(tp.x - 1, tp.y - 1)
+	var top = _check(tp.x, tp.y - 1)
+	var top_right = _check(tp.x + 1, tp.y - 1)
+	var right = _check(tp.x + 1, tp.y)
+	var right_right = _check(tp.x + 2, tp.y)
+	var bottom_right = _check(tp.x + 1, tp.y + 1)
+	var bottom = _check(tp.x, tp.y + 1)
+	var bottom_left = _check(tp.x - 1, tp.y + 1)
+	var left = _check(tp.x - 1, tp.y)
+	var left_left = _check(tp.x - 2, tp.y)
 	
 	if tp.y + 1 >= 0:
 		bottom_left = true

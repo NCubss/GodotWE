@@ -2,47 +2,50 @@ class_name GroundTile
 extends StaticBody2D
 ## A connecting ground tile.
 
-@onready var tile: TileComponent = $TileComponent
 @onready var tex: AtlasTexture = $Sprite.texture
 
-func _ready() -> void:
-	_atlas(5, 6)
 
-func _on_tile_connected() -> void:
-	# wait for every node to be added to the map, then do the thing
-	if not tile.map.is_initialized:
-		await tile.map.initialized
+func _ready() -> void:
 	refresh_sprite()
 
-func _on_tile_disconnected(_map: Map, _pos: Vector2i) -> void:
-	# reset to single block
-	_atlas(5, 6)
 
 func _atlas(x: int, y: int) -> void:
 	tex.region.position = Vector2(x, y) * 16
 
+
+func _check(x: int, y: int) -> bool:
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = global_position + Vector2(x * 16, y * 16)
+	query.exclude = [get_rid()]
+	var result = get_world_2d().direct_space_state.intersect_point(query, 1)
+	return result.size() != 0 and result[0]["collider"] is GroundTile
+
+
 func refresh_sprite() -> void:
-	var tp := tile.position
-	var top_left = tile.map.get_tile(Vector2i(tp.x - 1, tp.y - 1)) != null
-	var top = tile.map.get_tile(Vector2i(tp.x, tp.y - 1)) != null
-	var top_right = tile.map.get_tile(Vector2i(tp.x + 1, tp.y - 1)) != null
-	var right = tile.map.get_tile(Vector2i(tp.x + 1, tp.y)) != null
-	var right_right = tile.map.get_tile(Vector2i(tp.x + 2, tp.y)) != null
-	var bottom_right = tile.map.get_tile(Vector2i(tp.x + 1, tp.y + 1)) != null
-	var bottom = tile.map.get_tile(Vector2i(tp.x, tp.y + 1)) != null
-	var bottom_left = tile.map.get_tile(Vector2i(tp.x - 1, tp.y + 1)) != null
-	var left = tile.map.get_tile(Vector2i(tp.x - 1, tp.y)) != null
-	var left_left = tile.map.get_tile(Vector2i(tp.x - 2, tp.y)) != null
+	if get_parent() == null:
+		_atlas(5, 10)
+		return
 	
-	if tp.y + 1 >= 0:
+	var top_left = _check(-1, -1)
+	var top = _check(0, -1)
+	var top_right = _check(1, -1)
+	var right = _check(1, 0)
+	var right_right = _check(2, 0)
+	var bottom_right = _check(1, 1)
+	var bottom = _check(0, 1)
+	var bottom_left = _check(-1, 1)
+	var left = _check(-1, 0)
+	var left_left = _check(-2, 0)
+	
+	if global_position.y >= -16:
 		bottom_left = true
 		bottom = true
 		bottom_right = true
-	if tp.x - 1 < 0:
+	if global_position.x <= 0:
 		top_left = true
 		left = true
 		bottom_left = true
-	if tp.x - 2 < 0:
+	if global_position.x <= 16:
 		left_left = false
 	
 	if top:

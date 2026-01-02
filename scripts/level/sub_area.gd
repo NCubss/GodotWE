@@ -44,14 +44,12 @@ func load(_level: Level) -> void:
 		var foreground = Node.new()
 		foreground.name = "Foreground"
 		add_child(foreground)
-	if not $Foreground.has_node("Map"):
-		var map = Map.new()
-		map.limit_left = -1
-		map.limit_bottom = 0
-		map.name = "Map"
-		map.add_to_group("map")
-		$Foreground.add_child(map)
-	for i: Node in $Foreground.get_children():
+	#if not $Foreground.has_node("Map"):
+		#var map = FastMap.new()
+		#map.name = "Map"
+		#map.add_to_group("map")
+		#$Foreground.add_child(map)
+	for i in $Foreground.get_children():
 		i = i as Entity
 		if i == null:
 			continue
