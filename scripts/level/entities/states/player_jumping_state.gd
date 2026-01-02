@@ -1,6 +1,6 @@
-class_name PlayerSpinJumpingState
+class_name PlayerJumpingState
 extends State
-## Provides a spin jumping behavior to the player.
+## Provides jumping behavior to the player.
 
 # The type of jump that should be buffered
 enum _JumpBufferType {
@@ -22,16 +22,20 @@ func _init() -> void:
 func start(entity: Node2D) -> Variant:
 	super(entity)
 	var player = entity as Player
+	var running = Input.is_action_pressed("player_run")
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	
-	# animations
-	player.sprite.speed_scale = 1
-	player.sprite.flip_h = false
-	player.sprite.play("spin_jump")
-	
 	# apply jump speed
-	player.velocity.y = -player.spin_jump_speed
+	if not running and abs(player.velocity.x) < player.max_walk_speed:
+		player.velocity.y = -player.idle_jump_speed
+	elif (
+			(not running and abs(player.velocity.x) >= player.max_walk_speed)
+			or (running and abs(player.velocity.x) < player.max_run_speed)
+	):
+		player.velocity.y = -player.slow_jump_speed
+	elif running and abs(player.velocity.x) >= player.max_run_speed:
+		player.velocity.y = -player.fast_jump_speed
 	
 	return
 
@@ -49,11 +53,15 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	# type hinting
 	var player = entity as Player
 	
+	# check for void
+	if player.global_position.y > player.VOID_LEVEL:
+		return PlayerDeathState
+	
 	var direction = Input.get_axis("player_left", "player_right")
 	var max_speed = (
-			player.max_run_speed
-			if Input.is_action_pressed("player_run")
-			else player.max_walk_speed
+		player.max_run_speed
+		if Input.is_action_pressed("player_run")
+		else player.max_walk_speed
 	)
 	
 	# jump buffer stuff
@@ -70,7 +78,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 		_jump_buffer_timer = 0
 	
 	if (
-		not Input.is_action_pressed("player_spin_jump")
+		not Input.is_action_pressed("player_jump")
 		or player.velocity.y >= -player.long_jump_stop_speed
 	):
 		_long_jump = false
@@ -106,5 +114,15 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 				max_speed * direction,
 				player.acceleration
 		)
+	
+	# animations
+	if player.velocity.y < 0:
+		player.sprite.play("jump")
+	else:
+		player.sprite.play("fall")
+	if direction < 0:
+		player.sprite.flip_h = true
+	elif direction > 0:
+		player.sprite.flip_h = false
 	
 	return

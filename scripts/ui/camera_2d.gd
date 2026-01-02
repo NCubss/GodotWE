@@ -30,7 +30,7 @@ func _ready() -> void:
 	if scene_root == null:
 		_max_floor_y = INF
 		return
-	for n in Utility.id("map").get_children():
+	for n in Utility.id("level").current_sub_area.get_node("Foreground").get_children():
 		# Usamos su posición global como aproximación de su “techo”.
 		if n.global_position.y < highest_y:
 			highest_y = n.global_position.y

@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://sprites/ui/editor/btn_palette.svg" id="16_7kynf"]
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
 [ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="19_wtof8"]
-[ext_resource type="Script" uid="uid://2uppwojay5er" path="res://scripts/other/fast_map.gd" id="22_dgj68"]
+[ext_resource type="Script" uid="uid://2uppwojay5er" path="res://scripts/other/maps/fast_map.gd" id="22_dgj68"]
 [ext_resource type="PackedScene" uid="uid://dpfaa6qawfnk1" path="res://scenes/parts/ground_part.tscn" id="23_df8yj"]
 [ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="26_ljufs"]
 [ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="27_ljufs"]
@@ -292,6 +292,8 @@ closed_pos = Vector2(-162, 108)
 [node name="EditorMap" type="Node2D" parent="." groups=["editor_map"]]
 unique_name_in_owner = true
 script = ExtResource("22_dgj68")
+tiles = null
+cell_size = null
 metadata/_custom_type_script = "uid://2uppwojay5er"
 
 [node name="Camera2D" type="Camera2D" parent="."]

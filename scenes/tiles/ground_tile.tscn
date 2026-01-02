@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpy1sebdq7k7s"]
+[gd_scene load_steps=6 format=3 uid="uid://bpy1sebdq7k7s"]
 
-[ext_resource type="Script" uid="uid://bwgj57thd408" path="res://scripts/tiles/ground.gd" id="1_8n0yu"]
+[ext_resource type="Script" uid="uid://bwgj57thd408" path="res://scripts/level/tiles/ground.gd" id="1_8n0yu"]
 [ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://sprites/tiles/ground.png" id="2_a75co"]
 [ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_a75co"]
-[ext_resource type="Script" uid="uid://crxc20f4jyeky" path="res://scripts/components/tile_component.gd" id="3_atw1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sbnp"]
 size = Vector2(16, 16)
@@ -27,10 +26,3 @@ position = Vector2(8, 8)
 texture = SubResource("AtlasTexture_hxp2u")
 script = ExtResource("3_a75co")
 metadata/_custom_type_script = "uid://ct8v8svsomclf"
-
-[node name="TileComponent" type="Node" parent="."]
-script = ExtResource("3_atw1m")
-metadata/_custom_type_script = "uid://crxc20f4jyeky"
-
-[connection signal="connected" from="TileComponent" to="." method="_on_tile_connected"]
-[connection signal="disconnected" from="TileComponent" to="." method="_on_tile_disconnected"]

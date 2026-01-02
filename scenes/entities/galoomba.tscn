@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://d2p4v7v1baic6"]
 
-[ext_resource type="Script" uid="uid://dgb0ph8dkygb4" path="res://scripts/entities/enemies/enemy.gd" id="1_bs2gg"]
+[ext_resource type="Script" uid="uid://dgb0ph8dkygb4" path="res://scripts/level/entities/enemies/enemy.gd" id="1_bs2gg"]
 [ext_resource type="Texture2D" uid="uid://d3s6tog37hohi" path="res://sprites/entities/galoomba.png" id="2_jtsmq"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_jq00e"]
 [ext_resource type="Script" uid="uid://nhyxn7n2fqbr" path="res://scripts/components/gravity_component.gd" id="4_jq00e"]
