@@ -9,6 +9,7 @@ extends TextureButton
 
 
 func _ready() -> void:
+	action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 	mouse_entered.connect(_entered)
 	mouse_entered.connect(_effect.start)
 	mouse_exited.connect(_effect.stop)

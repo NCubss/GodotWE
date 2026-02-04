@@ -1,22 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b16kyjui2n3qv"]
+[gd_scene format=3 uid="uid://b16kyjui2n3qv"]
 
 [ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_f53rw"]
 [ext_resource type="Script" uid="uid://cyq2v03nxfakf" path="res://scripts/ui/camera_2d.gd" id="2_8kft7"]
 [ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="2_j0h5q"]
 [ext_resource type="PackedScene" uid="uid://b2cwk2viytb57" path="res://scenes/entities/player.tscn" id="3_2txic"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("player", "current_sub_area") groups=["level"]]
+[node name="Level" type="Node2D" unique_id=981213055 node_paths=PackedStringArray("player", "current_sub_area") groups=["level"]]
 script = ExtResource("1_f53rw")
 player = NodePath("SubArea/Foreground/Player")
 current_sub_area = NodePath("SubArea")
 metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
 
-[node name="SubArea" parent="." instance=ExtResource("2_j0h5q")]
+[node name="SubArea" parent="." unique_id=1880988790 instance=ExtResource("2_j0h5q")]
 
-[node name="Player" parent="SubArea/Foreground" index="0" instance=ExtResource("3_2txic")]
+[node name="Player" parent="SubArea/Foreground" index="0" unique_id=2077452534 instance=ExtResource("3_2txic")]
 position = Vector2(64, -32)
 
-[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("target") groups=["camera"]]
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576712886 node_paths=PackedStringArray("target") groups=["camera"]]
 script = ExtResource("2_8kft7")
 target = NodePath("../SubArea/Foreground/Player")
 metadata/_custom_type_script = "uid://cyq2v03nxfakf"

@@ -45,8 +45,6 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 			return PlayerMovingState
 	elif _coyote_timer <= player.coyote_time and Input.is_action_just_pressed("player_jump"):
 		_coyote_timer = 0
-		player.sounds.stream = preload("res://audio/player/jump.ogg")
-		player.sounds.play()
 		return PlayerJumpingState
 	
 	# accelerate

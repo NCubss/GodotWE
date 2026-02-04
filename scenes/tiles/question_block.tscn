@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4qpbj5epsp55"]
+[gd_scene format=3 uid="uid://c4qpbj5epsp55"]
 
 [ext_resource type="Script" uid="uid://bvwombbno8x7s" path="res://scripts/ext/static_body_ext.gd" id="1_o3ngx"]
 [ext_resource type="Texture2D" uid="uid://dm510dlk0st0r" path="res://sprites/tiles/question_block.png" id="2_om2ma"]
@@ -45,17 +45,17 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="QuestionBlock" type="StaticBody2D"]
+[node name="QuestionBlock" type="StaticBody2D" unique_id=1370141498]
 z_index = 20
 z_as_relative = false
 script = ExtResource("1_o3ngx")
 metadata/_custom_type_script = "uid://bvwombbno8x7s"
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=824003433]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_lx66l")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1793359615]
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_4quxa")
 animation = &"idle"
@@ -63,11 +63,11 @@ autoplay = "idle"
 script = ExtResource("3_m05ia")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
-[node name="BlockComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="BlockComponent" type="Node" parent="." unique_id=1469256663 node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_ab850")
 sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://dedgj7iu2ix2b"
 
-[node name="TileComponent" type="Node" parent="."]
+[node name="TileComponent" type="Node" parent="." unique_id=1935140796]
 script = ExtResource("5_m05ia")
 metadata/_custom_type_script = "uid://crxc20f4jyeky"

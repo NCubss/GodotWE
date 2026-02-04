@@ -17,15 +17,11 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# player is jumping, go to the jumping state
 	if Input.is_action_just_pressed("player_jump"):
-		player.sounds.stream = preload("res://audio/player/jump.ogg")
-		player.sounds.play()
 		return PlayerJumpingState
 	
 	# player is spin jumping, go to the spin jumping state
 	if Input.is_action_just_pressed("player_spin_jump"):
 		player.just_fell = true
-		player.sounds.stream = preload("res://audio/player/spin_jump.ogg")
-		player.sounds.play()
 		return PlayerSpinJumpingState
 	
 	# moving, go to moving state

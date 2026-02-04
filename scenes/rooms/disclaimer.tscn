@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://qepmxcf7odg6"]
+[gd_scene format=3 uid="uid://qepmxcf7odg6"]
 
 [ext_resource type="Script" uid="uid://c25jk353o6v18" path="res://scripts/ui/disclaimer.gd" id="1_1kyrh"]
+[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://ui/text.ttf" id="2_aggwn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3diux"]
+font = ExtResource("2_aggwn")
 font_size = 48
 font_color = Color(0.8980392, 0.09019608, 0.16470589, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1kyrh"]
+font = ExtResource("2_aggwn")
 font_size = 24
 
-[node name="Disclaimer" type="Control"]
+[node name="Disclaimer" type="Control" unique_id=1533468822]
+texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1kyrh")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1193160333]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,13 +31,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="IntroTimer" type="Timer" parent="."]
+[node name="IntroTimer" type="Timer" parent="." unique_id=481759469]
 unique_name_in_owner = true
 wait_time = 4.0
 one_shot = true
 autostart = true
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1986367140]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -47,7 +51,7 @@ text = "DISCLAIMER_TITLE"
 label_settings = SubResource("LabelSettings_3diux")
 horizontal_alignment = 1
 
-[node name="TextContainer" type="VBoxContainer" parent="."]
+[node name="TextContainer" type="VBoxContainer" parent="." unique_id=1603171353]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -59,13 +63,13 @@ offset_bottom = 247.0
 grow_horizontal = 2
 theme_override_constants/separation = 31
 
-[node name="Sosumi" type="Label" parent="TextContainer"]
+[node name="Description" type="Label" parent="TextContainer" unique_id=1128795664]
 layout_mode = 2
 text = "DISCLAIMER_DESCRIPTION"
 label_settings = SubResource("LabelSettings_1kyrh")
 horizontal_alignment = 1
 
-[node name="Scammed" type="Label" parent="TextContainer"]
+[node name="ScamWarning" type="Label" parent="TextContainer" unique_id=1178363080]
 layout_mode = 2
 text = "DISCLAIMER_SCAM_WARNING"
 label_settings = SubResource("LabelSettings_1kyrh")

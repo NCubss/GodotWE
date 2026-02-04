@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfiig7kqobf07"]
+[gd_scene format=3 uid="uid://dfiig7kqobf07"]
 
 [ext_resource type="Script" uid="uid://b1egrch03xwve" path="res://scripts/ui/hud.gd" id="1_08lf5"]
 [ext_resource type="FontFile" uid="uid://cowsd2reok2qb" path="res://ui/hud_smw.png" id="1_rfeh8"]
@@ -10,14 +10,14 @@
 font = ExtResource("1_rfeh8")
 font_size = 24
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("time_label", "score_label", "coins_label")]
+[node name="HUD" type="CanvasLayer" unique_id=350845185 node_paths=PackedStringArray("time_label", "score_label", "coins_label")]
 layer = 2
 script = ExtResource("1_08lf5")
 time_label = NodePath("TopRight/Time/Label")
 score_label = NodePath("TopRight/ScoreLabel")
 coins_label = NodePath("TopLeft/Stats/Coins/Label")
 
-[node name="TopRight" type="HBoxContainer" parent="."]
+[node name="TopRight" type="HBoxContainer" parent="." unique_id=830976851]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -29,55 +29,55 @@ grow_horizontal = 0
 theme_override_constants/separation = 24
 alignment = 2
 
-[node name="ScoreLabel" type="Label" parent="TopRight"]
+[node name="ScoreLabel" type="Label" parent="TopRight" unique_id=752425785]
 layout_mode = 2
 text = "000000000"
 label_settings = SubResource("LabelSettings_prweb")
 
-[node name="Time" type="HBoxContainer" parent="TopRight"]
+[node name="Time" type="HBoxContainer" parent="TopRight" unique_id=1091872384]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 3
 
-[node name="Icon" type="TextureRect" parent="TopRight/Time"]
+[node name="Icon" type="TextureRect" parent="TopRight/Time" unique_id=383514360]
 layout_mode = 2
 texture = ExtResource("2_vk4tt")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="TopRight/Time"]
+[node name="Label" type="Label" parent="TopRight/Time" unique_id=771557444]
 layout_mode = 2
 text = "430"
 label_settings = SubResource("LabelSettings_prweb")
 
-[node name="TopLeft" type="HBoxContainer" parent="."]
+[node name="TopLeft" type="HBoxContainer" parent="." unique_id=1066614359]
 offset_left = 42.0
 offset_top = 36.0
 offset_right = 141.0
 offset_bottom = 60.0
 
-[node name="Stats" type="VBoxContainer" parent="TopLeft"]
+[node name="Stats" type="VBoxContainer" parent="TopLeft" unique_id=1088800041]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="Coins" type="HBoxContainer" parent="TopLeft/Stats"]
+[node name="Coins" type="HBoxContainer" parent="TopLeft/Stats" unique_id=6202308]
 layout_mode = 2
 theme_override_constants/separation = 3
 
-[node name="Icon" type="TextureRect" parent="TopLeft/Stats/Coins"]
+[node name="Icon" type="TextureRect" parent="TopLeft/Stats/Coins" unique_id=1882580321]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("5_jtc18")
 
-[node name="X" type="TextureRect" parent="TopLeft/Stats/Coins"]
+[node name="X" type="TextureRect" parent="TopLeft/Stats/Coins" unique_id=110984126]
 custom_minimum_size = Vector2(21, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("4_xt700")
 
-[node name="Label" type="Label" parent="TopLeft/Stats/Coins"]
+[node name="Label" type="Label" parent="TopLeft/Stats/Coins" unique_id=1967519180]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 text = "00"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://eu7xxlwcq05b"]
+[gd_scene format=3 uid="uid://eu7xxlwcq05b"]
 
 [ext_resource type="Script" uid="uid://cas8xqggpeseb" path="res://scripts/level/entities/mushroom.gd" id="1_y41n4"]
 [ext_resource type="Texture2D" uid="uid://b757gbkr1a7j0" path="res://sprites/entities/mushroom.png" id="2_y41n4"]
@@ -9,37 +9,37 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfenl"]
 size = Vector2(10, 15)
 
-[node name="Mushroom" type="CharacterBody2D"]
+[node name="Mushroom" type="CharacterBody2D" unique_id=349714530]
 z_index = 30
 z_as_relative = false
 collision_layer = 8
 script = ExtResource("1_y41n4")
 metadata/_custom_type_script = "uid://bjdqtobc8xf0n"
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=1560952206]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_qfenl")
 
-[node name="PlayerCheckArea" type="Area2D" parent="."]
+[node name="PlayerCheckArea" type="Area2D" parent="." unique_id=1117225494]
 unique_name_in_owner = true
 collision_layer = 8
 collision_mask = 4
 
-[node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea"]
+[node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea" unique_id=1130430973]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_qfenl")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1682262347]
 position = Vector2(0, -8)
 texture = ExtResource("2_y41n4")
 script = ExtResource("3_ohtko")
 metadata/_custom_type_script = "uid://ct8v8svsomclf"
 
-[node name="GravityComponent" type="Node" parent="."]
+[node name="GravityComponent" type="Node" parent="." unique_id=1338209653]
 script = ExtResource("4_w3dyv")
 metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
 
-[node name="SlideComponent" type="Node" parent="."]
+[node name="SlideComponent" type="Node" parent="." unique_id=1508263066]
 script = ExtResource("5_y41n4")
 metadata/_custom_type_script = "uid://sv7f6f65t1eb"
 

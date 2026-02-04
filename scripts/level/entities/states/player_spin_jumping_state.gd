@@ -25,6 +25,9 @@ func start(entity: Node2D) -> Variant:
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	
+	player.sounds.stream = load("uid://dt7f4s3d4u5k6")
+	player.sounds.play()
+	
 	# animations
 	player.sprite.speed_scale = 1
 	player.sprite.flip_h = false
@@ -83,12 +86,8 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	if player.is_on_floor():
 		# jump if the player jumped close enough
 		if _jump_buffer == _JumpBufferType.JUMP:
-			player.sounds.stream = preload("res://audio/player/jump.ogg")
-			player.sounds.play()
 			return PlayerJumpingState
 		elif _jump_buffer == _JumpBufferType.SPIN_JUMP:
-			player.sounds.stream = preload("res://audio/player/spin_jump.ogg")
-			player.sounds.play()
 			return PlayerSpinJumpingState
 		else:
 			if direction == 0:

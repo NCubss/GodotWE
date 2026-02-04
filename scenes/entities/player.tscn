@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2cwk2viytb57"]
+[gd_scene format=3 uid="uid://b2cwk2viytb57"]
 
 [ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/level/entities/player.gd" id="1_ucweq"]
 [ext_resource type="SpriteFrames" uid="uid://b8ka66cx00t43" path="res://sprites/player/mario/small.tres" id="2_b6tgf"]
@@ -15,20 +15,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qees"]
 size = Vector2(12, 15)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=636730551 groups=["player"]]
 z_index = 38
 z_as_relative = false
 collision_layer = 4
 script = ExtResource("1_ucweq")
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=111670413]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_0qees")
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=1203571087]
 unique_name_in_owner = true
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Graphics"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Graphics" unique_id=581898908]
 unique_name_in_owner = true
 position = Vector2(0, -15)
 sprite_frames = ExtResource("2_b6tgf")
@@ -37,41 +37,41 @@ autoplay = "idle"
 script = ExtResource("10_b6tgf")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
-[node name="Sounds" type="AudioStreamPlayer" parent="."]
+[node name="Sounds" type="AudioStreamPlayer" parent="." unique_id=914803169]
 unique_name_in_owner = true
 process_mode = 3
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=13350526 node_paths=PackedStringArray("current_state")]
 unique_name_in_owner = true
 script = ExtResource("12_n5sgd")
 current_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://cnsky0lpl5fbm"
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=2087397166]
 script = ExtResource("13_ogpgs")
 metadata/_custom_type_script = "uid://duougpjkgpmhj"
 
-[node name="Moving" type="Node" parent="StateMachine"]
+[node name="Moving" type="Node" parent="StateMachine" unique_id=1161114856]
 script = ExtResource("13_5ki56")
 metadata/_custom_type_script = "uid://ckwnsvmkobqkq"
 
-[node name="Falling" type="Node" parent="StateMachine"]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=702878351]
 script = ExtResource("15_1yk18")
 metadata/_custom_type_script = "uid://drnhgymryv5kx"
 
-[node name="Jumping" type="Node" parent="StateMachine"]
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=1668541272]
 script = ExtResource("15_spk56")
 metadata/_custom_type_script = "uid://bvglap1mqxxav"
 
-[node name="SpinJumping" type="Node" parent="StateMachine"]
+[node name="SpinJumping" type="Node" parent="StateMachine" unique_id=1631485752]
 script = ExtResource("17_b4o2o")
 metadata/_custom_type_script = "uid://cnpxggqelnnfx"
 
-[node name="Dead" type="Node" parent="StateMachine"]
+[node name="Dead" type="Node" parent="StateMachine" unique_id=192018118]
 script = ExtResource("10_73kkf")
 metadata/_custom_type_script = "uid://df1xqrsuaou5x"
 
-[node name="GravityComponent" type="Node" parent="."]
+[node name="GravityComponent" type="Node" parent="." unique_id=1495170238]
 script = ExtResource("14_saib0")
 metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
 

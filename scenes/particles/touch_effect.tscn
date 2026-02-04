@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7ihme8t0h4r5"]
+[gd_scene format=3 uid="uid://c7ihme8t0h4r5"]
 
 [ext_resource type="Texture2D" uid="uid://cce2pn0gyf2sb" path="res://sprites/ui/editor/touch_effect.svg" id="1_hvc2u"]
 
@@ -122,7 +122,7 @@ animations = [{
 "speed": 27.0
 }]
 
-[node name="TouchEffect" type="AnimatedSprite2D"]
+[node name="TouchEffect" type="AnimatedSprite2D" unique_id=143829798]
 z_index = 59
 texture_filter = 2
 scale = Vector2(0.333, 0.333)

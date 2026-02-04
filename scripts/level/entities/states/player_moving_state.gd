@@ -9,7 +9,9 @@ func _init() -> void:
 	intended_class = Player
 
 
-func end(_entity: Node2D) -> void:
+func end(entity: Node2D) -> void:
+	var player: Player = entity
+	player.sprite.speed_scale = 1
 	_skidding = false
 
 
@@ -27,15 +29,10 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# player is jumping, go to the jumping state
 	if Input.is_action_just_pressed("player_jump"):
-		player.sounds.stream = preload("res://audio/player/jump.ogg")
-		player.sounds.play()
-		player.sprite.speed_scale = 1
 		return PlayerJumpingState
 	
 	# player is spin jumping, go to the spin jumping state
 	if Input.is_action_just_pressed("player_spin_jump"):
-		player.sounds.stream = preload("res://audio/player/spin_jump.ogg")
-		player.sounds.play()
 		return PlayerSpinJumpingState
 	
 	# player is idle, go to the idle state
@@ -53,7 +50,10 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 				player.velocity.x, 0, player.skid_deceleration)
 		if player.velocity.x == 0 or direction == 0:
 			_skidding = false
-			if player.sounds.stream == preload("res://audio/player/skid.ogg"):
+			# avoid load
+			if player.sounds.stream != null and \
+					player.sounds.stream.resource_path == \
+					ResourceUID.uid_to_path("uid://vxfegf1r2emq"):
 				player.sounds.stop()
 	else:
 		# normal logic
@@ -80,7 +80,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 		_skidding = true
 		_do_skid_smoke(player)
 		if player.p_meter > 5 and player.is_on_floor():
-			player.sounds.stream = preload("res://audio/player/skid.ogg")
+			player.sounds.stream.resource_path = load("uid://vxfegf1r2emq")
 			player.sounds.play()
 	
 	# animations

@@ -20,7 +20,7 @@ func _init() -> void:
 		_init()
 		return
 	var json = JSON.new()
-	var err = json.parse(file.get_as_text(true))
+	var err = json.parse(file.get_as_text())
 	file.close()
 	if json.data is not Dictionary:
 		reset_config()

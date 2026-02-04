@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=74 format=3 uid="uid://b1p8m6j6up5pm"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://b1p8m6j6up5pm"]
 
 [ext_resource type="Texture2D" uid="uid://ca05qgc81oifa" path="res://sprites/player/mario/super/climb.png" id="1_7ga2d"]
 [ext_resource type="Texture2D" uid="uid://chi15w4abhcf3" path="res://sprites/player/mario/super/dry_bones_shell.png" id="2_ptxio"]

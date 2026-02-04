@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dtq1i14h6pmvn"]
+[gd_scene format=3 uid="uid://dtq1i14h6pmvn"]
 
 [ext_resource type="Script" uid="uid://46u20dtv31sb" path="res://scripts/ui/intro/intro.gd" id="1_63hat"]
 [ext_resource type="Shader" uid="uid://euyudj0kkdr6" path="res://shaders/circle_transition.gdshader" id="2_duawr"]
@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bwyegq0ln2v8a" path="res://sprites/ui/intro/btn_link_youtube_hover.svg" id="14_tgdcd"]
 [ext_resource type="Texture2D" uid="uid://d4f1cs174r5fp" path="res://sprites/ui/intro/btn_settings.svg" id="15_mdh5t"]
 [ext_resource type="Texture2D" uid="uid://bamv2gwsfn8oj" path="res://sprites/ui/intro/btn_settings_hover.svg" id="16_rh4yj"]
-[ext_resource type="AudioStream" uid="uid://dvgebyg0umdr6" path="res://audio/ui/coin.ogg" id="19_0i2tv"]
+[ext_resource type="AudioStream" uid="uid://b1rko3giiny3a" path="res://audio/ui/coin.wav" id="22_1sgqr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0i2tv"]
 blend_mode = 4
@@ -41,7 +41,7 @@ font_size = 24
 font = ExtResource("9_v04hj")
 font_size = 24
 
-[node name="Intro" type="Control"]
+[node name="Intro" type="Control" unique_id=850145229]
 material = SubResource("CanvasItemMaterial_0i2tv")
 layout_mode = 3
 anchors_preset = 15
@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_63hat")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=724910450]
 unique_name_in_owner = true
 texture_filter = 2
 material = SubResource("ShaderMaterial_1sgqr")
@@ -64,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.7921569, 0.12941177, 1)
 
-[node name="AnimContainer" type="CenterContainer" parent="."]
+[node name="AnimContainer" type="CenterContainer" parent="." unique_id=826880391]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true
@@ -75,7 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Logo" type="Control" parent="."]
+[node name="Logo" type="Control" parent="." unique_id=1619818739]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true
@@ -92,7 +92,7 @@ script = ExtResource("3_hv022")
 white = false
 metadata/_custom_type_script = "uid://imtq6gf8pnq3"
 
-[node name="Calendar" type="Control" parent="."]
+[node name="Calendar" type="Control" parent="." unique_id=293565415]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 texture_filter = 2
@@ -100,7 +100,7 @@ anchors_preset = 0
 offset_right = 167.0
 offset_bottom = 97.0
 
-[node name="Icon" type="TextureRect" parent="Calendar"]
+[node name="Icon" type="TextureRect" parent="Calendar" unique_id=303942333]
 texture_filter = 2
 layout_mode = 1
 offset_left = 48.0
@@ -110,7 +110,7 @@ offset_bottom = 81.0
 texture = ExtResource("3_646do")
 expand_mode = 1
 
-[node name="Weekday" type="Label" parent="Calendar"]
+[node name="Weekday" type="Label" parent="Calendar" unique_id=851558899]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 1
@@ -121,9 +121,10 @@ offset_bottom = 97.0
 label_settings = SubResource("LabelSettings_apfq8")
 vertical_alignment = 1
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=1509192157]
 unique_name_in_owner = true
 visible = false
+modulate = Color(1, 1, 1, 0)
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
@@ -132,7 +133,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="HBoxContainer" parent="UI"]
+[node name="Center" type="HBoxContainer" parent="UI" unique_id=180769941]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
@@ -146,7 +147,7 @@ grow_horizontal = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="OnlineBtn" type="TextureButton" parent="UI/Center"]
+[node name="OnlineBtn" type="TextureButton" parent="UI/Center" unique_id=1895235097]
 texture_filter = 2
 custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
@@ -156,7 +157,7 @@ texture_normal = ExtResource("4_2q4qt")
 texture_hover = ExtResource("5_60qwf")
 script = ExtResource("6_0i2tv")
 
-[node name="PlayBtn" type="TextureButton" parent="UI/Center"]
+[node name="PlayBtn" type="TextureButton" parent="UI/Center" unique_id=1554145651]
 texture_filter = 2
 custom_minimum_size = Vector2(336, 72)
 layout_mode = 2
@@ -164,7 +165,7 @@ texture_normal = ExtResource("6_r0cr4")
 texture_hover = ExtResource("7_60qwf")
 script = ExtResource("10_tcqqm")
 
-[node name="Label" type="Label" parent="UI/Center/PlayBtn"]
+[node name="Label" type="Label" parent="UI/Center/PlayBtn" unique_id=1113761538]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -176,7 +177,7 @@ label_settings = SubResource("LabelSettings_duawr")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BottomRight" type="HBoxContainer" parent="UI"]
+[node name="BottomRight" type="HBoxContainer" parent="UI" unique_id=1013743009]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 3
@@ -193,7 +194,7 @@ grow_vertical = 0
 theme_override_constants/separation = 18
 alignment = 2
 
-[node name="WebsiteBtn" type="TextureButton" parent="UI/BottomRight"]
+[node name="WebsiteBtn" type="TextureButton" parent="UI/BottomRight" unique_id=644236543]
 texture_filter = 2
 layout_mode = 2
 texture_normal = ExtResource("7_0i2tv")
@@ -201,7 +202,7 @@ texture_hover = ExtResource("8_v04hj")
 script = ExtResource("6_0i2tv")
 link = "https://www.smmwe.xyz/legal/terms/"
 
-[node name="FacebookBtn" type="TextureButton" parent="UI/BottomRight"]
+[node name="FacebookBtn" type="TextureButton" parent="UI/BottomRight" unique_id=1962672123]
 texture_filter = 2
 layout_mode = 2
 texture_normal = ExtResource("9_duawr")
@@ -209,7 +210,7 @@ texture_hover = ExtResource("10_1sgqr")
 script = ExtResource("6_0i2tv")
 link = "https://facebook.com/groups/488458248636741/?ref=share"
 
-[node name="DiscordBtn" type="TextureButton" parent="UI/BottomRight"]
+[node name="DiscordBtn" type="TextureButton" parent="UI/BottomRight" unique_id=733584426]
 texture_filter = 2
 layout_mode = 2
 texture_normal = ExtResource("11_tcqqm")
@@ -217,7 +218,7 @@ texture_hover = ExtResource("12_4mgms")
 script = ExtResource("6_0i2tv")
 link = "https://discord.com/invite/YwpyCfHgSr"
 
-[node name="YoutubeBtn" type="TextureButton" parent="UI/BottomRight"]
+[node name="YoutubeBtn" type="TextureButton" parent="UI/BottomRight" unique_id=1490057053]
 texture_filter = 2
 layout_mode = 2
 texture_normal = ExtResource("13_cg2vd")
@@ -225,7 +226,7 @@ texture_hover = ExtResource("14_tgdcd")
 script = ExtResource("6_0i2tv")
 link = "https://www.youtube.com/@enginekingdom"
 
-[node name="TopRight" type="HBoxContainer" parent="UI"]
+[node name="TopRight" type="HBoxContainer" parent="UI" unique_id=209876720]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 1
@@ -239,13 +240,13 @@ grow_horizontal = 0
 theme_override_constants/separation = 18
 alignment = 2
 
-[node name="SettingsBtn" type="TextureButton" parent="UI/TopRight"]
+[node name="SettingsBtn" type="TextureButton" parent="UI/TopRight" unique_id=638579582]
 texture_filter = 2
 layout_mode = 2
 texture_normal = ExtResource("15_mdh5t")
 texture_hover = ExtResource("16_rh4yj")
 script = ExtResource("6_0i2tv")
 
-[node name="IntroFinishSound" type="AudioStreamPlayer" parent="."]
+[node name="IntroFinishSound" type="AudioStreamPlayer" parent="." unique_id=1706412561]
 unique_name_in_owner = true
-stream = ExtResource("19_0i2tv")
+stream = ExtResource("22_1sgqr")

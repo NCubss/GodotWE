@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmjolsltwwkx1"]
+[gd_scene format=3 uid="uid://cmjolsltwwkx1"]
 
 [ext_resource type="Script" uid="uid://c1vevfranvnvu" path="res://scripts/level/sub_area.gd" id="1_d1g1m"]
+[ext_resource type="Shader" uid="uid://bmus0fg8xjypt" path="res://shaders/shadow.gdshader" id="2_d1g1m"]
 
-[node name="SubArea" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1g1m"]
+shader = ExtResource("2_d1g1m")
+
+[node name="SubArea" type="Node2D" unique_id=1207914609]
 script = ExtResource("1_d1g1m")
 metadata/_custom_type_script = "uid://c1vevfranvnvu"
 
-[node name="Foreground" type="Node" parent="."]
+[node name="Foreground" type="CanvasGroup" parent="." unique_id=1554830974]
+z_index = 100
+material = SubResource("ShaderMaterial_d1g1m")
