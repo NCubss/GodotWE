@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bde0tltjb5047"]
+[gd_scene format=3 uid="uid://bde0tltjb5047"]
 
 [ext_resource type="Texture2D" uid="uid://cgt241c58iwfn" path="res://sprites/skid_smoke.png" id="1_lnb2w"]
 [ext_resource type="Script" uid="uid://cgfsosscj8elx" path="res://scripts/other/particle.gd" id="2_rf3g5"]
@@ -46,7 +46,7 @@ animations = [{
 "speed": 18.0
 }]
 
-[node name="SkidSmoke" type="AnimatedSprite2D"]
+[node name="SkidSmoke" type="AnimatedSprite2D" unique_id=247378283]
 z_index = 40
 z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_8x6fv")

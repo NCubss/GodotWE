@@ -10,13 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Super Secret"
+config/name="GodotWE"
+config/description="SMM:WE in Godot"
 config/version="0.1.0"
 run/main_scene="uid://qepmxcf7odg6"
-config/features=PackedStringArray("4.5", "Mobile")
+config/use_custom_user_dir=true
+config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 config/icon="uid://god0ayqmlgrj"
 config/windows_native_icon="res://icon.ico"
@@ -35,6 +37,7 @@ file_logging/log_path="user://game.log"
 
 [display]
 
+window/size/initial_position_type=4
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
@@ -42,7 +45,7 @@ mouse_cursor/custom_image_hotspot=Vector2(15, 18)
 
 [editor]
 
-movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/Intro.ogv"
+movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/extra/video.ogv"
 
 [file_customization]
 
@@ -132,14 +135,14 @@ pause={
 ]
 }
 
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
-
 [internationalization]
 
+locale/translation_remaps={
+"res://sprites/ui/coursebot/tag_stamps/sheet.png": PackedStringArray("res://sprites/ui/coursebot/tag_stamps/sheet_es.png:es", "res://sprites/ui/coursebot/tag_stamps/sheet_it.png:it", "res://sprites/ui/coursebot/tag_stamps/sheet_pt.png:pt", "res://sprites/ui/coursebot/tag_stamps/sheet_ru.png:ru", "res://sprites/ui/coursebot/tag_stamps/sheet_zh.png:zh")
+}
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.es.translation")
 locale/test="es"
+locale/locale_filter_mode=0
 
 [layer_names]
 
@@ -147,6 +150,7 @@ locale/test="es"
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Other entities"
+2d_physics/layer_9="Parts"
 
 [physics]
 

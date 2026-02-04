@@ -211,7 +211,7 @@ func _process(delta: float) -> void:
 
 ## Downgrades the player into a lower-tier powerup.
 func damage() -> void:
-	#sounds.stream = preload("res://audio/player/warp.ogg")
+	sounds.stream = load("uid://0nbemimuo3b6")
 	sounds.play()
 
 
@@ -278,8 +278,9 @@ func spawn_spin_thump(pos := global_position) -> void:
 
 func _just_collided(collision: KinematicCollision2D) -> void:
 	var coll = collision.get_collider()
-	if collision.get_normal().y == 1 and (coll is CollisionObject2D and coll.collision_layer == 1):
-		sounds.stream = preload("res://audio/player/bump.ogg")
+	if collision.get_normal().y == 1 and \
+			(coll is CollisionObject2D and coll.collision_layer == 1):
+		sounds.stream = load("uid://7ec5u6l30bgt")
 		sounds.play()
 
 

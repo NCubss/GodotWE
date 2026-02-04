@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpfaa6qawfnk1"]
+[gd_scene format=3 uid="uid://dpfaa6qawfnk1"]
 
 [ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_6ie8e"]
 [ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://sprites/tiles/ground.png" id="2_83ppi"]
@@ -21,14 +21,14 @@ resource_local_to_scene = true
 atlas = ExtResource("2_83ppi")
 region = Rect2(80, 160, 16, 16)
 
-[node name="GroundPart" instance=ExtResource("1_6ie8e")]
+[node name="GroundPart" unique_id=573506870 instance=ExtResource("1_6ie8e")]
 script = ExtResource("2_akctd")
 part_info = SubResource("Resource_pdb1e")
 
 [node name="CollShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_83ppi")
 
-[node name="Sprite" type="Sprite2D" parent="Graphics" index="0"]
+[node name="Sprite" type="Sprite2D" parent="Graphics" index="0" unique_id=599116263]
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_a0kg4")
 script = ExtResource("3_akctd")

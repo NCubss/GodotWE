@@ -16,21 +16,18 @@ const CIRCLE_DETAIL = 64
 
 var _enter_tween: Tween
 var _fade_tween: Tween
-var _color_rect: ColorRect
-var _polygon: Polygon2D
+var _color_rect := ColorRect.new()
+var _polygon := Polygon2D.new()
 var _max_radius: float
 
 func _init() -> void:
 	layer = RenderingServer.CANVAS_LAYER_MAX
 	
-	_color_rect = ColorRect.new()
 	_color_rect.color = Color(Color.BLACK, 0)
 	_color_rect.set_anchors_preset(Control.LayoutPreset.PRESET_FULL_RECT, true)
 	_color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_color_rect)
 	
-	
-	_polygon = Polygon2D.new()
 	_polygon.color = Color.BLACK
 	_polygon.invert_enabled = true
 	_polygon.hide()
@@ -92,7 +89,7 @@ func _fade_to_what(
 			_fade_tween.tween_method(_update_polygon, \
 					_color_rect.size.length() / 2, 0, 1)
 			_fade_tween.tween_callback(_polygon.hide)
-	_fade_tween.tween_callback(_change_scene.bind(scene))
+	_fade_tween.tween_callback(_change_scene.bind(scene.instantiate()))
 	match trans_out:
 		Transition.FADE:
 			_fade_tween.tween_property(_color_rect, "color:a", 0, 0.5).from(1)
@@ -103,12 +100,10 @@ func _fade_to_what(
 			_fade_tween.tween_callback(_polygon.hide)
 
 
-func _change_scene(scene: PackedScene) -> void:
-	get_tree().change_scene_to_packed(scene)
-	#get_tree().unload_current_scene()
-	#var scn = scene.instantiate()
-	#get_tree().root.add_child(scn)
-	#get_tree().current_scene = scn
+func _change_scene(scene: Node) -> void:
+	get_tree().unload_current_scene()
+	get_tree().root.add_child(scene)
+	get_tree().current_scene = scene
 
 
 func _update_polygon(radius: float) -> void:

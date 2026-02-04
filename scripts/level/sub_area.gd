@@ -14,6 +14,13 @@ extends Node2D
 @export var meteorites := false
 @export var autoscroll := Level.Autoscroll.NONE
 
+## The background node.
+var background: Node
+## The foreground node, which stores all tiles and entities.
+var foreground: Node
+## The editor foreground node, which stores all parts. Only available if this
+## level is being edited (i.e. [member Level.editor] is not [code]null[/code]).
+var editor_foreground: Node
 ## The sub-area's parent level.
 var level: Level
 
@@ -22,39 +29,21 @@ var level: Level
 ## creating the background).
 func load(_level: Level) -> void:
 	level = _level
-	if not has_node("Background"):
-		var scn: PackedScene = load(GameConstants.BACKGROUNDS \
-				[level.game_style][level_theme][night_mode])
-		if scn != null:
-			var bg = scn.instantiate()
-			bg.name = "Background"
-			add_child(bg)
-		else:
-			push_error("Couldn't load background")
-	if not has_node("Shadows"):
-		var shadows = CanvasGroup.new()
-		shadows.name = "Shadows"
-		shadows.self_modulate = Color(0, 0, 0, 0.3)
-		shadows.z_index = GameConstants.Layers.Z_SHADOWS
-		shadows.z_as_relative = false
-		shadows.process_mode = Node.PROCESS_MODE_ALWAYS
-		shadows.add_to_group("shadows")
-		add_child(shadows)
-	if not has_node("Foreground"):
-		var foreground = Node.new()
-		foreground.name = "Foreground"
-		add_child(foreground)
-	#if not $Foreground.has_node("Map"):
-		#var map = FastMap.new()
-		#map.name = "Map"
-		#map.add_to_group("map")
-		#$Foreground.add_child(map)
-	for i in $Foreground.get_children():
+	var background_scene = load(GameConstants.BACKGROUNDS \
+			[_level.game_style][level_theme][night_mode])
+	background = background_scene.instantiate()
+	add_child(background)
+	foreground = $Foreground
+	for i in foreground.get_children():
 		i = i as Entity
 		if i == null:
 			continue
 		i.level = level
 		i.sub_area = self
+	if Utility.id("editor") != null:
+		editor_foreground = Node.new()
+		editor_foreground.name = "EditorForeground"
+		add_child(editor_foreground)
 
 
 ## Freezes this sub-area. All entities will stop processing and the sub-area

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1pyovyuwelpw"]
+[gd_scene format=3 uid="uid://d1pyovyuwelpw"]
 
 [ext_resource type="Script" uid="uid://cij4fce4dx1vh" path="res://scripts/level/tiles/turn_block_tile.gd" id="1_jh353"]
 [ext_resource type="Texture2D" uid="uid://3gg35twlis0l" path="res://sprites/tiles/turn_block.png" id="2_idixh"]
@@ -59,25 +59,25 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="TurnBlockTile" type="StaticBody2D"]
+[node name="TurnBlockTile" type="StaticBody2D" unique_id=2001682486]
 z_index = 20
 z_as_relative = false
 script = ExtResource("1_jh353")
 metadata/_custom_type_script = "uid://bvwombbno8x7s"
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=2055066858]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_idixh")
 
-[node name="PlayerCheckArea" type="Area2D" parent="."]
+[node name="PlayerCheckArea" type="Area2D" parent="." unique_id=1315782614]
 collision_layer = 0
 collision_mask = 6
 
-[node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea"]
+[node name="CollShape" type="CollisionShape2D" parent="PlayerCheckArea" unique_id=1235167247]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_ximpl")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=144360478]
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_u7ide")
 animation = &"idle"
@@ -85,7 +85,7 @@ autoplay = "idle"
 script = ExtResource("3_o4nxb")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
-[node name="BlockComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="BlockComponent" type="Node" parent="." unique_id=978985610 node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_6rsai")
 sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://dedgj7iu2ix2b"

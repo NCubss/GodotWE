@@ -10,7 +10,8 @@ func _ready() -> void:
 
 
 func _changed(coords: Vector2i) -> void:
-	var tp = tile.rect.position
+	
+	var tp = Utility.id("level").to_grid(global_position)
 	if coords.x <= tp.x + 4 and coords.x >= tp.x - 4 and coords.y <= tp.y + 2 and coords.y >= tp.y - 2:
 		refresh_sprite()
 
@@ -20,36 +21,41 @@ func _atlas(x: int, y: int) -> void:
 
 
 func _check(x: int, y: int) -> bool:
-	return map.get_tiles(Rect2i(x, y, 1, 1)) \
-			.any(func(t: Tile): return get_node(t.node_path) is GroundPart)
+	var query = PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.collision_mask = 256
+	query.exclude = [get_rid()]
+	query.position = global_position + Vector2(x * 16, y * 16)
+	var result = get_world_2d().direct_space_state.intersect_point(query, 1)
+	return result.size() != 0 and result[0]["collider"] is GroundPart
 
 
 func refresh_sprite() -> void:
-	if tile == null:
+	if held:
 		_atlas(5, 10)
 		return
+		
+	var top_left = _check(-1, -1)
+	var top = _check(0, -1)
+	var top_right = _check(1, -1)
+	var right = _check(1, 0)
+	var right_right = _check(2, 0)
+	var bottom_right = _check(1, 1)
+	var bottom = _check(0, 1)
+	var bottom_left = _check(-1, 1)
+	var left = _check(-1, 0)
+	var left_left = _check(-2, 0)
 	
-	var tp := tile.rect.position
-	var top_left = _check(tp.x - 1, tp.y - 1)
-	var top = _check(tp.x, tp.y - 1)
-	var top_right = _check(tp.x + 1, tp.y - 1)
-	var right = _check(tp.x + 1, tp.y)
-	var right_right = _check(tp.x + 2, tp.y)
-	var bottom_right = _check(tp.x + 1, tp.y + 1)
-	var bottom = _check(tp.x, tp.y + 1)
-	var bottom_left = _check(tp.x - 1, tp.y + 1)
-	var left = _check(tp.x - 1, tp.y)
-	var left_left = _check(tp.x - 2, tp.y)
-	
-	if tp.y + 1 >= 0:
+	if global_position.y >= -16:
 		bottom_left = true
 		bottom = true
 		bottom_right = true
-	if tp.x - 1 < 0:
+	if global_position.x <= 0:
 		top_left = true
 		left = true
 		bottom_left = true
-	if tp.x - 2 < 0:
+	if global_position.x <= 16:
 		left_left = false
 	
 	if top:

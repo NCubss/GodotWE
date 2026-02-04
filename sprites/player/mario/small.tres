@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://b8ka66cx00t43"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://b8ka66cx00t43"]
 
 [ext_resource type="Texture2D" uid="uid://p3po536g3vlu" path="res://sprites/player/mario/small/duck.png" id="1_dojcj"]
 [ext_resource type="Texture2D" uid="uid://c2ghbdcbsyk30" path="res://sprites/player/mario/dead.png" id="1_hgfbl"]

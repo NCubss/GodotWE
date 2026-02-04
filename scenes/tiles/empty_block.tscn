@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://vxvp8itjp1cv"]
+[gd_scene format=3 uid="uid://vxvp8itjp1cv"]
 
 [ext_resource type="Script" uid="uid://bvwombbno8x7s" path="res://scripts/ext/static_body_ext.gd" id="1_v0k4p"]
 [ext_resource type="Texture2D" uid="uid://qacwjfywv21u" path="res://sprites/tiles/empty_block.png" id="2_lqnbd"]
@@ -8,22 +8,22 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dgpfl"]
 size = Vector2(16, 16)
 
-[node name="EmptyBlock" type="StaticBody2D"]
+[node name="EmptyBlock" type="StaticBody2D" unique_id=1926825586]
 z_index = 20
 z_as_relative = false
 script = ExtResource("1_v0k4p")
 metadata/_custom_type_script = "uid://bvwombbno8x7s"
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=1559828942]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_dgpfl")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1336618174]
 position = Vector2(8, 8)
 texture = ExtResource("2_lqnbd")
 script = ExtResource("3_pqnkn")
 metadata/_custom_type_script = "uid://ct8v8svsomclf"
 
-[node name="TileComponent" type="Node" parent="."]
+[node name="TileComponent" type="Node" parent="." unique_id=747701066]
 script = ExtResource("4_7h8rm")
 metadata/_custom_type_script = "uid://crxc20f4jyeky"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://clqrm38rakunb"]
+[gd_scene format=3 uid="uid://clqrm38rakunb"]
 
 [ext_resource type="Texture2D" uid="uid://d3c5u63kv1u4x" path="res://sprites/spin_thump.png" id="1_v0sv7"]
 [ext_resource type="Script" uid="uid://cgfsosscj8elx" path="res://scripts/other/particle.gd" id="2_pyjb2"]
@@ -39,7 +39,7 @@ animations = [{
 "speed": 21.0
 }]
 
-[node name="SpinThump" type="AnimatedSprite2D"]
+[node name="SpinThump" type="AnimatedSprite2D" unique_id=481634337]
 z_index = 40
 z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_n4kg2")

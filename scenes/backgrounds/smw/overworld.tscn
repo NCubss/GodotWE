@@ -1,23 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctnffmabe0h4f"]
+[gd_scene format=3 uid="uid://ctnffmabe0h4f"]
 
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://sprites/background.png" id="1_mwgmk"]
 
-[node name="Background" type="Node"]
+[node name="Background" type="Node" unique_id=777833003]
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1723056460]
 z_index = -2
 z_as_relative = false
 scroll_scale = Vector2(0.5, 1)
 scroll_offset = Vector2(-256, 0)
 repeat_size = Vector2(512, 0)
 
-[node name="Background" type="Sprite2D" parent="Parallax2D"]
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1381600414]
 position = Vector2(0, -432)
 texture = ExtResource("1_mwgmk")
 centered = false
 region_rect = Rect2(0, 0, 512, 432)
 
-[node name="Background2" type="Sprite2D" parent="Parallax2D"]
+[node name="Background2" type="Sprite2D" parent="Parallax2D" unique_id=721399940]
 position = Vector2(512, -432)
 texture = ExtResource("1_mwgmk")
 centered = false

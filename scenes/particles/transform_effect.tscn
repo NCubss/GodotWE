@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c0kxkxytstbdg"]
+[gd_scene format=3 uid="uid://c0kxkxytstbdg"]
 
 [ext_resource type="Texture2D" uid="uid://ratubfqraihb" path="res://sprites/ui/editor/transform_effect.svg" id="1_njs2r"]
 
@@ -255,7 +255,7 @@ animations = [{
 "speed": 45.0
 }]
 
-[node name="TransformEffect" type="AnimatedSprite2D"]
+[node name="TransformEffect" type="AnimatedSprite2D" unique_id=1999965427]
 z_index = 59
 texture_filter = 2
 scale = Vector2(0.333, 0.333)

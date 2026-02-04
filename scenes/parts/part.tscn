@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://jr7c4ykh8awq"]
+[gd_scene format=3 uid="uid://jr7c4ykh8awq"]
 
 [ext_resource type="Script" uid="uid://dnhf1isfdvgo2" path="res://scripts/level/parts/part.gd" id="1_dwemf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p834g"]
 size = Vector2(16, 16)
 
-[node name="Part" type="Area2D"]
+[node name="Part" type="Area2D" unique_id=1549879982]
 z_index = 50
+collision_layer = 272
 collision_mask = 0
 monitoring = false
-monitorable = false
 script = ExtResource("1_dwemf")
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=751260987]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_p834g")
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=1571586840]
 position = Vector2(8, 8)

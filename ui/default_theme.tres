@@ -1,9 +1,14 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpr7p83ljnpes"]
+[gd_resource type="Theme" format=3 uid="uid://cpr7p83ljnpes"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y5boi"]
+
+[sub_resource type="FontVariation" id="FontVariation_y5boi"]
+variation_embolden = 0.7
 
 [resource]
 default_font_size = 24
 Button/colors/font_color = Color(0.352941, 0.0784314, 0.109804, 1)
 Button/styles/normal = SubResource("StyleBoxTexture_y5boi")
 Label/font_sizes/font_size = 24
+RichTextLabel/constants/paragraph_separation = 16
+RichTextLabel/fonts/bold_font = SubResource("FontVariation_y5boi")

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/course_clear.ogg-05a2b6c15ab9f4da0e07aeac859c
 [params]
 
 loop=true
-loop_offset=11.974
+loop_offset=12.923
 bpm=0.0
 beat_count=0
 bar_beats=4

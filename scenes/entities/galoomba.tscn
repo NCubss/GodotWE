@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2p4v7v1baic6"]
+[gd_scene format=3 uid="uid://d2p4v7v1baic6"]
 
 [ext_resource type="Script" uid="uid://dgb0ph8dkygb4" path="res://scripts/level/entities/enemies/enemy.gd" id="1_bs2gg"]
 [ext_resource type="Texture2D" uid="uid://d3s6tog37hohi" path="res://sprites/entities/galoomba.png" id="2_jtsmq"]
@@ -31,41 +31,40 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Galoomba" type="CharacterBody2D" node_paths=PackedStringArray("hitbox")]
+[node name="Galoomba" type="CharacterBody2D" unique_id=840236128 node_paths=PackedStringArray("hitbox")]
 z_index = 30
-z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_bs2gg")
 hitbox = NodePath("KillArea")
 metadata/_custom_type_script = "uid://dgb0ph8dkygb4"
 
-[node name="CollShape" type="CollisionShape2D" parent="."]
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=1592795957]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_cotiu")
 
-[node name="KillArea" type="Area2D" parent="."]
+[node name="KillArea" type="Area2D" parent="." unique_id=1234152278]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollShape" type="CollisionShape2D" parent="KillArea"]
+[node name="CollShape" type="CollisionShape2D" parent="KillArea" unique_id=1429030483]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_cotiu")
 
-[node name="Graphics" type="Node2D" parent="."]
+[node name="Graphics" type="Node2D" parent="." unique_id=1826116926]
 position = Vector2(0, -8)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Graphics"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Graphics" unique_id=1096025328]
 sprite_frames = SubResource("SpriteFrames_hyga4")
 animation = &"walk"
 autoplay = "walk"
 script = ExtResource("3_jq00e")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
-[node name="GravityComponent" type="Node" parent="."]
+[node name="GravityComponent" type="Node" parent="." unique_id=1849971123]
 script = ExtResource("4_jq00e")
 metadata/_custom_type_script = "uid://nhyxn7n2fqbr"
 
-[node name="SlideComponent" type="Node" parent="."]
+[node name="SlideComponent" type="Node" parent="." unique_id=385253733]
 script = ExtResource("5_cotiu")
 speed = 30.0
 metadata/_custom_type_script = "uid://sv7f6f65t1eb"
