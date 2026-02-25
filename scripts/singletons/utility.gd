@@ -84,3 +84,60 @@ func rangef(...args: Array) -> Array[float]:
 	while arr[-1] + step_value < max_value:
 		arr.append(arr[-1] + step_value)
 	return arr
+
+
+## Snaps the vector [param x] to a grid with a specified cell [param size] and
+## a cell [param offset]. [param x] must be a 2D vector ([Vector2]/[Vector2i]),
+## however [param size] and [param offset] must be any number or a 2D vector
+## type ([int]/[float]/[Vector2]/[Vector2i]). Returns the same type as
+## [param x].
+func snap(x: Variant, size: Variant, offset: Variant = Vector2.ZERO) -> Variant:
+	assert(x is Vector2 or x is Vector2i,
+			"Utility.snap() 'x' argument incorrect type")
+	if x is Vector2:
+		assert(size is int or size is float or size is Vector2i, 
+				"Utility.snap() 'size' argument incorrect type")
+		assert(offset is int or offset is float or offset is Vector2i,
+				"Utility.snap() 'offset' argument incorrect type")
+		if size is int or size is float:
+			size = Vector2(size, size)
+		elif size is Vector2i:
+			size = Vector2(size)
+		if offset is int or offset is float:
+			offset = Vector2(offset, offset)
+		elif offset is Vector2i:
+			offset = Vector2(offset)
+		return ((x / size).floor() * size) + offset
+	elif x is Vector2i:
+		assert(size is int or size is float or size is Vector2,
+				"Utility.snap() 'size' argument incorrect type")
+		assert(offset is int or offset is float or offset is Vector2,
+				"Utility.snap() 'offset' argument incorrect type")
+		if size is int or size is float:
+			size = Vector2i(size, size)
+		elif size is Vector2:
+			size = Vector2i(size)
+		if offset is int or offset is float:
+			offset = Vector2i(offset, offset)
+		elif offset is Vector2:
+			offset = Vector2i(offset)
+		return ((x / size) * size) + offset
+	return null
+
+
+func snapf(x: float, size: float, offset := 0.0) -> float:
+	return (floorf(x / size) * size) + offset
+
+
+func snapi(x: int, size: int, offset := 0) -> int:
+	@warning_ignore("integer_division")
+	return ((x / size) * size) + offset
+
+
+func snap2(x: Vector2, size: Vector2, offset := Vector2.ZERO) -> Vector2:
+	return ((x / size).floor() * size) + offset
+
+
+func snap2i(x: Vector2i, size: Vector2i, offset := Vector2i.ZERO) -> Vector2i:
+	@warning_ignore("integer_division")
+	return ((x / size) * size) + offset

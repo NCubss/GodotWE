@@ -2,7 +2,7 @@ class_name Editor
 extends Control
 
 ## The level this [Editor] is associated with.
-@onready var level: Level = Utility.id("level")
+@onready var level: Level = Utility.id("level") as Level
 
 ## The currently held part.
 var held_part: Part
@@ -27,8 +27,8 @@ func _ready():
 	
 
 
-#func _process(_delta: float) -> void:
-	#_process_place(true)
+func _process(_delta: float) -> void:
+	_process_place(true)
 
 
 
@@ -55,27 +55,33 @@ func get_selected_part() -> PartInfo:
 func _process_place(multi_place_allowed: bool) -> void:
 	_last_mouse_pos = level.get_global_mouse_position()
 	var selected = get_selected_part()
-	if selected != null and _mouse_down and can_interact and not erasing:
-		if selected.multi_place and not multi_place_allowed:
-			return
-		var query = PhysicsShapeQueryParameters2D.new()
-		query.collide_with_areas = true
-		query.collide_with_bodies = false
-		query.collision_mask = 256
-		var shape = RectangleShape2D.new()
-		shape.size = selected.size * 16.0
-		query.shape = shape
-		query.position = _last_mouse_pos + (shape.size / 2)
-		if get_world_2d().direct_space_state.intersect_shape(query, 1) \
-				.is_empty():
-			place((_last_mouse_pos / 16.0).floor())
+	if selected == null or not _mouse_down:
+		return
+	if not can_interact or erasing:
+		return
+	if selected.multi_place and not multi_place_allowed:
+		return
+	if held_part != null:
+		return
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.collision_mask = 1 << 8
+	var shape = RectangleShape2D.new()
+	shape.size = level.from_grid(selected.size) - Vector2(2, 2)
+	query.shape = shape
+	query.transform.origin = level.snap(_last_mouse_pos) + \
+			(level.from_grid(selected.size) / 2.0)
+	if get_world_2d().direct_space_state.intersect_shape(query, 1) \
+			.is_empty():
+		place(level.to_grid(_last_mouse_pos))
 
 
 ## Places a tile at [param pos] and returns the placed [Part].
 func place(pos: Vector2i) -> Part:
 	var part: Part = get_selected_part().part.instantiate()
+	part.global_position = level.from_grid(pos)
 	level.current_sub_area.editor_foreground.add_child(part)
-	part.global_position = pos * 16.0
 	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 	return part

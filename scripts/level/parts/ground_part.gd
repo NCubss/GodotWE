@@ -9,53 +9,130 @@ func _ready() -> void:
 	refresh_sprite()
 
 
-func _changed(coords: Vector2i) -> void:
-	
-	var tp = Utility.id("level").to_grid(global_position)
-	if coords.x <= tp.x + 4 and coords.x >= tp.x - 4 and coords.y <= tp.y + 2 and coords.y >= tp.y - 2:
-		refresh_sprite()
-
-
 func _atlas(x: int, y: int) -> void:
 	_tex.region.position = Vector2(x, y) * 16
 
 
-func _check(x: int, y: int) -> bool:
-	var query = PhysicsPointQueryParameters2D.new()
-	query.collide_with_areas = true
-	query.collide_with_bodies = false
-	query.collision_mask = 256
-	query.exclude = [get_rid()]
-	query.position = global_position + Vector2(x * 16, y * 16)
-	var result = get_world_2d().direct_space_state.intersect_point(query, 1)
-	return result.size() != 0 and result[0]["collider"] is GroundPart
+#func _check(x: int, y: int, refresh := false,
+		#override: Dictionary[Vector2i, bool] = {}) -> bool:
+	#var absolute_pos = _grid_pos + Vector2i(x, y)
+	#if absolute_pos in override:
+		#return override[absolute_pos]
+	#var query = PhysicsPointQueryParameters2D.new()
+	#query.collide_with_areas = true
+	#query.collide_with_bodies = false
+	#query.collision_mask = 1 << 8
+	#query.exclude = [get_rid()]
+	#query.position = level.from_grid(_grid_pos + Vector2i(x, y)) + level.GRID_SIZE / 2
+	#var result = get_world_2d().direct_space_state.intersect_point(query, 1)
+	#if not result.is_empty() and result[0]["collider"] is GroundPart:
+		#if refresh:
+			#result[0]["collider"].refresh_sprite()
+		#return true
+	#else:
+		#return false
 
 
-func refresh_sprite() -> void:
+func _hold() -> void:
+	super()
+	reset_sprite()
+	_notify_tiles(_get_nearby_tiles(_original_pos))
+
+
+func _unhold() -> void:
+	super()
+	# this must be deferred due to collision layer possibly not updating fast
+	# enough
+	var deferred = func():
+		var tiles = _get_nearby_tiles(_grid_pos)
+		_notify_tiles(tiles)
+		_connect(_grid_pos, _get_nearby_data(_grid_pos, tiles))
+	deferred.call_deferred()
+
+
+func erase() -> void:
+	super()
+	var tiles = _get_nearby_tiles(_grid_pos)
+	get_parent().remove_child(self)
+	_notify_tiles(tiles)
+
+
+func refresh_sprite(refresh_nearby := true) -> void:
 	if held:
-		_atlas(5, 10)
-		return
-		
-	var top_left = _check(-1, -1)
-	var top = _check(0, -1)
-	var top_right = _check(1, -1)
-	var right = _check(1, 0)
-	var right_right = _check(2, 0)
-	var bottom_right = _check(1, 1)
-	var bottom = _check(0, 1)
-	var bottom_left = _check(-1, 1)
-	var left = _check(-1, 0)
-	var left_left = _check(-2, 0)
+		reset_sprite()
+		if refresh_nearby:
+			var tiles = _get_nearby_tiles(_original_pos)
+			_notify_tiles(tiles)
+	else:
+		var tiles = _get_nearby_tiles(_grid_pos)
+		if refresh_nearby:
+			_notify_tiles(tiles)
+		_connect(_grid_pos, _get_nearby_data(_grid_pos, tiles))
+
+
+func reset_sprite() -> void:
+	_atlas(5, 10)
+
+
+func _get_nearby_tiles(
+		pos: Vector2i,
+		base: Dictionary[Vector2i, GroundPart] = {}
+) -> Dictionary[Vector2i, GroundPart]:
+	for x in range(-2, 3):
+		for y in range(-1, 2):
+			if Vector2i(x, y) in base:
+				continue
+			var query = PhysicsPointQueryParameters2D.new()
+			query.collide_with_areas = true
+			query.collide_with_bodies = false
+			query.collision_mask = 1 << 8
+			query.exclude = [get_rid()]
+			query.position = level.from_grid(pos + Vector2i(x, y)) \
+					+ level.GRID_SIZE / 2
+			var result = get_world_2d().direct_space_state \
+					.intersect_point(query, 1)
+			if not result.is_empty():
+				base[Vector2i(x, y)] = result[0]["collider"] as GroundPart
+			else:
+				base[Vector2i(x, y)] = null
+	return base
+
+
+func _get_nearby_data(pos: Vector2i,
+		tiles := _get_nearby_tiles(pos)) -> Dictionary[Vector2i, bool]:
+	var data: Dictionary[Vector2i, bool] = {}
+	for i in tiles:
+		data[i] = tiles[i] != null
+	return data
+
+
+func _notify_tiles(tiles: Dictionary[Vector2i, GroundPart]) -> void:
+	for i: GroundPart in tiles.values():
+		if i != null:
+			i.refresh_sprite(false)
+
+
+func _connect(pos: Vector2i, data: Dictionary[Vector2i, bool]) -> void:
+	var top_left = data[Vector2i(-1, -1)]
+	var top = data[Vector2i(0, -1)]
+	var top_right = data[Vector2i(1, -1)]
+	var right = data[Vector2i(1, 0)]
+	var right_right = data[Vector2i(2, 0)]
+	var bottom_right = data[Vector2i(1, 1)]
+	var bottom = data[Vector2i(0, 1)]
+	var bottom_left = data[Vector2i(-1, 1)]
+	var left = data[Vector2i(-1, 0)]
+	var left_left = data[Vector2i(-2, 0)]
 	
-	if global_position.y >= -16:
+	if pos.y >= -1:
 		bottom_left = true
 		bottom = true
 		bottom_right = true
-	if global_position.x <= 0:
+	if pos.x <= 0:
 		top_left = true
 		left = true
 		bottom_left = true
-	if global_position.x <= 16:
+	if pos.x <= 1:
 		left_left = false
 	
 	if top:

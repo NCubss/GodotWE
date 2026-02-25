@@ -46,6 +46,7 @@ var _moved_out: bool
 # The process tick this part was spawned on. Used to prevent the part being
 # immediately held once placed. (I'm sure there's a better way to handle this.)
 var _start_frame := Engine.get_process_frames()
+var _coll_layers: int
 
 
 func _ready() -> void:
@@ -69,15 +70,7 @@ func _process(_delta: float) -> void:
 			if not UISoundPlayer.playing:
 				UISoundPlayer.stream = load(sound_path)
 				UISoundPlayer.play()
-			_grid_pos = new_grid_pos
-			var query = PhysicsPointQueryParameters2D.new()
-			query.collide_with_areas = true
-			query.collide_with_bodies = false
-			query.collision_mask = 256
-			query.exclude = [get_rid()]
-			query.position = new_grid_pos
-			_valid_space = get_world_2d().direct_space_state \
-					.intersect_point(query, 1).is_empty()
+			_check_validity()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -108,7 +101,7 @@ func _notification(what: int) -> void:
 func _draw():
 	if is_queued_for_deletion():
 		return
-	var rect = Rect2(level.from_grid(_grid_pos),
+	var rect = Rect2(level.from_grid(_grid_pos) - position,
 			level.from_grid(part_info.size))
 	if held:
 		var color
@@ -158,6 +151,8 @@ func _mouse_update(state: bool) -> void:
 
 
 func _hold() -> void:
+	_coll_layers = collision_layer
+	collision_layer = 0
 	_original_pos = _grid_pos
 	_original_z = graphics.z_index
 	graphics.z_index = _TOP_Z
@@ -177,11 +172,27 @@ func _hold() -> void:
 
 
 func _unhold() -> void:
+	collision_layer = _coll_layers
 	graphics.z_index = _original_z
 	editor.held_part = null
 	_tween.kill()
 	_anim_place()
-	global_position = level.from_grid(_grid_pos)
+	_check_validity()
+	if not _valid_space:
+		_grid_pos = _original_pos
+	position = level.from_grid(_grid_pos)
 	graphics.rotation = 0
 	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
+
+
+func _check_validity():
+	_grid_pos = level.to_grid(level.get_local_mouse_position())
+	var query = PhysicsPointQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.collision_mask = 1 << 8
+	query.exclude = [get_rid()]
+	query.position = level.from_grid(_grid_pos) + level.GRID_SIZE / 2
+	_valid_space = get_world_2d().direct_space_state \
+			.intersect_point(query, 1).is_empty()
