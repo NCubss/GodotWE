@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b7i6hre4grgbn"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_y7aef"]
+[ext_resource type="Texture2D" uid="uid://dm510dlk0st0r" path="res://sprites/tiles/question_block.png" id="2_pyfjg"]
+[ext_resource type="Texture2D" uid="uid://in5ygb75kfnf" path="res://sprites/ui/editor/part_icons/smb3/test.png" id="2_vhijl"]
+[ext_resource type="Script" uid="uid://4ld0tmaadxvg" path="res://scripts/ui/editor/part_info.gd" id="3_7mkou"]
+[ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_vhijl"]
+
+[sub_resource type="Resource" id="Resource_ml7bp"]
+script = ExtResource("3_7mkou")
+icon = ExtResource("2_vhijl")
+part = null
+multi_place = true
+metadata/_custom_type_script = "uid://4ld0tmaadxvg"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mkou"]
+atlas = ExtResource("2_pyfjg")
+region = Rect2(0, 0, 16, 16)
+
+[node name="QuestionBlockPart" unique_id=1549879982 instance=ExtResource("1_y7aef")]
+part_info = SubResource("Resource_ml7bp")
+
+[node name="SpriteExt" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=744579737]
+texture = SubResource("AtlasTexture_7mkou")
+script = ExtResource("3_vhijl")
+metadata/_custom_type_script = "uid://ct8v8svsomclf"

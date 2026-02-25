@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
 [ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="19_wtof8"]
 [ext_resource type="PackedScene" uid="uid://dpfaa6qawfnk1" path="res://scenes/parts/ground_part.tscn" id="23_df8yj"]
+[ext_resource type="Texture2D" uid="uid://in5ygb75kfnf" path="res://sprites/ui/editor/part_icons/smb3/test.png" id="23_sqdok"]
+[ext_resource type="PackedScene" uid="uid://b7i6hre4grgbn" path="res://scenes/parts/question_block_part.tscn" id="24_ljufs"]
 [ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="25_df8yj"]
 [ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="26_ljufs"]
 [ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="27_ljufs"]
@@ -34,7 +36,14 @@ part = ExtResource("23_df8yj")
 multi_place = true
 metadata/_custom_type_script = "uid://4ld0tmaadxvg"
 
-[node name="Level" type="Node2D" unique_id=420214772]
+[sub_resource type="Resource" id="Resource_w57a8"]
+script = ExtResource("28_q43qg")
+icon = ExtResource("23_sqdok")
+part = ExtResource("24_ljufs")
+multi_place = true
+metadata/_custom_type_script = "uid://4ld0tmaadxvg"
+
+[node name="Level" type="Node2D" unique_id=420214772 groups=["level"]]
 script = ExtResource("1_hf1b4")
 metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
 
@@ -214,7 +223,7 @@ part = SubResource("Resource_sqdok")
 layout_mode = 2
 action_mode = 0
 script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = SubResource("Resource_w57a8")
 
 [node name="TextureButton3" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=2070081882]
 layout_mode = 2
@@ -310,3 +319,6 @@ major_grid_size = Vector2i(0, 0)
 metadata/_custom_type_script = "uid://dl24hxmntjo1g"
 
 [node name="SubArea" parent="." unique_id=1207914609 instance=ExtResource("25_df8yj")]
+
+[node name="GroundPart" parent="." unique_id=573506870 instance=ExtResource("23_df8yj")]
+position = Vector2(298, 113)

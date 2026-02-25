@@ -25,10 +25,10 @@ region = Rect2(80, 160, 16, 16)
 script = ExtResource("2_akctd")
 part_info = SubResource("Resource_pdb1e")
 
-[node name="CollShape" parent="." index="0"]
+[node name="CollShape" parent="." index="0" unique_id=751260987]
 shape = SubResource("RectangleShape2D_83ppi")
 
-[node name="Sprite" type="Sprite2D" parent="Graphics" index="0" unique_id=599116263]
+[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=599116263]
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_a0kg4")
 script = ExtResource("3_akctd")

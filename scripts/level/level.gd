@@ -95,6 +95,8 @@ enum Tag {
 	LINK
 }
 
+const GRID_SIZE = Vector2(16, 16)
+
 ## The [Editor] this level is associated with. Also used for checking if this
 ## level is being edited.
 @onready var editor: Editor = Utility.id("editor")
@@ -189,11 +191,15 @@ func reload() -> void:
 
 
 func to_grid(pos: Vector2) -> Vector2i:
-	return Vector2i((pos / 16).floor())
+	return Vector2i((pos / GRID_SIZE).floor())
 
 
 func from_grid(pos: Vector2i) -> Vector2:
-	return pos * 16.0
+	return Vector2(pos) * GRID_SIZE
+
+
+func snap(pos: Vector2) -> Vector2:
+	return (pos / GRID_SIZE).floor() * GRID_SIZE
 
 
 func _timeout() -> void:
