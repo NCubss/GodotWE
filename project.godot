@@ -13,7 +13,7 @@ config_version=5
 config/name="GodotWE"
 config/description="SMM:WE in Godot"
 config/version="0.1.0"
-run/main_scene="uid://qepmxcf7odg6"
+run/main_scene="uid://dtq1i14h6pmvn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -29,6 +29,7 @@ Utility="*res://scripts/singletons/utility.gd"
 UISoundPlayer="*res://scripts/singletons/ui_sound_player.gd"
 SceneManager="*res://scripts/singletons/scene_manager.gd"
 GameSettings="*res://scripts/singletons/game_settings.gd"
+MainMenu="*uid://cqa781bc5m3v7"
 
 [debug]
 
@@ -76,6 +77,12 @@ theme/custom_font="uid://bk3vwucreh07k"
 
 texture={
 &"svg/scale": 3.0
+}
+svg={
+"base_scale": 3.0,
+"color_map": {},
+"compress": true,
+"saturation": 1.0
 }
 
 [input]
@@ -138,10 +145,11 @@ pause={
 [internationalization]
 
 locale/translation_remaps={
-"res://sprites/ui/coursebot/tag_stamps/sheet.png": PackedStringArray("res://sprites/ui/coursebot/tag_stamps/sheet_es.png:es", "res://sprites/ui/coursebot/tag_stamps/sheet_it.png:it", "res://sprites/ui/coursebot/tag_stamps/sheet_pt.png:pt", "res://sprites/ui/coursebot/tag_stamps/sheet_ru.png:ru", "res://sprites/ui/coursebot/tag_stamps/sheet_zh.png:zh")
+"res://sprites/ui/coursebot/tag_stamps/sheet.png": PackedStringArray("res://sprites/ui/coursebot/tag_stamps/sheet_es.png:es", "res://sprites/ui/coursebot/tag_stamps/sheet_it.png:it", "res://sprites/ui/coursebot/tag_stamps/sheet_pt.png:pt", "res://sprites/ui/coursebot/tag_stamps/sheet_ru.png:ru", "res://sprites/ui/coursebot/tag_stamps/sheet_zh.png:zh"),
+"res://sprites/ui/main_menu/title.svg": PackedStringArray("res://sprites/ui/main_menu/title_es.svg:es", "res://sprites/ui/main_menu/title_it.svg:it", "res://sprites/ui/main_menu/title_pt.svg:pt", "res://sprites/ui/main_menu/title_ru.svg:ru", "res://sprites/ui/main_menu/title_zh.svg:zh")
 }
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.es.translation")
-locale/test="es"
+locale/test="zh_Hans_CN"
 locale/locale_filter_mode=0
 
 [layer_names]

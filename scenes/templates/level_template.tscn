@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
 
 [node name="SubArea" parent="." unique_id=1880988790 instance=ExtResource("2_j0h5q")]
 
-[node name="Player" parent="SubArea/Foreground" index="0" unique_id=2077452534 instance=ExtResource("3_2txic")]
+[node name="Player" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="0" unique_id=2077452534 instance=ExtResource("3_2txic")]
 position = Vector2(64, -32)
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576712886 node_paths=PackedStringArray("target") groups=["camera"]]
