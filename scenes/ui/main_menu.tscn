@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b1fhtapnp8h8j"]
+
+[ext_resource type="Texture2D" uid="uid://ce46gcv2jhnxy" path="res://sprites/ui/main_menu/title.svg" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://sprites/ui/btn_close.svg" id="2_1g8jr"]
+[ext_resource type="AudioStream" uid="uid://doktr5tlyqwp4" path="res://audio/ui/editor/palette_open.ogg" id="3_1g8jr"]
+
+[node name="MainMenuBackground" type="ColorRect" unique_id=1624783171]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MainMenuUI" type="ColorRect" parent="." unique_id=1132604008]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 550.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.98039216, 0.8039216, 0, 1)
+
+[node name="Title" type="TextureRect" parent="MainMenuUI" unique_id=1910723375]
+modulate = Color(0.3647059, 0.10980392, 0.10980392, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_top = 27.0
+offset_right = 225.0
+offset_bottom = 84.0
+grow_horizontal = 2
+texture = ExtResource("1_fe2o3")
+
+[node name="TextureButton" type="TextureButton" parent="MainMenuUI" unique_id=1992872337]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -67.0
+offset_top = 33.0
+offset_right = -27.0
+offset_bottom = 75.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_1g8jr")
+
+[node name="MenuPlayer" type="AudioStreamPlayer" parent="MainMenuUI" unique_id=1759967417]
+unique_name_in_owner = true
+stream = ExtResource("3_1g8jr")

@@ -108,7 +108,6 @@ offset_top = 48.0
 offset_right = 87.0
 offset_bottom = 81.0
 texture = ExtResource("3_646do")
-expand_mode = 1
 
 [node name="Weekday" type="Label" parent="Calendar" unique_id=851558899]
 unique_name_in_owner = true
