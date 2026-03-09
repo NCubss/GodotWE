@@ -103,8 +103,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 
 func _do_skid_smoke(player: Player) -> void:
 	if _skidding and player.is_on_floor() and player.p_meter > 5:
-		var smoke = preload("res://scenes/particles/skid_smoke.tscn") \
-				.instantiate()
+		var smoke = preload("uid://bde0tltjb5047").instantiate()
 		smoke.position = player.position.floor()
 		player.add_sibling(smoke)
 		player.owner.move_child(smoke, player.get_index())

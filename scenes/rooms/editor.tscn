@@ -4,48 +4,30 @@
 [ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_hf1b4"]
 [ext_resource type="Script" uid="uid://cwdxlb3bg48lf" path="res://scripts/ui/editor/editor_camera.gd" id="2_hf1b4"]
 [ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="3_sqdok"]
-[ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://sprites/ui/editor/panel.svg" id="4_ljufs"]
+[ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://textures/ui/editor/panel.svg" id="4_ljufs"]
 [ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="5_w57a8"]
-[ext_resource type="Texture2D" uid="uid://d2a3nvs4we076" path="res://sprites/ui/btn_menu.svg" id="6_q43qg"]
-[ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://sprites/ui/btn_mask_generic.svg" id="7_t1mpb"]
+[ext_resource type="Texture2D" uid="uid://d2a3nvs4we076" path="res://textures/ui/btn_menu.svg" id="6_q43qg"]
+[ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_t1mpb"]
 [ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="8_klwx7"]
-[ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://sprites/ui/editor/btn_square.svg" id="9_wtof8"]
-[ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://sprites/ui/editor/btn_square_pressed.svg" id="10_au04s"]
+[ext_resource type="Script" uid="uid://dtttgbxv6befk" path="res://scripts/ui/menu_btn.gd" id="8_ljufs"]
+[ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://textures/ui/editor/btn_square.svg" id="9_wtof8"]
+[ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="10_au04s"]
 [ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/coursebot_btn.gd" id="11_aofq0"]
-[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://sprites/ui/editor/btn_eraser.svg" id="12_2i2m0"]
-[ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://sprites/ui/btn_mask_circular.svg" id="13_vff3e"]
-[ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://sprites/ui/editor/btn_dog.svg" id="14_dhhoa"]
-[ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://sprites/ui/editor/btn_rocket.svg" id="15_ieb30"]
-[ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://sprites/ui/editor/btn_palette.svg" id="16_7kynf"]
+[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/btn_eraser.svg" id="12_2i2m0"]
+[ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://textures/ui/btn_mask_circular.svg" id="13_vff3e"]
+[ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://textures/ui/editor/btn_dog.svg" id="14_dhhoa"]
+[ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://textures/ui/editor/btn_rocket.svg" id="15_ieb30"]
+[ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://textures/ui/editor/btn_palette.svg" id="16_7kynf"]
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
 [ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="19_wtof8"]
+[ext_resource type="PackedScene" uid="uid://b16vc6ry30e6p" path="res://scenes/ui/editor/card.tscn" id="20_dgj68"]
+[ext_resource type="Resource" uid="uid://2egbrhf17dv6" path="res://resources/parts/ground.tres" id="21_ljufs"]
 [ext_resource type="PackedScene" uid="uid://dpfaa6qawfnk1" path="res://scenes/parts/ground_part.tscn" id="23_df8yj"]
-[ext_resource type="Texture2D" uid="uid://in5ygb75kfnf" path="res://sprites/ui/editor/part_icons/smb3/test.png" id="23_sqdok"]
-[ext_resource type="PackedScene" uid="uid://b7i6hre4grgbn" path="res://scenes/parts/question_block_part.tscn" id="24_ljufs"]
 [ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="25_df8yj"]
-[ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="26_ljufs"]
-[ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="27_ljufs"]
-[ext_resource type="Script" uid="uid://4ld0tmaadxvg" path="res://scripts/ui/editor/part_info.gd" id="28_q43qg"]
 [ext_resource type="PackedScene" uid="uid://ctnffmabe0h4f" path="res://scenes/backgrounds/smw/overworld.tscn" id="31_t1mpb"]
 
-[sub_resource type="Resource" id="Resource_sqdok"]
-script = ExtResource("28_q43qg")
-icon = ExtResource("27_ljufs")
-icon_filter = 1
-part = ExtResource("23_df8yj")
-multi_place = true
-metadata/_custom_type_script = "uid://4ld0tmaadxvg"
-
-[sub_resource type="Resource" id="Resource_w57a8"]
-script = ExtResource("28_q43qg")
-icon = ExtResource("23_sqdok")
-part = ExtResource("24_ljufs")
-multi_place = true
-metadata/_custom_type_script = "uid://4ld0tmaadxvg"
-
-[node name="Level" type="Node2D" unique_id=420214772 groups=["level"]]
+[node name="Level" type="Node2D" unique_id=1985374198 groups=["level"]]
 script = ExtResource("1_hf1b4")
-metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1824491113]
 layer = -1
@@ -69,7 +51,7 @@ focus_mode = 2
 mouse_filter = 1
 script = ExtResource("3_sqdok")
 
-[node name="RightPanel" type="NinePatchRect" parent="EditorLayer/Editor" unique_id=510511375]
+[node name="RightPanel" type="NinePatchRect" parent="EditorLayer/Editor" unique_id=370643630]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -80,14 +62,11 @@ offset_top = 108.0
 offset_bottom = 648.0
 grow_horizontal = 0
 focus_mode = 2
-mouse_filter = 1
+mouse_filter = 0
 texture = ExtResource("4_ljufs")
 region_rect = Rect2(0, 0, 18, 12)
 patch_margin_left = 15
 patch_margin_top = 9
-script = ExtResource("5_w57a8")
-open_pos = Vector2(1047, 108)
-closed_pos = Vector2(1146, 108)
 
 [node name="MenuBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=253637061]
 layout_mode = 0
@@ -101,8 +80,7 @@ focus_neighbor_top = NodePath("../../TopPanel/PaletteBtn")
 focus_neighbor_bottom = NodePath("../CoursebotBtn")
 texture_normal = ExtResource("6_q43qg")
 texture_click_mask = ExtResource("7_t1mpb")
-script = ExtResource("8_klwx7")
-hover_offset = Rect2(0, 0, 0, -6)
+script = ExtResource("8_ljufs")
 
 [node name="CoursebotBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=187704599]
 layout_mode = 0
@@ -177,7 +155,7 @@ anchor_right = 1.0
 offset_bottom = 108.0
 grow_horizontal = 2
 focus_mode = 2
-mouse_filter = 1
+mouse_filter = 0
 texture = ExtResource("4_ljufs")
 region_rect = Rect2(15, 9, 3, 18)
 patch_margin_bottom = 15
@@ -213,77 +191,53 @@ grow_horizontal = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=341384755]
+[node name="Card1" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1935482387 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton2" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1300885678]
+[node name="Card2" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1701829138 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_w57a8")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton3" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=2070081882]
+[node name="Card3" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=107514548 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton4" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1179725074]
+[node name="Card4" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=511363141 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton5" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1734362619]
+[node name="Card5" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1154618573 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton6" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1841401971]
+[node name="Card6" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1912879865 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton7" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1078850033]
+[node name="Card7" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=418836397 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton8" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=147605572]
+[node name="Card8" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1392590094 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton9" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=709047907]
+[node name="Card9" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1080402509 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton10" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=49436064]
+[node name="Card10" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1598067277 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton11" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=567603702]
+[node name="Card11" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=172930589 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
-[node name="TextureButton12" type="TextureButton" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=955375805]
+[node name="Card12" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1683269626 instance=ExtResource("20_dgj68")]
 layout_mode = 2
-action_mode = 0
-script = ExtResource("26_ljufs")
-part = SubResource("Resource_sqdok")
+part = ExtResource("21_ljufs")
 
 [node name="LeftPanel" type="NinePatchRect" parent="EditorLayer/Editor" unique_id=493029540]
 unique_name_in_owner = true
@@ -292,7 +246,7 @@ offset_top = 108.0
 offset_right = 168.0
 offset_bottom = 546.0
 focus_mode = 2
-mouse_filter = 1
+mouse_filter = 0
 texture = ExtResource("4_ljufs")
 region_rect = Rect2(15, 0, 18, 27)
 patch_margin_top = 9

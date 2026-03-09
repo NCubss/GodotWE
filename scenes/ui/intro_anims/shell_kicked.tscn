@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://brbx1wivbstu6"]
 
-[ext_resource type="Texture2D" uid="uid://5ur6eav4qc8e" path="res://sprites/ui/intro/mario.png" id="1_ff2sa"]
-[ext_resource type="Texture2D" uid="uid://xx1fjqnpuawa" path="res://sprites/ui/intro/shell.png" id="2_yknfj"]
+[ext_resource type="Texture2D" uid="uid://5ur6eav4qc8e" path="res://textures/ui/intro/mario.png" id="1_ff2sa"]
+[ext_resource type="Texture2D" uid="uid://xx1fjqnpuawa" path="res://textures/ui/intro/shell.png" id="2_yknfj"]
 
 [sub_resource type="Animation" id="Animation_eckh2"]
 length = 0.001

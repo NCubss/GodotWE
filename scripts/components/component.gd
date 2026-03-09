@@ -1,4 +1,4 @@
-@icon("res://icons/Component.svg")
+@icon("uid://drhq0iaxipjn8")
 class_name Component
 extends Node
 ## Base class for all components.

@@ -3,7 +3,7 @@ extends TextureButtonExt
 
 
 func _pressed() -> void:
-	UISoundPlayer.stream = preload("res://audio/ui/editor/palette_open.ogg")
+	UISoundPlayer.stream = preload("uid://cra6louyi26t1")
 	UISoundPlayer.play()
 	%RightPanel.extended = false
 	%LeftPanel.extended = false

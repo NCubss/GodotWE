@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0kxkxytstbdg"]
 
-[ext_resource type="Texture2D" uid="uid://ratubfqraihb" path="res://sprites/ui/editor/transform_effect.svg" id="1_njs2r"]
+[ext_resource type="Texture2D" uid="uid://ratubfqraihb" path="res://textures/ui/editor/transform_effect.svg" id="1_njs2r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_njs2r"]
 atlas = ExtResource("1_njs2r")

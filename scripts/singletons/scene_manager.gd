@@ -9,6 +9,9 @@ enum Transition {
 	CIRCLE
 }
 
+signal transition_started
+signal transition_ended
+
 ## The transition used once the game starts.
 const STARTING_TRANSITION = Transition.FADE
 ## The circle transition polygon's vertex count.
@@ -16,12 +19,14 @@ const CIRCLE_DETAIL = 64
 
 var _enter_tween: Tween
 var _fade_tween: Tween
+
 var _color_rect := ColorRect.new()
 var _polygon := Polygon2D.new()
 var _max_radius: float
 
 func _init() -> void:
-	layer = RenderingServer.CANVAS_LAYER_MAX
+	layer = 10
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	_color_rect.color = Color(Color.BLACK, 0)
 	_color_rect.set_anchors_preset(Control.LayoutPreset.PRESET_FULL_RECT, true)
@@ -58,6 +63,12 @@ func fade_to(
 		trans_in := Transition.FADE,
 		trans_out := Transition.FADE
 ) -> void:
+	
+	var scn = load(path) as PackedScene
+	if scn == null:
+		assert(false, "Resource at path '%s' does not exist or is not a scene" \
+				% path)
+		return
 	_fade_to_what(load(path), trans_in, trans_out)
 
 
@@ -79,7 +90,11 @@ func _fade_to_what(
 		trans_in: Transition,
 		trans_out: Transition
 ) -> void:
+	if not scene.can_instantiate():
+		assert(false, "Empty scene")
+		return
 	_fade_tween = create_tween()
+	transition_started.emit()
 	match trans_in:
 		Transition.FADE:
 			_fade_tween.tween_property(_color_rect, "color:a", 1, 0.5).from(0)
@@ -98,12 +113,14 @@ func _fade_to_what(
 			_fade_tween.tween_method(_update_polygon, \
 					0, _color_rect.size.length() / 2, 1)
 			_fade_tween.tween_callback(_polygon.hide)
+	_fade_tween.tween_callback(transition_ended.emit)
 
 
 func _change_scene(scene: Node) -> void:
 	get_tree().unload_current_scene()
 	get_tree().root.add_child(scene)
 	get_tree().current_scene = scene
+	get_tree().scene_changed.emit()
 
 
 func _update_polygon(radius: float) -> void:

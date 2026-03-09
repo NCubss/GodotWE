@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="19"
+   height="20.999998"
+   viewBox="0 0 19 20.999997"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><rect
+     style="fill:#000000;fill-opacity:0.117647;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     id="rect34"
+     width="19"
+     height="6"
+     x="0"
+     y="15.000007"
+     ry="1.9999964"
+     rx="1.9999964" /><rect
+     style="fill:#ffffff;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     id="rect35"
+     width="19"
+     height="18.999996"
+     x="0"
+     y="7.0947267e-06"
+     rx="1.9999964"
+     ry="1.9999964" /><ellipse
+     style="fill:#8b87ff;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     id="path35"
+     cx="9"
+     cy="9.5000067"
+     rx="6"
+     ry="6.5" /><path
+     style="fill:#8b87ff;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     d="m 15,16.000007 c 0.50108,0 1,-0.4981 1,-1 0,-0.5019 -2,-4 -2,-4 l -3,3 c 0,0 3.49892,2 4,2 z"
+     id="path36" /><rect
+     style="fill:#ffffff;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     id="rect36"
+     width="2"
+     height="1"
+     x="7.9999695"
+     y="12.000007" /><path
+     style="fill:#ffffff;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     d="m 8,11.000007 c 0,-1.5023599 2,-1.9999999 2,-2.9999999 0,-1 -1,-1 -1,-1 0,0 -1,0 -1,1 v 0.667 H 6 v -0.667 c 0,-1 1,-2 2,-2 h 2 c 1,0 2,1 2,2 0,1 -2,1.99999 -2,2.9999999 z"
+     id="path37" /></svg>

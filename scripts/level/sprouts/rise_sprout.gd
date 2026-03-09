@@ -18,7 +18,7 @@ func end_sprout(direction: Vector2) -> SproutReturnData:
 	tween.tween_property(%Sprite, "position", direction * 16, 0.5)
 	tween.finished.connect(_die)
 	var data = SproutReturnData.new()
-	data.new_tile = preload("res://scenes/tiles/empty_block.tscn")
+	data.new_tile = preload("uid://vxvp8itjp1cv")
 	return data
 
 

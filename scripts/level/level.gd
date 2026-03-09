@@ -96,6 +96,94 @@ enum Tag {
 }
 
 const GRID_SIZE = Vector2(16, 16)
+const SWE_HMAC_KEY = "2559F35097-2021"
+const SWE_LEVEL_THEME_TABLE = {
+	"ground": LevelTheme.OVERWORLD,
+	"underground": LevelTheme.UNDERGROUND,
+	"castle": LevelTheme.CASTLE,
+	"underwater": LevelTheme.UNDERWATER,
+	"desert": LevelTheme.DESERT,
+	"ghost": LevelTheme.MANSION,
+	"airship": LevelTheme.AIRSHIP,
+	"sky": LevelTheme.SKY,
+	"forest": LevelTheme.FOREST,
+	"snow": LevelTheme.SNOW,
+	"beach": LevelTheme.BEACH,
+	"fall": LevelTheme.FALL,
+	"mountain": LevelTheme.MOUNTAIN,
+}
+const SWE_GROUND_FRAME_TABLE = [
+	Rect2(80, 144, 16, 16),
+	Rect2(0, 96, 16, 16),
+	Rect2(80, 112, 16, 16),
+	Rect2(80, 96, 16, 16),
+	Rect2(0, 176, 16, 16),
+	Rect2(0, 112, 16, 16),
+	Rect2(64, 112, 16, 16),
+	Rect2(64, 176, 16, 16),
+	Rect2(0, 80, 16, 16),
+	Rect2(0, 0, 16, 16),
+	Rect2(80, 0, 16, 16),
+	Rect2(80, 80, 16, 16),
+	Rect2(0, 128, 16, 16),
+	Rect2(16, 112, 16, 16),
+	Rect2(64, 128, 16, 16),
+	Rect2(16, 176, 16, 16),
+	Rect2(0, 160, 16, 16),
+	Rect2(0, 144, 16, 16),
+	Rect2(0, 16, 16, 16),
+	Rect2(32, 112, 16, 16),
+	Rect2(48, 112, 16, 16),
+	Rect2(16, 0, 16, 16),
+	Rect2(64, 144, 16, 16),
+	Rect2(64, 160, 16, 16),
+	Rect2(80, 16, 16, 16),
+	Rect2(32, 176, 16, 16),
+	Rect2(48, 176, 16, 16),
+	Rect2(16, 80, 16, 16),
+	Rect2(16, 128, 16, 16),
+	Rect2(64, 32, 16, 16),
+	Rect2(64, 48, 16, 16),
+	Rect2(48, 48, 16, 16),
+	Rect2(48, 32, 16, 16),
+	Rect2(32, 128, 16, 16),
+	Rect2(16, 144, 16, 16),
+	Rect2(48, 128, 16, 16),
+	Rect2(16, 160, 16, 16),
+	Rect2(64, 64, 16, 16),
+	Rect2(48, 64, 16, 16),
+	Rect2(32, 144, 16, 16),
+	Rect2(32, 160, 16, 16),
+	Rect2(48, 160, 16, 16),
+	Rect2(48, 144, 16, 16),
+	Rect2(80, 160, 16, 16),
+	Rect2(80, 128, 16, 16),
+	Rect2(16, 96, 16, 16),
+	Rect2(32, 16, 16, 16),
+	Rect2(48, 16, 16, 16),
+	Rect2(64, 16, 16, 16),
+	Rect2(32, 96, 16, 16),
+	Rect2(48, 96, 16, 16),
+	Rect2(64, 96, 16, 16),
+	Rect2(32, 0, 16, 16),
+	Rect2(48, 0, 16, 16),
+	Rect2(64, 0, 16, 16),
+	Rect2(32, 80, 16, 16),
+	Rect2(48, 80, 16, 16),
+	Rect2(64, 80, 16, 16),
+	Rect2(0, 32, 16, 16),
+	Rect2(0, 48, 16, 16),
+	Rect2(0, 64, 16, 16),
+	Rect2(80, 32, 16, 16),
+	Rect2(80, 48, 16, 16),
+	Rect2(80, 64, 16, 16),
+	Rect2(16, 32, 16, 16),
+	Rect2(32, 32, 16, 16),
+	Rect2(16, 48, 16, 16),
+	Rect2(32, 48, 16, 16),
+	Rect2(16, 64, 16, 16),
+	Rect2(32, 64, 16, 16),
+]
 
 ## The [Editor] this level is associated with. Also used for checking if this
 ## level is being edited.
@@ -132,12 +220,66 @@ const GRID_SIZE = Vector2(16, 16)
 ## The current [SubArea], that is, the [SubArea] in which entities are active
 ## and the player is in.
 @export var current_sub_area: SubArea
-## Whether the level is currently playing.
+@export var scene: PackedScene
 
 ## The level's automatically assigned sub-areas.
 var sub_areas: Array[SubArea] = []
 
 var _timer: Timer
+
+
+static func from_swe(path: String) -> Level:
+	var data = _unpack_swe(path)
+	var wrapper: Dictionary
+	var list: Array
+	if "MAIN" in data:
+		# old format
+		wrapper = data["MAIN"]
+		list = wrapper["AJUSTES"]
+	elif "S0" in data:
+		# new format
+		wrapper = data["S0"]
+		list = wrapper["S1"]
+	else:
+		assert(false, "No 'S0' or 'MAIN' found in data")
+		return
+	var lvl: Level = load("uid://b16kyjui2n3qv").instantiate()
+	var map = list[0]
+	var use_new: bool
+	if "t" in map:
+		use_new = map["t"]
+	else:
+		use_new = false
+	assert("user" in map, "No author in metadata")
+	lvl.author = map["user"]
+	assert("gamestyle" if use_new else "apariencia" in map,
+			"No game style in metadata")
+	lvl.game_style = GameStyle.SMW#map["gamestyle" if use_new else "apariencia"]
+	if "desc" if use_new else "description" in map:
+		lvl.description = map["desc" if use_new else "description"]
+	var sub: SubArea = lvl.get_node(^"%SubArea0")
+	assert("gametheme" if use_new else "entorno" in map,
+			"No level theme in metadata")
+	sub.level_theme = LevelTheme.OVERWORLD#SWE_LEVEL_THEME_TABLE[map["gametheme" if use_new else "entorno"]]
+	assert(("S2" if use_new else "SUELO") in wrapper, "No terrain data found")
+	var terrain: Array = wrapper["S2" if use_new else "SUELO"]
+	var fore = sub.get_node(^"%Foreground")
+	for i: Dictionary in terrain:
+		var ground: GroundTile = preload("uid://bpy1sebdq7k7s").instantiate()
+		fore.add_child(ground)
+		ground.owner = lvl
+		assert(("xx" if use_new else "x_pos") in i, "No X position in terrain tile")
+		assert(("yy" if use_new else "y_pos") in i, "No Y position in terrain tile")
+		ground.position = Vector2(
+				i["xx" if use_new else "x_pos"],
+				i["yy" if use_new else "y_pos"] - 432)
+		assert(("i" if use_new else "index") in i, "No index in terrain tile")
+		var spr: Sprite2D = ground.get_node(^"%Sprite")
+		spr.texture.region = SWE_GROUND_FRAME_TABLE[i["i" if use_new else "index"]]
+	lvl.scene = PackedScene.new()
+	var err = lvl.scene.pack(lvl)
+	assert(err == OK)
+	return lvl
 
 
 func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
@@ -187,7 +329,7 @@ func get_current_time() -> int:
 
 
 func reload() -> void:
-	SceneManager.fade_to_scene(load(scene_file_path))
+	SceneManager.fade_to_scene(scene if scene != null else load(scene_file_path))
 
 
 func to_grid(pos: Vector2) -> Vector2i:
@@ -205,3 +347,23 @@ func snap(pos: Vector2) -> Vector2:
 func _timeout() -> void:
 	times_up.emit()
 	player.kill()
+
+
+static func _unpack_swe(path: String) -> Dictionary:
+	# Ah god I hope there won't be the same problem
+	var file = FileAccess.get_file_as_string(path)
+	var end_size: int
+	if file.ends_with("\u0000"):
+		end_size = 41
+	else:
+		end_size = 40
+	var stored_hash = file.substr(file.length() - end_size, 40)
+	var b64 = file.substr(0, file.length() - end_size)
+	var crypto = Crypto.new()
+	var expected_hash = crypto.hmac_digest(HashingContext.HASH_SHA1,
+			SWE_HMAC_KEY.to_utf8_buffer(),
+			file.substr(0, file.length() - end_size).to_utf8_buffer()).hex_encode()
+	assert(expected_hash == stored_hash, "Tampered level file")
+	var data = JSON.parse_string(Marshalls.base64_to_utf8(b64))
+	assert(data is Dictionary, "Level file JSON is not an object")
+	return data

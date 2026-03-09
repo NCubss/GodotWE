@@ -7,11 +7,11 @@ func start(animate := true) -> void:
 	coll_shape.position = player.BIG_HITBOX_SIZE.position
 	coll_shape.shape.size = player.BIG_HITBOX_SIZE.size
 	if animate:
-		player.sounds.stream = preload("res://audio/player/powerup.wav")
+		player.sounds.stream = preload("uid://b20440v3vqlik")
 		player.sounds.play()
 		var new_graphics = Node2D.new()
 		var new_sprite = AnimatedSpriteExt.new()
-		new_sprite.sprite_frames = preload("res://sprites/player/mario/super.tres")
+		new_sprite.sprite_frames = preload("uid://b1p8m6j6up5pm")
 		new_sprite.animation = player.sprite.animation
 		new_sprite.frame = player.sprite.frame
 		new_sprite.speed_scale = player.sprite.speed_scale

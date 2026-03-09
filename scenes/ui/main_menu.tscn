@@ -1,19 +1,145 @@
 [gd_scene format=3 uid="uid://b1fhtapnp8h8j"]
 
-[ext_resource type="Texture2D" uid="uid://ce46gcv2jhnxy" path="res://sprites/ui/main_menu/title.svg" id="1_fe2o3"]
-[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://sprites/ui/btn_close.svg" id="2_1g8jr"]
-[ext_resource type="AudioStream" uid="uid://doktr5tlyqwp4" path="res://audio/ui/editor/palette_open.ogg" id="3_1g8jr"]
+[ext_resource type="Texture2D" uid="uid://ce46gcv2jhnxy" path="res://textures/ui/main_menu/title.svg" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://textures/ui/btn_close.svg" id="2_1g8jr"]
+[ext_resource type="Texture2D" uid="uid://p7pd2f05y4sl" path="res://textures/ui/main_menu/btn_editor.svg" id="4_877pj"]
+[ext_resource type="Texture2D" uid="uid://btuojwhpylks0" path="res://textures/ui/main_menu/btn_editor_pressed.svg" id="5_ayp64"]
+[ext_resource type="Script" uid="uid://cfbamgq6chgy4" path="res://scripts/ui/main_menu/page_btn.gd" id="6_ayp64"]
+[ext_resource type="Texture2D" uid="uid://b5soj05vomb2b" path="res://textures/ui/main_menu/btn_coursebot.svg" id="6_y2j7i"]
+[ext_resource type="Texture2D" uid="uid://dc0qa3tgges4d" path="res://textures/ui/main_menu/btn_coursebot_pressed.svg" id="7_y1h5l"]
+[ext_resource type="Texture2D" uid="uid://b6vp18qj84cym" path="res://textures/ui/main_menu/btn_endless.svg" id="8_pw24t"]
+[ext_resource type="Texture2D" uid="uid://oorwsyfidxgw" path="res://textures/ui/main_menu/btn_endless_pressed.svg" id="9_5dct7"]
+[ext_resource type="Texture2D" uid="uid://b1oubn068jtas" path="res://textures/ui/main_menu/btn_online.svg" id="10_qilvv"]
+[ext_resource type="Texture2D" uid="uid://cemsl6r52ys77" path="res://textures/ui/main_menu/btn_online_pressed.svg" id="11_jbte4"]
+[ext_resource type="Texture2D" uid="uid://bpok5vme0o047" path="res://textures/ui/main_menu/btn_profile.svg" id="12_e0hcc"]
+[ext_resource type="Texture2D" uid="uid://3q5eke7ejjg4" path="res://textures/ui/main_menu/btn_mini_settings.svg" id="13_qch7b"]
+[ext_resource type="Texture2D" uid="uid://cuhdgl6ittrbs" path="res://textures/ui/main_menu/btn_mini_logout.svg" id="14_4ovp2"]
+[ext_resource type="Texture2D" uid="uid://b7krwd3ixsdd7" path="res://textures/ui/main_menu/btn_mini_title.svg" id="15_1mexh"]
+[ext_resource type="PackedScene" uid="uid://66t6go77oisx" path="res://scenes/ui/login.tscn" id="17_y2j7i"]
 
-[node name="MainMenuBackground" type="ColorRect" unique_id=1624783171]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_877pj"]
+bg_color = Color(0, 0, 0, 0.2509804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayp64"]
+bg_color = Color(0.98039216, 0.8039216, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ekit"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_877pj")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n4uci"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("5_ayp64")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_877pj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2j7i"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("8_pw24t")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1h5l"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("9_5dct7")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pw24t"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("10_qilvv")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dct7"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("11_jbte4")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_877pj"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("6_y2j7i")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ayp64"]
+content_margin_left = 90.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+texture = ExtResource("7_y1h5l")
+texture_margin_left = 90.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 12.0
+expand_margin_bottom = 6.0
+
+[node name="Control" type="Control" unique_id=1853815584]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
 
-[node name="MainMenuUI" type="ColorRect" parent="." unique_id=1132604008]
+[node name="MainMenuBackground" type="Panel" parent="." unique_id=163584172]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_877pj")
+
+[node name="MainMenuUI" type="Panel" parent="." unique_id=177004062]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(550, 0)
 layout_mode = 1
@@ -21,11 +147,10 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 550.0
+offset_left = -550.0
 grow_horizontal = 0
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ayp64")
 
 [node name="Title" type="TextureRect" parent="MainMenuUI" unique_id=1910723375]
 modulate = Color(0.3647059, 0.10980392, 0.10980392, 1)
@@ -40,7 +165,7 @@ offset_bottom = 84.0
 grow_horizontal = 2
 texture = ExtResource("1_fe2o3")
 
-[node name="TextureButton" type="TextureButton" parent="MainMenuUI" unique_id=1992872337]
+[node name="BtnExit" type="TextureButton" parent="MainMenuUI" unique_id=1992872337]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -54,4 +179,115 @@ texture_normal = ExtResource("2_1g8jr")
 
 [node name="MenuPlayer" type="AudioStreamPlayer" parent="MainMenuUI" unique_id=1759967417]
 unique_name_in_owner = true
-stream = ExtResource("3_1g8jr")
+process_mode = 3
+
+[node name="PageBtnBar" type="VBoxContainer" parent="MainMenuUI" unique_id=310058409]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.472
+anchor_right = 0.5
+anchor_bottom = 0.472
+offset_left = -243.0
+offset_top = -203.85599
+offset_right = 243.0
+offset_bottom = 204.14401
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="BtnEditor" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=1723837877]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(486, 87)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_8ekit")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_n4uci")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8ekit")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_877pj")
+text = "PAGE_EDITOR"
+script = ExtResource("6_ayp64")
+
+[node name="BtnEndless" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=566984957]
+custom_minimum_size = Vector2(486, 87)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_y2j7i")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y1h5l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_y2j7i")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_877pj")
+text = "PAGE_ENDLESS"
+script = ExtResource("6_ayp64")
+page = 2
+
+[node name="BtnOnline" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=1760266962]
+custom_minimum_size = Vector2(486, 87)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_pw24t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5dct7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pw24t")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_877pj")
+text = "PAGE_ONLINE"
+script = ExtResource("6_ayp64")
+page = 3
+
+[node name="BtnCoursebot" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=1291317763]
+custom_minimum_size = Vector2(486, 87)
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_877pj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ayp64")
+theme_override_styles/hover = SubResource("StyleBoxTexture_877pj")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_877pj")
+text = "PAGE_COURSEBOT"
+script = ExtResource("6_ayp64")
+page = 1
+
+[node name="BottomBar" type="HBoxContainer" parent="MainMenuUI" unique_id=1580573480]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -243.0
+offset_top = -120.0
+offset_right = 243.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="BtnProfile" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=49328762]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("12_e0hcc")
+
+[node name="BtnMiniSettings" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=447934041]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("13_qch7b")
+
+[node name="BtnMiniLogout" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1632560707]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("14_4ovp2")
+
+[node name="BtnMiniTitle" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1829249709]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("15_1mexh")
+
+[node name="LoginLayer" parent="." unique_id=2102270892 instance=ExtResource("17_y2j7i")]
+unique_name_in_owner = true
+visible = false

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="19"
+   height="20.999998"
+   viewBox="0 0 19 20.999997"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><rect
+     style="fill:#000000;fill-opacity:0.117647;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     id="rect22"
+     width="19"
+     height="6"
+     x="0"
+     y="15.000008"
+     ry="1.9999964"
+     rx="1.9999964" /><rect
+     style="fill:#ffffff;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     id="rect28"
+     width="19"
+     height="18.999996"
+     x="0"
+     y="7.9931642e-06"
+     rx="1.9999964"
+     ry="1.9999964" /><path
+     id="rect31"
+     style="fill:#5d1c1c;fill-opacity:1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:5;paint-order:markers stroke fill"
+     d="m 7,4.000008 c -1.108,0 -2,0.892 -2,2 v 9 h 9 v -9 c 0,-1.108 -0.892,-2 -2,-2 z m 0,1.02148 h 5 c 0.554,0 1,0.446 1,1 v 7.97852 h -1 v -8 H 7 v 8 H 6 v -7.97852 c 0,-0.554 0.446,-1 1,-1 z m 3.5,4.97852 c 0.27614,0 0.5,0.22386 0.5,0.5 0,0.27614 -0.22386,0.5 -0.5,0.5 -0.27614,0 -0.5,-0.22386 -0.5,-0.5 0,-0.27614 0.22386,-0.5 0.5,-0.5 z" /></svg>

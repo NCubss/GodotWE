@@ -9,287 +9,287 @@ author = "NCubs"
 description = "A test level"
 time = 300
 
-[node name="GroundTile" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="1" unique_id=161834918 instance=ExtResource("4_1e485")]
+[node name="GroundTile" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="1" unique_id=161834918 instance=ExtResource("4_1e485")]
 position = Vector2(0, -16)
 
-[node name="GroundTile2" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="2" unique_id=801076544 instance=ExtResource("4_1e485")]
+[node name="GroundTile2" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="2" unique_id=801076544 instance=ExtResource("4_1e485")]
 position = Vector2(16, -16)
 
-[node name="GroundTile3" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="3" unique_id=300323700 instance=ExtResource("4_1e485")]
+[node name="GroundTile3" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="3" unique_id=300323700 instance=ExtResource("4_1e485")]
 position = Vector2(32, -16)
 
-[node name="GroundTile4" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="4" unique_id=1499750670 instance=ExtResource("4_1e485")]
+[node name="GroundTile4" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="4" unique_id=1499750670 instance=ExtResource("4_1e485")]
 position = Vector2(48, -16)
 
-[node name="GroundTile5" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="5" unique_id=1953813791 instance=ExtResource("4_1e485")]
+[node name="GroundTile5" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="5" unique_id=1953813791 instance=ExtResource("4_1e485")]
 position = Vector2(64, -16)
 
-[node name="GroundTile6" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="6" unique_id=1371682576 instance=ExtResource("4_1e485")]
+[node name="GroundTile6" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="6" unique_id=1371682576 instance=ExtResource("4_1e485")]
 position = Vector2(80, -16)
 
-[node name="GroundTile7" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="7" unique_id=1796924714 instance=ExtResource("4_1e485")]
+[node name="GroundTile7" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="7" unique_id=1796924714 instance=ExtResource("4_1e485")]
 position = Vector2(96, -16)
 
-[node name="GroundTile13" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="8" unique_id=174305381 instance=ExtResource("4_1e485")]
+[node name="GroundTile13" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="8" unique_id=174305381 instance=ExtResource("4_1e485")]
 position = Vector2(0, -32)
 
-[node name="GroundTile14" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="9" unique_id=1168468727 instance=ExtResource("4_1e485")]
+[node name="GroundTile14" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="9" unique_id=1168468727 instance=ExtResource("4_1e485")]
 position = Vector2(16, -32)
 
-[node name="GroundTile15" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="10" unique_id=1049439581 instance=ExtResource("4_1e485")]
+[node name="GroundTile15" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="10" unique_id=1049439581 instance=ExtResource("4_1e485")]
 position = Vector2(32, -32)
 
-[node name="GroundTile16" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="11" unique_id=1333500118 instance=ExtResource("4_1e485")]
+[node name="GroundTile16" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="11" unique_id=1333500118 instance=ExtResource("4_1e485")]
 position = Vector2(48, -32)
 
-[node name="GroundTile17" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="12" unique_id=700814012 instance=ExtResource("4_1e485")]
+[node name="GroundTile17" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="12" unique_id=700814012 instance=ExtResource("4_1e485")]
 position = Vector2(64, -32)
 
-[node name="GroundTile18" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="13" unique_id=1640280223 instance=ExtResource("4_1e485")]
+[node name="GroundTile18" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="13" unique_id=1640280223 instance=ExtResource("4_1e485")]
 position = Vector2(80, -32)
 
-[node name="GroundTile19" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="14" unique_id=1931184245 instance=ExtResource("4_1e485")]
+[node name="GroundTile19" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="14" unique_id=1931184245 instance=ExtResource("4_1e485")]
 position = Vector2(96, -32)
 
-[node name="GroundTile20" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="15" unique_id=83109184 instance=ExtResource("4_1e485")]
+[node name="GroundTile20" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="15" unique_id=83109184 instance=ExtResource("4_1e485")]
 position = Vector2(224, -32)
 
-[node name="GroundTile21" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="16" unique_id=361683173 instance=ExtResource("4_1e485")]
+[node name="GroundTile21" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="16" unique_id=361683173 instance=ExtResource("4_1e485")]
 position = Vector2(384, -32)
 
-[node name="GroundTile22" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="17" unique_id=939009568 instance=ExtResource("4_1e485")]
+[node name="GroundTile22" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="17" unique_id=939009568 instance=ExtResource("4_1e485")]
 position = Vector2(576, -32)
 
-[node name="GroundTile23" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="18" unique_id=779648136 instance=ExtResource("4_1e485")]
+[node name="GroundTile23" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="18" unique_id=779648136 instance=ExtResource("4_1e485")]
 position = Vector2(736, -64)
 
-[node name="GroundTile24" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="19" unique_id=1500365027 instance=ExtResource("4_1e485")]
+[node name="GroundTile24" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="19" unique_id=1500365027 instance=ExtResource("4_1e485")]
 position = Vector2(960, -48)
 
-[node name="GroundTile25" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="20" unique_id=1908053592 instance=ExtResource("4_1e485")]
+[node name="GroundTile25" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="20" unique_id=1908053592 instance=ExtResource("4_1e485")]
 position = Vector2(1168, -48)
 
-[node name="GroundTile26" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="21" unique_id=216984636 instance=ExtResource("4_1e485")]
+[node name="GroundTile26" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="21" unique_id=216984636 instance=ExtResource("4_1e485")]
 position = Vector2(1248, -48)
 
-[node name="GroundTile27" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="22" unique_id=1599522783 instance=ExtResource("4_1e485")]
+[node name="GroundTile27" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="22" unique_id=1599522783 instance=ExtResource("4_1e485")]
 position = Vector2(1264, -48)
 
-[node name="GroundTile28" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="23" unique_id=327306564 instance=ExtResource("4_1e485")]
+[node name="GroundTile28" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="23" unique_id=327306564 instance=ExtResource("4_1e485")]
 position = Vector2(1280, -48)
 
-[node name="GroundTile29" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="24" unique_id=675390108 instance=ExtResource("4_1e485")]
+[node name="GroundTile29" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="24" unique_id=675390108 instance=ExtResource("4_1e485")]
 position = Vector2(1296, -48)
 
-[node name="GroundTile30" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="25" unique_id=24357617 instance=ExtResource("4_1e485")]
+[node name="GroundTile30" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="25" unique_id=24357617 instance=ExtResource("4_1e485")]
 position = Vector2(1312, -48)
 
-[node name="GroundTile31" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="26" unique_id=1831670895 instance=ExtResource("4_1e485")]
+[node name="GroundTile31" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="26" unique_id=1831670895 instance=ExtResource("4_1e485")]
 position = Vector2(1328, -48)
 
-[node name="GroundTile32" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="27" unique_id=1688028045 instance=ExtResource("4_1e485")]
+[node name="GroundTile32" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="27" unique_id=1688028045 instance=ExtResource("4_1e485")]
 position = Vector2(1344, -48)
 
-[node name="GroundTile33" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="28" unique_id=566151994 instance=ExtResource("4_1e485")]
+[node name="GroundTile33" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="28" unique_id=566151994 instance=ExtResource("4_1e485")]
 position = Vector2(1312, -80)
 
-[node name="GroundTile34" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="29" unique_id=1789929308 instance=ExtResource("4_1e485")]
+[node name="GroundTile34" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="29" unique_id=1789929308 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -48)
 
-[node name="GroundTile45" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="30" unique_id=18957490 instance=ExtResource("4_1e485")]
+[node name="GroundTile45" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="30" unique_id=18957490 instance=ExtResource("4_1e485")]
 position = Vector2(1536, -80)
 
-[node name="GroundTile46" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="31" unique_id=58566742 instance=ExtResource("4_1e485")]
+[node name="GroundTile46" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="31" unique_id=58566742 instance=ExtResource("4_1e485")]
 position = Vector2(1744, -80)
 
-[node name="GroundTile47" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="32" unique_id=146539215 instance=ExtResource("4_1e485")]
+[node name="GroundTile47" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="32" unique_id=146539215 instance=ExtResource("4_1e485")]
 position = Vector2(1968, -64)
 
-[node name="GroundTile48" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="33" unique_id=611090290 instance=ExtResource("4_1e485")]
+[node name="GroundTile48" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="33" unique_id=611090290 instance=ExtResource("4_1e485")]
 position = Vector2(2128, -64)
 
-[node name="GroundTile49" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="34" unique_id=1992586833 instance=ExtResource("4_1e485")]
+[node name="GroundTile49" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="34" unique_id=1992586833 instance=ExtResource("4_1e485")]
 position = Vector2(2160, -64)
 
-[node name="GroundTile50" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="35" unique_id=1314936312 instance=ExtResource("4_1e485")]
+[node name="GroundTile50" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="35" unique_id=1314936312 instance=ExtResource("4_1e485")]
 position = Vector2(2192, -64)
 
-[node name="GroundTile51" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="36" unique_id=1753588112 instance=ExtResource("4_1e485")]
+[node name="GroundTile51" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="36" unique_id=1753588112 instance=ExtResource("4_1e485")]
 position = Vector2(2224, -64)
 
-[node name="GroundTile52" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="37" unique_id=775859368 instance=ExtResource("4_1e485")]
+[node name="GroundTile52" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="37" unique_id=775859368 instance=ExtResource("4_1e485")]
 position = Vector2(2256, -64)
 
-[node name="GroundTile53" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="38" unique_id=1457905958 instance=ExtResource("4_1e485")]
+[node name="GroundTile53" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="38" unique_id=1457905958 instance=ExtResource("4_1e485")]
 position = Vector2(2288, -64)
 
-[node name="GroundTile54" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="39" unique_id=1326503573 instance=ExtResource("4_1e485")]
+[node name="GroundTile54" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="39" unique_id=1326503573 instance=ExtResource("4_1e485")]
 position = Vector2(2320, -64)
 
-[node name="GroundTile55" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="40" unique_id=1986586819 instance=ExtResource("4_1e485")]
+[node name="GroundTile55" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="40" unique_id=1986586819 instance=ExtResource("4_1e485")]
 position = Vector2(2352, -64)
 
-[node name="GroundTile56" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="41" unique_id=1167911149 instance=ExtResource("4_1e485")]
+[node name="GroundTile56" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="41" unique_id=1167911149 instance=ExtResource("4_1e485")]
 position = Vector2(2384, -64)
 
-[node name="GroundTile57" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="42" unique_id=828043902 instance=ExtResource("4_1e485")]
+[node name="GroundTile57" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="42" unique_id=828043902 instance=ExtResource("4_1e485")]
 position = Vector2(2416, -64)
 
-[node name="GroundTile58" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="43" unique_id=1974827235 instance=ExtResource("4_1e485")]
+[node name="GroundTile58" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="43" unique_id=1974827235 instance=ExtResource("4_1e485")]
 position = Vector2(2640, -64)
 
-[node name="GroundTile59" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="44" unique_id=275742156 instance=ExtResource("4_1e485")]
+[node name="GroundTile59" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="44" unique_id=275742156 instance=ExtResource("4_1e485")]
 position = Vector2(2848, -64)
 
-[node name="GroundTile60" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="45" unique_id=913416705 instance=ExtResource("4_1e485")]
+[node name="GroundTile60" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="45" unique_id=913416705 instance=ExtResource("4_1e485")]
 position = Vector2(2992, -64)
 
-[node name="GroundTile62" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="46" unique_id=1758884130 instance=ExtResource("4_1e485")]
+[node name="GroundTile62" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="46" unique_id=1758884130 instance=ExtResource("4_1e485")]
 position = Vector2(3000, -72)
 
-[node name="GroundTile66" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="47" unique_id=1430271394 instance=ExtResource("4_1e485")]
+[node name="GroundTile66" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="47" unique_id=1430271394 instance=ExtResource("4_1e485")]
 position = Vector2(3056, -48)
 
-[node name="GroundTile67" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="48" unique_id=986076371 instance=ExtResource("4_1e485")]
+[node name="GroundTile67" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="48" unique_id=986076371 instance=ExtResource("4_1e485")]
 position = Vector2(3200, -48)
 
-[node name="GroundTile68" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="49" unique_id=2074370706 instance=ExtResource("4_1e485")]
+[node name="GroundTile68" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="49" unique_id=2074370706 instance=ExtResource("4_1e485")]
 position = Vector2(3376, -48)
 
-[node name="GroundTile69" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="50" unique_id=494604249 instance=ExtResource("4_1e485")]
+[node name="GroundTile69" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="50" unique_id=494604249 instance=ExtResource("4_1e485")]
 position = Vector2(3584, -48)
 
-[node name="GroundTile70" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="51" unique_id=301150465 instance=ExtResource("4_1e485")]
+[node name="GroundTile70" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="51" unique_id=301150465 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -48)
 
-[node name="GroundTile71" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="52" unique_id=447054915 instance=ExtResource("4_1e485")]
+[node name="GroundTile71" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="52" unique_id=447054915 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -64)
 
-[node name="GroundTile72" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="53" unique_id=56496946 instance=ExtResource("4_1e485")]
+[node name="GroundTile72" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="53" unique_id=56496946 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -96)
 
-[node name="GroundTile93" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="54" unique_id=1642119938 instance=ExtResource("4_1e485")]
+[node name="GroundTile93" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="54" unique_id=1642119938 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -112)
 
-[node name="GroundTile94" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="55" unique_id=462970176 instance=ExtResource("4_1e485")]
+[node name="GroundTile94" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="55" unique_id=462970176 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -128)
 
-[node name="GroundTile95" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="56" unique_id=51299394 instance=ExtResource("4_1e485")]
+[node name="GroundTile95" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="56" unique_id=51299394 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -144)
 
-[node name="GroundTile96" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="57" unique_id=1450472275 instance=ExtResource("4_1e485")]
+[node name="GroundTile96" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="57" unique_id=1450472275 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -160)
 
-[node name="GroundTile97" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="58" unique_id=1480096193 instance=ExtResource("4_1e485")]
+[node name="GroundTile97" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="58" unique_id=1480096193 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -176)
 
-[node name="GroundTile98" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="59" unique_id=754087817 instance=ExtResource("4_1e485")]
+[node name="GroundTile98" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="59" unique_id=754087817 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -192)
 
-[node name="GroundTile99" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="60" unique_id=1644284948 instance=ExtResource("4_1e485")]
+[node name="GroundTile99" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="60" unique_id=1644284948 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -208)
 
-[node name="GroundTile73" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="61" unique_id=1987101944 instance=ExtResource("4_1e485")]
+[node name="GroundTile73" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="61" unique_id=1987101944 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -32)
 
-[node name="GroundTile74" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="62" unique_id=659067276 instance=ExtResource("4_1e485")]
+[node name="GroundTile74" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="62" unique_id=659067276 instance=ExtResource("4_1e485")]
 position = Vector2(3744, -32)
 
-[node name="GroundTile75" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="63" unique_id=1244426490 instance=ExtResource("4_1e485")]
+[node name="GroundTile75" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="63" unique_id=1244426490 instance=ExtResource("4_1e485")]
 position = Vector2(3760, -32)
 
-[node name="GroundTile76" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="64" unique_id=1719439540 instance=ExtResource("4_1e485")]
+[node name="GroundTile76" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="64" unique_id=1719439540 instance=ExtResource("4_1e485")]
 position = Vector2(3776, -32)
 
-[node name="GroundTile77" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="65" unique_id=2044215 instance=ExtResource("4_1e485")]
+[node name="GroundTile77" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="65" unique_id=2044215 instance=ExtResource("4_1e485")]
 position = Vector2(3792, -32)
 
-[node name="GroundTile78" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="66" unique_id=1386957090 instance=ExtResource("4_1e485")]
+[node name="GroundTile78" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="66" unique_id=1386957090 instance=ExtResource("4_1e485")]
 position = Vector2(3808, -32)
 
-[node name="GroundTile79" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="67" unique_id=1020276081 instance=ExtResource("4_1e485")]
+[node name="GroundTile79" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="67" unique_id=1020276081 instance=ExtResource("4_1e485")]
 position = Vector2(3824, -32)
 
-[node name="GroundTile80" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="68" unique_id=1466279612 instance=ExtResource("4_1e485")]
+[node name="GroundTile80" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="68" unique_id=1466279612 instance=ExtResource("4_1e485")]
 position = Vector2(3840, -32)
 
-[node name="GroundTile81" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="69" unique_id=2063751131 instance=ExtResource("4_1e485")]
+[node name="GroundTile81" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="69" unique_id=2063751131 instance=ExtResource("4_1e485")]
 position = Vector2(3856, -32)
 
-[node name="GroundTile82" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="70" unique_id=1211491368 instance=ExtResource("4_1e485")]
+[node name="GroundTile82" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="70" unique_id=1211491368 instance=ExtResource("4_1e485")]
 position = Vector2(3872, -32)
 
-[node name="GroundTile83" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="71" unique_id=34475104 instance=ExtResource("4_1e485")]
+[node name="GroundTile83" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="71" unique_id=34475104 instance=ExtResource("4_1e485")]
 position = Vector2(3728, -16)
 
-[node name="GroundTile84" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="72" unique_id=999217421 instance=ExtResource("4_1e485")]
+[node name="GroundTile84" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="72" unique_id=999217421 instance=ExtResource("4_1e485")]
 position = Vector2(3744, -16)
 
-[node name="GroundTile85" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="73" unique_id=267621612 instance=ExtResource("4_1e485")]
+[node name="GroundTile85" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="73" unique_id=267621612 instance=ExtResource("4_1e485")]
 position = Vector2(3760, -16)
 
-[node name="GroundTile86" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="74" unique_id=273160967 instance=ExtResource("4_1e485")]
+[node name="GroundTile86" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="74" unique_id=273160967 instance=ExtResource("4_1e485")]
 position = Vector2(3776, -16)
 
-[node name="GroundTile87" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="75" unique_id=1828125137 instance=ExtResource("4_1e485")]
+[node name="GroundTile87" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="75" unique_id=1828125137 instance=ExtResource("4_1e485")]
 position = Vector2(3792, -16)
 
-[node name="GroundTile88" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="76" unique_id=78404348 instance=ExtResource("4_1e485")]
+[node name="GroundTile88" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="76" unique_id=78404348 instance=ExtResource("4_1e485")]
 position = Vector2(3808, -16)
 
-[node name="GroundTile89" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="77" unique_id=444125097 instance=ExtResource("4_1e485")]
+[node name="GroundTile89" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="77" unique_id=444125097 instance=ExtResource("4_1e485")]
 position = Vector2(3824, -16)
 
-[node name="GroundTile90" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="78" unique_id=1070039003 instance=ExtResource("4_1e485")]
+[node name="GroundTile90" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="78" unique_id=1070039003 instance=ExtResource("4_1e485")]
 position = Vector2(3840, -16)
 
-[node name="GroundTile91" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="79" unique_id=552118846 instance=ExtResource("4_1e485")]
+[node name="GroundTile91" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="79" unique_id=552118846 instance=ExtResource("4_1e485")]
 position = Vector2(3856, -16)
 
-[node name="GroundTile92" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="80" unique_id=381653130 instance=ExtResource("4_1e485")]
+[node name="GroundTile92" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="80" unique_id=381653130 instance=ExtResource("4_1e485")]
 position = Vector2(3872, -16)
 
-[node name="GroundTile63" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="81" unique_id=1391873708 instance=ExtResource("4_1e485")]
+[node name="GroundTile63" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="81" unique_id=1391873708 instance=ExtResource("4_1e485")]
 position = Vector2(3008, -64)
 
-[node name="GroundTile64" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="82" unique_id=1406700566 instance=ExtResource("4_1e485")]
+[node name="GroundTile64" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="82" unique_id=1406700566 instance=ExtResource("4_1e485")]
 position = Vector2(3008, -48)
 
-[node name="GroundTile65" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="83" unique_id=491989728 instance=ExtResource("4_1e485")]
+[node name="GroundTile65" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="83" unique_id=491989728 instance=ExtResource("4_1e485")]
 position = Vector2(2992, -48)
 
-[node name="GroundTile35" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="84" unique_id=106881614 instance=ExtResource("4_1e485")]
+[node name="GroundTile35" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="84" unique_id=106881614 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -64)
 
-[node name="GroundTile36" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="85" unique_id=1757102632 instance=ExtResource("4_1e485")]
+[node name="GroundTile36" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="85" unique_id=1757102632 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -80)
 
-[node name="GroundTile37" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="86" unique_id=1556587216 instance=ExtResource("4_1e485")]
+[node name="GroundTile37" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="86" unique_id=1556587216 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -96)
 
-[node name="GroundTile38" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="87" unique_id=1929882896 instance=ExtResource("4_1e485")]
+[node name="GroundTile38" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="87" unique_id=1929882896 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -128)
 
-[node name="GroundTile39" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="88" unique_id=1681601541 instance=ExtResource("4_1e485")]
+[node name="GroundTile39" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="88" unique_id=1681601541 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -144)
 
-[node name="GroundTile40" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="89" unique_id=613284016 instance=ExtResource("4_1e485")]
+[node name="GroundTile40" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="89" unique_id=613284016 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -160)
 
-[node name="GroundTile41" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="90" unique_id=1710693455 instance=ExtResource("4_1e485")]
+[node name="GroundTile41" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="90" unique_id=1710693455 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -176)
 
-[node name="GroundTile42" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="91" unique_id=1898020775 instance=ExtResource("4_1e485")]
+[node name="GroundTile42" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="91" unique_id=1898020775 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -192)
 
-[node name="GroundTile43" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="92" unique_id=1899747735 instance=ExtResource("4_1e485")]
+[node name="GroundTile43" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="92" unique_id=1899747735 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -208)
 
-[node name="GroundTile44" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="93" unique_id=50712189 instance=ExtResource("4_1e485")]
+[node name="GroundTile44" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="93" unique_id=50712189 instance=ExtResource("4_1e485")]
 position = Vector2(1376, -224)
 
 [node name="PlayerCamera" parent="." index="1" unique_id=1576712886]
 ignore_rotation = false
 zoom = Vector2(3, 3)
 
-[editable path="SubArea"]
+[editable path="SubArea0"]

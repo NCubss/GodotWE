@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match event.button_index:
 			MouseButton.MOUSE_BUTTON_LEFT:
@@ -45,7 +45,7 @@ func _input(event: InputEvent) -> void:
 ## Returns the currently selected [PartInfo] from the card bar on the top panel.
 ## If no [PartInfo] is selected, [code]null[/code] is returned.
 func get_selected_part() -> PartInfo:
-	var card: EditorCard = EditorCard.card_group.get_pressed_button()
+	var card: EditorCard = preload("uid://dhdt3ovnv8ci2").get_pressed_button()
 	if card == null:
 		return null
 	else:

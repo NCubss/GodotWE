@@ -13,7 +13,7 @@ var extended := true:
 			return
 		_extend_tween = create_tween()
 		_extend_tween.tween_property(self, "position", open_pos if value else closed_pos, 0.1)
-		extended = value
+		extended = value 
 
 ## Whether this panel's extended state can be changed. This is set to
 ## [code]true[/code] when the palette is opened, camera is zoomed out, etc.

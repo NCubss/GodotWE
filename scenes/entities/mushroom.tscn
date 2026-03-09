@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://eu7xxlwcq05b"]
 
 [ext_resource type="Script" uid="uid://cas8xqggpeseb" path="res://scripts/level/entities/mushroom.gd" id="1_y41n4"]
-[ext_resource type="Texture2D" uid="uid://b757gbkr1a7j0" path="res://sprites/entities/mushroom.png" id="2_y41n4"]
+[ext_resource type="Texture2D" uid="uid://b757gbkr1a7j0" path="res://textures/smw/entities/mushroom.png" id="2_y41n4"]
 [ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_ohtko"]
 [ext_resource type="Script" uid="uid://nhyxn7n2fqbr" path="res://scripts/components/gravity_component.gd" id="4_w3dyv"]
 [ext_resource type="Script" uid="uid://sv7f6f65t1eb" path="res://scripts/components/slide_component.gd" id="5_y41n4"]

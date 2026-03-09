@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dpfaa6qawfnk1"]
 
 [ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_6ie8e"]
-[ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://sprites/tiles/ground.png" id="2_83ppi"]
+[ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://textures/tiles/ground.png" id="2_83ppi"]
 [ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="2_akctd"]
-[ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://sprites/ui/editor/part_icons/smb3/pipe.png" id="3_a0kg4"]
+[ext_resource type="Texture2D" uid="uid://cue1pmselswho" path="res://textures/ui/editor/part_icons/smb3/pipe.png" id="3_a0kg4"]
 [ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_akctd"]
 [ext_resource type="Script" uid="uid://4ld0tmaadxvg" path="res://scripts/ui/editor/part_info.gd" id="4_ttmiv"]
 
