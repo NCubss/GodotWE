@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dfiig7kqobf07"]
 
 [ext_resource type="Script" uid="uid://b1egrch03xwve" path="res://scripts/ui/hud.gd" id="1_08lf5"]
-[ext_resource type="FontFile" uid="uid://cowsd2reok2qb" path="res://ui/hud_smw.png" id="1_rfeh8"]
-[ext_resource type="Texture2D" uid="uid://krh010wd8jbf" path="res://sprites/ui/hud/smw/time.png" id="2_vk4tt"]
-[ext_resource type="Texture2D" uid="uid://2qd0sgscyd64" path="res://sprites/ui/hud/smw/x.png" id="4_xt700"]
-[ext_resource type="Texture2D" uid="uid://b2ng4nuw4tgif" path="res://sprites/ui/hud/smw/coin.png" id="5_jtc18"]
+[ext_resource type="FontFile" uid="uid://cowsd2reok2qb" path="res://resources/ui/hud_smw.png" id="1_rfeh8"]
+[ext_resource type="Texture2D" uid="uid://krh010wd8jbf" path="res://textures/ui/hud/smw/time.png" id="2_vk4tt"]
+[ext_resource type="Texture2D" uid="uid://2qd0sgscyd64" path="res://textures/ui/hud/smw/x.png" id="4_xt700"]
+[ext_resource type="Texture2D" uid="uid://b2ng4nuw4tgif" path="res://textures/ui/hud/smw/coin.png" id="5_jtc18"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_prweb"]
 font = ExtResource("1_rfeh8")

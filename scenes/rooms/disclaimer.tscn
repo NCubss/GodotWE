@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://qepmxcf7odg6"]
 
 [ext_resource type="Script" uid="uid://c25jk353o6v18" path="res://scripts/ui/disclaimer.gd" id="1_1kyrh"]
-[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://ui/text.ttf" id="2_aggwn"]
+[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://resources/ui/text.ttf" id="2_aggwn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3diux"]
 font = ExtResource("2_aggwn")

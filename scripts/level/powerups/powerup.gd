@@ -27,10 +27,6 @@ static func default_animate(
 	tween.finished.connect(func(): tree.paused = false; old_graphics.queue_free())
 
 
-func _init(parent_player: Player):
-	player = parent_player
-
-
 ## Runs once the state has just been enabled.
 @warning_ignore("unused_parameter", "shadowed_variable")
 func start(animate := false) -> void:

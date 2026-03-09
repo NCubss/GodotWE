@@ -7,18 +7,19 @@
 
 [node name="Level" type="Node2D" unique_id=981213055 node_paths=PackedStringArray("player", "current_sub_area") groups=["level"]]
 script = ExtResource("1_f53rw")
-player = NodePath("SubArea/Foreground/Player")
-current_sub_area = NodePath("SubArea")
+player = NodePath("SubArea0/Foreground/Player")
+current_sub_area = NodePath("SubArea0")
 metadata/_custom_type_script = "uid://cxkfed5ltcp7y"
 
-[node name="SubArea" parent="." unique_id=1880988790 instance=ExtResource("2_j0h5q")]
+[node name="SubArea0" parent="." unique_id=1880988790 instance=ExtResource("2_j0h5q")]
+unique_name_in_owner = true
 
-[node name="Player" parent="SubArea/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="0" unique_id=2077452534 instance=ExtResource("3_2txic")]
+[node name="Player" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="0" unique_id=2077452534 instance=ExtResource("3_2txic")]
 position = Vector2(64, -32)
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576712886 node_paths=PackedStringArray("target") groups=["camera"]]
 script = ExtResource("2_8kft7")
-target = NodePath("../SubArea/Foreground/Player")
+target = NodePath("../SubArea0/Foreground/Player")
 metadata/_custom_type_script = "uid://cyq2v03nxfakf"
 
-[editable path="SubArea"]
+[editable path="SubArea0"]

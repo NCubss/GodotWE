@@ -45,13 +45,13 @@ var _opacity := 0.0
 
 
 func _init():
-	texture = load("res://sprites/ui/editor/popout.svg")
+	texture = preload("uid://cy4xwj1nrr0pc")
 	patch_margin_top = 57
 	patch_margin_bottom = 15
 	visible = false
 	close_btn = TextureButtonExt.new()
 	add_child(close_btn, false, Node.INTERNAL_MODE_FRONT)
-	close_btn.texture_normal = load("res://sprites/ui/btn_close.svg")
+	close_btn.texture_normal = preload("uid://b0tiwkw7ublhx")
 	close_btn.set_anchors_preset(Control.PRESET_TOP_RIGHT)
 	close_btn.offset_top = 9
 	close_btn.offset_bottom = close_btn.size.y + 9

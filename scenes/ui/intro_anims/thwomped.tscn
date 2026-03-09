@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bsxujjyxpynda"]
 
-[ext_resource type="AudioStream" uid="uid://dkq34xp7o60p" path="res://audio/ui/intro_thwomp.wav" id="1_6bst8"]
-[ext_resource type="Texture2D" uid="uid://5ur6eav4qc8e" path="res://sprites/ui/intro/mario.png" id="2_48hvy"]
-[ext_resource type="Texture2D" uid="uid://cqk017de3d5t3" path="res://sprites/ui/intro/thwomp.png" id="3_02sr1"]
+[ext_resource type="AudioStream" uid="uid://dkq34xp7o60p" path="res://audio/ui/intro/intro_thwomp.wav" id="1_6bst8"]
+[ext_resource type="Texture2D" uid="uid://5ur6eav4qc8e" path="res://textures/ui/intro/mario.png" id="2_48hvy"]
+[ext_resource type="Texture2D" uid="uid://cqk017de3d5t3" path="res://textures/ui/intro/thwomp.png" id="3_02sr1"]
 
 [sub_resource type="Animation" id="Animation_gfbhl"]
 length = 0.001

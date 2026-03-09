@@ -11,8 +11,14 @@ extends TextureButton
 func _ready() -> void:
 	action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 	mouse_entered.connect(_entered)
-	mouse_entered.connect(_effect.start)
-	mouse_exited.connect(_effect.stop)
+	mouse_entered.connect(func():
+		if can_process():
+			_effect.start()
+	)
+	mouse_exited.connect(func():
+		if can_process():
+			_effect.stop()
+	)
 
 
 func _process(_delta: float) -> void:
@@ -29,6 +35,8 @@ func _pressed() -> void:
 		
 
 func _entered() -> void:
+	if not can_process():
+		return
 	if not DisplayServer.is_touchscreen_available():
 		UISoundPlayer.stream = load("uid://dn2weik3slobr")
 		UISoundPlayer.play()

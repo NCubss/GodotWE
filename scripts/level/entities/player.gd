@@ -71,7 +71,10 @@ extends Entity
 @onready var state_machine: StateMachine = %StateMachine
 
 ## The powerup the player will start with.
-@export var starting_powerup: Powerup = SmallPowerup.new(self)
+@export var starting_powerup: Powerup = SmallPowerup.new():
+	set(v):
+		v.player = self
+		starting_powerup = v
 
 @export_group("Maximum Speed")
 ## The maximum horizontal speed when walking.
@@ -191,6 +194,8 @@ const VOID_LEVEL = 64
 
 
 func _ready() -> void:
+	# trigger setter
+	starting_powerup = starting_powerup
 	_powerup = starting_powerup
 	_powerup.start()
 
@@ -270,8 +275,7 @@ func drop_item() -> Entity:
 ## Spawns the spin thump effect at [param position] in global coordinates, at
 ## the player's feet by default.
 func spawn_spin_thump(pos := global_position) -> void:
-	var spin_thump = preload("res://scenes/particles/spin_thump.tscn") \
-			.instantiate()
+	var spin_thump = preload("uid://clqrm38rakunb").instantiate()
 	get_parent().add_sibling(spin_thump)
 	spin_thump.global_position = pos
 

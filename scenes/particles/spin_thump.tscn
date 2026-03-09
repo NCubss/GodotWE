@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clqrm38rakunb"]
 
-[ext_resource type="Texture2D" uid="uid://d3c5u63kv1u4x" path="res://sprites/spin_thump.png" id="1_v0sv7"]
+[ext_resource type="Texture2D" uid="uid://d3c5u63kv1u4x" path="res://textures/spin_thump.png" id="1_v0sv7"]
 [ext_resource type="Script" uid="uid://cgfsosscj8elx" path="res://scripts/other/particle.gd" id="2_pyjb2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_16cmi"]

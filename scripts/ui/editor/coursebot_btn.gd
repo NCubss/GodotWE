@@ -45,11 +45,7 @@ func _draw() -> void:
 	draw_rect(Rect2(12 - _extend_size, 0, _extend_size, 60), Color("#590f10"))
 	# draw icon
 	if button_pressed:
-		draw_texture(
-				preload("res://sprites/ui/editor/btn_coursebot_icon_open.svg"),
-				Vector2(0, 0))
+		draw_texture(preload("uid://buxq70s1a6ypq"), Vector2(0, 0))
 	else:
-		draw_texture(
-				preload("res://sprites/ui/editor/btn_coursebot_icon.svg"),
-				Vector2(0, 0))
+		draw_texture(preload("uid://ciqrifuodxf7m"), Vector2(0, 0))
 	_effect.draw()

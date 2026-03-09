@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bpy1sebdq7k7s"]
 
 [ext_resource type="Script" uid="uid://bwgj57thd408" path="res://scripts/level/tiles/ground.gd" id="1_8n0yu"]
-[ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://sprites/tiles/ground.png" id="2_a75co"]
+[ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://textures/tiles/ground.png" id="2_a75co"]
 [ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_a75co"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sbnp"]
@@ -22,6 +22,7 @@ position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_2sbnp")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=506688246]
+unique_name_in_owner = true
 position = Vector2(8, 8)
 texture = SubResource("AtlasTexture_hxp2u")
 script = ExtResource("3_a75co")

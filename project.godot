@@ -13,7 +13,7 @@ config_version=5
 config/name="GodotWE"
 config/description="SMM:WE in Godot"
 config/version="0.1.0"
-run/main_scene="uid://dtq1i14h6pmvn"
+run/main_scene="uid://qepmxcf7odg6"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -48,15 +48,28 @@ mouse_cursor/custom_image_hotspot=Vector2(15, 18)
 
 movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/extra/video.ogv"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_icon_gen/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://audio/": "red",
+"res://extra/": "pink",
+"res://resources/": "orange",
 "res://scenes/": "yellow",
 "res://scripts/": "green",
-"res://sprites/": "blue",
-"res://sprites/player/mario/": "red"
+"res://shaders/": "teal",
+"res://textures/": "blue",
+"res://textures/player/mario/": "red",
+"res://translations/": "purple"
 }
+
+[game]
+
+levels/protocol_version=0
+levels/allow_swe=true
 
 [global_group]
 
@@ -145,11 +158,11 @@ pause={
 [internationalization]
 
 locale/translation_remaps={
-"res://sprites/ui/coursebot/tag_stamps/sheet.png": PackedStringArray("res://sprites/ui/coursebot/tag_stamps/sheet_es.png:es", "res://sprites/ui/coursebot/tag_stamps/sheet_it.png:it", "res://sprites/ui/coursebot/tag_stamps/sheet_pt.png:pt", "res://sprites/ui/coursebot/tag_stamps/sheet_ru.png:ru", "res://sprites/ui/coursebot/tag_stamps/sheet_zh.png:zh"),
-"res://sprites/ui/main_menu/title.svg": PackedStringArray("res://sprites/ui/main_menu/title_es.svg:es", "res://sprites/ui/main_menu/title_it.svg:it", "res://sprites/ui/main_menu/title_pt.svg:pt", "res://sprites/ui/main_menu/title_ru.svg:ru", "res://sprites/ui/main_menu/title_zh.svg:zh")
+"res://textures/ui/coursebot/tag_stamps/sheet.png": PackedStringArray("res://textures/ui/coursebot/tag_stamps/sheet_es.png:es", "res://textures/ui/coursebot/tag_stamps/sheet_it.png:it", "res://textures/ui/coursebot/tag_stamps/sheet_pt.png:pt", "res://textures/ui/coursebot/tag_stamps/sheet_ru.png:ru", "res://textures/ui/coursebot/tag_stamps/sheet_zh.png:zh"),
+"res://textures/ui/main_menu/title.svg": PackedStringArray("res://textures/ui/main_menu/title_es.svg:es", "res://textures/ui/main_menu/title_it.svg:it", "res://textures/ui/main_menu/title_pt.svg:pt", "res://textures/ui/main_menu/title_ru.svg:ru", "res://textures/ui/main_menu/title_zh.svg:zh")
 }
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.es.translation")
-locale/test="zh_Hans_CN"
+locale/test="es"
 locale/locale_filter_mode=0
 
 [layer_names]

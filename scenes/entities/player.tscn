@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2cwk2viytb57"]
 
 [ext_resource type="Script" uid="uid://cn7whaq6fajxf" path="res://scripts/level/entities/player.gd" id="1_ucweq"]
-[ext_resource type="SpriteFrames" uid="uid://b8ka66cx00t43" path="res://sprites/player/mario/small.tres" id="2_b6tgf"]
+[ext_resource type="SpriteFrames" uid="uid://b8ka66cx00t43" path="res://textures/player/mario/small.tres" id="2_b6tgf"]
 [ext_resource type="Script" uid="uid://df1xqrsuaou5x" path="res://scripts/level/entities/states/player_death_state.gd" id="10_73kkf"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="10_b6tgf"]
 [ext_resource type="Script" uid="uid://cnsky0lpl5fbm" path="res://scripts/level/entities/states/state_machine.gd" id="12_n5sgd"]

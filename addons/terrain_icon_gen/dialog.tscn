@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://drd2p1iat7a70"]
+
+[node name="Dialog" type="AcceptDialog" unique_id=457243104]
+oversampling_override = 1.0
+title = "Terrain Icon Generator"
+position = Vector2i(0, 36)
+size = Vector2i(235, 229)
+ok_button_text = "Generate"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1952676556]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 227.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SheetPathLabel" type="Label" parent="VBoxContainer" unique_id=1278997784]
+layout_mode = 2
+text = "Ground sheet path:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=600333472]
+layout_mode = 2
+
+[node name="SheetPathInput" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=679240265]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SheetPathOpen" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2080113737]
+unique_name_in_owner = true
+layout_mode = 2
+text = "..."
+
+[node name="ResultPathLabel" type="Label" parent="VBoxContainer" unique_id=646487228]
+layout_mode = 2
+text = "Result path:"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1859114194]
+layout_mode = 2
+
+[node name="ResultPathInput" type="LineEdit" parent="VBoxContainer/HBoxContainer2" unique_id=738559344]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResultPathOpen" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=208198031]
+unique_name_in_owner = true
+layout_mode = 2
+text = "..."

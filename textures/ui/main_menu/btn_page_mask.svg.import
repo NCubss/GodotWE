@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://qbqq7gvn0pxu"
+path="res://.godot/imported/btn_page_mask.svg-e23f540ebd76074b2b9b5de91e578d49.res"
+
+[deps]
+
+source_file="res://textures/ui/main_menu/btn_page_mask.svg"
+dest_files=["res://.godot/imported/btn_page_mask.svg-e23f540ebd76074b2b9b5de91e578d49.res"]
+
+[params]
+
+create_from=1
+threshold=0.5

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://66t6go77oisx"]
+
+[ext_resource type="Texture2D" uid="uid://7gay5cseij7l" path="res://textures/ui/main_menu/login_bg.svg" id="1_ec7l3"]
+[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://textures/ui/btn_close.svg" id="2_ebl7d"]
+
+[node name="LoginLayer" type="CanvasLayer" unique_id=2102270892]
+layer = 6
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2140350237]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.59607846)
+
+[node name="LoginContainer" type="CenterContainer" parent="." unique_id=1519497523]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginPanel" type="TextureRect" parent="LoginContainer" unique_id=1320110960]
+layout_mode = 2
+texture = ExtResource("1_ec7l3")
+
+[node name="Label" type="Label" parent="LoginContainer/LoginPanel" unique_id=1665971395]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 72.0
+offset_right = 75.0
+offset_bottom = 107.00001
+grow_horizontal = 2
+text = "LOGIN_TITLE"
+
+[node name="BtnClose" type="TextureButton" parent="LoginContainer/LoginPanel" unique_id=466418261]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -59.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 62.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_ebl7d")

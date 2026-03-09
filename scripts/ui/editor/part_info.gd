@@ -9,8 +9,10 @@ enum Category {
 	GIZMOS,
 }
 
-## The part's name table, which stores this part's names for each game style.
-@export var name_table: Dictionary[Level.GameStyle, String]
+## The part's name. in its unlocalized form.
+@export var name: String
+@export var game_style_unique_name: bool
+@export var level_theme_unique_name: bool
 ## The part's 60x60 icon used in the variant window and card.
 @export var icon: Texture2D
 ## The icon's texture filter to draw with. Useful for determining what icons
@@ -38,5 +40,5 @@ static func get_category_color(c: Category) -> Color:
 		Category.GIZMOS:
 			return Color("f2ef08")
 		_:
-			push_warning("Invalid category", c)
+			assert(false, "Invalid category %d" % c)
 			return Color.GRAY

@@ -6,10 +6,13 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d1g1m"]
 shader = ExtResource("2_d1g1m")
 
-[node name="SubArea" type="Node2D" unique_id=1207914609]
+[node name="SubArea" type="Node2D" unique_id=986670251]
 script = ExtResource("1_d1g1m")
-metadata/_custom_type_script = "uid://c1vevfranvnvu"
 
 [node name="Foreground" type="CanvasGroup" parent="." unique_id=1554830974]
+unique_name_in_owner = true
 z_index = 100
 material = SubResource("ShaderMaterial_d1g1m")
+
+[node name="Parts" type="Node" parent="." unique_id=199134187]
+unique_name_in_owner = true
