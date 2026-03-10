@@ -8,10 +8,10 @@ enum Page {
 	ONLINE,
 }
 
-const SCN_EDITOR = "uid://cbc3kaegk4jn3"
-const SCN_COURSEBOT = ""
-const SCN_ENDLESS = ""
-const SCN_ONLINE = ""
+const SCN_EDITOR = preload("uid://cbc3kaegk4jn3")
+const SCN_COURSEBOT = preload("uid://cbc3kaegk4jn3")
+const SCN_ENDLESS = preload("uid://cbc3kaegk4jn3")
+const SCN_ONLINE = preload("uid://cbc3kaegk4jn3")
 
 @export var page: Page
 
@@ -26,7 +26,7 @@ func _ready() -> void:
 	_scene_changed()
 
 
-func _get_scn() -> String:
+func _get_scn() -> PackedScene:
 	match page:
 		Page.EDITOR:
 			return SCN_EDITOR
@@ -37,7 +37,7 @@ func _get_scn() -> String:
 		Page.ONLINE:
 			return SCN_ONLINE
 		_:
-			return ""
+			return PackedScene.new()
 
 
 func _process(_delta: float) -> void:
@@ -56,7 +56,7 @@ func _mouse(state: bool) -> void:
 func _scene_changed() -> void:
 	var path = get_tree().current_scene.scene_file_path
 	if path != "":
-		button_pressed = ResourceUID.path_to_uid(path) == _get_scn()
+		button_pressed = _get_scn() == load(get_tree().current_scene.scene_file_path)
 
 
 func _toggled(toggled_on: bool) -> void:
@@ -69,7 +69,7 @@ func _toggled(toggled_on: bool) -> void:
 		else:
 			%MenuPlayer.stream = preload("uid://c1ddsd1m5j2lh")
 			%MenuPlayer.play()
-			SceneManager.fade_to(_get_scn())
+			SceneManager.fade_to_scene(_get_scn())
 
 
 func _draw() -> void:

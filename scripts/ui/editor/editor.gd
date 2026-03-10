@@ -24,7 +24,8 @@ var _last_mouse_pos: Vector2i
 
 func _ready():
 	theme = ThemeDB.get_project_theme()
-	
+	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
+	MusicPlayer.play()
 
 
 func _process(_delta: float) -> void:

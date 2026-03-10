@@ -4,6 +4,8 @@ extends Node2D
 
 ## Emitted when the level timer ends.
 signal times_up
+## Emitted when the game style changes.
+signal game_style_changed(old: GameStyle)
 
 ## Represents a game style. Applies across the entire level.
 enum GameStyle {
@@ -205,11 +207,15 @@ const SWE_OBJECT_TABLE = {
 ## The description of the level, with a maximum of 92 characters. Attempting to
 ## set a string of higher length will cut it to the first 92 characters.
 @export_multiline var description := "":
-	set(value):
-		description = value.substr(0, 92)
+	set(v):
+		description = v.substr(0, 92)
 ## The game style of the level. See [member SubArea.game_theme] for the game
 ## theme.
-@export var game_style := GameStyle.SMW
+@export var game_style := GameStyle.SMW:
+	set(v):
+		var old = game_style
+		game_style = v
+		game_style_changed.emit(old)
 ## The level's timer, in seconds. The player is forcibly killed once it arrives
 ## to zero. This may violate the Geneva Convention.
 @export_range(10, 500, 10) var time := 430:

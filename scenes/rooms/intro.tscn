@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bwyegq0ln2v8a" path="res://textures/ui/intro/btn_link_youtube_hover.svg" id="14_tgdcd"]
 [ext_resource type="Texture2D" uid="uid://d4f1cs174r5fp" path="res://textures/ui/intro/btn_settings.svg" id="15_mdh5t"]
 [ext_resource type="Texture2D" uid="uid://bamv2gwsfn8oj" path="res://textures/ui/intro/btn_settings_hover.svg" id="16_rh4yj"]
-[ext_resource type="AudioStream" uid="uid://b1rko3giiny3a" path="res://audio/ui/intro/end.wav" id="22_1sgqr"]
+[ext_resource type="AudioStream" uid="uid://kngwefcobxbe" path="res://audio/ui/editor/part/apply_parachute.wav" id="22_1sgqr"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0i2tv"]
 blend_mode = 4
