@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="1_gww7u"]
 [ext_resource type="ButtonGroup" uid="uid://dhdt3ovnv8ci2" path="res://resources/ui/editor_card_group.tres" id="1_phg84"]
-[ext_resource type="Texture2D" uid="uid://du8vtxsylbi78" path="res://textures/ui/editor/part_icons/smw/ground.png" id="3_js4xj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gww7u"]
 bg_color = Color(1, 1, 1, 1)
@@ -42,5 +41,4 @@ offset_top = -3.0
 offset_right = 57.0
 offset_bottom = 57.0
 mouse_filter = 2
-texture = ExtResource("3_js4xj")
 expand_mode = 1
