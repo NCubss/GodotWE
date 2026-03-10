@@ -3,16 +3,13 @@ extends TextureButton
 
 var _extend_size := 0.0
 var _tween: Tween
-var _effect := ButtonHoverEffect.new(self, Rect2(0, 0, size.x, size.y - 6))
 
-@onready var panel: EditorPopout = %CoursebotPanel
+@onready var _effect := ButtonHoverEffect.new(self, Rect2(0, 0, size.x, size.y - 6))
 
 
 func _ready() -> void:
-	mouse_entered.connect(_effect.start)
-	if GameSettings.show_hover_effect:
-		mouse_entered.connect(UISoundPlayer.start.bind("uid://bbc6fa1b5njqq"))
-	mouse_exited.connect(_effect.stop)
+	mouse_entered.connect(_mouse_entered)
+	mouse_exited.connect(_mouse_exited)
 
 
 func _process(_delta: float) -> void:
@@ -21,20 +18,17 @@ func _process(_delta: float) -> void:
 		queue_redraw()
 
 
-func _pressed() -> void:
-	if button_pressed:
-		UISoundPlayer.stream = load("uid://dun72febcjtln")
+func _toggled(toggled_on: bool) -> void:
+	if toggled_on:
 		_tween = create_tween()
 		_tween.tween_property(self, "_extend_size", 30, 0.1) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		panel.open()
+		%CoursebotPanel.open()
 	else:
-		UISoundPlayer.stream = load("uid://dvblsjft053ru")
 		_tween.kill()
 		_extend_size = 0
-		panel.close()
+		%CoursebotPanel.close()
 		queue_redraw()
-	UISoundPlayer.play()
 
 
 func _draw() -> void:
@@ -49,3 +43,14 @@ func _draw() -> void:
 	else:
 		draw_texture(preload("uid://ciqrifuodxf7m"), Vector2(0, 0))
 	_effect.draw()
+
+
+func _mouse_entered() -> void:
+	_effect.start()
+	if GameSettings.show_hover_effect:
+		UISoundPlayer.stream = preload("uid://bbc6fa1b5njqq")
+		UISoundPlayer.play()
+
+
+func _mouse_exited() -> void:
+	_effect.stop()
