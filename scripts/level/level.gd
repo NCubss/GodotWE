@@ -184,6 +184,10 @@ const SWE_GROUND_FRAME_TABLE = [
 	Rect2(16, 64, 16, 16),
 	Rect2(32, 64, 16, 16),
 ]
+const SWE_OBJECT_TABLE = {
+	"obj_block_res": preload("uid://d1pyovyuwelpw"),
+	"obj_qblock_res": preload("uid://c4qpbj5epsp55"),
+}
 
 ## The [Editor] this level is associated with. Also used for checking if this
 ## level is being edited.
@@ -232,14 +236,17 @@ static func from_swe(path: String) -> Level:
 	var data = _unpack_swe(path)
 	var wrapper: Dictionary
 	var list: Array
+	var use_s: bool
 	if "MAIN" in data:
 		# old format
 		wrapper = data["MAIN"]
 		list = wrapper["AJUSTES"]
+		use_s = false
 	elif "S0" in data:
 		# new format
 		wrapper = data["S0"]
 		list = wrapper["S1"]
+		use_s = true
 	else:
 		assert(false, "No 'S0' or 'MAIN' found in data")
 		return
@@ -252,33 +259,73 @@ static func from_swe(path: String) -> Level:
 		use_new = false
 	assert("user" in map, "No author in metadata")
 	lvl.author = map["user"]
-	assert("gamestyle" if use_new else "apariencia" in map,
+	assert(("gamestyle" if use_new else "apariencia") in map,
 			"No game style in metadata")
 	lvl.game_style = GameStyle.SMW#map["gamestyle" if use_new else "apariencia"]
-	if "desc" if use_new else "description" in map:
+	if lvl.game_style < 0 or lvl.game_style > 3:
+		lvl.game_style = randi_range(0, 3) as GameStyle
+	if ("desc" if use_new else "description") in map:
 		lvl.description = map["desc" if use_new else "description"]
 	var sub: SubArea = lvl.get_node(^"%SubArea0")
-	assert("gametheme" if use_new else "entorno" in map,
+	assert(("gametheme" if use_new else "entorno") in map,
 			"No level theme in metadata")
 	sub.level_theme = LevelTheme.OVERWORLD#SWE_LEVEL_THEME_TABLE[map["gametheme" if use_new else "entorno"]]
-	assert(("S2" if use_new else "SUELO") in wrapper, "No terrain data found")
-	var terrain: Array = wrapper["S2" if use_new else "SUELO"]
+	assert(("nightmode" if use_new else "modo_noche") in map,
+			"No night mode in metadata")
+	sub.night_mode = false#bool(map["nightmode" if use_new else "modo_noche"])
+	assert(("timer" if use_new else "cronometro") in map,
+			"No time in metadata")
+	var _time = map["timer" if use_new else "cronometro"]
+	if _time < 10 or _time > 500:
+		_time = 300
+	lvl.time = _time
+	# TERRAIN
+	assert(("S2" if use_s else "SUELO") in wrapper, "No terrain data found")
+	var terrain: Array = wrapper["S2" if use_s else "SUELO"]
 	var fore = sub.get_node(^"%Foreground")
 	for i: Dictionary in terrain:
 		var ground: GroundTile = preload("uid://bpy1sebdq7k7s").instantiate()
 		fore.add_child(ground)
 		ground.owner = lvl
-		assert(("xx" if use_new else "x_pos") in i, "No X position in terrain tile")
-		assert(("yy" if use_new else "y_pos") in i, "No Y position in terrain tile")
+		assert(("xx" if use_s else "x_pos") in i, "No X position in terrain tile")
+		assert(("yy" if use_s else "y_pos") in i, "No Y position in terrain tile")
 		ground.position = Vector2(
-				i["xx" if use_new else "x_pos"],
-				i["yy" if use_new else "y_pos"] - 432)
-		assert(("i" if use_new else "index") in i, "No index in terrain tile")
+				i["xx" if use_s else "x_pos"],
+				i["yy" if use_s else "y_pos"] - 432)
+		assert(("i" if use_s else "index") in i, "No index in terrain tile")
 		var spr: Sprite2D = ground.get_node(^"%Sprite")
 		spr.texture.region = SWE_GROUND_FRAME_TABLE[i["i" if use_new else "index"]]
-	lvl.scene = PackedScene.new()
-	var err = lvl.scene.pack(lvl)
-	assert(err == OK)
+	assert(("start_y" if use_new else "ground2") in map,
+			"No start height in metadata")
+	var start_height: float = map["start_y" if use_new else "ground2"] - 432
+	for x in range(0, 112, 16):
+		for y in range(int(start_height), 0, 16):
+			var ground = preload("uid://bpy1sebdq7k7s").instantiate()
+			fore.add_child(ground)
+			ground.owner = lvl
+			ground.position = Vector2(x, y)
+	var start = Sprite2D.new()
+	start.z_as_relative = false
+	start.texture = preload("uid://cgslc0o8upncx")
+	fore.add_child(start)
+	start.owner = lvl
+	start.position = Vector2(40, -56)
+	# OBJECTS
+	var objects: Array = wrapper["S4" if use_s else "NIVEL"]
+	for i: Dictionary in objects:
+		assert(("ID" if use_s else "object") in i, "No ID in object")
+		var id = i["ID" if use_s else "object"]
+		if id not in SWE_OBJECT_TABLE:
+			continue
+		var scn: PackedScene = SWE_OBJECT_TABLE[id]
+		var obj = scn.instantiate()
+		fore.add_child(obj)
+		obj.owner = lvl
+		assert(("xx" if use_s else "x_pos") in i, "No X position in object")
+		assert(("yy" if use_s else "y_pos") in i, "No Y position in object")
+		obj.position = Vector2(
+				i["xx" if use_s else "x_pos"],
+				i["yy" if use_s else "y_pos"] - 432)
 	return lvl
 
 
@@ -289,6 +336,10 @@ func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 
 
 func _ready() -> void:
+	scene = PackedScene.new()
+	var err = scene.pack(self)
+	assert(err == OK, "Failed to pack!")
+	scene = scene.duplicate(true)
 	for i in get_children():
 		if i is SubArea:
 			sub_areas.append(i)
