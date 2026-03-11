@@ -230,6 +230,8 @@ const SWE_OBJECT_TABLE = {
 ## The current [SubArea], that is, the [SubArea] in which entities are active
 ## and the player is in.
 @export var current_sub_area: SubArea
+## Whether this level is on the title screen.
+@export var title_screen: bool
 @export var scene: PackedScene
 
 ## The level's automatically assigned sub-areas.
@@ -353,12 +355,17 @@ func _ready() -> void:
 	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
 	if current_sub_area == null:
 		current_sub_area = sub_areas[0]
-
+	
 	_timer = Timer.new()
 	add_child(_timer)
-	_timer.wait_time = time + 1
-	_timer.one_shot = true
-	_timer.timeout.connect(_timeout)
+	if title_screen:
+		_timer.wait_time = 0
+		MusicPlayer.stream = preload("uid://bxnvgrgxf685m")
+		MusicPlayer.play()
+	else:
+		_timer.wait_time = time + 1
+		_timer.one_shot = true
+		_timer.timeout.connect(_timeout)
 	if editor == null:
 		if player == null:
 			player = load("uid://b2cwk2viytb57").instantiate()

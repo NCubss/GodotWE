@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://d11xvcdkd38jq"]
+
+[ext_resource type="PackedScene" uid="uid://b16kyjui2n3qv" path="res://scenes/templates/level_template.tscn" id="1_gox3e"]
+[ext_resource type="PackedScene" uid="uid://bpy1sebdq7k7s" path="res://scenes/tiles/ground_tile.tscn" id="2_empn1"]
+[ext_resource type="Texture2D" uid="uid://cgslc0o8upncx" path="res://textures/smw/start.png" id="3_vytx3"]
+[ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="4_yme3e"]
+[ext_resource type="Script" uid="uid://imtq6gf8pnq3" path="res://scripts/ui/logo.gd" id="5_fg2sx"]
+[ext_resource type="Script" uid="uid://sylg7gi4btl2" path="res://scripts/ui/title_screen.gd" id="5_vytx3"]
+[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://resources/ui/text.ttf" id="6_empn1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vytx3"]
+content_margin_left = 18.0
+content_margin_right = 18.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0.627451)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="FontVariation" id="FontVariation_yme3e"]
+base_font = ExtResource("6_empn1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_fg2sx"]
+font = SubResource("FontVariation_yme3e")
+font_size = 24
+
+[node name="Level" unique_id=981213055 instance=ExtResource("1_gox3e")]
+title_screen = true
+
+[node name="GroundTile" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="1" unique_id=1848390854 instance=ExtResource("2_empn1")]
+position = Vector2(0, -16)
+
+[node name="GroundTile2" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="2" unique_id=888833214 instance=ExtResource("2_empn1")]
+position = Vector2(0, -32)
+
+[node name="GroundTile3" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="3" unique_id=176321229 instance=ExtResource("2_empn1")]
+position = Vector2(16, -16)
+
+[node name="GroundTile4" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="4" unique_id=163243825 instance=ExtResource("2_empn1")]
+position = Vector2(16, -32)
+
+[node name="GroundTile5" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="5" unique_id=559794743 instance=ExtResource("2_empn1")]
+position = Vector2(32, -16)
+
+[node name="GroundTile6" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="6" unique_id=522477456 instance=ExtResource("2_empn1")]
+position = Vector2(32, -32)
+
+[node name="GroundTile7" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="7" unique_id=2051574926 instance=ExtResource("2_empn1")]
+position = Vector2(48, -16)
+
+[node name="GroundTile8" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="8" unique_id=1653246982 instance=ExtResource("2_empn1")]
+position = Vector2(48, -32)
+
+[node name="GroundTile9" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="9" unique_id=836737565 instance=ExtResource("2_empn1")]
+position = Vector2(64, -16)
+
+[node name="GroundTile10" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="10" unique_id=1823414261 instance=ExtResource("2_empn1")]
+position = Vector2(64, -32)
+
+[node name="GroundTile11" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="11" unique_id=312856206 instance=ExtResource("2_empn1")]
+position = Vector2(80, -16)
+
+[node name="GroundTile12" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="12" unique_id=428032966 instance=ExtResource("2_empn1")]
+position = Vector2(80, -32)
+
+[node name="GroundTile13" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="13" unique_id=457309540 instance=ExtResource("2_empn1")]
+position = Vector2(96, -16)
+
+[node name="GroundTile14" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="14" unique_id=1794237478 instance=ExtResource("2_empn1")]
+position = Vector2(96, -32)
+
+[node name="Start" type="Sprite2D" parent="SubArea0/Foreground" parent_id_path=PackedInt32Array(1880988790, 1554830974) index="15" unique_id=729494438]
+z_as_relative = false
+position = Vector2(40, -56)
+texture = ExtResource("3_vytx3")
+script = ExtResource("4_yme3e")
+metadata/_custom_type_script = "uid://ct8v8svsomclf"
+
+[node name="TitleLayer" type="CanvasLayer" parent="." index="2" unique_id=1597203106]
+
+[node name="Title" type="Control" parent="TitleLayer" index="0" unique_id=1488470736]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_vytx3")
+
+[node name="Logo" type="Control" parent="TitleLayer/Title" index="0" unique_id=531853539]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.5
+offset_top = 81.0
+offset_right = 313.5
+offset_bottom = 333.00003
+grow_horizontal = 2
+script = ExtResource("5_fg2sx")
+white = false
+metadata/_custom_type_script = "uid://imtq6gf8pnq3"
+
+[node name="NameContainer" type="PanelContainer" parent="TitleLayer/Title" index="1" unique_id=634934471]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 39.0
+offset_top = -30.0
+offset_right = 79.0
+offset_bottom = -9.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vytx3")
+
+[node name="Name" type="Label" parent="TitleLayer/Title/NameContainer" index="0" unique_id=1603536029]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+label_settings = SubResource("LabelSettings_fg2sx")
+
+[node name="AdditionalContainer" type="PanelContainer" parent="TitleLayer/Title" index="2" unique_id=717807992]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -46.0
+offset_right = 55.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vytx3")
+
+[node name="Additional" type="Label" parent="TitleLayer/Title/AdditionalContainer" index="0" unique_id=521658475]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "2022-2026 | E.K."
+label_settings = SubResource("LabelSettings_fg2sx")
+
+[node name="VersionContainer" type="PanelContainer" parent="TitleLayer/Title" index="3" unique_id=25736933]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -46.0
+offset_right = -39.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vytx3")
+
+[node name="Version" type="Label" parent="TitleLayer/Title/VersionContainer" index="0" unique_id=1666474969]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+label_settings = SubResource("LabelSettings_fg2sx")
+
+[editable path="SubArea0"]
