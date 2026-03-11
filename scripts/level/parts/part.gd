@@ -47,6 +47,8 @@ var _moved_out: bool
 # immediately held once placed. (I'm sure there's a better way to handle this.)
 var _start_frame := Engine.get_process_frames()
 var _coll_layers: int
+var _window: EditorWindow
+var _window_timer: SceneTreeTimer
 
 
 func _ready() -> void:
@@ -63,12 +65,15 @@ func _process(_delta: float) -> void:
 		var new_grid_pos = level.to_grid(global_position + Vector2(8, 8))
 		if new_grid_pos != _grid_pos:
 			# choosing which sound to play
-			var sound_path = "uid://rlah407gh46u"
+			var sound = preload("uid://rlah407gh46u")
 			if _moved_out == false:
 				_moved_out = true
-				sound_path = "uid://b87gjrl17xs2k"
+				_stop_window_timer()
+				if _window != null:
+					_window.close()
+				sound = preload("uid://b87gjrl17xs2k")
 			if not UISoundPlayer.playing:
-				UISoundPlayer.stream = load(sound_path)
+				UISoundPlayer.stream = sound
 				UISoundPlayer.play()
 			_check_validity()
 
@@ -117,7 +122,7 @@ func _draw():
 
 func erase() -> void:
 	queue_free()
-	UISoundPlayer.stream = load("uid://2axkkfi5xrx8")
+	UISoundPlayer.stream = preload("uid://2axkkfi5xrx8")
 	UISoundPlayer.play()
 
 
@@ -157,9 +162,11 @@ func _hold() -> void:
 	_original_z = graphics.z_index
 	graphics.z_index = _TOP_Z
 	editor.held_part = self
+	_window_timer = get_tree().create_timer(0.5)
+	_window_timer.timeout.connect(_create_window)
 	_anim_held()
 	if editor.touch_effect == null:
-		editor.touch_effect = load("uid://chv4mkls3f538") \
+		editor.touch_effect = preload("uid://chv4mkls3f538") \
 				.instantiate()
 		editor.touch_effect.animation_finished.connect(
 				editor.touch_effect.queue_free)
@@ -167,7 +174,7 @@ func _hold() -> void:
 		editor.touch_effect.global_position = get_global_mouse_position()
 	_grab_offset = get_global_mouse_position() - global_position
 	_moved_out = false
-	UISoundPlayer.stream = load("uid://cjtdcx7crghtw")
+	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
 	UISoundPlayer.play()
 
 
@@ -178,11 +185,12 @@ func _unhold() -> void:
 	_tween.kill()
 	_anim_place()
 	_check_validity()
+	_stop_window_timer()
 	if not _valid_space:
 		_grid_pos = _original_pos
 	position = level.from_grid(_grid_pos)
 	graphics.rotation = 0
-	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
+	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 
 
@@ -196,3 +204,15 @@ func _check_validity():
 	query.position = level.from_grid(_grid_pos) + level.GRID_SIZE / 2
 	_valid_space = get_world_2d().direct_space_state \
 			.intersect_point(query, 1).is_empty()
+
+
+func _create_window() -> void:
+	_window = preload("uid://dyw1evq8k8n58").instantiate()
+	_window.target_position = level.from_grid(_original_pos) + level.GRID_SIZE / 2
+	editor.get_node(^"%WindowLayer").add_child(_window)
+
+
+func _stop_window_timer() -> void:
+	if _window_timer != null:
+		if _window_timer.timeout.is_connected(_create_window):
+			_window_timer.timeout.disconnect(_create_window)
