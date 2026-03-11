@@ -20,7 +20,8 @@ func _ready() -> void:
 	menu.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	add_child(menu)
 	get_tree().scene_changed.connect(_scene_changed)
-	menu_player = menu.get_node("%MenuPlayer")
+	menu_player = menu.get_node(^"%MenuPlayer")
+	menu.get_node(^"%BtnExit").pressed.connect(close)
 
 
 func _input(event: InputEvent) -> void:

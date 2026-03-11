@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bpok5vme0o047" path="res://textures/ui/main_menu/btn_profile.svg" id="12_e0hcc"]
 [ext_resource type="Texture2D" uid="uid://3q5eke7ejjg4" path="res://textures/ui/main_menu/btn_mini_settings.svg" id="13_qch7b"]
 [ext_resource type="Texture2D" uid="uid://cuhdgl6ittrbs" path="res://textures/ui/main_menu/btn_mini_logout.svg" id="14_4ovp2"]
+[ext_resource type="Script" uid="uid://bssox7408h4no" path="res://scripts/ui/main_menu/mini_btn.gd" id="14_y2j7i"]
 [ext_resource type="Texture2D" uid="uid://b7krwd3ixsdd7" path="res://textures/ui/main_menu/btn_mini_title.svg" id="15_1mexh"]
 [ext_resource type="PackedScene" uid="uid://66t6go77oisx" path="res://scenes/ui/login.tscn" id="17_y2j7i"]
 
@@ -166,6 +167,7 @@ grow_horizontal = 2
 texture = ExtResource("1_fe2o3")
 
 [node name="BtnExit" type="TextureButton" parent="MainMenuUI" unique_id=1992872337]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -175,6 +177,7 @@ offset_top = 33.0
 offset_right = -27.0
 offset_bottom = 75.0
 grow_horizontal = 0
+action_mode = 0
 texture_normal = ExtResource("2_1g8jr")
 
 [node name="MenuPlayer" type="AudioStreamPlayer" parent="MainMenuUI" unique_id=1759967417]
@@ -207,6 +210,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_8ekit")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_n4uci")
 theme_override_styles/hover = SubResource("StyleBoxTexture_8ekit")
 toggle_mode = true
+action_mode = 0
 button_group = SubResource("ButtonGroup_877pj")
 text = "PAGE_EDITOR"
 script = ExtResource("6_ayp64")
@@ -220,6 +224,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_y2j7i")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_y1h5l")
 theme_override_styles/hover = SubResource("StyleBoxTexture_y2j7i")
 toggle_mode = true
+action_mode = 0
 button_group = SubResource("ButtonGroup_877pj")
 text = "PAGE_ENDLESS"
 script = ExtResource("6_ayp64")
@@ -234,6 +239,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_pw24t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5dct7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_pw24t")
 toggle_mode = true
+action_mode = 0
 button_group = SubResource("ButtonGroup_877pj")
 text = "PAGE_ONLINE"
 script = ExtResource("6_ayp64")
@@ -248,6 +254,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_877pj")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ayp64")
 theme_override_styles/hover = SubResource("StyleBoxTexture_877pj")
 toggle_mode = true
+action_mode = 0
 button_group = SubResource("ButtonGroup_877pj")
 text = "PAGE_COURSEBOT"
 script = ExtResource("6_ayp64")
@@ -271,22 +278,29 @@ theme_override_constants/separation = 15
 [node name="BtnProfile" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=49328762]
 layout_mode = 2
 size_flags_vertical = 8
+action_mode = 0
 texture_normal = ExtResource("12_e0hcc")
 
 [node name="BtnMiniSettings" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=447934041]
 layout_mode = 2
 size_flags_vertical = 8
+action_mode = 0
 texture_normal = ExtResource("13_qch7b")
+script = ExtResource("14_y2j7i")
 
 [node name="BtnMiniLogout" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1632560707]
 layout_mode = 2
 size_flags_vertical = 8
+action_mode = 0
 texture_normal = ExtResource("14_4ovp2")
+script = ExtResource("14_y2j7i")
 
 [node name="BtnMiniTitle" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1829249709]
 layout_mode = 2
 size_flags_vertical = 8
+action_mode = 0
 texture_normal = ExtResource("15_1mexh")
+script = ExtResource("14_y2j7i")
 
 [node name="LoginLayer" parent="." unique_id=2102270892 instance=ExtResource("17_y2j7i")]
 unique_name_in_owner = true
