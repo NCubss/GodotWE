@@ -12,6 +12,7 @@ func _ready() -> void:
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
 	_level.game_style_changed.connect(_game_style_changed)
+	%GameStylePanel.status_changed.connect(_panel_status_changed)
 
 
 func _process(_delta: float) -> void:
@@ -35,14 +36,8 @@ func _draw() -> void:
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		%GameStylePanel.open()
-		_tween = create_tween()
-		_tween.set_trans(Tween.TRANS_QUAD)
-		_tween.set_ease(Tween.EASE_OUT)
-		_tween.tween_property(self, "_extend_size", 24, 0.1)
 	else:
 		%GameStylePanel.close()
-		_tween.kill()
-		_extend_size = 0
 
 
 func _mouse_entered() -> void:
@@ -54,6 +49,20 @@ func _mouse_entered() -> void:
 
 func _mouse_exited() -> void:
 	_effect.stop()
+
+
+func _panel_status_changed(_old_status: EditorPopout.Status) -> void:
+	if %GameStylePanel.status == EditorPopout.Status.OPENING:
+		set_pressed_no_signal(true)
+		_tween = create_tween()
+		_tween.set_trans(Tween.TRANS_QUAD)
+		_tween.set_ease(Tween.EASE_OUT)
+		_tween.tween_property(self, "_extend_size", 24, 0.1)
+	elif %GameStylePanel.status == EditorPopout.Status.CLOSING:
+		set_pressed_no_signal(false)
+		_tween.kill()
+		_extend_size = 0
+
 
 
 func _game_style_changed(_old: Level.GameStyle) -> void:

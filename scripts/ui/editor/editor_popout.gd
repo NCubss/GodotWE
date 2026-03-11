@@ -1,18 +1,20 @@
 class_name EditorPopout
 extends NinePatchRect
 
-## Emitted when the popout has just begun opening.
-signal opening
-## Emitted when the popout has just finished opening.
-signal opened
-## Emitted when the popout has just begun closing.
-signal closing
-## Emitted when the popout has just finished closing.
-signal closed
+## Emitted when the [member status] changes.
+signal status_changed(old_status: Status)
 
+## A direction the popout can pop out in.
 enum PopoutDirection {
 	TO_LEFT,
 	TO_RIGHT,
+}
+## Represents the popout's current status.
+enum Status {
+	CLOSED,
+	OPENING,
+	OPEN,
+	CLOSING,
 }
 
 ## The side to which the popout will open in.
@@ -24,42 +26,61 @@ enum PopoutDirection {
 				region_rect = Rect2(0, 0, 27, 72)
 				patch_margin_left = 15
 				patch_margin_right = 9
-				close_btn.offset_right = -9
-				close_btn.offset_left = -9 - close_btn.size.x
+				if has_close_button:
+					close_btn.offset_right = -9
+					close_btn.offset_left = -9 - close_btn.size.x
 			PopoutDirection.TO_RIGHT:
 				region_rect = Rect2(27, 0, 27, 72)
 				patch_margin_left = 9
 				patch_margin_right = 15
-				close_btn.offset_right = -15
-				close_btn.offset_left = -15 - close_btn.size.x
+				if has_close_button:
+					close_btn.offset_right = -15
+					close_btn.offset_left = -15 - close_btn.size.x
 		queue_redraw()
 ## The title of the popout that will appear in the dark top bar.
 @export var title: String
 ## Whether the popout will have a close button.
 @export var has_close_button := true
+## The sound played once the popout opens.
 @export var open_sound: AudioStream = preload("uid://c8fexyefwlmfs")
+## The sound played once the popout closes.
 @export var close_sound: AudioStream = preload("uid://dy8hcmykup336")
 
-var close_btn := TextureButtonExt.new()
+## This popout's close button, if [member has_close_button] is [code]true[/code].
+var close_btn := TextureButton.new()
+## The sound player used to play [member open_sound] and [member close_sound].
 var sound_player := AudioStreamPlayer.new()
+## The popout's current [enum Status]. Emits [signal status_changed] when set.
+var status := Status.CLOSED:
+	set(v):
+		if status == v:
+			return
+		var old = status
+		status = v
+		status_changed.emit(old)
 
 var _tween: Tween
 var _opacity := 0.0
 
+## The target [Rect2] this popout will scale to once open.
 @onready var target_rect := get_rect()
 
 
-func _init():
+func _ready() -> void:
 	texture = preload("uid://cy4xwj1nrr0pc")
 	patch_margin_top = 57
 	patch_margin_bottom = 15
 	visible = false
-	add_child(sound_player, false, Node.INTERNAL_MODE_BACK)
-	add_child(close_btn, false, Node.INTERNAL_MODE_FRONT)
-	close_btn.texture_normal = preload("uid://b0tiwkw7ublhx")
-	close_btn.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	close_btn.offset_top = 9
-	close_btn.offset_bottom = close_btn.size.y + 9
+	add_child(sound_player)
+	if has_close_button:
+		add_child(close_btn)
+		close_btn.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
+		close_btn.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
+		close_btn.texture_normal = preload("uid://b0tiwkw7ublhx")
+		close_btn.offset_top = 9
+		close_btn.offset_bottom = close_btn.size.y + 9
+		close_btn.pressed.connect(close)
+	side = side
 
 
 ## Opens the popout.
@@ -68,8 +89,7 @@ func open() -> void:
 	sound_player.play()
 	if _tween != null:
 		_tween.kill()
-	# ah yes (call setter)
-	side = side
+	status = Status.OPENING
 	_tween = create_tween().set_trans(Tween.TRANS_QUAD) \
 			.set_ease(Tween.EASE_OUT).set_parallel()
 	visible = true
@@ -85,13 +105,13 @@ func open() -> void:
 					.from(target_rect.end.x - get_combined_minimum_size().x)
 		PopoutDirection.TO_RIGHT:
 			position = target_rect.position
-	opening.emit()
-	_tween.finished.connect(opened.emit)
+	_tween.finished.connect(func(): status = Status.OPEN)
 
 
 func close() -> void:
 	sound_player.stream = close_sound
 	sound_player.play()
+	status = Status.CLOSING
 	if _tween != null:
 		_tween.kill()
 	_tween = create_tween().set_trans(Tween.TRANS_QUAD) \
@@ -110,26 +130,24 @@ func close() -> void:
 	_tween.chain().tween_property(self, "visible", false, 0)
 	_tween.tween_property(self, "size", target_rect.size, 0)
 	_tween.tween_property(self, "position", target_rect.position, 0)
-	closing.emit()
-	_tween.finished.connect(closed.emit)
+	_tween.finished.connect(func(): status = Status.CLOSED)
 
 
 
 func _process(_delta: float) -> void:
-	if close_btn != null:
-		close_btn.modulate = Color(1, 1, 1, _opacity)
-	for i in get_children(true):
+	for i in get_children():
 		if i is not CanvasItem:
-			return
+			continue
 		i.modulate.a = _opacity
-	queue_redraw()
+	if _tween != null and _tween.is_running():
+		queue_redraw()
 
 
 func _draw() -> void:
 	draw_string(
 			get_theme_default_font(),
 			Vector2(0, 36),
-			title,
+			tr(title),
 			HORIZONTAL_ALIGNMENT_CENTER,
 			size.x,
 			get_theme_default_font_size(),

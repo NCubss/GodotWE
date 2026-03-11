@@ -22,3 +22,5 @@ PAGE_EDITOR,Course Maker,Crear un nivel
 PAGE_COURSEBOT,Coursebot,Guardabot
 PAGE_ENDLESS,Endless Challenge,Desafío Super Mario
 PAGE_ONLINE,Course World,Niveles Mundiales
+EDITOR_POPOUT_COURSEBOT,Save | Load,Guardar | Cargar
+EDITOR_POPOUT_GAME_STYLE,Game Style,Apariencia

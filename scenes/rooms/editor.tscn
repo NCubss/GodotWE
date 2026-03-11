@@ -154,7 +154,7 @@ offset_bottom = 495.0
 focus_mode = 1
 mouse_filter = 1
 script = ExtResource("19_wtof8")
-title = "Save | Load"
+title = "EDITOR_POPOUT_COURSEBOT"
 open_sound = ExtResource("18_w57a8")
 close_sound = ExtResource("19_q43qg")
 
@@ -301,7 +301,7 @@ offset_bottom = 438.0
 mouse_filter = 0
 script = ExtResource("19_wtof8")
 side = 1
-title = "Game Style"
+title = "EDITOR_POPOUT_GAME_STYLE"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=951030114]
 zoom = Vector2(3, 3)
