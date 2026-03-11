@@ -10,6 +10,7 @@ var _tween: Tween
 func _ready() -> void:
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
+	%CoursebotPanel.status_changed.connect(_panel_status_changed)
 
 
 func _process(_delta: float) -> void:
@@ -20,15 +21,9 @@ func _process(_delta: float) -> void:
 
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on:
-		_tween = create_tween()
-		_tween.tween_property(self, "_extend_size", 30, 0.1) \
-			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		%CoursebotPanel.open()
 	else:
-		_tween.kill()
-		_extend_size = 0
 		%CoursebotPanel.close()
-		queue_redraw()
 
 
 func _draw() -> void:
@@ -54,3 +49,16 @@ func _mouse_entered() -> void:
 
 func _mouse_exited() -> void:
 	_effect.stop()
+
+
+func _panel_status_changed(_old_status: EditorPopout.Status) -> void:
+	if %CoursebotPanel.status == EditorPopout.Status.OPENING:
+		set_pressed_no_signal(true)
+		_tween = create_tween()
+		_tween.tween_property(self, "_extend_size", 30, 0.1) \
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	elif %CoursebotPanel.status == EditorPopout.Status.CLOSING:
+		set_pressed_no_signal(false)
+		_tween.kill()
+		_extend_size = 0
+		queue_redraw()
