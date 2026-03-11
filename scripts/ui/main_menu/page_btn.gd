@@ -60,8 +60,7 @@ func _scene_changed() -> void:
 
 
 func _toggled(toggled_on: bool) -> void:
-	var scn = ResourceUID.path_to_uid(get_tree().current_scene.scene_file_path)
-	if toggled_on and scn != _get_scn():
+	if toggled_on and load(get_tree().current_scene.scene_file_path) != _get_scn():
 		if page == Page.ONLINE:
 			%MenuPlayer.stream = preload("uid://druyd4ts46cgu")
 			%MenuPlayer.play()

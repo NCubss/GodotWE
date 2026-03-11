@@ -38,7 +38,7 @@ enum PopoutDirection {
 ## Whether the popout will have a close button.
 @export var has_close_button := true
 @export var open_sound: AudioStream = preload("uid://c8fexyefwlmfs")
-@export var close_sound: AudioStream = preload("uid://c8fexyefwlmfs")
+@export var close_sound: AudioStream = preload("uid://dy8hcmykup336")
 
 var close_btn := TextureButtonExt.new()
 var sound_player := AudioStreamPlayer.new()
