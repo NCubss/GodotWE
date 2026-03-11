@@ -129,8 +129,10 @@ _data = {
 &"animation": SubResource("Animation_ftyhh")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_htmeg"]
+blend_mode = 4
+
 [node name="Thwomped" type="Control" unique_id=305747802]
-use_parent_material = true
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 15
@@ -145,8 +147,8 @@ libraries/ = SubResource("AnimationLibrary_bs11u")
 [node name="ThwompSound" type="AudioStreamPlayer" parent="." unique_id=689680706]
 
 [node name="Mario" type="TextureRect" parent="." unique_id=35866898]
-texture_filter = 2
-use_parent_material = true
+texture_filter = 4
+material = SubResource("CanvasItemMaterial_htmeg")
 layout_mode = 0
 offset_left = 507.0
 offset_top = 210.0

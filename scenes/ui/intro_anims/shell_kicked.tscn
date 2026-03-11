@@ -187,12 +187,14 @@ _data = {
 &"animation": SubResource("Animation_jjyd3")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a18wj"]
+blend_mode = 4
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_o67ka"]
 atlas = ExtResource("2_yknfj")
 region = Rect2(0, 0, 16, 16)
 
 [node name="ShellKicked" type="Control" unique_id=1734815075]
-use_parent_material = true
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 15
@@ -208,7 +210,7 @@ libraries/ = SubResource("AnimationLibrary_fosmq")
 
 [node name="Mario" type="TextureRect" parent="." unique_id=729093337]
 texture_filter = 2
-use_parent_material = true
+material = SubResource("CanvasItemMaterial_a18wj")
 layout_mode = 0
 offset_left = 507.0
 offset_top = 210.0
