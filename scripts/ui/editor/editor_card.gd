@@ -2,10 +2,6 @@
 class_name EditorCard
 extends TextureButton
 
-const _CARD_TOP = preload("uid://bcyyrpipyld5c")
-const _CARD = preload("uid://5mh6wpqqoc7e")
-const _CARD_PRESSED = preload("uid://c5s72xcashr6u")
-
 ## The part this card represents.
 @export var part: PartInfo
 
@@ -20,8 +16,9 @@ func _ready() -> void:
 		return
 	mouse_entered.connect(_entered)
 	mouse_exited.connect(_exited)
-	%Icon.texture = part.icon
-	%Icon.texture_filter = part.icon_filter
+	if part != null:
+		%Icon.texture = part.icon
+		%Icon.texture_filter = part.icon_filter
 
 
 func _process(_delta: float) -> void:
@@ -31,7 +28,7 @@ func _process(_delta: float) -> void:
 	if _card_offset_tween != null and _card_offset_tween.is_running():
 		queue_redraw()
 	%IconContainer.position = _card_offset + Vector2(6, 9)
-	%Icon.position = _icon_offset
+	%Icon.position = _icon_offset - Vector2(3, 3)
 
 
 func _draw() -> void:
@@ -40,9 +37,15 @@ func _draw() -> void:
 		color = PartInfo.get_category_color(part.category)
 	else:
 		color = Color.GRAY
-	draw_texture(_CARD_TOP, _card_offset, color)
-	draw_texture(_CARD_PRESSED if button_pressed else _CARD,
-			_card_offset + Vector2(0, 6))
+	draw_texture(preload("uid://bcyyrpipyld5c"), _card_offset, color)
+	var texture: Texture2D
+	if button_pressed:
+		texture = preload("uid://c5s72xcashr6u")
+	elif disabled:
+		texture = preload("uid://cw2n8bqdit13t")
+	else:
+		texture = preload("uid://5mh6wpqqoc7e")
+	draw_texture(texture, _card_offset + Vector2(0, 6))
 
 
 func _toggled(toggled_on: bool) -> void:
@@ -74,6 +77,8 @@ func _toggled(toggled_on: bool) -> void:
 	%SoundPlayer.play()
 
 func _entered() -> void:
+	if disabled:
+		return
 	UISoundPlayer.stream = preload("uid://b5frd03c4vele")
 	UISoundPlayer.play()
 	if _card_offset_tween != null:

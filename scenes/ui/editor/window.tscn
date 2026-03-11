@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dyw1evq8k8n58"]
+
+[ext_resource type="Texture2D" uid="uid://chag02f03q22q" path="res://textures/ui/editor/window.svg" id="1_k1fxh"]
+[ext_resource type="Script" uid="uid://cu7l8x3bawbqp" path="res://scripts/ui/editor/window.gd" id="2_8nj40"]
+[ext_resource type="AudioStream" uid="uid://cxnu5khahvww8" path="res://audio/ui/editor/part/open_window.wav" id="3_yewk5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pcm0c"]
+texture = ExtResource("1_k1fxh")
+texture_margin_left = 15.0
+texture_margin_top = 12.0
+texture_margin_right = 57.0
+texture_margin_bottom = 54.0
+
+[node name="Window" type="PanelContainer" unique_id=728064402]
+offset_left = -64.5
+offset_top = -58.5
+offset_right = 7.5
+offset_bottom = 7.5
+pivot_offset = Vector2(-7.5, -7.5)
+pivot_offset_ratio = Vector2(1, 1)
+theme_override_styles/panel = SubResource("StyleBoxTexture_pcm0c")
+script = ExtResource("2_8nj40")
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1694869201]
+unique_name_in_owner = true
+stream = ExtResource("3_yewk5")

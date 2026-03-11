@@ -9,7 +9,6 @@
 [sub_resource type="Resource" id="Resource_ml7bp"]
 script = ExtResource("3_7mkou")
 icon = ExtResource("2_vhijl")
-part = null
 multi_place = true
 metadata/_custom_type_script = "uid://4ld0tmaadxvg"
 
