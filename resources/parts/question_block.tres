@@ -8,6 +8,7 @@
 script = ExtResource("1_gjp23")
 name = "QUESTION_BLOCK"
 icon = ExtResource("1_lfxe4")
+icon_filter = 1
 part = ExtResource("2_a641r")
 multi_place = true
 metadata/_custom_type_script = "uid://4ld0tmaadxvg"
