@@ -9,9 +9,9 @@ enum Page {
 }
 
 const SCN_EDITOR = preload("uid://cbc3kaegk4jn3")
-const SCN_COURSEBOT = preload("uid://cbc3kaegk4jn3")
-const SCN_ENDLESS = preload("uid://cbc3kaegk4jn3")
-const SCN_ONLINE = preload("uid://cbc3kaegk4jn3")
+const SCN_ENDLESS = preload("uid://dtq1i14h6pmvn")
+const SCN_ONLINE = preload("uid://h4t4thecwdfc")
+const SCN_COURSEBOT = preload("uid://nc2x1hq5ysrg")
 
 @export var page: Page
 
@@ -30,12 +30,12 @@ func _get_scn() -> PackedScene:
 	match page:
 		Page.EDITOR:
 			return SCN_EDITOR
-		Page.COURSEBOT:
-			return SCN_COURSEBOT
 		Page.ENDLESS:
 			return SCN_ENDLESS
 		Page.ONLINE:
 			return SCN_ONLINE
+		Page.COURSEBOT:
+			return SCN_COURSEBOT
 		_:
 			return PackedScene.new()
 
@@ -66,6 +66,7 @@ func _toggled(toggled_on: bool) -> void:
 			%MenuPlayer.play()
 			%LoginLayer.show()
 		else:
+			MusicPlayer.stop()
 			%MenuPlayer.stream = preload("uid://c1ddsd1m5j2lh")
 			%MenuPlayer.play()
 			SceneManager.fade_to_scene(_get_scn())

@@ -6,10 +6,9 @@
 [ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="3_sqdok"]
 [ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://textures/ui/editor/panel.svg" id="4_ljufs"]
 [ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="5_w57a8"]
-[ext_resource type="Texture2D" uid="uid://d2a3nvs4we076" path="res://textures/ui/btn_menu.svg" id="6_q43qg"]
+[ext_resource type="PackedScene" uid="uid://ibw5lxq8xlyx" path="res://scenes/ui/menu_btn.tscn" id="6_w57a8"]
 [ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_t1mpb"]
 [ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="8_klwx7"]
-[ext_resource type="Script" uid="uid://dtttgbxv6befk" path="res://scripts/ui/menu_btn.gd" id="8_ljufs"]
 [ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://textures/ui/editor/btn_square.svg" id="9_wtof8"]
 [ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="10_au04s"]
 [ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/coursebot_btn.gd" id="11_aofq0"]
@@ -80,20 +79,12 @@ patch_margin_left = 15
 patch_margin_top = 9
 script = ExtResource("5_w57a8")
 
-[node name="MenuBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=253637061]
+[node name="MenuBtn" parent="EditorLayer/Editor/RightPanel" unique_id=1482968884 instance=ExtResource("6_w57a8")]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 21.0
 offset_right = 87.0
 offset_bottom = 87.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-focus_neighbor_top = NodePath("../../TopPanel/PaletteBtn")
-focus_neighbor_bottom = NodePath("../CoursebotBtn")
-action_mode = 0
-texture_normal = ExtResource("6_q43qg")
-texture_click_mask = ExtResource("7_t1mpb")
-script = ExtResource("8_ljufs")
 
 [node name="CoursebotBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=187704599]
 layout_mode = 0

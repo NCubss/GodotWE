@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ibw5lxq8xlyx"]
+
+[ext_resource type="Texture2D" uid="uid://d2a3nvs4we076" path="res://textures/ui/btn_menu.svg" id="1_wv5my"]
+[ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="2_ueqst"]
+[ext_resource type="Script" uid="uid://dtttgbxv6befk" path="res://scripts/ui/menu_btn.gd" id="3_po1st"]
+
+[node name="MenuBtn" type="TextureButton" unique_id=1482968884]
+offset_right = 60.0
+offset_bottom = 66.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+focus_neighbor_top = NodePath("../../TopPanel/PaletteBtn")
+focus_neighbor_bottom = NodePath("../CoursebotBtn")
+action_mode = 0
+texture_normal = ExtResource("1_wv5my")
+texture_click_mask = ExtResource("2_ueqst")
+script = ExtResource("3_po1st")

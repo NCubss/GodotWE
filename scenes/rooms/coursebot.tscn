@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://nc2x1hq5ysrg"]
+
+[ext_resource type="Texture2D" uid="uid://mrei6lubm7l" path="res://textures/ui/coursebot/background.svg" id="1_kq7ia"]
+[ext_resource type="Script" uid="uid://bltuie3eilpq4" path="res://scripts/ui/coursebot/coursebot.gd" id="2_t5nfv"]
+[ext_resource type="PackedScene" uid="uid://ibw5lxq8xlyx" path="res://scenes/ui/menu_btn.tscn" id="3_151ym"]
+[ext_resource type="Texture2D" uid="uid://bp1rhy2ww83xl" path="res://textures/ui/coursebot/head/speaker.svg" id="4_bdi8c"]
+[ext_resource type="Texture2D" uid="uid://bvvpjsvo73k6o" path="res://textures/ui/coursebot/head/body.svg" id="5_fv4ap"]
+[ext_resource type="Texture2D" uid="uid://dislujghhncy5" path="res://textures/ui/coursebot/head/eye.svg" id="6_1r63l"]
+[ext_resource type="Texture2D" uid="uid://w0j656cxq215" path="res://textures/ui/coursebot/head/cover.svg" id="6_fv4ap"]
+[ext_resource type="Texture2D" uid="uid://c7px88rubk7dm" path="res://textures/ui/coursebot/head/shine_mask.svg" id="7_clouw"]
+[ext_resource type="Texture2D" uid="uid://c73rip8f6efhy" path="res://textures/ui/coursebot/head/shine.svg" id="8_mte4v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t5nfv"]
+texture = ExtResource("1_kq7ia")
+texture_margin_left = 576.0
+texture_margin_right = 576.0
+
+[node name="Coursebot" type="Panel" unique_id=277150053]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_t5nfv")
+script = ExtResource("2_t5nfv")
+
+[node name="MenuBtn" parent="." unique_id=1482968884 instance=ExtResource("3_151ym")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -69.0
+offset_top = 12.0
+offset_right = -9.0
+offset_bottom = 78.0
+grow_horizontal = 0
+
+[node name="HeadContainer" type="Control" parent="." unique_id=423679349]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="Head" type="Control" parent="HeadContainer" unique_id=1530899681]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="LeftSpeaker" type="TextureRect" parent="HeadContainer/Head" unique_id=1491711533]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -276.0
+offset_top = 21.0
+offset_right = -219.0
+offset_bottom = 84.0
+texture = ExtResource("4_bdi8c")
+flip_h = true
+
+[node name="RightSpeaker" type="TextureRect" parent="HeadContainer/Head" unique_id=2007347920]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 219.0
+offset_top = 21.0
+offset_right = 276.0
+offset_bottom = 84.0
+texture = ExtResource("4_bdi8c")
+
+[node name="Body" type="TextureRect" parent="HeadContainer/Head" unique_id=93576807]
+layout_mode = 0
+offset_left = -237.0
+offset_top = 18.0
+offset_right = 237.0
+offset_bottom = 84.0
+texture = ExtResource("5_fv4ap")
+
+[node name="Title" type="Label" parent="HeadContainer/Head/Body" unique_id=398221980]
+unique_name_in_owner = true
+modulate = Color(0.9843137, 0.84705883, 0.3647059, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -17.5
+offset_right = 20.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "PAGE_COURSEBOT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Covers" type="Control" parent="HeadContainer/Head/Body" unique_id=488193041]
+clip_contents = true
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 465.0
+offset_bottom = 57.0
+
+[node name="TopCover" type="TextureRect" parent="HeadContainer/Head/Body/Covers" unique_id=944296050]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = -24.0
+offset_right = 456.0
+texture = ExtResource("6_fv4ap")
+
+[node name="BottomCover" type="TextureRect" parent="HeadContainer/Head/Body/Covers" unique_id=2132629400]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 48.0
+offset_right = 456.0
+offset_bottom = 72.0
+texture = ExtResource("6_fv4ap")
+
+[node name="LeftEye" type="TextureRect" parent="HeadContainer/Head" unique_id=1711441673]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -64.0
+offset_right = -24.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("6_1r63l")
+
+[node name="LeftShineMask" type="TextureRect" parent="HeadContainer/Head/LeftEye" unique_id=1419134342]
+clip_children = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_clouw")
+
+[node name="LeftShine" type="TextureRect" parent="HeadContainer/Head/LeftEye/LeftShineMask" unique_id=514209794]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -3.75
+offset_top = -3.75
+offset_right = 36.25
+offset_bottom = 36.25
+texture = ExtResource("8_mte4v")
+
+[node name="RightEye" type="TextureRect" parent="HeadContainer/Head" unique_id=460949864]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("6_1r63l")
+
+[node name="RightShineMask" type="TextureRect" parent="HeadContainer/Head/RightEye" unique_id=1882272434]
+clip_children = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_clouw")
+
+[node name="RightShine" type="TextureRect" parent="HeadContainer/Head/RightEye/RightShineMask" unique_id=2033924927]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -3.75
+offset_top = -3.75
+offset_right = 36.25
+offset_bottom = 36.25
+texture = ExtResource("8_mte4v")
