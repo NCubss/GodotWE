@@ -50,15 +50,10 @@ var _coll_layers: int
 var _window: EditorWindow
 var _window_timer: SceneTreeTimer
 
-## This part's graphics node.
-@onready var graphics: Node2D = $Graphics
-
 
 func _ready() -> void:
 	mouse_entered.connect(_mouse_update.bind(true))
 	mouse_exited.connect(_mouse_update.bind(false))
-	_grid_pos = level.to_grid(global_position)
-	_anim_place()
 
 
 func _process(_delta: float) -> void:
@@ -107,6 +102,8 @@ func _notification(what: int) -> void:
 
 
 func _draw():
+	if level == null:
+		return
 	if is_queued_for_deletion():
 		return
 	var rect = Rect2(level.from_grid(_grid_pos) - position,
@@ -123,6 +120,12 @@ func _draw():
 		draw_rect(rect, Color(0, 0, 1, 0.5))
 
 
+func load(placed_from_editor := false) -> void:
+	_grid_pos = level.to_grid(global_position)
+	if placed_from_editor:
+		_anim_place()
+
+
 func erase() -> void:
 	queue_free()
 	UISoundPlayer.stream = preload("uid://2axkkfi5xrx8")
@@ -136,17 +139,17 @@ func build() -> void:
 func _anim_place() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_OUT) \
 			.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(graphics, "scale", Vector2(1, 1), 0.1) \
+	tween.tween_property(%Graphics, "scale", Vector2(1, 1), 0.1) \
 			.from(Vector2(0.1, 0.1))
 
 
 func _anim_held() -> void:
-	_tween = graphics.create_tween().set_trans(Tween.TRANS_SINE)
-	_tween.tween_property(graphics, "rotation", TAU / 30, 0.2).from(0) \
+	_tween = create_tween().set_trans(Tween.TRANS_SINE)
+	_tween.tween_property(%Graphics, "rotation", TAU / 30, 0.2).from(0) \
 			.set_ease(Tween.EASE_OUT)
-	_tween.tween_property(graphics, "rotation", TAU / -30, 0.4) \
+	_tween.tween_property(%Graphics, "rotation", TAU / -30, 0.4) \
 			.set_ease(Tween.EASE_IN_OUT)
-	_tween.tween_property(graphics, "rotation", 0, 0.2) \
+	_tween.tween_property(%Graphics, "rotation", 0, 0.2) \
 			.set_ease(Tween.EASE_IN)
 	_tween.set_loops()
 
@@ -166,8 +169,8 @@ func _hold() -> void:
 	_coll_layers = collision_layer
 	collision_layer = 0
 	_original_pos = _grid_pos
-	_original_z = graphics.z_index
-	graphics.z_index = _TOP_Z
+	_original_z = %Graphics.z_index
+	%Graphics.z_index = _TOP_Z
 	level.editor.held_part = self
 	_window_timer = get_tree().create_timer(0.5)
 	_window_timer.timeout.connect(_create_window)
@@ -187,7 +190,7 @@ func _hold() -> void:
 
 func _unhold() -> void:
 	collision_layer = _coll_layers
-	graphics.z_index = _original_z
+	%Graphics.z_index = _original_z
 	level.editor.held_part = null
 	_tween.kill()
 	_anim_place()
@@ -196,7 +199,7 @@ func _unhold() -> void:
 	if not _valid_space:
 		_grid_pos = _original_pos
 	position = level.from_grid(_grid_pos)
-	graphics.rotation = 0
+	%Graphics.rotation = 0
 	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 

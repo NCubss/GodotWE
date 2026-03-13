@@ -1,13 +1,10 @@
 class_name Editor
 extends Control
 
+signal loaded
+
 ## The level this [Editor] is associated with.
-var level: Level:
-	set(v):
-		level = v
-		v.add_child(grid)
-		v.playing.connect(_play)
-		v.editing.connect(_edit)
+var level: Level
 ## The currently held part.
 var held_part: Part
 ## The part that the mouse is currently on.
@@ -32,8 +29,6 @@ func _ready():
 	grid.major_color = Color("000000ff")
 	grid.modulate = Color("ffffff40")
 	theme = ThemeDB.get_project_theme()
-	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
-	MusicPlayer.play()
 
 
 func _process(_delta: float) -> void:
@@ -51,15 +46,6 @@ func _unhandled_input(event: InputEvent) -> void:
 				erasing = event.pressed
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == Key.KEY_H and event.pressed:
-			if level.status == Level.Status.EDITING:
-				level.play()
-			elif level.status == Level.Status.PLAYING:
-				level.edit()
-
-
 ## Returns the currently selected [PartInfo] from the card bar on the top panel.
 ## If no [PartInfo] is selected, [code]null[/code] is returned.
 func get_selected_part() -> PartInfo:
@@ -68,6 +54,26 @@ func get_selected_part() -> PartInfo:
 		return null
 	else:
 		return card.part
+
+
+## Places a tile at [param pos] and returns the placed [Part].
+func place(pos: Vector2i) -> Part:
+	var part: Part = get_selected_part().part.instantiate()
+	part.global_position = level.from_grid(pos)
+	level.current_sub_area.add_part(part)
+	part.load(true)
+	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
+	UISoundPlayer.play()
+	return part
+
+
+func load() -> void:
+	level.add_child(grid)
+	level.playing.connect(_play)
+	level.editing.connect(_edit)
+	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
+	MusicPlayer.play()
+	loaded.emit()
 
 
 func _process_place(multi_place_allowed: bool) -> void:
@@ -95,35 +101,17 @@ func _process_place(multi_place_allowed: bool) -> void:
 		place(level.to_grid(_last_mouse_pos))
 
 
-## Places a tile at [param pos] and returns the placed [Part].
-func place(pos: Vector2i) -> Part:
-	var part: Part = get_selected_part().part.instantiate()
-	level.current_sub_area.add_part(part)
-	part.global_position = level.from_grid(pos)
-	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
-	UISoundPlayer.play()
-	return part
-
-
 func _play() -> void:
-	hide()
-	%TopPanel.extended = false
-	%TopPanel.locked = true
-	%LeftPanel.extended = false
-	%LeftPanel.locked = true
-	%RightPanel.extended = false
-	%RightPanel.locked = true
+	%TopPanel.status = EditorPanel.Status.HIDDEN
+	%LeftPanel.status = EditorPanel.Status.HIDDEN
+	%RightPanel.status = EditorPanel.Status.HIDDEN
 	grid.hide()
 
 
 func _edit() -> void:
-	show()
-	%TopPanel.locked = false
-	%TopPanel.extended = true
-	%LeftPanel.locked = false
-	%LeftPanel.extended = true
-	%RightPanel.locked = false
-	%RightPanel.extended = true
+	%TopPanel.status = EditorPanel.Status.OPEN
+	%LeftPanel.status = EditorPanel.Status.OPEN
+	%RightPanel.status = EditorPanel.Status.OPEN
 	grid.show()
 	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
 	MusicPlayer.play()

@@ -13,6 +13,16 @@ editor = NodePath("EditorLayer/Editor")
 
 [node name="EditorLayer" parent="." unique_id=727278229 instance=ExtResource("3_oubuj")]
 
+[node name="RightPanel" parent="EditorLayer/Editor/RightPanelContainer" parent_id_path=PackedInt32Array(727278229, 570001422) index="0" unique_id=2101369237]
+closed_pos = Vector2(-6, -540)
+hidden_pos = Vector2(0, -540)
+
+[node name="TopPanel" parent="EditorLayer/Editor" parent_id_path=PackedInt32Array(727278229, 1941871444) index="1" unique_id=1001892793]
+hidden_pos = Vector2(0, -108)
+
+[node name="LeftPanel" parent="EditorLayer/Editor" parent_id_path=PackedInt32Array(727278229, 1941871444) index="2" unique_id=1202118082]
+hidden_pos = Vector2(-168, 108)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=951030114]
 zoom = Vector2(3, 3)
 limit_left = 0
@@ -33,3 +43,4 @@ unique_name_in_owner = true
 one_shot = true
 
 [editable path="EditorLayer"]
+[editable path="SubArea"]

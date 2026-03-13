@@ -1,18 +1,18 @@
 class_name GameStyleBtn
 extends TextureButton
 
+var _level: Level
 var _tween: Tween
 var _extend_size := 0.0
-
-@onready var _level: Level = Utility.id("level")
 @onready var _effect = ButtonHoverEffect.new(self, Rect2(0, 0, size.x, size.y - 3))
 
 
 func _ready() -> void:
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
-	_level.game_style_changed.connect(_game_style_changed)
 	%GameStylePanel.status_changed.connect(_panel_status_changed)
+	await %Editor.loaded
+	_level = %Editor.level
 
 
 func _process(_delta: float) -> void:
@@ -21,15 +21,16 @@ func _process(_delta: float) -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(120, 0, _extend_size, 63), Utility.COLOR_DARK)
-	match _level.game_style:
-		Level.GameStyle.SMB:
-			draw_texture(preload("uid://ct7nsivikgx8h"), Vector2(0, 0))
-		Level.GameStyle.SMB3:
-			draw_texture(preload("uid://ce4hyhrbcmjlt"), Vector2(0, 0))
-		Level.GameStyle.SMW:
-			draw_texture(preload("uid://b548gpt5xh0v2"), Vector2(0, 0))
-		Level.GameStyle.NSMBU:
-			draw_texture(preload("uid://upsn5uu41qe6"), Vector2(0, 0))
+	if _level != null:
+		match _level.game_style:
+			Level.GameStyle.SMB:
+				draw_texture(preload("uid://ct7nsivikgx8h"), Vector2(0, 0))
+			Level.GameStyle.SMB3:
+				draw_texture(preload("uid://ce4hyhrbcmjlt"), Vector2(0, 0))
+			Level.GameStyle.SMW:
+				draw_texture(preload("uid://b548gpt5xh0v2"), Vector2(0, 0))
+			Level.GameStyle.NSMBU:
+				draw_texture(preload("uid://upsn5uu41qe6"), Vector2(0, 0))
 	_effect.draw()
 
 
