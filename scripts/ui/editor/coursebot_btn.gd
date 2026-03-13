@@ -42,7 +42,7 @@ func _draw() -> void:
 
 func _mouse_entered() -> void:
 	_effect.start()
-	if GameSettings.show_hover_effect:
+	if not DisplayServer.is_touchscreen_available():
 		UISoundPlayer.stream = preload("uid://bbc6fa1b5njqq")
 		UISoundPlayer.play()
 

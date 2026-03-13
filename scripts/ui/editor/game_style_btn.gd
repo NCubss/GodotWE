@@ -43,7 +43,7 @@ func _toggled(toggled_on: bool) -> void:
 
 func _mouse_entered() -> void:
 	_effect.start()
-	if GameSettings.show_hover_effect:
+	if not DisplayServer.is_touchscreen_available():
 		UISoundPlayer.stream = preload("uid://d3lha2xpakko2")
 		UISoundPlayer.play()
 

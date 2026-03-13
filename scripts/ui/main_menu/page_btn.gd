@@ -20,8 +20,8 @@ var _effect: ButtonHoverEffect
 
 func _ready() -> void:
 	_effect = ButtonHoverEffect.new(self)
-	mouse_entered.connect(_mouse.bind(true))
-	mouse_exited.connect(_mouse.bind(false))
+	mouse_entered.connect(_mouse_entered)
+	mouse_exited.connect(_mouse_exited)
 	get_tree().scene_changed.connect(_scene_changed)
 	_scene_changed()
 
@@ -44,13 +44,15 @@ func _process(_delta: float) -> void:
 	_effect.check_redraw()
 
 
-func _mouse(state: bool) -> void:
-	if state:
+func _mouse_entered() -> void:
+	if not DisplayServer.is_touchscreen_available():
 		UISoundPlayer.stream = preload("uid://dn2weik3slobr")
 		UISoundPlayer.play()
-		_effect.start()
-	else:
-		_effect.stop()
+	_effect.start()
+
+
+func _mouse_exited() -> void:
+	_effect.stop()
 
 
 func _scene_changed() -> void:

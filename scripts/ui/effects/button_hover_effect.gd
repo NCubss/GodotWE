@@ -17,7 +17,7 @@ extends Resource
 ## 
 ## func _ready() -> void:
 ##     mouse_entered.connect(effect.start)
-##     mouse_entered.connect(effect.stop)
+##     mouse_exited.connect(effect.stop)
 ## 
 ## 
 ## func _process(_delta: float) -> void:
@@ -49,7 +49,7 @@ var _sprite: Texture2D = load("uid://bxk3nfis807iy")
 
 func _init(
 		_parent: CanvasItem,
-		_rect := Rect2(Vector2.ZERO,_parent.size) if "size" in _parent else Rect2(0,0,0,0),
+		_rect := Rect2(Vector2(0, 0), _parent.size) if "size" in _parent else Rect2(),
 		_enabled := false,
 		_arrow_start_pos := arrow_start_pos,
 		_arrow_end_pos := arrow_end_pos
@@ -75,6 +75,8 @@ func check_redraw() -> void:
 ## [signal Control.mouse_entered] signal.
 func start() -> void:
 	if not GameSettings.show_hover_effect:
+		return
+	if DisplayServer.is_touchscreen_available():
 		return
 	_tween = parent.create_tween()
 	_tween.tween_property(self, "_offset", arrow_end_pos, 0.417) \
@@ -119,4 +121,4 @@ func draw() -> void:
 	parent.draw_texture(_sprite, vec)
 	parent.draw_set_transform(rect.end, 0, Vector2(-1, -1))
 	parent.draw_texture(_sprite, vec)
-	parent.draw_set_transform(Vector2.ZERO)
+	parent.draw_set_transform(Vector2(0, 0))
