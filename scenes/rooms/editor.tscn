@@ -1,305 +1,17 @@
 [gd_scene format=3 uid="uid://cbc3kaegk4jn3"]
 
-[ext_resource type="Script" uid="uid://dl24hxmntjo1g" path="res://scripts/other/grid.gd" id="1_df8yj"]
 [ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_hf1b4"]
 [ext_resource type="Script" uid="uid://cwdxlb3bg48lf" path="res://scripts/ui/editor/editor_camera.gd" id="2_hf1b4"]
-[ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="3_sqdok"]
-[ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://textures/ui/editor/panel.svg" id="4_ljufs"]
-[ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="5_w57a8"]
-[ext_resource type="PackedScene" uid="uid://ibw5lxq8xlyx" path="res://scenes/ui/menu_btn.tscn" id="6_w57a8"]
-[ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_t1mpb"]
-[ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="8_klwx7"]
-[ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://textures/ui/editor/btn_square.svg" id="9_wtof8"]
-[ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="10_au04s"]
-[ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/coursebot_btn.gd" id="11_aofq0"]
-[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/btn_eraser.svg" id="12_2i2m0"]
-[ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://textures/ui/btn_mask_circular.svg" id="13_vff3e"]
-[ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://textures/ui/editor/btn_dog.svg" id="14_dhhoa"]
-[ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://textures/ui/editor/btn_rocket.svg" id="15_ieb30"]
-[ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://textures/ui/editor/btn_palette.svg" id="16_7kynf"]
-[ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="17_xu0b2"]
-[ext_resource type="AudioStream" uid="uid://dun72febcjtln" path="res://audio/ui/coursebot/open.wav" id="18_w57a8"]
-[ext_resource type="AudioStream" uid="uid://dvblsjft053ru" path="res://audio/ui/coursebot/close.wav" id="19_q43qg"]
-[ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="19_wtof8"]
-[ext_resource type="PackedScene" uid="uid://b16vc6ry30e6p" path="res://scenes/ui/editor/card.tscn" id="20_dgj68"]
-[ext_resource type="Resource" uid="uid://2egbrhf17dv6" path="res://resources/parts/ground.tres" id="21_ljufs"]
-[ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/style_cards/btn.svg" id="22_sqdok"]
-[ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_ljufs"]
-[ext_resource type="Resource" uid="uid://dsfkej5c2yo20" path="res://resources/parts/question_block.tres" id="24_q43qg"]
-[ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_sqdok"]
+[ext_resource type="PackedScene" uid="uid://cjcx6mlu5ad62" path="res://scenes/ui/editor/editor.tscn" id="3_oubuj"]
 [ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="25_df8yj"]
-[ext_resource type="PackedScene" uid="uid://ctnffmabe0h4f" path="res://scenes/backgrounds/smw/overworld.tscn" id="31_t1mpb"]
 
-[node name="Level" type="Node2D" unique_id=1985374198 groups=["level"]]
+[node name="Level" type="Node2D" unique_id=1985374198 node_paths=PackedStringArray("current_sub_area", "editor") groups=["level"]]
 script = ExtResource("1_hf1b4")
+status = 1
+current_sub_area = NodePath("SubArea")
+editor = NodePath("EditorLayer/Editor")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1824491113]
-layer = -1
-visible = false
-
-[node name="Background" parent="CanvasLayer" unique_id=1361068859 instance=ExtResource("31_t1mpb")]
-
-[node name="EditorLayer" type="CanvasLayer" parent="." unique_id=1540503582]
-layer = 3
-
-[node name="WindowLayer" type="CanvasLayer" parent="EditorLayer" unique_id=701172607]
-unique_name_in_owner = true
-layer = 4
-scale = Vector2(0.333, 0.333)
-transform = Transform2D(0.333, 0, 0, 0.333, 0, 0)
-follow_viewport_enabled = true
-
-[node name="Editor" type="Control" parent="EditorLayer" unique_id=988885820 groups=["editor"]]
-texture_filter = 2
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-mouse_filter = 1
-script = ExtResource("3_sqdok")
-
-[node name="RightPanel" type="NinePatchRect" parent="EditorLayer/Editor" unique_id=370643630]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -105.0
-offset_top = 108.0
-offset_bottom = 648.0
-grow_horizontal = 0
-focus_mode = 2
-mouse_filter = 0
-texture = ExtResource("4_ljufs")
-region_rect = Rect2(0, 0, 18, 12)
-patch_margin_left = 15
-patch_margin_top = 9
-script = ExtResource("5_w57a8")
-
-[node name="MenuBtn" parent="EditorLayer/Editor/RightPanel" unique_id=1482968884 instance=ExtResource("6_w57a8")]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 21.0
-offset_right = 87.0
-offset_bottom = 87.0
-
-[node name="CoursebotBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=187704599]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 108.0
-offset_right = 87.0
-offset_bottom = 174.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource("9_wtof8")
-texture_pressed = ExtResource("10_au04s")
-texture_click_mask = ExtResource("7_t1mpb")
-script = ExtResource("11_aofq0")
-
-[node name="EraserBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=2109082221]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 288.0
-offset_right = 90.0
-offset_bottom = 357.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("12_2i2m0")
-texture_click_mask = ExtResource("13_vff3e")
-script = ExtResource("8_klwx7")
-hover_offset = Rect2(3, 3, -6, -12)
-
-[node name="DogBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=1473185741]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 369.0
-offset_right = 87.0
-offset_bottom = 435.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("14_dhhoa")
-texture_click_mask = ExtResource("7_t1mpb")
-script = ExtResource("8_klwx7")
-hover_offset = Rect2(0, 0, 0, -6)
-
-[node name="RocketBtn" type="TextureButton" parent="EditorLayer/Editor/RightPanel" unique_id=1124721888]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 456.0
-offset_right = 87.0
-offset_bottom = 522.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("15_ieb30")
-texture_click_mask = ExtResource("7_t1mpb")
-script = ExtResource("8_klwx7")
-hover_offset = Rect2(0, 0, 0, -6)
-
-[node name="CoursebotPanel" type="NinePatchRect" parent="EditorLayer/Editor/RightPanel" unique_id=254917996]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = -435.0
-offset_right = 9.0
-offset_bottom = 495.0
-focus_mode = 1
-mouse_filter = 1
-script = ExtResource("19_wtof8")
-title = "EDITOR_POPOUT_COURSEBOT"
-open_sound = ExtResource("18_w57a8")
-close_sound = ExtResource("19_q43qg")
-
-[node name="TopPanel" type="NinePatchRect" parent="EditorLayer/Editor" unique_id=1840160695]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 108.0
-grow_horizontal = 2
-focus_mode = 2
-mouse_filter = 0
-texture = ExtResource("4_ljufs")
-region_rect = Rect2(15, 9, 3, 18)
-patch_margin_bottom = 15
-script = ExtResource("5_w57a8")
-closed_pos = Vector2(0, -102)
-
-[node name="PaletteBtn" type="TextureButton" parent="EditorLayer/Editor/TopPanel" unique_id=1985833842]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -84.0
-offset_top = 15.0
-offset_right = -15.0
-offset_bottom = 90.0
-grow_horizontal = 0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("16_7kynf")
-script = ExtResource("17_xu0b2")
-hover_offset = Rect2(0, 0, 0, -6)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="EditorLayer/Editor/TopPanel" unique_id=1184651498]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -462.0
-offset_top = 15.0
-offset_right = 462.0
-offset_bottom = 90.0
-grow_horizontal = 2
-theme_override_constants/separation = 12
-alignment = 1
-
-[node name="Card1" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1935482387 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-action_mode = 0
-part = ExtResource("21_ljufs")
-
-[node name="Card2" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1701829138 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-action_mode = 0
-part = ExtResource("24_q43qg")
-
-[node name="Card3" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=107514548 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card4" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=511363141 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card5" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1154618573 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card6" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1912879865 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card7" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=418836397 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card8" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1392590094 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card9" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1080402509 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card10" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1598067277 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card11" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=172930589 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="Card12" parent="EditorLayer/Editor/TopPanel/HBoxContainer" unique_id=1683269626 instance=ExtResource("20_dgj68")]
-layout_mode = 2
-disabled = true
-action_mode = 0
-
-[node name="LeftPanel" type="NinePatchRect" parent="EditorLayer/Editor" unique_id=493029540]
-unique_name_in_owner = true
-layout_mode = 1
-offset_top = 108.0
-offset_right = 168.0
-offset_bottom = 546.0
-focus_mode = 2
-mouse_filter = 0
-texture = ExtResource("4_ljufs")
-region_rect = Rect2(15, 0, 18, 27)
-patch_margin_top = 9
-patch_margin_right = 15
-patch_margin_bottom = 15
-script = ExtResource("5_w57a8")
-open_pos = Vector2(0, 108)
-closed_pos = Vector2(-162, 108)
-
-[node name="GameStyleBtn" type="TextureButton" parent="EditorLayer/Editor/LeftPanel" unique_id=2104854224]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 15.0
-offset_right = 144.0
-offset_bottom = 81.0
-toggle_mode = true
-action_mode = 0
-texture_normal = ExtResource("22_sqdok")
-texture_pressed = ExtResource("23_ljufs")
-script = ExtResource("24_sqdok")
-
-[node name="GameStylePanel" type="NinePatchRect" parent="EditorLayer/Editor/LeftPanel" unique_id=1455224064]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 159.0
-offset_right = 522.0
-offset_bottom = 438.0
-mouse_filter = 0
-script = ExtResource("19_wtof8")
-side = 1
-title = "EDITOR_POPOUT_GAME_STYLE"
+[node name="EditorLayer" parent="." unique_id=727278229 instance=ExtResource("3_oubuj")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=951030114]
 zoom = Vector2(3, 3)
@@ -307,14 +19,17 @@ limit_left = 0
 limit_bottom = 0
 script = ExtResource("2_hf1b4")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1159152548]
-self_modulate = Color(1, 1, 1, 0.25098)
-
-[node name="Grid" type="Node2D" parent="CanvasGroup" unique_id=721962050]
-script = ExtResource("1_df8yj")
-minor_color = Color(0, 0, 0, 0.6)
-major_color = Color(0, 0, 0, 1)
-major_grid_size = Vector2i(0, 0)
-metadata/_custom_type_script = "uid://dl24hxmntjo1g"
-
 [node name="SubArea" parent="." unique_id=1207914609 instance=ExtResource("25_df8yj")]
+level_theme = 0
+night_mode = false
+water_speed = 0
+min_water_height = 1
+max_water_height = 1
+meteorites = false
+autoscroll = 0
+
+[node name="LevelTimer" type="Timer" parent="." unique_id=1613872851]
+unique_name_in_owner = true
+one_shot = true
+
+[editable path="EditorLayer"]

@@ -6,6 +6,13 @@ extends Node2D
 signal times_up
 ## Emitted when the game style changes.
 signal game_style_changed(old: GameStyle)
+signal playing
+signal editing
+
+enum Status {
+	PLAYING,
+	EDITING,
+}
 
 ## Represents a game style. Applies across the entire level.
 enum GameStyle {
@@ -191,10 +198,8 @@ const SWE_OBJECT_TABLE = {
 	"obj_qblock_res": preload("uid://c4qpbj5epsp55"),
 }
 
-## The [Editor] this level is associated with. Also used for checking if this
-## level is being edited.
-@onready var editor: Editor = Utility.id("editor")
-
+## The current status of the level.
+@export var status: Status
 ## The name of the level.
 @export var level_name: String
 ## The level author's username. This is used to determine if the player can edit
@@ -223,21 +228,20 @@ const SWE_OBJECT_TABLE = {
 		time = clamp(value, 10, 500)
 ## The clear condition for this level.
 @export var clear_condition := ClearCondition.NONE
-## A reference to the current [Player]. If this is not filled in with the
-## inspector, a player will be automatically spawned in the
-## [member current_sub_area].
-@export var player: Player
 ## The current [SubArea], that is, the [SubArea] in which entities are active
 ## and the player is in.
 @export var current_sub_area: SubArea
 ## Whether this level is on the title screen.
 @export var title_screen: bool
-@export var scene: PackedScene
+## The [Editor] this level is associated with. If this level is not editable,
+## this will be [code]null[/code] and an error will be pushed if level editing
+## is attempted.
+@export var editor: Editor
 
 ## The level's automatically assigned sub-areas.
 var sub_areas: Array[SubArea] = []
-
-var _timer: Timer
+## The [HUD] associated with this level. Hidden while editing.
+var hud: HUD
 
 
 static func from_swe(path: String) -> Level:
@@ -337,6 +341,28 @@ static func from_swe(path: String) -> Level:
 	return lvl
 
 
+static func _unpack_swe(path: String) -> Dictionary:
+	# Ah god I hope there won't be the same problem
+	var file = FileAccess.get_file_as_string(path)
+	var end_size: int
+	# Godot's a dum dum and keeps crying in the output about NUL characters if I
+	# type the NUL character any other way
+	if file.ends_with(String.chr(0)):
+		end_size = 41
+	else:
+		end_size = 40
+	var stored_hash = file.substr(file.length() - end_size, 40)
+	var b64 = file.substr(0, file.length() - end_size)
+	var crypto = Crypto.new()
+	var expected_hash = crypto.hmac_digest(HashingContext.HASH_SHA1,
+			SWE_HMAC_KEY.to_utf8_buffer(),
+			file.substr(0, file.length() - end_size).to_utf8_buffer()).hex_encode()
+	assert(expected_hash == stored_hash, "Tampered level file")
+	var data = JSON.parse_string(Marshalls.base64_to_utf8(b64))
+	assert(data is Dictionary, "Level file JSON is not an object")
+	return data
+
+
 func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 	game_style = _game_style
 	level_name = _level_name
@@ -344,10 +370,6 @@ func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 
 
 func _ready() -> void:
-	scene = PackedScene.new()
-	var err = scene.pack(self)
-	assert(err == OK, "Failed to pack!")
-	scene = scene.duplicate(true)
 	for i in get_children():
 		if i is SubArea:
 			sub_areas.append(i)
@@ -355,45 +377,46 @@ func _ready() -> void:
 	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
 	if current_sub_area == null:
 		current_sub_area = sub_areas[0]
-	
-	_timer = Timer.new()
-	add_child(_timer)
-	if title_screen:
-		_timer.wait_time = 0
-		MusicPlayer.stream = preload("uid://bxnvgrgxf685m")
-		MusicPlayer.play()
-	else:
-		_timer.wait_time = time + 1
-		_timer.one_shot = true
-		_timer.timeout.connect(_timeout)
-	if editor == null:
-		if player == null:
-			player = load("uid://b2cwk2viytb57").instantiate()
-			current_sub_area.spawn(player, Vector2(64, -32))
-		var hud: HUD = load(GameConstants.HUDS[game_style]).instantiate()
-		hud.level = self
-		add_child(hud)
-		_timer.start()
+	hud = load(GameConstants.HUDS[game_style]).instantiate()
+	hud.level = self
+	add_child(hud)
+	if status == Status.PLAYING:
+		_play()
+	elif status == Status.EDITING:
+		if editor == null:
+			var editor_layer = preload("uid://cjcx6mlu5ad62").instantiate()
+			add_child(editor_layer)
+			editor = editor_layer.get_node(^"%Editor")
+		_edit()
+	if editor != null:
+		editor.level = self
 
 
 ## Starts the level.
 func play() -> void:
-	editor.spawn_tiles()
+	if status == Status.PLAYING:
+		return
+	_play()
+	playing.emit()
 
 
 func edit() -> void:
-	pass
+	if status == Status.EDITING:
+		return
+	_edit()
+	editing.emit()
 
 
 func get_current_time() -> int:
-	if _timer == null:
-		return time
+	if %LevelTimer.is_stopped():
+		return 0
 	else:
-		return int(_timer.time_left)
+		return int(%LevelTimer.time_left)
 
 
 func reload() -> void:
-	SceneManager.fade_to_scene(scene if scene != null else load(scene_file_path))
+	pass
+	#SceneManager.fade_to_scene(scene if scene != null else load(scene_file_path))
 
 
 func to_grid(pos: Vector2) -> Vector2i:
@@ -410,24 +433,19 @@ func snap(pos: Vector2) -> Vector2:
 
 func _timeout() -> void:
 	times_up.emit()
-	player.kill()
+	#player.kill()
 
 
-static func _unpack_swe(path: String) -> Dictionary:
-	# Ah god I hope there won't be the same problem
-	var file = FileAccess.get_file_as_string(path)
-	var end_size: int
-	if file.ends_with("\u0000"):
-		end_size = 41
-	else:
-		end_size = 40
-	var stored_hash = file.substr(file.length() - end_size, 40)
-	var b64 = file.substr(0, file.length() - end_size)
-	var crypto = Crypto.new()
-	var expected_hash = crypto.hmac_digest(HashingContext.HASH_SHA1,
-			SWE_HMAC_KEY.to_utf8_buffer(),
-			file.substr(0, file.length() - end_size).to_utf8_buffer()).hex_encode()
-	assert(expected_hash == stored_hash, "Tampered level file")
-	var data = JSON.parse_string(Marshalls.base64_to_utf8(b64))
-	assert(data is Dictionary, "Level file JSON is not an object")
-	return data
+func _play() -> void:
+	status = Status.PLAYING
+	%LevelTimer.start(time + 1)
+	hud.show()
+	MusicPlayer.stream = preload("uid://c7xx82tvew4nu")
+	MusicPlayer.play()
+
+
+func _edit() -> void:
+	status = Status.EDITING
+	%LevelTimer.stop()
+	hud.hide()
+	MusicPlayer.stop()

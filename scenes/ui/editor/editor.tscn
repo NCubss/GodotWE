@@ -1,0 +1,289 @@
+[gd_scene format=3 uid="uid://cjcx6mlu5ad62"]
+
+[ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="1_eb2t3"]
+[ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://textures/ui/editor/panel.svg" id="2_sfxmt"]
+[ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="3_bm1wd"]
+[ext_resource type="PackedScene" uid="uid://ibw5lxq8xlyx" path="res://scenes/ui/menu_btn.tscn" id="4_51isn"]
+[ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://textures/ui/editor/btn_square.svg" id="5_8eg8w"]
+[ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="6_fp6e3"]
+[ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_0l6sx"]
+[ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/coursebot_btn.gd" id="8_kunuo"]
+[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/btn_eraser.svg" id="9_khafc"]
+[ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://textures/ui/btn_mask_circular.svg" id="10_wxv2j"]
+[ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="11_a6583"]
+[ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://textures/ui/editor/btn_dog.svg" id="12_dyxkw"]
+[ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://textures/ui/editor/btn_rocket.svg" id="13_rtyax"]
+[ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="14_sp7ve"]
+[ext_resource type="AudioStream" uid="uid://dun72febcjtln" path="res://audio/ui/coursebot/open.wav" id="15_6snt5"]
+[ext_resource type="AudioStream" uid="uid://dvblsjft053ru" path="res://audio/ui/coursebot/close.wav" id="16_w63je"]
+[ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://textures/ui/editor/btn_palette.svg" id="17_w8smy"]
+[ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="18_fep4b"]
+[ext_resource type="PackedScene" uid="uid://b16vc6ry30e6p" path="res://scenes/ui/editor/card.tscn" id="19_qv7f8"]
+[ext_resource type="Resource" uid="uid://2egbrhf17dv6" path="res://resources/parts/ground.tres" id="20_pr0l3"]
+[ext_resource type="Resource" uid="uid://dsfkej5c2yo20" path="res://resources/parts/question_block.tres" id="21_5gafy"]
+[ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/style_cards/btn.svg" id="22_crwvd"]
+[ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
+[ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
+
+[node name="EditorLayer" type="CanvasLayer" unique_id=727278229]
+layer = 3
+
+[node name="WindowLayer" type="CanvasLayer" parent="." unique_id=1237148848]
+unique_name_in_owner = true
+layer = 4
+scale = Vector2(0.333, 0.333)
+transform = Transform2D(0.333, 0, 0, 0.333, 0, 0)
+follow_viewport_enabled = true
+
+[node name="Editor" type="Control" parent="." unique_id=1941871444 groups=["editor"]]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 1
+script = ExtResource("1_eb2t3")
+
+[node name="RightPanel" type="NinePatchRect" parent="Editor" unique_id=2101369237]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
+offset_top = 108.0
+offset_bottom = 648.0
+grow_horizontal = 0
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("2_sfxmt")
+region_rect = Rect2(0, 0, 18, 12)
+patch_margin_left = 15
+patch_margin_top = 9
+script = ExtResource("3_bm1wd")
+
+[node name="MenuBtn" parent="Editor/RightPanel" unique_id=1482968884 instance=ExtResource("4_51isn")]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 21.0
+offset_right = 87.0
+offset_bottom = 87.0
+
+[node name="CoursebotBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=1707782701]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 108.0
+offset_right = 87.0
+offset_bottom = 174.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("5_8eg8w")
+texture_pressed = ExtResource("6_fp6e3")
+texture_click_mask = ExtResource("7_0l6sx")
+script = ExtResource("8_kunuo")
+
+[node name="EraserBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=1195686216]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 288.0
+offset_right = 90.0
+offset_bottom = 357.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("9_khafc")
+texture_click_mask = ExtResource("10_wxv2j")
+script = ExtResource("11_a6583")
+hover_offset = Rect2(3, 3, -6, -12)
+
+[node name="DogBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=183154998]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 369.0
+offset_right = 87.0
+offset_bottom = 435.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("12_dyxkw")
+texture_click_mask = ExtResource("7_0l6sx")
+script = ExtResource("11_a6583")
+hover_offset = Rect2(0, 0, 0, -6)
+
+[node name="RocketBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=1993628880]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 456.0
+offset_right = 87.0
+offset_bottom = 522.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("13_rtyax")
+texture_click_mask = ExtResource("7_0l6sx")
+script = ExtResource("11_a6583")
+hover_offset = Rect2(0, 0, 0, -6)
+
+[node name="CoursebotPanel" type="NinePatchRect" parent="Editor/RightPanel" unique_id=1035022736]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -435.0
+offset_right = 9.0
+offset_bottom = 495.0
+focus_mode = 1
+mouse_filter = 1
+script = ExtResource("14_sp7ve")
+title = "EDITOR_POPOUT_COURSEBOT"
+open_sound = ExtResource("15_6snt5")
+close_sound = ExtResource("16_w63je")
+
+[node name="TopPanel" type="NinePatchRect" parent="Editor" unique_id=1001892793]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 108.0
+grow_horizontal = 2
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("2_sfxmt")
+region_rect = Rect2(15, 9, 3, 18)
+patch_margin_bottom = 15
+script = ExtResource("3_bm1wd")
+closed_pos = Vector2(0, -102)
+
+[node name="PaletteBtn" type="TextureButton" parent="Editor/TopPanel" unique_id=1931505885]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 90.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("17_w8smy")
+script = ExtResource("18_fep4b")
+hover_offset = Rect2(0, 0, 0, -6)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Editor/TopPanel" unique_id=513030384]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -462.0
+offset_top = 15.0
+offset_right = 462.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Card1" parent="Editor/TopPanel/HBoxContainer" unique_id=1935482387 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+action_mode = 0
+part = ExtResource("20_pr0l3")
+
+[node name="Card2" parent="Editor/TopPanel/HBoxContainer" unique_id=605082263 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+action_mode = 0
+part = ExtResource("21_5gafy")
+
+[node name="Card3" parent="Editor/TopPanel/HBoxContainer" unique_id=1513476386 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card4" parent="Editor/TopPanel/HBoxContainer" unique_id=423114736 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card5" parent="Editor/TopPanel/HBoxContainer" unique_id=1986320930 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card6" parent="Editor/TopPanel/HBoxContainer" unique_id=888207126 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card7" parent="Editor/TopPanel/HBoxContainer" unique_id=89941245 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card8" parent="Editor/TopPanel/HBoxContainer" unique_id=1521276554 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card9" parent="Editor/TopPanel/HBoxContainer" unique_id=99899848 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card10" parent="Editor/TopPanel/HBoxContainer" unique_id=1005791055 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card11" parent="Editor/TopPanel/HBoxContainer" unique_id=1315505386 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="Card12" parent="Editor/TopPanel/HBoxContainer" unique_id=1846010607 instance=ExtResource("19_qv7f8")]
+layout_mode = 2
+disabled = true
+action_mode = 0
+
+[node name="LeftPanel" type="NinePatchRect" parent="Editor" unique_id=1202118082]
+unique_name_in_owner = true
+layout_mode = 1
+offset_top = 108.0
+offset_right = 168.0
+offset_bottom = 546.0
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("2_sfxmt")
+region_rect = Rect2(15, 0, 18, 27)
+patch_margin_top = 9
+patch_margin_right = 15
+patch_margin_bottom = 15
+script = ExtResource("3_bm1wd")
+open_pos = Vector2(0, 108)
+closed_pos = Vector2(-162, 108)
+
+[node name="GameStyleBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=768974657]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 15.0
+offset_right = 144.0
+offset_bottom = 81.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("22_crwvd")
+texture_pressed = ExtResource("23_fhqrb")
+script = ExtResource("24_d4hij")
+
+[node name="GameStylePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=647132783]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 159.0
+offset_right = 522.0
+offset_bottom = 438.0
+mouse_filter = 0
+script = ExtResource("14_sp7ve")
+side = 1
+title = "EDITOR_POPOUT_GAME_STYLE"

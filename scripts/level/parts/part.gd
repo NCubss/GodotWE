@@ -1,18 +1,18 @@
 class_name Part
 extends Area2D
+## A gameplay element in a [Level].
+## 
+## [Part]s are what [SubArea]s are made of. They represent gameplay elements,
+## which parts generate on request via [method build]. In SMM:WE this can be
+## seen as an equivalent to [code]obj_parent_resource[/code].
+
+const _TOP_Z = 55
 
 ## The matching [PartInfo] for this part.
 @export var part_info: PartInfo
 
-## This part's graphics node.
-@onready var graphics: Node2D = $Graphics
-## The [Editor] this part is associated with.
-@onready var editor: Editor = Utility.id("editor")
-## The [Level] this part is associated with.
-@onready var level: Level = Utility.id("level")
-
-const _TOP_Z = 55
-
+var level: Level
+var sub_area: SubArea
 ## Whether this part is currently being dragged around.
 var held := false:
 	set(value):
@@ -49,6 +49,9 @@ var _start_frame := Engine.get_process_frames()
 var _coll_layers: int
 var _window: EditorWindow
 var _window_timer: SceneTreeTimer
+
+## This part's graphics node.
+@onready var graphics: Node2D = $Graphics
 
 
 func _ready() -> void:
@@ -100,7 +103,7 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE and held:
-		editor.held_part = null
+		level.editor.held_part = null
 
 
 func _draw():
@@ -115,7 +118,7 @@ func _draw():
 		else:
 			color = Color(1, 0, 0, 0.5)
 		draw_rect(rect, color)
-	elif _mouse_in and editor.can_interact:
+	elif _mouse_in and level.editor.can_interact:
 		rect.position -= global_position
 		draw_rect(rect, Color(0, 0, 1, 0.5))
 
@@ -124,6 +127,10 @@ func erase() -> void:
 	queue_free()
 	UISoundPlayer.stream = preload("uid://2axkkfi5xrx8")
 	UISoundPlayer.play()
+
+
+func build() -> void:
+	pass
 
 
 func _anim_place() -> void:
@@ -148,11 +155,11 @@ func _mouse_update(state: bool) -> void:
 	_mouse_in = state
 	queue_redraw()
 	if _mouse_in:
-		editor.hovered_part = self
-		if editor.erasing and not held:
+		level.editor.hovered_part = self
+		if level.editor.erasing and not held:
 			erase()
-	elif editor.hovered_part == self:
-		editor.hovered_part = null
+	elif level.editor.hovered_part == self:
+		level.editor.hovered_part = null
 
 
 func _hold() -> void:
@@ -161,17 +168,17 @@ func _hold() -> void:
 	_original_pos = _grid_pos
 	_original_z = graphics.z_index
 	graphics.z_index = _TOP_Z
-	editor.held_part = self
+	level.editor.held_part = self
 	_window_timer = get_tree().create_timer(0.5)
 	_window_timer.timeout.connect(_create_window)
 	_anim_held()
-	if editor.touch_effect == null:
-		editor.touch_effect = preload("uid://chv4mkls3f538") \
+	if level.editor.touch_effect == null:
+		level.editor.touch_effect = preload("uid://chv4mkls3f538") \
 				.instantiate()
-		editor.touch_effect.animation_finished.connect(
-				editor.touch_effect.queue_free)
-		level.add_child(editor.touch_effect)
-		editor.touch_effect.global_position = get_global_mouse_position()
+		level.editor.touch_effect.animation_finished.connect(
+				level.editor.touch_effect.queue_free)
+		level.add_child(level.editor.touch_effect)
+		level.editor.touch_effect.global_position = get_global_mouse_position()
 	_grab_offset = get_global_mouse_position() - global_position
 	_moved_out = false
 	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
@@ -181,7 +188,7 @@ func _hold() -> void:
 func _unhold() -> void:
 	collision_layer = _coll_layers
 	graphics.z_index = _original_z
-	editor.held_part = null
+	level.editor.held_part = null
 	_tween.kill()
 	_anim_place()
 	_check_validity()
@@ -209,7 +216,7 @@ func _check_validity():
 func _create_window() -> void:
 	_window = preload("uid://dyw1evq8k8n58").instantiate()
 	_window.target_position = level.from_grid(_original_pos) + level.GRID_SIZE / 2
-	editor.get_node(^"%WindowLayer").add_child(_window)
+	level.editor.get_node(^"%WindowLayer").add_child(_window)
 
 
 func _stop_window_timer() -> void:

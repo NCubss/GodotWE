@@ -8,11 +8,18 @@ shader = ExtResource("2_d1g1m")
 
 [node name="SubArea" type="Node2D" unique_id=986670251]
 script = ExtResource("1_d1g1m")
+level_theme = null
+night_mode = null
+water_speed = null
+min_water_height = null
+max_water_height = null
+meteorites = null
+autoscroll = null
 
 [node name="Foreground" type="CanvasGroup" parent="." unique_id=1554830974]
 unique_name_in_owner = true
 z_index = 100
 material = SubResource("ShaderMaterial_d1g1m")
 
-[node name="Parts" type="Node" parent="." unique_id=199134187]
+[node name="Parts" type="Node2D" parent="." unique_id=1999903179]
 unique_name_in_owner = true

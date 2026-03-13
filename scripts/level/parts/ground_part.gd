@@ -57,6 +57,12 @@ func erase() -> void:
 	_notify_tiles(tiles)
 
 
+func build() -> void:
+	var tile = preload("uid://bpy1sebdq7k7s").instantiate()
+	sub_area.add(tile)
+	tile.position = position
+
+
 func refresh_sprite(refresh_nearby := true) -> void:
 	if held:
 		reset_sprite()
