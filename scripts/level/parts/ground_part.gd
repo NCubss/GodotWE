@@ -4,9 +4,9 @@ extends Part
 @onready var _tex: Texture2D = %Sprite.texture
 
 
-func _ready() -> void:
-	super()
-	refresh_sprite()
+func load(placed_from_editor := false) -> void:
+	super(placed_from_editor)
+	refresh_sprite(placed_from_editor)
 
 
 func _atlas(x: int, y: int) -> void:
@@ -46,7 +46,7 @@ func _unhold() -> void:
 	var deferred = func():
 		var tiles = _get_nearby_tiles(_grid_pos)
 		_notify_tiles(tiles)
-		_connect(_grid_pos, _get_nearby_data(_grid_pos, tiles))
+		_connect(_grid_pos, tiles)
 	deferred.call_deferred()
 
 
@@ -59,8 +59,9 @@ func erase() -> void:
 
 func build() -> void:
 	var tile = preload("uid://bpy1sebdq7k7s").instantiate()
+	tile.global_position = global_position
+	tile.get_node(^"%Sprite").texture = %Sprite.texture
 	sub_area.add(tile)
-	tile.position = position
 
 
 func refresh_sprite(refresh_nearby := true) -> void:
@@ -73,7 +74,7 @@ func refresh_sprite(refresh_nearby := true) -> void:
 		var tiles = _get_nearby_tiles(_grid_pos)
 		if refresh_nearby:
 			_notify_tiles(tiles)
-		_connect(_grid_pos, _get_nearby_data(_grid_pos, tiles))
+		_connect(_grid_pos, tiles)
 
 
 func reset_sprite() -> void:
@@ -104,31 +105,23 @@ func _get_nearby_tiles(
 	return base
 
 
-func _get_nearby_data(pos: Vector2i,
-		tiles := _get_nearby_tiles(pos)) -> Dictionary[Vector2i, bool]:
-	var data: Dictionary[Vector2i, bool] = {}
-	for i in tiles:
-		data[i] = tiles[i] != null
-	return data
-
-
 func _notify_tiles(tiles: Dictionary[Vector2i, GroundPart]) -> void:
 	for i: GroundPart in tiles.values():
 		if i != null:
 			i.refresh_sprite(false)
 
 
-func _connect(pos: Vector2i, data: Dictionary[Vector2i, bool]) -> void:
-	var top_left = data[Vector2i(-1, -1)]
-	var top = data[Vector2i(0, -1)]
-	var top_right = data[Vector2i(1, -1)]
-	var right = data[Vector2i(1, 0)]
-	var right_right = data[Vector2i(2, 0)]
-	var bottom_right = data[Vector2i(1, 1)]
-	var bottom = data[Vector2i(0, 1)]
-	var bottom_left = data[Vector2i(-1, 1)]
-	var left = data[Vector2i(-1, 0)]
-	var left_left = data[Vector2i(-2, 0)]
+func _connect(pos: Vector2i, data: Dictionary[Vector2i, GroundPart]) -> void:
+	var top_left = data[Vector2i(-1, -1)] != null
+	var top = data[Vector2i(0, -1)] != null
+	var top_right = data[Vector2i(1, -1)] != null
+	var right = data[Vector2i(1, 0)] != null
+	var right_right = data[Vector2i(2, 0)] != null
+	var bottom_right = data[Vector2i(1, 1)] != null
+	var bottom = data[Vector2i(0, 1)] != null
+	var bottom_left = data[Vector2i(-1, 1)] != null
+	var left = data[Vector2i(-1, 0)] != null
+	var left_left = data[Vector2i(-2, 0)] != null
 	
 	if pos.y >= -1:
 		bottom_left = true

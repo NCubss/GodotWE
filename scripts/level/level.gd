@@ -373,7 +373,8 @@ func _ready() -> void:
 	for i in get_children():
 		if i is SubArea:
 			sub_areas.append(i)
-			i.load(self)
+			i.level = self
+			i.load()
 	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
 	if current_sub_area == null:
 		current_sub_area = sub_areas[0]
@@ -390,6 +391,7 @@ func _ready() -> void:
 		_edit()
 	if editor != null:
 		editor.level = self
+		editor.load()
 
 
 ## Starts the level.

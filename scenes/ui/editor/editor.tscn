@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/style_cards/btn.svg" id="22_crwvd"]
 [ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
 [ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
+[ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
 
 [node name="EditorLayer" type="CanvasLayer" unique_id=727278229]
 layer = 3
@@ -48,15 +49,24 @@ focus_mode = 2
 mouse_filter = 1
 script = ExtResource("1_eb2t3")
 
-[node name="RightPanel" type="NinePatchRect" parent="Editor" unique_id=2101369237]
+[node name="RightPanelContainer" type="Control" parent="Editor" unique_id=570001422]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RightPanel" type="NinePatchRect" parent="Editor/RightPanelContainer" unique_id=2101369237]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -105.0
-offset_top = 108.0
-offset_bottom = 648.0
+offset_top = -540.0
 grow_horizontal = 0
 focus_mode = 2
 mouse_filter = 0
@@ -65,15 +75,18 @@ region_rect = Rect2(0, 0, 18, 12)
 patch_margin_left = 15
 patch_margin_top = 9
 script = ExtResource("3_bm1wd")
+open_pos = Vector2(-105, -540)
+closed_pos = Vector2(0, -540)
 
-[node name="MenuBtn" parent="Editor/RightPanel" unique_id=1482968884 instance=ExtResource("4_51isn")]
+[node name="MenuBtn" parent="Editor/RightPanelContainer/RightPanel" unique_id=1482968884 instance=ExtResource("4_51isn")]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 21.0
 offset_right = 87.0
 offset_bottom = 87.0
+focus_neighbor_top = NodePath("../../../TopPanel/PaletteBtn")
 
-[node name="CoursebotBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=1707782701]
+[node name="CoursebotBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1707782701]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 108.0
@@ -88,7 +101,7 @@ texture_pressed = ExtResource("6_fp6e3")
 texture_click_mask = ExtResource("7_0l6sx")
 script = ExtResource("8_kunuo")
 
-[node name="EraserBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=1195686216]
+[node name="EraserBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1195686216]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 288.0
@@ -102,7 +115,7 @@ texture_click_mask = ExtResource("10_wxv2j")
 script = ExtResource("11_a6583")
 hover_offset = Rect2(3, 3, -6, -12)
 
-[node name="DogBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=183154998]
+[node name="DogBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=183154998]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 369.0
@@ -116,7 +129,7 @@ texture_click_mask = ExtResource("7_0l6sx")
 script = ExtResource("11_a6583")
 hover_offset = Rect2(0, 0, 0, -6)
 
-[node name="RocketBtn" type="TextureButton" parent="Editor/RightPanel" unique_id=1993628880]
+[node name="RocketBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1993628880]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 456.0
@@ -130,7 +143,7 @@ texture_click_mask = ExtResource("7_0l6sx")
 script = ExtResource("11_a6583")
 hover_offset = Rect2(0, 0, 0, -6)
 
-[node name="CoursebotPanel" type="NinePatchRect" parent="Editor/RightPanel" unique_id=1035022736]
+[node name="CoursebotPanel" type="NinePatchRect" parent="Editor/RightPanelContainer/RightPanel" unique_id=1035022736]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -435.0
@@ -287,3 +300,19 @@ mouse_filter = 0
 script = ExtResource("14_sp7ve")
 side = 1
 title = "EDITOR_POPOUT_GAME_STYLE"
+
+[node name="Clapperboard" type="TextureButton" parent="Editor" unique_id=1851851393]
+custom_minimum_size = Vector2(117, 93)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -99.0
+offset_right = 132.0
+offset_bottom = -6.0
+grow_vertical = 0
+action_mode = 0
+script = ExtResource("25_sfxmt")
+
+[connection signal="loaded" from="Editor" to="Editor/Clapperboard" method="_editor_loaded"]

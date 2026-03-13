@@ -26,12 +26,11 @@ var is_loaded := false
 
 ## Called by the [Level] to make sure this [SubArea] is ready to enter (i.e.,
 ## creating the background).
-func load(_level: Level) -> void:
-	level = _level
+func load() -> void:
 	level.playing.connect(_play)
 	level.editing.connect(_edit)
 	var background_scene = load(GameConstants.BACKGROUNDS \
-			[_level.game_style][level_theme][night_mode])
+			[level.game_style][level_theme][night_mode])
 	background = background_scene.instantiate()
 	add_child(background)
 	for i: Part in %Parts.get_children():
@@ -42,6 +41,7 @@ func load(_level: Level) -> void:
 			continue
 		i.sub_area = self
 		i.level = level
+		i.load()
 
 
 func get_background() -> Node2D:

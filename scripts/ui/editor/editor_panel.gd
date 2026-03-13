@@ -2,27 +2,32 @@ class_name EditorPanel
 extends NinePatchRect
 ## A panel in the editor.
 
+## Represents a panel state.
+enum Status {
+	## The panel is open and can be closed.
+	OPEN,
+	## The panel is closed and can be opened.
+	CLOSED,
+	## The panel is fully hidden. The user cannot open it.
+	HIDDEN,
+}
+
 @export var open_pos: Vector2
 @export var closed_pos: Vector2
-
-## Whether this panel is extended.
-var extended := true:
-	set(value):
-		if locked:
-			push_warning("Trying to extend panel while it is locked.")
-			return
+@export var hidden_pos: Vector2
+## The current [enum Status] of this panel.
+@export var status := Status.OPEN:
+	set(v):
+		status = v
 		_extend_tween = create_tween()
-		_extend_tween.tween_property(self, "position", open_pos if value else closed_pos, 0.1)
-		extended = value 
-
-## Whether this panel's extended state can be changed. This is set to
-## [code]true[/code] when the palette is opened, camera is zoomed out, etc.
-var locked := false
+		var pos: Vector2
+		match v:
+			Status.OPEN:
+				pos = open_pos
+			Status.CLOSED:
+				pos = closed_pos
+			Status.HIDDEN:
+				pos = hidden_pos
+		_extend_tween.tween_property(self, "position", pos, 0.1)
 
 var _extend_tween: Tween
-
-
-func _input(event: InputEvent) -> void:
-	if not event.is_action_pressed("ui_accept"):
-		return
-	extended = not extended
