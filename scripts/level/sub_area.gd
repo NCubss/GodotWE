@@ -16,34 +16,49 @@ extends Node2D
 
 ## The background node.
 var background: Node
-## The foreground node, which stores all tiles and entities.
-var foreground: Node
-## The editor foreground node, which stores all parts. Only available if this
-## level is being edited (i.e. [member Level.editor] is not [code]null[/code]).
+
 var editor_foreground: Node
-## The sub-area's parent level.
+## The sub-area's parent [Level].
 var level: Level
+## Whether this sub-area has been loaded (see [method load]).
+var is_loaded := false
 
 
 ## Called by the [Level] to make sure this [SubArea] is ready to enter (i.e.,
 ## creating the background).
 func load(_level: Level) -> void:
 	level = _level
+	level.playing.connect(_play)
+	level.editing.connect(_edit)
 	var background_scene = load(GameConstants.BACKGROUNDS \
 			[_level.game_style][level_theme][night_mode])
 	background = background_scene.instantiate()
 	add_child(background)
-	foreground = $Foreground
-	for i in foreground.get_children():
-		i = i as Entity
-		if i == null:
+	for i: Part in %Parts.get_children():
+		if i is not Part:
+			var cls: Script = i.get_script()
+			push_warning("Found non-Part in Parts (class name '%s')" %
+					cls.get_global_name())
 			continue
-		i.level = level
 		i.sub_area = self
-	if Utility.id("editor") != null:
-		editor_foreground = Node.new()
-		editor_foreground.name = "EditorForeground"
-		add_child(editor_foreground)
+		i.level = level
+
+
+func get_background() -> Node2D:
+	return %Background
+
+
+## Returns the foreground node, which stores all tiles and entities. Note that
+## you shouldn't fill this out yourself, as [Part]s automatically generate
+## content to put here (see [method get_parts]).
+func get_foreground() -> Node2D:
+	return %Foreground
+
+
+## Returns the node which contains all [Part]s, which generate the tiles and
+## entities in the foreground node (see [method get_foreground]).
+func get_parts() -> Node2D:
+	return %Parts
 
 
 ## Freezes this sub-area. All entities will stop processing and the sub-area
@@ -58,6 +73,31 @@ func unfreeze() -> void:
 	show()
 
 
-func spawn(entity: Entity, pos: Vector2) -> void:
-	$Foreground.add_child(entity)
-	entity.global_position = pos
+## Adds a node to this sub-area's foreground and sets metadata
+## ([code]sub_area[/code] to this sub-area, [code]level[/code] to this
+## sub-area's associated [member level]). Note that this mustn't be used for
+## [Part]s, as they have their own [member parts] container node.
+func add(node: Node) -> void:
+	node.set_meta(&"sub_area", self)
+	node.set_meta(&"level", level)
+	%Foreground.add_child(node)
+
+
+func add_part(part: Part) -> void:
+	part.sub_area = self
+	part.level = level
+	%Parts.add_child(part)
+
+
+func _play() -> void:
+	for i: Part in %Parts.get_children():
+		if i is not Part:
+			continue
+		i.build()
+	%Parts.hide()
+
+
+func _edit() -> void:
+	for i in %Foreground.get_children():
+		i.queue_free()
+	%Parts.show()

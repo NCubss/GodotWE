@@ -2,8 +2,12 @@ class_name Editor
 extends Control
 
 ## The level this [Editor] is associated with.
-@onready var level: Level = Utility.id("level") as Level
-
+var level: Level:
+	set(v):
+		level = v
+		v.add_child(grid)
+		v.playing.connect(_play)
+		v.editing.connect(_edit)
 ## The currently held part.
 var held_part: Part
 ## The part that the mouse is currently on.
@@ -15,6 +19,7 @@ var erasing := false
 var can_interact := true
 ## The currently displayed touch effect. Used to limit one at a time.
 var touch_effect: AnimatedSprite2D
+var grid := Grid.new()
 
 # Whether the mouse's left button is currently pressed.
 var _mouse_down: bool
@@ -23,6 +28,9 @@ var _last_mouse_pos: Vector2i
 
 
 func _ready():
+	grid.minor_color = Color("00000099")
+	grid.major_color = Color("000000ff")
+	grid.modulate = Color("ffffff40")
 	theme = ThemeDB.get_project_theme()
 	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
 	MusicPlayer.play()
@@ -41,6 +49,15 @@ func _unhandled_input(event: InputEvent) -> void:
 				_process_place(false)
 			MouseButton.MOUSE_BUTTON_RIGHT:
 				erasing = event.pressed
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.keycode == Key.KEY_H and event.pressed:
+			if level.status == Level.Status.EDITING:
+				level.play()
+			elif level.status == Level.Status.PLAYING:
+				level.edit()
 
 
 ## Returns the currently selected [PartInfo] from the card bar on the top panel.
@@ -81,8 +98,32 @@ func _process_place(multi_place_allowed: bool) -> void:
 ## Places a tile at [param pos] and returns the placed [Part].
 func place(pos: Vector2i) -> Part:
 	var part: Part = get_selected_part().part.instantiate()
+	level.current_sub_area.add_part(part)
 	part.global_position = level.from_grid(pos)
-	level.current_sub_area.editor_foreground.add_child(part)
 	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 	return part
+
+
+func _play() -> void:
+	hide()
+	%TopPanel.extended = false
+	%TopPanel.locked = true
+	%LeftPanel.extended = false
+	%LeftPanel.locked = true
+	%RightPanel.extended = false
+	%RightPanel.locked = true
+	grid.hide()
+
+
+func _edit() -> void:
+	show()
+	%TopPanel.locked = false
+	%TopPanel.extended = true
+	%LeftPanel.locked = false
+	%LeftPanel.extended = true
+	%RightPanel.locked = false
+	%RightPanel.extended = true
+	grid.show()
+	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
+	MusicPlayer.play()

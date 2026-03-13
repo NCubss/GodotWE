@@ -6,7 +6,7 @@ extends StaticBody2D
 
 
 func _ready() -> void:
-	refresh_sprite()
+	refresh_sprite.call_deferred()
 
 
 func _atlas(x: int, y: int) -> void:
