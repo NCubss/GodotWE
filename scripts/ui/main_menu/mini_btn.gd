@@ -1,7 +1,8 @@
 class_name MiniBtn
 extends TextureButton
 
-@onready var _effect := ButtonHoverEffect.new(self, Rect2(0, 0, size.x, size.y - 6))
+@onready var _effect := ButtonHoverEffect.new(self,
+		Rect2(0, 0, size.x, size.y - 6))
 
 
 func _ready() -> void:
@@ -18,8 +19,9 @@ func _draw() -> void:
 
 
 func _mouse_entered() -> void:
-	UISoundPlayer.stream = preload("uid://dmdnc6gaj44mv")
-	UISoundPlayer.play()
+	if not DisplayServer.is_touchscreen_available():
+		UISoundPlayer.stream = preload("uid://dmdnc6gaj44mv")
+		UISoundPlayer.play()
 	_effect.start()
 
 

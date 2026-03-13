@@ -1,11 +1,11 @@
 class_name MenuBtn
 extends TextureButton
 
-var _effect: ButtonHoverEffect
+@onready var _effect := ButtonHoverEffect.new(self,
+		Rect2(Vector2.ZERO, size - Vector2(0, 6)))
 
 
 func _ready() -> void:
-	_effect = ButtonHoverEffect.new(self, Rect2(Vector2.ZERO, size - Vector2(0, 6)))
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
 

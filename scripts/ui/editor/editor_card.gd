@@ -79,6 +79,8 @@ func _toggled(toggled_on: bool) -> void:
 func _entered() -> void:
 	if disabled:
 		return
+	if DisplayServer.is_touchscreen_available():
+		return
 	UISoundPlayer.stream = preload("uid://b5frd03c4vele")
 	UISoundPlayer.play()
 	if _card_offset_tween != null:
