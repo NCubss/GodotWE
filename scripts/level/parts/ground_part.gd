@@ -50,8 +50,8 @@ func _unhold() -> void:
 	deferred.call_deferred()
 
 
-func erase() -> void:
-	super()
+func erase(silent := false) -> void:
+	super(silent)
 	var tiles = _get_nearby_tiles(_grid_pos)
 	get_parent().remove_child(self)
 	_notify_tiles(tiles)

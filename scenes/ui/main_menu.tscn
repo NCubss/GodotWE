@@ -295,6 +295,7 @@ size_flags_vertical = 8
 action_mode = 0
 texture_normal = ExtResource("14_4ovp2")
 script = ExtResource("14_y2j7i")
+type = 1
 
 [node name="BtnMiniTitle" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1829249709]
 layout_mode = 2
@@ -302,6 +303,7 @@ size_flags_vertical = 8
 action_mode = 0
 texture_normal = ExtResource("15_1mexh")
 script = ExtResource("14_y2j7i")
+type = 2
 
 [node name="LoginLayer" parent="." unique_id=2102270892 instance=ExtResource("17_y2j7i")]
 unique_name_in_owner = true

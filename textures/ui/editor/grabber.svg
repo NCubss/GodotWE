@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="14"
+   height="14"
+   viewBox="0 0 14 13.999999"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <circle
+     style="vector-effect:non-scaling-stroke;fill:#5d1c1c;fill-opacity:1;stroke-linejoin:round;stroke-miterlimit:5;stroke-dasharray:4, 3;-inkscape-stroke:hairline;paint-order:markers stroke fill"
+     id="path1"
+     cx="7"
+     cy="7"
+     r="7" />
+  <circle
+     style="vector-effect:non-scaling-stroke;fill:#ffffff;fill-opacity:1;stroke-linejoin:round;stroke-miterlimit:5;stroke-dasharray:4, 3;-inkscape-stroke:hairline;paint-order:markers stroke fill"
+     id="path2"
+     cx="7"
+     cy="7"
+     r="6" />
+  <circle
+     style="vector-effect:non-scaling-stroke;fill:#facd00;fill-opacity:1;stroke-linejoin:round;stroke-miterlimit:5;stroke-dasharray:4, 3;-inkscape-stroke:hairline;paint-order:markers stroke fill"
+     id="path3"
+     cx="7"
+     cy="7"
+     r="5" />
+  <circle
+     style="vector-effect:non-scaling-stroke;fill:#5d1c1c;fill-opacity:1;stroke-linejoin:round;stroke-miterlimit:5;stroke-dasharray:4, 3;-inkscape-stroke:hairline;paint-order:markers stroke fill"
+     id="path4"
+     cx="7"
+     cy="7"
+     r="4" />
+  <circle
+     style="vector-effect:non-scaling-stroke;fill:#facd00;fill-opacity:1;stroke-linejoin:round;stroke-miterlimit:5;stroke-dasharray:4, 3;-inkscape-stroke:hairline;paint-order:markers stroke fill"
+     id="path5"
+     cx="7"
+     cy="7"
+     r="3" />
+</svg>
