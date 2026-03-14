@@ -23,6 +23,10 @@ boot_splash/use_filter=false
 config/icon="uid://god0ayqmlgrj"
 config/windows_native_icon="res://icon.ico"
 
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+
 [autoload]
 
 Utility="*res://scripts/singletons/utility.gd"
