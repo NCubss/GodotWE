@@ -24,10 +24,13 @@ enum Status {
 		match v:
 			Status.OPEN:
 				pos = open_pos
+				mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
 			Status.CLOSED:
 				pos = closed_pos
+				mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 			Status.HIDDEN:
 				pos = hidden_pos
+				mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 		_extend_tween.tween_property(self, "position", pos, 0.1)
 
 var _extend_tween: Tween

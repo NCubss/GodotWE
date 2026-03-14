@@ -76,6 +76,7 @@ func _toggled(toggled_on: bool) -> void:
 		_icon_offset = Vector2(0, 0)
 	%SoundPlayer.play()
 
+
 func _entered() -> void:
 	if disabled:
 		return

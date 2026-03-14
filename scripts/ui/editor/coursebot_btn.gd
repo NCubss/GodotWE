@@ -21,9 +21,11 @@ func _process(_delta: float) -> void:
 
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
 		%CoursebotPanel.open()
 	else:
 		%CoursebotPanel.close()
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
 
 
 func _draw() -> void:
