@@ -20,8 +20,8 @@ enum Category {
 @export var icon_filter: CanvasItem.TextureFilter
 ## The category this item falls under.
 @export var category: Category
-## The scene containing the spawnable part.
-@export var part: PackedScene
+## The path of the scene containing the spawnable part.
+@export_file("*.tscn") var scene_path: String
 ## The size of this part. This must match the part's
 ## [member TileComponent.size].
 @export var size := Vector2i(1, 1)
@@ -42,3 +42,8 @@ static func get_category_color(c: Category) -> Color:
 		_:
 			assert(false, "Invalid category %d" % c)
 			return Color.GRAY
+
+
+## Instantiates a new part from the [member scene_path].
+func create() -> Part:
+	return load(scene_path).instantiate()

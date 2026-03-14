@@ -28,16 +28,6 @@ func _pressed() -> void:
 	_tween.tween_property(self, "top_rotation", 0, 0.1) \
 			.set_ease(Tween.EASE_IN)
 	_tween.tween_callback(_switch)
-	_tween.tween_property(self, "body_rotation", TAU/18, 0.2) \
-			.set_ease(Tween.EASE_OUT)
-	_tween.parallel()
-	_tween.tween_property(self, "top_rotation", TAU/18, 0.2) \
-			.set_ease(Tween.EASE_OUT)
-	_tween.tween_property(self, "body_rotation", 0, 0.2) \
-			.set_ease(Tween.EASE_IN)
-	_tween.parallel()
-	_tween.tween_property(self, "top_rotation", 0, 0.2) \
-			.set_ease(Tween.EASE_IN)
 
 
 func _draw() -> void:
@@ -71,14 +61,31 @@ func _draw() -> void:
 	_effect.draw()
 
 
-func _editor_loaded() -> void:
-	queue_redraw()
-
-
 func _switch() -> void:
-	UISoundPlayer.stream = preload("uid://cdi0jrkmhuxs6")
-	UISoundPlayer.play()
 	if %Editor.level.status == Level.Status.PLAYING:
 		%Editor.level.edit()
 	elif %Editor.level.status == Level.Status.EDITING:
 		%Editor.level.play()
+
+
+func _editor_loaded() -> void:
+	queue_redraw()
+	%Editor.level.playing.connect(_level_state_changed)
+	%Editor.level.editing.connect(_level_state_changed)
+
+
+func _level_state_changed() -> void:
+	UISoundPlayer.stream = preload("uid://cdi0jrkmhuxs6")
+	UISoundPlayer.play()
+	_tween = create_tween()
+	_tween.set_trans(Tween.TRANS_SINE)
+	_tween.tween_property(self, "body_rotation", TAU/18, 0.2) \
+			.set_ease(Tween.EASE_OUT)
+	_tween.parallel()
+	_tween.tween_property(self, "top_rotation", TAU/18, 0.2) \
+			.set_ease(Tween.EASE_OUT)
+	_tween.tween_property(self, "body_rotation", 0, 0.2) \
+			.set_ease(Tween.EASE_IN)
+	_tween.parallel()
+	_tween.tween_property(self, "top_rotation", 0, 0.2) \
+			.set_ease(Tween.EASE_IN)

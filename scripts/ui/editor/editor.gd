@@ -59,7 +59,7 @@ func get_selected_part() -> PartInfo:
 
 ## Places a tile at [param pos] and returns the placed [Part].
 func place(pos: Vector2i) -> Part:
-	var part: Part = get_selected_part().part.instantiate()
+	var part: Part = get_selected_part().create()
 	part.global_position = level.from_grid(pos)
 	level.current_sub_area.add_part(part)
 	part.load(true)
@@ -103,6 +103,7 @@ func _process_place(multi_place_allowed: bool) -> void:
 
 
 func _play() -> void:
+	part_interact = false
 	%TopPanel.status = EditorPanel.Status.HIDDEN
 	%LeftPanel.status = EditorPanel.Status.HIDDEN
 	%RightPanel.status = EditorPanel.Status.HIDDEN
@@ -110,6 +111,7 @@ func _play() -> void:
 
 
 func _edit() -> void:
+	part_interact = true
 	%TopPanel.status = EditorPanel.Status.OPEN
 	%LeftPanel.status = EditorPanel.Status.OPEN
 	%RightPanel.status = EditorPanel.Status.OPEN

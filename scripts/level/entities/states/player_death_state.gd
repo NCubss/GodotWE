@@ -1,9 +1,13 @@
 class_name PlayerDeathState
 extends State
 
+var _death_timer: Timer
+
 
 func _init() -> void:
 	intended_class = Player
+	_death_timer = Timer.new()
+	add_child(_death_timer)
 
 
 func start(entity: Node2D) -> Variant:
@@ -24,7 +28,9 @@ func start(entity: Node2D) -> Variant:
 	player.collision_layer = 0
 	player.velocity = Vector2.ZERO
 	
-	get_tree().create_timer(0.5).timeout.connect(_fall.bind(player, grav_comp))
+	_death_timer.start(0.5)
+	_death_timer.timeout.connect(_fall.bind(player, grav_comp),
+			ConnectFlags.CONNECT_ONE_SHOT)
 	
 	return
 
@@ -34,4 +40,10 @@ func _fall(player: Player, grav_comp: GravityComponent) -> void:
 	grav_comp.gravity = Vector2(0, 12)
 	grav_comp.max_fall_speed = 240
 	player.velocity = Vector2(0, -210)
-	get_tree().create_timer(2).timeout.connect(player.level.reload)
+	_death_timer.start(2)
+	_death_timer.timeout.connect(func():
+		if player.level.editor == null:
+			player.level.reload()
+		else:
+			player.level.edit()
+	)

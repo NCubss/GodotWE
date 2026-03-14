@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dl475ic48ilql"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_hnl1d"]
+[ext_resource type="Script" uid="uid://dllobxvahyl3u" path="res://scripts/level/parts/editor_player.gd" id="2_ep8y8"]
+[ext_resource type="SpriteFrames" uid="uid://b8ka66cx00t43" path="res://textures/player/mario/small.tres" id="3_v2vbx"]
+
+[node name="EditorPlayer" unique_id=1549879982 instance=ExtResource("1_hnl1d")]
+script = ExtResource("2_ep8y8")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=1001861497]
+unique_name_in_owner = true
+z_index = 38
+position = Vector2(0, -7)
+sprite_frames = ExtResource("3_v2vbx")
+animation = &"idle"

@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
 
 [node name="EditorLayer" type="CanvasLayer" unique_id=727278229]
+process_mode = 1
 layer = 3
 
 [node name="WindowLayer" type="CanvasLayer" parent="." unique_id=1237148848]

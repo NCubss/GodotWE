@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="PartInfo" format=3 uid="uid://2egbrhf17dv6"]
 
-[ext_resource type="PackedScene" uid="uid://dpfaa6qawfnk1" path="res://scenes/parts/ground_part.tscn" id="1_c8sj6"]
 [ext_resource type="Texture2D" uid="uid://du8vtxsylbi78" path="res://textures/ui/editor/part_icons/smw/ground.png" id="1_ge1vh"]
 [ext_resource type="Script" uid="uid://4ld0tmaadxvg" path="res://scripts/ui/editor/part_info.gd" id="1_tikea"]
 
@@ -9,6 +8,6 @@ script = ExtResource("1_tikea")
 name = "GROUND"
 icon = ExtResource("1_ge1vh")
 icon_filter = 1
-part = ExtResource("1_c8sj6")
+scene_path = "uid://dpfaa6qawfnk1"
 multi_place = true
 metadata/_custom_type_script = "uid://4ld0tmaadxvg"
