@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://di2ei4ammvd8g"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_s0qce"]
+[ext_resource type="Script" uid="uid://dgavd2mjclvin" path="res://scripts/level/parts/starting_ground.gd" id="2_ck7j1"]
+[ext_resource type="Texture2D" uid="uid://cgslc0o8upncx" path="res://textures/smw/start.png" id="3_ck7j1"]
+[ext_resource type="Texture2D" uid="uid://cut4bi5c8mc6e" path="res://textures/ui/editor/grabber.svg" id="4_ff5lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff5lx"]
+size = Vector2(112, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_auaxg"]
+radius = 7.0
+
+[node name="StartingGround" unique_id=1549879982 instance=ExtResource("1_s0qce")]
+script = ExtResource("2_ck7j1")
+
+[node name="CollShape" parent="." index="0" unique_id=751260987]
+unique_name_in_owner = true
+position = Vector2(56, 8)
+shape = SubResource("RectangleShape2D_ff5lx")
+
+[node name="Start" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=1946728533]
+position = Vector2(32, -32)
+texture = ExtResource("3_ck7j1")
+
+[node name="Grabber" type="Area2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="1" unique_id=1858940119]
+
+[node name="CollShape" type="CollisionShape2D" parent="Graphics/Grabber" index="0" unique_id=1169741085]
+position = Vector2(96, 0)
+shape = SubResource("CircleShape2D_auaxg")
+
+[node name="GrabberSprite" type="Sprite2D" parent="Graphics/Grabber" index="1" unique_id=533320523]
+texture_filter = 2
+position = Vector2(96, 0)
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("4_ff5lx")
+
+[connection signal="input_event" from="Graphics/Grabber" to="." method="_on_grabber_input_event"]

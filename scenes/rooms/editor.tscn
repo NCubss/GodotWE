@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_hf1b4"]
 [ext_resource type="Script" uid="uid://cwdxlb3bg48lf" path="res://scripts/ui/editor/editor_camera.gd" id="2_hf1b4"]
 [ext_resource type="PackedScene" uid="uid://cjcx6mlu5ad62" path="res://scenes/ui/editor/editor.tscn" id="3_oubuj"]
+[ext_resource type="PackedScene" uid="uid://di2ei4ammvd8g" path="res://scenes/parts/starting_ground.tscn" id="5_kya7r"]
 [ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="25_df8yj"]
 
 [node name="Level" type="Node2D" unique_id=1985374198 node_paths=PackedStringArray("current_sub_area", "editor") groups=["level"]]
@@ -37,6 +38,9 @@ min_water_height = 1
 max_water_height = 1
 meteorites = false
 autoscroll = 0
+
+[node name="StartingGround" parent="SubArea/Parts" parent_id_path=PackedInt32Array(1207914609, 1999903179) index="0" unique_id=1549879982 instance=ExtResource("5_kya7r")]
+position = Vector2(0, -32)
 
 [node name="LevelTimer" type="Timer" parent="." unique_id=1613872851]
 unique_name_in_owner = true

@@ -15,12 +15,12 @@ var level: Level
 var sub_area: SubArea
 ## Whether this part is currently being dragged around.
 var held := false:
-	set(value):
-		if held == value:
+	set(v):
+		if held == v:
 			return
-		held = value
+		held = v
 		queue_redraw()
-		if value:
+		if v:
 			_hold()
 		else:
 			_unhold()
@@ -128,10 +128,11 @@ func load(placed_from_editor := false) -> void:
 		_anim_place()
 
 
-func erase() -> void:
+func erase(silent := false) -> void:
 	queue_free()
-	UISoundPlayer.stream = preload("uid://2axkkfi5xrx8")
-	UISoundPlayer.play()
+	if not silent:
+		UISoundPlayer.stream = preload("uid://2axkkfi5xrx8")
+		UISoundPlayer.play()
 
 
 func build() -> void:
