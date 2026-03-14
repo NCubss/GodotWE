@@ -186,7 +186,6 @@ size_flags_vertical = 0
 action_mode = 0
 texture_normal = ExtResource("17_w8smy")
 script = ExtResource("18_fep4b")
-hover_offset = Rect2(0, 0, 0, -6)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Editor/TopPanel" unique_id=513030384]
 layout_mode = 1

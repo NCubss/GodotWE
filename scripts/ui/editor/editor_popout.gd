@@ -106,6 +106,9 @@ func open() -> void:
 		PopoutDirection.TO_RIGHT:
 			position = target_rect.position
 	_tween.finished.connect(func(): status = Status.OPEN)
+	%Editor.part_interact = false
+	%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+	mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
 
 
 func close() -> void:
@@ -131,6 +134,9 @@ func close() -> void:
 	_tween.tween_property(self, "size", target_rect.size, 0)
 	_tween.tween_property(self, "position", target_rect.position, 0)
 	_tween.finished.connect(func(): status = Status.CLOSED)
+	%Editor.part_interact = true
+	%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+	mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
 
 
 

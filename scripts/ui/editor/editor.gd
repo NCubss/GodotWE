@@ -1,6 +1,7 @@
 class_name Editor
 extends Control
 
+## Emitted when the level and editor is ready.
 signal loaded
 
 ## The level this [Editor] is associated with.
@@ -11,12 +12,12 @@ var held_part: Part
 var hovered_part: Part
 ## Whether the editor is in erase mode.
 var erasing := false
-## Whether the user can currently interact with tiles and panel buttons. This
-## is typically set by held parts and popouts to disable the rest of the UI.
-var can_interact := true
 ## The currently displayed touch effect. Used to limit one at a time.
 var touch_effect: AnimatedSprite2D
+## The editor [Grid].
 var grid := Grid.new()
+## Whether parts can currently be placed and interacted with.
+var part_interact := true
 
 # Whether the mouse's left button is currently pressed.
 var _mouse_down: bool
@@ -81,7 +82,7 @@ func _process_place(multi_place_allowed: bool) -> void:
 	var selected = get_selected_part()
 	if selected == null or not _mouse_down:
 		return
-	if not can_interact or erasing:
+	if not part_interact or erasing:
 		return
 	if selected.multi_place and not multi_place_allowed:
 		return

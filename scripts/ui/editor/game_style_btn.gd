@@ -36,9 +36,11 @@ func _draw() -> void:
 
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
 		%GameStylePanel.open()
 	else:
 		%GameStylePanel.close()
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
 
 
 func _mouse_entered() -> void:

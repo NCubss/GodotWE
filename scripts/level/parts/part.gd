@@ -88,6 +88,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if Engine.get_process_frames() == _start_frame:
 		return
+	if not level.editor.part_interact:
+		return
 	if event is not InputEventMouseButton:
 		return
 	if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.pressed:
@@ -115,7 +117,7 @@ func _draw():
 		else:
 			color = Color(1, 0, 0, 0.5)
 		draw_rect(rect, color)
-	elif _mouse_in and level.editor.can_interact:
+	elif _mouse_in and level.editor.part_interact:
 		rect.position -= global_position
 		draw_rect(rect, Color(0, 0, 1, 0.5))
 
