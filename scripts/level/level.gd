@@ -448,6 +448,7 @@ func _play() -> void:
 
 func _edit() -> void:
 	status = Status.EDITING
+	process_mode = Node.PROCESS_MODE_INHERIT
 	%LevelTimer.stop()
 	hud.hide()
 	MusicPlayer.stop()

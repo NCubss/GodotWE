@@ -207,7 +207,7 @@ func _unhold() -> void:
 	UISoundPlayer.play()
 
 
-func _check_validity():
+func _check_validity() -> void:
 	_grid_pos = level.to_grid(level.get_local_mouse_position())
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collide_with_areas = true

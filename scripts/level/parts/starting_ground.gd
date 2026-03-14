@@ -50,7 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			level.editor.part_interact = true
 
 
-func erase(silent := false) -> void:
+func erase(_silent := false) -> void:
 	push_warning("Starting ground can't be erased.")
 
 
