@@ -79,6 +79,8 @@ folder_colors={
 
 levels/protocol_version=0
 levels/allow_swe=true
+user/username="Player"
+user/session_token=""
 
 [global_group]
 
@@ -168,11 +170,10 @@ pause={
 
 locale/translation_remaps={
 "res://textures/ui/coursebot/tag_stamps/sheet.png": PackedStringArray("res://textures/ui/coursebot/tag_stamps/sheet_es.png:es", "res://textures/ui/coursebot/tag_stamps/sheet_it.png:it", "res://textures/ui/coursebot/tag_stamps/sheet_pt.png:pt", "res://textures/ui/coursebot/tag_stamps/sheet_ru.png:ru", "res://textures/ui/coursebot/tag_stamps/sheet_zh.png:zh"),
-"res://textures/ui/main_menu/title.svg": PackedStringArray("res://textures/ui/main_menu/title_es.svg:es", "res://textures/ui/main_menu/title_it.svg:it", "res://textures/ui/main_menu/title_pt.svg:pt", "res://textures/ui/main_menu/title_ru.svg:ru", "res://textures/ui/main_menu/title_zh.svg:zh")
+"res://textures/ui/main_menu/title.svg": PackedStringArray("res://textures/ui/main_menu/title_es.svg:es", "res://textures/ui/main_menu/title_it.svg:it", "res://textures/ui/main_menu/title_pt.svg:pt", "res://textures/ui/main_menu/title_ru.svg:ru", "res://textures/ui/main_menu/title_zh.svg:zh"),
+"res://textures/ui/title/start_btn.svg": PackedStringArray("res://textures/ui/title/start_btn_es.svg:es", "res://textures/ui/title/start_btn_it.svg:it", "res://textures/ui/title/start_btn_pt.svg:pt", "res://textures/ui/title/start_btn_ru.svg:ru", "res://textures/ui/title/start_btn_zh.svg:zh")
 }
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.es.translation")
-locale/test="es"
-locale/locale_filter_mode=0
 
 [layer_names]
 

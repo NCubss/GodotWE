@@ -6,7 +6,7 @@ var top_rotation := 0.0
 
 var _tween: Tween
 
-@onready var _effect := ButtonHoverEffect.new(self, Rect2(0, 0, size.x, size.y))
+@onready var _effect := ButtonHoverEffect.new(self)
 
 
 func _ready() -> void:

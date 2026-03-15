@@ -42,6 +42,11 @@ func load() -> void:
 		i.sub_area = self
 		i.level = level
 		i.load()
+	match level.status:
+		Level.Status.PLAYING:
+			_play()
+		Level.Status.EDITING:
+			_edit()
 
 
 func get_background() -> Node2D:

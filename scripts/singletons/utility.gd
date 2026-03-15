@@ -9,6 +9,14 @@ const INT_MIN = Vector2i.MIN.x
 ## The largest possible [int] number.
 const INT_MAX = Vector2i.MAX.x
 
+## The player's username. Based on the project setting
+## [code]game/user/username[/code].
+var username: String:
+	get():
+		return ProjectSettings.get_setting("game/user/username")
+	set(v):
+		ProjectSettings.set_setting("game/user/username", v)
+
 ## Finds a child in the node [param parent] of [param type] type. This function
 ## only looks at direct children, not descendants.
 func find_child_by_class(parent: Node, type: Variant) -> Node:

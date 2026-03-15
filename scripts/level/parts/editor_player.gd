@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 				Input.get_axis(&"player_left", &"player_right") * SPEED,
 				Input.get_axis(&"player_up", &"player_down") * SPEED)
 		position += speed * delta
-	else:
+	elif player != null:
 		position = player.position - Vector2(8, 16)
 
 
