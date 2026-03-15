@@ -3,5 +3,5 @@ extends Control
 
 
 func _ready() -> void:
-	%Name.text = GameSettings.username
+	%Name.text = Utility.username
 	%Version.text = ProjectSettings.get_setting("application/config/version")

@@ -232,7 +232,7 @@ const SWE_OBJECT_TABLE = {
 ## and the player is in.
 @export var current_sub_area: SubArea
 ## Whether this level is on the title screen.
-@export var title_screen: bool
+@export var title_screen := false
 ## The [Editor] this level is associated with. If this level is not editable,
 ## this will be [code]null[/code] and an error will be pushed if level editing
 ## is attempted.
@@ -418,7 +418,7 @@ func get_current_time() -> int:
 
 func reload() -> void:
 	pass
-	#SceneManager.fade_to_scene(scene if scene != null else load(scene_file_path))
+	SceneManager.fade_to_scene(load(scene_file_path))
 
 
 func to_grid(pos: Vector2) -> Vector2i:
@@ -442,7 +442,25 @@ func _play() -> void:
 	status = Status.PLAYING
 	%LevelTimer.start(time + 1)
 	hud.show()
-	MusicPlayer.stream = preload("uid://c7xx82tvew4nu")
+	if title_screen:
+		var date = Time.get_datetime_dict_from_system()
+		if date["month"] == Time.MONTH_DECEMBER:
+			if date["day"] == 24 or date["day"] == 25:
+				MusicPlayer.stream = preload("uid://bn00oxygr85n7")
+			else:
+				MusicPlayer.stream = preload("uid://6x74u4b7w0al")
+		else:
+			match game_style:
+				GameStyle.SMB:
+					MusicPlayer.stream = preload("uid://dha58dtfupqng")
+				GameStyle.SMB3:
+					MusicPlayer.stream = preload("uid://dha58dtfupqng")
+				GameStyle.SMW:
+					MusicPlayer.stream = preload("uid://bxnvgrgxf685m")
+				GameStyle.NSMBU:
+					MusicPlayer.stream = preload("uid://chlmxxg0dw2t3")
+	else:
+		MusicPlayer.stream = preload("uid://c7xx82tvew4nu")
 	MusicPlayer.play()
 
 
