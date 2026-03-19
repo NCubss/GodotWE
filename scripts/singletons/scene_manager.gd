@@ -3,6 +3,8 @@ extends CanvasLayer
 
 ## Represents a scene transition type.
 enum Transition {
+	## No transition, so it is instant.
+	NONE,
 	## The scene fades in or out for half a second.
 	FADE,
 	## The scene is transitioned by a growing or shrinking circle for 1 second.
@@ -19,10 +21,9 @@ const CIRCLE_DETAIL = 64
 
 var _enter_tween: Tween
 var _fade_tween: Tween
-
 var _color_rect := ColorRect.new()
 var _polygon := Polygon2D.new()
-var _max_radius: float
+var _points := PackedVector2Array()
 
 func _init() -> void:
 	layer = 10
@@ -36,15 +37,17 @@ func _init() -> void:
 	_polygon.color = Color.BLACK
 	_polygon.invert_enabled = true
 	_polygon.hide()
+	for i in CIRCLE_DETAIL:
+		var rad = TAU * i / CIRCLE_DETAIL
+		_points.append(Vector2(sin(rad), cos(rad)))
 	add_child(_polygon)
 
 
 func _ready() -> void:
-	var screen_size = _color_rect.size
-	_max_radius = screen_size.length() / 2
-	_polygon.invert_border = max(screen_size.x, screen_size.y)
-	_polygon.position = screen_size / 2
+	_polygon.invert_border = max(_color_rect.size.x, _color_rect.size.y)
 	match STARTING_TRANSITION:
+		Transition.NONE:
+			pass
 		Transition.FADE:
 			_color_rect.color.a = 1
 			_enter_tween = create_tween()
@@ -52,9 +55,9 @@ func _ready() -> void:
 		Transition.CIRCLE:
 			_polygon.show()
 			_enter_tween = create_tween()
-			_enter_tween.tween_method(_update_polygon, 0,
-					screen_size.length() / 2, 1) \
-					.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+			_enter_tween.tween_method(_update_polygon, 0.0, 1.0, 1) \
+					.set_trans(Tween.TRANS_SINE) \
+					.set_ease(Tween.EASE_IN)
 			_enter_tween.tween_callback(_polygon.hide)
 
 
@@ -96,36 +99,43 @@ func _fade_to_what(
 	_fade_tween = create_tween()
 	transition_started.emit()
 	match trans_in:
+		Transition.NONE:
+			pass
 		Transition.FADE:
 			_fade_tween.tween_property(_color_rect, "color:a", 1, 0.5).from(0)
 			_fade_tween.tween_property(_color_rect, "color:a", 0, 0)
 		Transition.CIRCLE:
 			_fade_tween.tween_callback(_polygon.show)
-			_fade_tween.tween_method(_update_polygon, \
-					_color_rect.size.length() / 2, 0, 1)
+			_fade_tween.tween_method(_update_polygon, 1.0, 0.0, 1) \
+					.set_trans(Tween.TRANS_SINE) \
+					.set_ease(Tween.EASE_IN)
 			_fade_tween.tween_callback(_polygon.hide)
 	_fade_tween.tween_callback(_change_scene.bind(scene.instantiate()))
 	match trans_out:
+		Transition.NONE:
+			pass
 		Transition.FADE:
 			_fade_tween.tween_property(_color_rect, "color:a", 0, 0.5).from(1)
 		Transition.CIRCLE:
 			_fade_tween.tween_callback(_polygon.show)
-			_fade_tween.tween_method(_update_polygon, \
-					0, _color_rect.size.length() / 2, 1)
+			_fade_tween.tween_method(_update_polygon, 0.0, 1.0, 1) \
+					.set_trans(Tween.TRANS_SINE) \
+					.set_ease(Tween.EASE_IN)
 			_fade_tween.tween_callback(_polygon.hide)
 	_fade_tween.tween_callback(transition_ended.emit)
 
 
 func _change_scene(scene: Node) -> void:
 	get_tree().unload_current_scene()
+	Utility.camera_scale = Vector2(1, 1)
+	Utility.camera_position = Vector2(0, 0)
 	get_tree().root.add_child(scene)
 	get_tree().current_scene = scene
 	get_tree().scene_changed.emit()
 
 
-func _update_polygon(radius: float) -> void:
-	var data = PackedVector2Array()
-	for i in range(CIRCLE_DETAIL):
-		var val = TAU * i / CIRCLE_DETAIL
-		data.append(Vector2(sin(val) * radius, cos(val) * radius))
-	_polygon.polygon = data
+func _update_polygon(progress: float) -> void:
+	var radius = _color_rect.size.length() * progress / 2.0
+	_polygon.polygon = Transform2D(0, Vector2(radius, radius), 0, Vector2(0, 0))\
+			* _points
+	_polygon.position = _color_rect.size / 2

@@ -56,30 +56,23 @@ func _draw() -> void:
 				background,
 				Rect2(Vector2(i, 0),
 				background.get_size() * bg_scale),
-				false
-		)
+				false)
 		i += step
 
 
 func _input(event: InputEvent) -> void:
-	
-	if (
-			((event is InputEventAction and event.is_action_pressed("ui_accept"))
-			or (event is InputEventScreenTouch and event.pressed))
-			and not SceneManager.fade_in_progress()
-	):
-		_skip()
 	if SceneManager.fade_in_progress():
 		return
 	if event.is_action_pressed("ui_accept"):
 		_skip()
-	if event is InputEventScreenTouch and event.pressed == true:
-		_skip()
+		return
+	if DisplayServer.is_touchscreen_available():
+		if event is InputEventMouseButton and event.pressed:
+			_skip()
 
 
 func _play_animation() -> void:
 	player.play("animation")
-	player.advance(0)
 	player.animation_finished.connect(_finish_intro)
 
 
@@ -124,5 +117,4 @@ func _skip() -> void:
 	
 	# fade in UI
 	var ui_tween = create_tween()
-	ui_tween.tween_property(%UI, "modulate", Color.WHITE, 0.5) \
-			.from(Color(Color.WHITE, 0))
+	ui_tween.tween_property(%UI, "modulate:a", 1, 0.5).from(0)

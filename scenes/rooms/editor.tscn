@@ -1,52 +1,12 @@
 [gd_scene format=3 uid="uid://cbc3kaegk4jn3"]
 
-[ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_hf1b4"]
+[ext_resource type="PackedScene" uid="uid://b16kyjui2n3qv" path="res://scenes/templates/level_template.tscn" id="1_u15gs"]
 [ext_resource type="PackedScene" uid="uid://cjcx6mlu5ad62" path="res://scenes/ui/editor/editor.tscn" id="3_oubuj"]
-[ext_resource type="PackedScene" uid="uid://di2ei4ammvd8g" path="res://scenes/parts/starting_ground.tscn" id="5_kya7r"]
-[ext_resource type="PackedScene" uid="uid://dl475ic48ilql" path="res://scenes/parts/editor_player.tscn" id="5_oubuj"]
-[ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="25_df8yj"]
 
-[node name="Level" type="Node2D" unique_id=1985374198 node_paths=PackedStringArray("current_sub_area", "editor") groups=["level"]]
-script = ExtResource("1_hf1b4")
+[node name="Level" unique_id=981213055 node_paths=PackedStringArray("editor") instance=ExtResource("1_u15gs")]
 status = 1
-current_sub_area = NodePath("SubArea")
 editor = NodePath("EditorLayer/Editor")
 
-[node name="EditorLayer" parent="." unique_id=727278229 instance=ExtResource("3_oubuj")]
+[node name="EditorLayer" parent="." index="0" unique_id=727278229 instance=ExtResource("3_oubuj")]
 
-[node name="RightPanel" parent="EditorLayer/Editor/RightPanelContainer" parent_id_path=PackedInt32Array(727278229, 570001422) index="0" unique_id=2101369237]
-closed_pos = Vector2(-6, -540)
-hidden_pos = Vector2(0, -540)
-
-[node name="TopPanel" parent="EditorLayer/Editor" parent_id_path=PackedInt32Array(727278229, 1941871444) index="1" unique_id=1001892793]
-hidden_pos = Vector2(0, -108)
-
-[node name="LeftPanel" parent="EditorLayer/Editor" parent_id_path=PackedInt32Array(727278229, 1941871444) index="2" unique_id=1202118082]
-hidden_pos = Vector2(-168, 108)
-
-[node name="SubArea" parent="." unique_id=1207914609 instance=ExtResource("25_df8yj")]
-level_theme = 0
-night_mode = false
-water_speed = 0
-min_water_height = 1
-max_water_height = 1
-meteorites = false
-autoscroll = 0
-
-[node name="StartingGround" parent="SubArea/Parts" parent_id_path=PackedInt32Array(1207914609, 1999903179) index="0" unique_id=1549879982 instance=ExtResource("5_kya7r")]
-position = Vector2(0, -32)
-
-[node name="EditorPlayer" parent="SubArea/Parts" parent_id_path=PackedInt32Array(1207914609, 1999903179) index="1" unique_id=404978738 instance=ExtResource("5_oubuj")]
-position = Vector2(64, -48)
-
-[node name="LevelTimer" type="Timer" parent="." unique_id=1613872851]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1980949311]
-zoom = Vector2(3, 3)
-limit_left = 0
-limit_bottom = 0
-
-[editable path="EditorLayer"]
-[editable path="SubArea"]
+[editable path="SubArea0"]

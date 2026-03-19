@@ -211,7 +211,7 @@ func _check_validity() -> void:
 	_grid_pos = level.to_grid(level.get_local_mouse_position())
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collide_with_areas = true
-	query.collide_with_bodies = false
+	query.collide_with_bodies = true
 	query.collision_mask = 1 << 8
 	query.exclude = [get_rid()]
 	query.position = level.from_grid(_grid_pos) + level.GRID_SIZE / 2

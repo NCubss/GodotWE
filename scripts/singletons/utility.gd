@@ -9,6 +9,20 @@ const INT_MIN = Vector2i.MIN.x
 ## The largest possible [int] number.
 const INT_MAX = Vector2i.MAX.x
 
+var camera_position: Vector2:
+	get():
+		return -get_viewport().canvas_transform.origin
+	set(v):
+		get_viewport().canvas_transform.origin = -v
+var camera_scale: Vector2:
+	get():
+		return get_viewport().canvas_transform.get_scale()
+	set(v):
+		get_viewport().canvas_transform.x = get_viewport().canvas_transform \
+				.x.normalized() * v.x
+		get_viewport().canvas_transform.y = get_viewport().canvas_transform \
+				.y.normalized() * v.y
+		
 ## The player's username. Based on the project setting
 ## [code]game/user/username[/code].
 var username: String:
@@ -16,6 +30,7 @@ var username: String:
 		return ProjectSettings.get_setting("game/user/username")
 	set(v):
 		ProjectSettings.set_setting("game/user/username", v)
+
 
 ## Finds a child in the node [param parent] of [param type] type. This function
 ## only looks at direct children, not descendants.

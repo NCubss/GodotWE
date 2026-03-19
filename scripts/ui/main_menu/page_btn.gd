@@ -14,6 +14,7 @@ const SCN_ONLINE = preload("uid://h4t4thecwdfc")
 const SCN_COURSEBOT = preload("uid://nc2x1hq5ysrg")
 
 @export var page: Page
+@export var in_main_menu := true
 
 var _effect: ButtonHoverEffect
 
@@ -22,8 +23,9 @@ func _ready() -> void:
 	_effect = ButtonHoverEffect.new(self)
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
-	get_tree().scene_changed.connect(_scene_changed)
-	_scene_changed()
+	if in_main_menu:
+		get_tree().scene_changed.connect(_scene_changed)
+		_scene_changed()
 
 
 func _get_scn() -> PackedScene:
@@ -64,13 +66,13 @@ func _scene_changed() -> void:
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on and load(get_tree().current_scene.scene_file_path) != _get_scn():
 		if page == Page.ONLINE:
-			%MenuPlayer.stream = preload("uid://druyd4ts46cgu")
-			%MenuPlayer.play()
+			MainMenu.menu_player.stream = preload("uid://druyd4ts46cgu")
+			MainMenu.menu_player.play()
 			%LoginLayer.show()
 		else:
 			MusicPlayer.stop()
-			%MenuPlayer.stream = preload("uid://c1ddsd1m5j2lh")
-			%MenuPlayer.play()
+			MainMenu.menu_player.stream = preload("uid://c1ddsd1m5j2lh")
+			MainMenu.menu_player.play()
 			SceneManager.fade_to_scene(_get_scn())
 
 
