@@ -182,6 +182,7 @@ var _powerup: Powerup
 var _held_item: Entity = null
 var _held_item_z_index: int
 var _p_timer := 0.0
+var _can_move_camera_up := false
 
 
 ## The hitbox size used when the player is on a small powerup.
@@ -198,6 +199,17 @@ func _ready() -> void:
 	starting_powerup = starting_powerup
 	_powerup = starting_powerup
 	_powerup.start()
+	var f = func():
+		var query = PhysicsShapeQueryParameters2D.new()
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
+		query.collision_mask = 1
+		query.shape = WorldBoundaryShape2D.new()
+		query.shape.normal = Vector2.DOWN
+		query.transform.origin = Vector2(0, -14 * Level.GRID_SIZE.y)
+		_can_move_camera_up = not get_world_2d().direct_space_state.intersect_shape(
+				query, 1).is_empty()
+	f.call_deferred()
 
 
 func _physics_process(delta: float) -> void:
@@ -212,6 +224,17 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	_powerup.process(delta)
+	# avoid moving the camera during pauses
+	if level.can_process():
+		var size = get_viewport().get_visible_rect().size / Utility.camera_scale
+		var center = global_position - (size / 2)
+		var target = Vector2(center.x, Utility.camera_position.y)
+		if _can_move_camera_up or Utility.camera_position.y < center.y:
+			if Utility.camera_position.y - center.y <= -32:
+				target.y = center.y - 32
+			if center.y - Utility.camera_position.y <= -32:
+				target.y = center.y + 32
+		Utility.camera_position = Utility.camera_position.lerp(target, 6 * delta)
 
 
 ## Downgrades the player into a lower-tier powerup.

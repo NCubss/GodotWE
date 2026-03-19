@@ -9,11 +9,18 @@ const INT_MIN = Vector2i.MIN.x
 ## The largest possible [int] number.
 const INT_MAX = Vector2i.MAX.x
 
-var camera_position: Vector2:
+var camera_position_raw: Vector2:
 	get():
 		return -get_viewport().canvas_transform.origin
 	set(v):
 		get_viewport().canvas_transform.origin = -v
+var camera_position: Vector2:
+	get():
+		return -get_viewport().canvas_transform.origin \
+				/ get_viewport().canvas_transform.get_scale()
+	set(v):
+		get_viewport().canvas_transform.origin = -v \
+				* get_viewport().canvas_transform.get_scale()
 var camera_scale: Vector2:
 	get():
 		return get_viewport().canvas_transform.get_scale()

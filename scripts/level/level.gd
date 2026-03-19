@@ -448,7 +448,7 @@ func snap(pos: Vector2) -> Vector2:
 
 
 func _camera_clamp() -> void:
-	Utility.camera_position = Utility.camera_position.clamp(
+	Utility.camera_position_raw = Utility.camera_position_raw.clamp(
 			Vector2(0, -LEVEL_HEIGHT * GRID_SIZE.y * Utility.camera_scale.y),
 			Vector2(INF, -get_viewport().get_visible_rect().size.y))
 
