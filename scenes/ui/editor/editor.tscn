@@ -66,8 +66,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -105.0
 offset_top = -540.0
+offset_right = 105.0
 grow_horizontal = 0
 focus_mode = 2
 mouse_filter = 0
@@ -77,7 +77,9 @@ patch_margin_left = 15
 patch_margin_top = 9
 script = ExtResource("3_bm1wd")
 open_pos = Vector2(-105, -540)
-closed_pos = Vector2(0, -540)
+closed_pos = Vector2(-6, -540)
+hidden_pos = Vector2(0, -540)
+status = 2
 
 [node name="MenuBtn" parent="Editor/RightPanelContainer/RightPanel" unique_id=1482968884 instance=ExtResource("4_51isn")]
 layout_mode = 0
@@ -162,7 +164,7 @@ unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 108.0
+offset_top = -108.0
 grow_horizontal = 2
 focus_mode = 2
 mouse_filter = 0
@@ -171,6 +173,8 @@ region_rect = Rect2(15, 9, 3, 18)
 patch_margin_bottom = 15
 script = ExtResource("3_bm1wd")
 closed_pos = Vector2(0, -102)
+hidden_pos = Vector2(0, -108)
+status = 2
 
 [node name="PaletteBtn" type="TextureButton" parent="Editor/TopPanel" unique_id=1931505885]
 layout_mode = 1
@@ -264,8 +268,8 @@ action_mode = 0
 [node name="LeftPanel" type="NinePatchRect" parent="Editor" unique_id=1202118082]
 unique_name_in_owner = true
 layout_mode = 1
+offset_left = -168.0
 offset_top = 108.0
-offset_right = 168.0
 offset_bottom = 546.0
 focus_mode = 2
 mouse_filter = 0
@@ -277,6 +281,8 @@ patch_margin_bottom = 15
 script = ExtResource("3_bm1wd")
 open_pos = Vector2(0, 108)
 closed_pos = Vector2(-162, 108)
+hidden_pos = Vector2(-168, 108)
+status = 2
 
 [node name="GameStyleBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=768974657]
 layout_mode = 0
@@ -314,5 +320,20 @@ offset_bottom = -6.0
 grow_vertical = 0
 action_mode = 0
 script = ExtResource("25_sfxmt")
+
+[node name="CameraArea" type="Panel" parent="Editor" unique_id=2042006306]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 244.0
+offset_top = 132.0
+offset_right = -204.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="loaded" from="Editor" to="Editor/Clapperboard" method="_editor_loaded"]

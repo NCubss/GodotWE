@@ -1,9 +1,20 @@
 [gd_scene format=3 uid="uid://b16kyjui2n3qv"]
 
 [ext_resource type="Script" uid="uid://cxkfed5ltcp7y" path="res://scripts/level/level.gd" id="1_f53rw"]
-[ext_resource type="Script" uid="uid://cyq2v03nxfakf" path="res://scripts/ui/camera_2d.gd" id="2_8kft7"]
 [ext_resource type="PackedScene" uid="uid://cmjolsltwwkx1" path="res://scenes/templates/sub_area_template.tscn" id="2_j0h5q"]
 [ext_resource type="PackedScene" uid="uid://dl475ic48ilql" path="res://scenes/parts/editor_player.tscn" id="3_j0h5q"]
+[ext_resource type="PackedScene" uid="uid://di2ei4ammvd8g" path="res://scenes/parts/starting_ground.tscn" id="4_j0h5q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f147y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j0h5q"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2txic"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mfms0"]
+normal = Vector2(-1, 0)
 
 [node name="Level" type="Node2D" unique_id=981213055 node_paths=PackedStringArray("current_sub_area") groups=["level"]]
 script = ExtResource("1_f53rw")
@@ -16,10 +27,26 @@ unique_name_in_owner = true
 [node name="EditorPlayer" parent="SubArea0/Parts" parent_id_path=PackedInt32Array(1880988790, 1999903179) index="0" unique_id=1549879982 instance=ExtResource("3_j0h5q")]
 position = Vector2(56, -48)
 
-[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1576712886 node_paths=PackedStringArray("target") groups=["camera"]]
-script = ExtResource("2_8kft7")
-target = NodePath("")
-metadata/_custom_type_script = "uid://cyq2v03nxfakf"
+[node name="StartingGround" parent="SubArea0/Parts" parent_id_path=PackedInt32Array(1880988790, 1999903179) index="1" unique_id=34593268 instance=ExtResource("4_j0h5q")]
+position = Vector2(0, -32)
+
+[node name="PartBoundaries" type="StaticBody2D" parent="." unique_id=1006730528]
+collision_layer = 256
+collision_mask = 0
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="PartBoundaries" unique_id=727162492]
+shape = SubResource("WorldBoundaryShape2D_f147y")
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="PartBoundaries" unique_id=2066974809]
+shape = SubResource("WorldBoundaryShape2D_j0h5q")
+
+[node name="TopBoundary" type="CollisionShape2D" parent="PartBoundaries" unique_id=2097715348]
+shape = SubResource("WorldBoundaryShape2D_2txic")
+disabled = true
+
+[node name="RightBoundary" type="CollisionShape2D" parent="PartBoundaries" unique_id=1174748455]
+shape = SubResource("WorldBoundaryShape2D_mfms0")
+disabled = true
 
 [node name="LevelTimer" type="Timer" parent="." unique_id=266074371]
 unique_name_in_owner = true

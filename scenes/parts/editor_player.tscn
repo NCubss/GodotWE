@@ -7,6 +7,9 @@
 [node name="EditorPlayer" unique_id=1549879982 instance=ExtResource("1_hnl1d")]
 script = ExtResource("2_ep8y8")
 
+[node name="CollShape" parent="." index="0" unique_id=751260987]
+unique_name_in_owner = true
+
 [node name="Sprite" type="AnimatedSprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=1001861497]
 unique_name_in_owner = true
 z_index = 38

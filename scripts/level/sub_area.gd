@@ -100,9 +100,11 @@ func _play() -> void:
 			continue
 		i.build()
 	%Parts.hide()
+	%Parts.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _edit() -> void:
 	for i in %Foreground.get_children():
 		i.queue_free()
+	%Parts.process_mode = Node.PROCESS_MODE_INHERIT
 	%Parts.show()

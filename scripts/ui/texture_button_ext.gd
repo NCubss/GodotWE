@@ -1,5 +1,6 @@
 class_name TextureButtonExt
 extends TextureButton
+## @deprecated: Use [ButtonHoverEffect] instead
 
 @export var hover_offset: Rect2
 @export var hover_sound := load("uid://bbc6fa1b5njqq")

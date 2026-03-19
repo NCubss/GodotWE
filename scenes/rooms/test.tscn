@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c4qpbj5epsp55" path="res://scenes/tiles/question_block.tscn" id="5_3fj7c"]
 [ext_resource type="PackedScene" uid="uid://bp83ylgnahiv3" path="res://scenes/entities/mushroom_sprout.tscn" id="6_3fj7c"]
 [ext_resource type="PackedScene" uid="uid://d2p4v7v1baic6" path="res://scenes/entities/galoomba.tscn" id="8_eyqv6"]
-[ext_resource type="Script" uid="uid://cyq2v03nxfakf" path="res://scripts/ui/camera_2d.gd" id="10_eyqv6"]
+[ext_resource type="Script" uid="uid://cyq2v03nxfakf" path="res://scripts/ui/player_camera.gd" id="10_eyqv6"]
 [ext_resource type="PackedScene" uid="uid://x314ug2d52hj" path="res://scenes/entities/stomped_galoomba.tscn" id="12_r7jnd"]
 
 [node name="Node2D" type="Node2D" unique_id=1898945331]

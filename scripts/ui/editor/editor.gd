@@ -30,11 +30,15 @@ func _ready():
 	grid.major_color = Color("000000ff")
 	grid.modulate = Color("ffffff40")
 	theme = ThemeDB.get_project_theme()
+	%LeftPanel.status = EditorPanel.Status.OPEN
+	%TopPanel.status = EditorPanel.Status.OPEN
+	%RightPanel.status = EditorPanel.Status.OPEN
 
 
 func _process(_delta: float) -> void:
 	_process_place(true)
-
+	#_camera_clamp.call_deferred()
+	#get_viewport().canvas_transform.origin = tf.origin.clamp(Vector2(-INF, get_viewport().get_visible_rect().size.y), Vector2(0, INF))
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -90,7 +94,7 @@ func _process_place(multi_place_allowed: bool) -> void:
 		return
 	var query = PhysicsShapeQueryParameters2D.new()
 	query.collide_with_areas = true
-	query.collide_with_bodies = false
+	query.collide_with_bodies = true
 	query.collision_mask = 1 << 8
 	var shape = RectangleShape2D.new()
 	shape.size = level.from_grid(selected.size) - Vector2(2, 2)

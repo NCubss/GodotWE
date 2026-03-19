@@ -105,6 +105,8 @@ enum Tag {
 }
 
 const GRID_SIZE = Vector2(16, 16)
+## The maximum level height in tiles.
+const LEVEL_HEIGHT = 27
 const SWE_HMAC_KEY = "2559F35097-2021"
 const SWE_LEVEL_THEME_TABLE = {
 	"ground": LevelTheme.OVERWORLD,
@@ -381,17 +383,29 @@ func _ready() -> void:
 	hud = load(GameConstants.HUDS[game_style]).instantiate()
 	hud.level = self
 	add_child(hud)
-	if status == Status.PLAYING:
-		_play()
-	elif status == Status.EDITING:
-		if editor == null:
-			var editor_layer = preload("uid://cjcx6mlu5ad62").instantiate()
-			add_child(editor_layer)
-			editor = editor_layer.get_node(^"%Editor")
-		_edit()
 	if editor != null:
 		editor.level = self
 		editor.load()
+	if status == Status.PLAYING:
+		_play()
+	elif status == Status.EDITING:
+		create_editor()
+		_edit()
+	Utility.camera_scale = Vector2(3, 3)
+
+
+func _process(_delta: float) -> void:
+	_camera_clamp.call_deferred()
+
+
+func create_editor() -> void:
+	if editor != null:
+		return
+	var editor_layer = preload("uid://cjcx6mlu5ad62").instantiate()
+	add_child(editor_layer)
+	editor = editor_layer.get_node(^"%Editor")
+	editor.level = self
+	editor.load()
 
 
 ## Starts the level.
@@ -431,6 +445,12 @@ func from_grid(pos: Vector2i) -> Vector2:
 
 func snap(pos: Vector2) -> Vector2:
 	return (pos / GRID_SIZE).floor() * GRID_SIZE
+
+
+func _camera_clamp() -> void:
+	Utility.camera_position = Utility.camera_position.clamp(
+			Vector2(0, -LEVEL_HEIGHT * GRID_SIZE.y * Utility.camera_scale.y),
+			Vector2(INF, -get_viewport().get_visible_rect().size.y))
 
 
 func _timeout() -> void:

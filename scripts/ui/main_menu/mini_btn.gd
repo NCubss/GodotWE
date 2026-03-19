@@ -29,8 +29,8 @@ func _process(_delta: float) -> void:
 func _pressed() -> void:
 	match type:
 		Type.TITLE:
-			UISoundPlayer.stream = preload("uid://e1c77rl0cw86")
-			UISoundPlayer.play()
+			MainMenu.menu_player.stream = preload("uid://e1c77rl0cw86")
+			MainMenu.menu_player.play()
 			SceneManager.fade_to_scene(preload("uid://d11xvcdkd38jq"))
 
 
