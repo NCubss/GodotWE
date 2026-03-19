@@ -17,11 +17,11 @@ func _process(delta: float) -> void:
 				* Rect2(Vector2(0, 0), camera_area.size)
 		var me: Rect2 = get_global_transform_with_canvas() * Rect2(0, 0, 16, 16)
 		if me.position.x >= area.position.x and me.end.x <= area.end.x:
-			Utility.camera_position.x += speed.x * Utility.camera_scale.x * delta
+			Utility.camera_position_raw.x += speed.x * Utility.camera_scale.x * delta
 		var height = 16 * Utility.camera_scale.y
 		if (speed.y < 0 and me.end.y <= area.position.y + height) \
 				or (speed.y > 0 and me.position.y >= area.end.y - height):
-			Utility.camera_position.y += speed.y * Utility.camera_scale.y * delta
+			Utility.camera_position_raw.y += speed.y * Utility.camera_scale.y * delta
 		position += speed * delta
 	elif player != null:
 		position = player.position - Vector2(8, 16)
