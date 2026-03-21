@@ -51,9 +51,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				erasing = event.pressed
 
 
-## Returns the currently selected [PartInfo] from the card bar on the top panel.
-## If no [PartInfo] is selected, [code]null[/code] is returned.
-func get_selected_part() -> PartInfo:
+## Returns the currently selected [Part] script from the card bar on the top
+## panel. If no [Part] is selected, [code]null[/code] is returned.
+func get_selected_part() -> Script:
 	var card: EditorCard = preload("uid://dhdt3ovnv8ci2").get_pressed_button()
 	if card == null:
 		return null
@@ -64,7 +64,7 @@ func get_selected_part() -> PartInfo:
 ## Places a tile at [param pos] and returns the placed [Part].
 func place(pos: Vector2i) -> Part:
 	var part: Part = get_selected_part().create()
-	part.global_position = level.from_grid(pos)
+	part.global_position = Level.from_grid(pos)
 	level.current_sub_area.add_part(part)
 	part.load(true)
 	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
@@ -88,22 +88,12 @@ func _process_place(multi_place_allowed: bool) -> void:
 		return
 	if not part_interact or erasing:
 		return
-	if selected.multi_place and not multi_place_allowed:
+	if selected.is_multiplaceable() != multi_place_allowed:
 		return
 	if held_part != null:
 		return
-	var query = PhysicsShapeQueryParameters2D.new()
-	query.collide_with_areas = true
-	query.collide_with_bodies = true
-	query.collision_mask = 1 << 8
-	var shape = RectangleShape2D.new()
-	shape.size = level.from_grid(selected.size) - Vector2(2, 2)
-	query.shape = shape
-	query.transform.origin = level.snap(_last_mouse_pos) + \
-			(level.from_grid(selected.size) / 2.0)
-	if get_world_2d().direct_space_state.intersect_shape(query, 1) \
-			.is_empty():
-		place(level.to_grid(_last_mouse_pos))
+	if selected.is_placeable(Level.to_grid(_last_mouse_pos), get_world_2d()):
+		place(Level.to_grid(_last_mouse_pos))
 
 
 func _play() -> void:

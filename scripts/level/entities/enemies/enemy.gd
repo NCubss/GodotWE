@@ -66,10 +66,15 @@ func _ready() -> void:
 
 func _stomped(player: Player) -> void:
 	player.velocity.y = -player.stomp_bounce_speed
+	var spin_thump = preload("uid://clqrm38rakunb").instantiate()
+	if player.state_machine.current_state is PlayerJumpingState:
+		player.state_machine.switch(PlayerJumpingState)
+	elif player.state_machine.current_state is PlayerFallingState:
+		player.state_machine.switch(PlayerJumpingState)
+	elif player.state_machine.current_state is PlayerSpinJumpingState:
+		player.state_machine.switch(PlayerSpinJumpingState)
 	player.sounds.stream = preload("uid://c345xnns7om3m")
 	player.sounds.play()
-	var spin_thump = preload("uid://clqrm38rakunb").instantiate()
-	player.state_machine.switch(PlayerJumpingState)
 	call_deferred("add_sibling", spin_thump)
 	spin_thump.global_position = player.global_position
 	kill()

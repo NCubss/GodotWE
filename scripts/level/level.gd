@@ -365,6 +365,18 @@ static func _unpack_swe(path: String) -> Dictionary:
 	return data
 
 
+static func to_grid(pos: Vector2) -> Vector2i:
+	return Vector2i((pos / GRID_SIZE).floor())
+
+
+static func from_grid(pos: Vector2i) -> Vector2:
+	return Vector2(pos) * GRID_SIZE
+
+
+static func snap(pos: Vector2) -> Vector2:
+	return (pos / GRID_SIZE).floor() * GRID_SIZE
+
+
 func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 	game_style = _game_style
 	level_name = _level_name
@@ -433,18 +445,6 @@ func get_current_time() -> int:
 func reload() -> void:
 	pass
 	SceneManager.fade_to_scene(load(scene_file_path))
-
-
-func to_grid(pos: Vector2) -> Vector2i:
-	return Vector2i((pos / GRID_SIZE).floor())
-
-
-func from_grid(pos: Vector2i) -> Vector2:
-	return Vector2(pos) * GRID_SIZE
-
-
-func snap(pos: Vector2) -> Vector2:
-	return (pos / GRID_SIZE).floor() * GRID_SIZE
 
 
 func _camera_clamp() -> void:

@@ -3,7 +3,7 @@ class_name EditorCard
 extends TextureButton
 
 ## The part this card represents.
-@export var part: PartInfo
+@export var part: Script
 
 var _card_offset := Vector2(0, 0)
 var _icon_offset := Vector2(0, 0)
@@ -16,9 +16,6 @@ func _ready() -> void:
 		return
 	mouse_entered.connect(_entered)
 	mouse_exited.connect(_exited)
-	if part != null:
-		%Icon.texture = part.icon
-		%Icon.texture_filter = part.icon_filter
 
 
 func _process(_delta: float) -> void:
@@ -34,7 +31,7 @@ func _process(_delta: float) -> void:
 func _draw() -> void:
 	var color: Color
 	if part != null:
-		color = PartInfo.get_category_color(part.category)
+		color = Part.get_category_color(part.get_category())
 	else:
 		color = Color.GRAY
 	draw_texture(preload("uid://bcyyrpipyld5c"), _card_offset, color)
@@ -46,6 +43,12 @@ func _draw() -> void:
 	else:
 		texture = preload("uid://5mh6wpqqoc7e")
 	draw_texture(texture, _card_offset + Vector2(0, 6))
+
+
+func _editor_loaded() -> void:
+	if part != null:
+		%Icon.texture = part.get_part_icon(%Editor.level.current_sub_area)
+		%Icon.texture_filter = part.get_part_icon_filter(%Editor.level.current_sub_area)
 
 
 func _toggled(toggled_on: bool) -> void:

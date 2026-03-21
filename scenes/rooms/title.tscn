@@ -177,11 +177,13 @@ theme_override_constants/separation = 42
 [node name="EditBtn" type="TextureButton" parent="TitleLayer/Title/Clapperboards" index="0" unique_id=1996187304]
 custom_minimum_size = Vector2(144, 117)
 layout_mode = 2
+action_mode = 0
 script = ExtResource("8_yme3e")
 
 [node name="PlayBtn" type="TextureButton" parent="TitleLayer/Title/Clapperboards" index="1" unique_id=29915718]
 custom_minimum_size = Vector2(144, 117)
 layout_mode = 2
+action_mode = 0
 script = ExtResource("8_yme3e")
 type = 1
 

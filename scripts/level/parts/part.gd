@@ -6,10 +6,21 @@ extends Area2D
 ## which parts generate on request via [method build]. In SMM:WE this can be
 ## seen as an equivalent to [code]obj_parent_resource[/code].
 
-const _TOP_Z = 55
 
-## The matching [PartInfo] for this part.
-@export var part_info: PartInfo
+## Represents a category in the palette.
+enum Category {
+	## Stationary platforms, decorations and pipes.
+	TERRAIN,
+	## Collectibles.
+	ITEMS,
+	## Moving characters that typically harm or inconvenience the player.
+	ENEMIES,
+	## Everything else. May include ideas of other categories.
+	GIZMOS,
+}
+
+
+const _TOP_Z = 55
 
 var level: Level
 var sub_area: SubArea
@@ -51,6 +62,81 @@ var _window: EditorWindow
 var _window_timer: SceneTreeTimer
 
 
+## Gets this part's [enum Category].
+static func get_category() -> Category:
+	return Category.TERRAIN
+
+
+## Gets the name of this part based on the [param environment].
+@warning_ignore("unused_parameter")
+static func get_part_name(environment: SubArea) -> String:
+	return "Part"
+
+
+## Gets the part's 60x60 icon based on the [param environment]. Only the center
+## 54x54 region is always visible, the rest are additional compensation for
+## animations where the icon moves.
+@warning_ignore("unused_parameter")
+static func get_part_icon(environment: SubArea) -> Texture2D:
+	return ImageTexture.create_from_image(Image.create(60, 60, false, Image.FORMAT_RGBA8))
+
+
+## Gets the part icon's [enum TextureFilter] to draw it with. For example, this
+## can be [constant CanvasItem.TEXTURE_FILTER_NEAREST] for retro styles and
+## [constant CanvasItem.TEXTURE_FILTER_LINEAR] for smooth styles.
+@warning_ignore("unused_parameter")
+static func get_part_icon_filter(environment: SubArea) -> TextureFilter:
+	if environment.level.game_style == Level.GameStyle.NSMBU:
+		return TEXTURE_FILTER_LINEAR
+	else:
+		return TEXTURE_FILTER_NEAREST
+
+
+## Returns [code]true[/code] if multiple of this object can be placed with one
+## stroke (e.g. the ground).
+static func is_multiplaceable() -> bool:
+	return false
+
+
+## Checks for whether this part is placeable at the given [param grid_pos].
+static func is_placeable(grid_pos: Vector2i, world: World2D) -> bool:
+	return _check_rect(Rect2i(grid_pos, Vector2i(1, 1)), world)
+
+
+## Creates an instance of this [Part].
+static func create() -> Part:
+	return load("uid://jr7c4ykh8awq").instantiate()
+
+
+## Gets the given category's ([param c]) color.
+static func get_category_color(c: Category) -> Color:
+	match c:
+		Category.TERRAIN:
+			return Color("12d4ed")
+		Category.ITEMS:
+			return Color("d851e1")
+		Category.ENEMIES:
+			return Color("6efa20")
+		Category.GIZMOS:
+			return Color("f2ef08")
+		_:
+			assert(false, "Invalid category %d" % c)
+			return Color.GRAY
+
+
+## Useful when creating your own part and overriding [method is_placeable].
+## Checks whether the given [param rect], in grid coordinates, is empty.
+static func _check_rect(rect: Rect2i, world: World2D) -> bool:
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.collide_with_areas = true
+	query.collide_with_bodies = true
+	query.collision_mask = 1 << 8
+	query.transform.origin = Level.from_grid(rect.size) / 2 + Level.from_grid(rect.position)
+	query.shape = RectangleShape2D.new()
+	query.shape.size = Level.from_grid(rect.size) - Vector2(2, 2)
+	return world.direct_space_state.intersect_shape(query, 1).is_empty()
+
+
 func _ready() -> void:
 	mouse_entered.connect(_mouse_update.bind(true))
 	mouse_exited.connect(_mouse_update.bind(false))
@@ -60,7 +146,7 @@ func _process(_delta: float) -> void:
 	if held:
 		queue_redraw()
 		global_position = get_global_mouse_position() - _grab_offset
-		var new_grid_pos = level.to_grid(global_position + Vector2(8, 8))
+		var new_grid_pos = Level.to_grid(global_position + Vector2(8, 8))
 		if new_grid_pos != _grid_pos:
 			# choosing which sound to play
 			var sound = preload("uid://rlah407gh46u")
@@ -108,22 +194,19 @@ func _draw():
 		return
 	if is_queued_for_deletion():
 		return
-	var rect = Rect2(level.from_grid(_grid_pos) - position,
-			level.from_grid(part_info.size))
 	if held:
 		var color
 		if _valid_space:
 			color = Color(0, 0, 1, 0.5)
 		else:
 			color = Color(1, 0, 0, 0.5)
-		draw_rect(rect, color)
+		_draw_highlight(Level.from_grid(_grid_pos) - global_position, color)
 	elif _mouse_in and level.editor.part_interact:
-		rect.position -= global_position
-		draw_rect(rect, Color(0, 0, 1, 0.5))
+		_draw_highlight(Vector2(0, 0), Color(0, 0, 1, 0.5))
 
 
 func load(placed_from_editor := false) -> void:
-	_grid_pos = level.to_grid(global_position)
+	_grid_pos = Level.to_grid(global_position)
 	if placed_from_editor:
 		_anim_place()
 
@@ -201,27 +284,27 @@ func _unhold() -> void:
 	_stop_window_timer()
 	if not _valid_space:
 		_grid_pos = _original_pos
-	position = level.from_grid(_grid_pos)
+	position = Level.from_grid(_grid_pos)
 	%Graphics.rotation = 0
 	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 
 
 func _check_validity() -> void:
-	_grid_pos = level.to_grid(level.get_local_mouse_position())
+	_grid_pos = Level.to_grid(level.get_local_mouse_position())
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collide_with_areas = true
 	query.collide_with_bodies = true
 	query.collision_mask = 1 << 8
 	query.exclude = [get_rid()]
-	query.position = level.from_grid(_grid_pos) + level.GRID_SIZE / 2
+	query.position = Level.from_grid(_grid_pos) + Level.GRID_SIZE / 2
 	_valid_space = get_world_2d().direct_space_state \
 			.intersect_point(query, 1).is_empty()
 
 
 func _create_window() -> void:
 	_window = preload("uid://dyw1evq8k8n58").instantiate()
-	_window.target_position = level.from_grid(_original_pos) + level.GRID_SIZE / 2
+	_window.target_position = Level.from_grid(_original_pos) + Level.GRID_SIZE / 2
 	level.editor.get_node(^"%WindowLayer").add_child(_window)
 
 
@@ -229,3 +312,9 @@ func _stop_window_timer() -> void:
 	if _window_timer != null:
 		if _window_timer.timeout.is_connected(_create_window):
 			_window_timer.timeout.disconnect(_create_window)
+
+
+## Override this to customize the appearance of the highlight, as it is a single
+## tile by default. Expect [param pos] to be relative to this part's position.
+func _draw_highlight(pos: Vector2, color: Color) -> void:
+	draw_rect(Rect2(pos, Level.GRID_SIZE), color)
