@@ -37,7 +37,7 @@ func _draw():
 		return
 	var rect: Rect2
 	if held:
-		rect = Rect2(level.from_grid(_grid_pos) - position, level.GRID_SIZE)
+		rect = Rect2(Level.from_grid(_grid_pos) - position, Level.GRID_SIZE)
 		var color
 		if _valid_space:
 			color = Color(0, 0, 1, 0.5)
@@ -45,7 +45,7 @@ func _draw():
 			color = Color(1, 0, 0, 0.5)
 		draw_rect(rect, color)
 	elif _mouse_in and level.editor.part_interact:
-		rect = Rect2(position, level.GRID_SIZE)
+		rect = Rect2(position, Level.GRID_SIZE)
 		rect.position -= global_position
 		draw_rect(rect, Color(0, 0, 1, 0.5))
 
@@ -62,5 +62,5 @@ func erase(_silent := false) -> void:
 
 
 func _check_validity() -> void:
-	_grid_pos = level.to_grid(level.get_local_mouse_position())
+	_grid_pos = Level.to_grid(level.get_local_mouse_position())
 	_valid_space = true

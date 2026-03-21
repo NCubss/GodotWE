@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bqogj600unc0d"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_65i8y"]
+[ext_resource type="Texture2D" uid="uid://d3s6tog37hohi" path="res://textures/smw/entities/galoomba.png" id="2_f70gv"]
+[ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="2_kqap7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqap7"]
+atlas = ExtResource("2_f70gv")
+region = Rect2(0, 0, 16, 16)
+
+[node name="GaloombaPart" unique_id=1549879982 instance=ExtResource("1_65i8y")]
+script = ExtResource("2_kqap7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=668857598]
+texture = SubResource("AtlasTexture_kqap7")
+flip_h = true

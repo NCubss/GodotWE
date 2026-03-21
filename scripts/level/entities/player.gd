@@ -234,18 +234,28 @@ func _process(delta: float) -> void:
 				target.y = center.y - 32
 			if center.y - Utility.camera_position.y <= -32:
 				target.y = center.y + 32
+		# uncomment to smooth when camera hits edges
+		#target = target.clamp(
+				#Vector2(0, -Level.LEVEL_HEIGHT * Level.GRID_SIZE.y),
+				#Vector2(INF, -get_viewport().get_visible_rect().size.y \
+				#/ Utility.camera_scale.y))
 		Utility.camera_position = Utility.camera_position.lerp(target, 6 * delta)
 
 
 ## Downgrades the player into a lower-tier powerup.
 func damage() -> void:
-	sounds.stream = load("uid://0nbemimuo3b6")
-	sounds.play()
+	if is_queued_for_deletion():
+		return
+	if _powerup is SmallPowerup:
+		kill()
+	else:
+		sounds.stream = load("uid://0nbemimuo3b6")
+		sounds.play()
 
 
 ## Forcibly kills the player, regardless of any powerups.
 func kill() -> void:
-	state_machine.switch(PlayerDeathState)
+	state_machine.switch.call_deferred(PlayerDeathState)
 
 
 ## Sets the player's current [Powerup]. If [param animate] is [code]false[/code],

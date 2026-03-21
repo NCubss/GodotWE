@@ -19,9 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://textures/ui/editor/btn_palette.svg" id="17_w8smy"]
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="18_fep4b"]
 [ext_resource type="PackedScene" uid="uid://b16vc6ry30e6p" path="res://scenes/ui/editor/card.tscn" id="19_qv7f8"]
-[ext_resource type="Resource" uid="uid://2egbrhf17dv6" path="res://resources/parts/ground.tres" id="20_pr0l3"]
-[ext_resource type="Resource" uid="uid://dsfkej5c2yo20" path="res://resources/parts/question_block.tres" id="21_5gafy"]
+[ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="20_sfxmt"]
+[ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="21_bm1wd"]
+[ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="22_bm1wd"]
 [ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/style_cards/btn.svg" id="22_crwvd"]
+[ext_resource type="Script" uid="uid://ck5lib6hmitri" path="res://scripts/level/parts/turn_block_part.gd" id="23_51isn"]
 [ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
 [ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
@@ -208,22 +210,22 @@ alignment = 1
 [node name="Card1" parent="Editor/TopPanel/HBoxContainer" unique_id=1935482387 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 action_mode = 0
-part = ExtResource("20_pr0l3")
+part = ExtResource("20_sfxmt")
 
 [node name="Card2" parent="Editor/TopPanel/HBoxContainer" unique_id=605082263 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 action_mode = 0
-part = ExtResource("21_5gafy")
+part = ExtResource("21_bm1wd")
 
 [node name="Card3" parent="Editor/TopPanel/HBoxContainer" unique_id=1513476386 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
 action_mode = 0
+part = ExtResource("22_bm1wd")
 
 [node name="Card4" parent="Editor/TopPanel/HBoxContainer" unique_id=423114736 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
 action_mode = 0
+part = ExtResource("23_51isn")
 
 [node name="Card5" parent="Editor/TopPanel/HBoxContainer" unique_id=1986320930 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
@@ -336,4 +338,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card1" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card2" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card3" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card4" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card5" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card6" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card7" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card8" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card9" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card10" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card11" method="_editor_loaded"]
+[connection signal="loaded" from="Editor" to="Editor/TopPanel/HBoxContainer/Card12" method="_editor_loaded"]
 [connection signal="loaded" from="Editor" to="Editor/Clapperboard" method="_editor_loaded"]

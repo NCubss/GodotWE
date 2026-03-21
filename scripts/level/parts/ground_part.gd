@@ -4,6 +4,18 @@ extends Part
 @onready var _tex: Texture2D = %Sprite.texture
 
 
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload("uid://du8vtxsylbi78")
+
+
+static func is_multiplaceable() -> bool:
+	return true
+
+
+static func create() -> GroundPart:
+	return load("uid://dpfaa6qawfnk1").instantiate()
+
+
 func load(placed_from_editor := false) -> void:
 	super(placed_from_editor)
 	refresh_sprite(placed_from_editor)
@@ -94,8 +106,8 @@ func _get_nearby_tiles(
 			query.collide_with_bodies = false
 			query.collision_mask = 1 << 8
 			query.exclude = [get_rid()]
-			query.position = level.from_grid(pos + Vector2i(x, y)) \
-					+ level.GRID_SIZE / 2
+			query.position = Level.from_grid(pos + Vector2i(x, y)) \
+					+ Level.GRID_SIZE / 2
 			var result = get_world_2d().direct_space_state \
 					.intersect_point(query, 1)
 			if not result.is_empty():

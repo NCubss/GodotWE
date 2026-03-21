@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://k7sykscno8vb"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_ehk1k"]
+[ext_resource type="Script" uid="uid://ck5lib6hmitri" path="res://scripts/level/parts/turn_block_part.gd" id="2_orvp0"]
+[ext_resource type="Texture2D" uid="uid://3gg35twlis0l" path="res://textures/tiles/turn_block.png" id="3_1asi3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqr8p"]
+atlas = ExtResource("3_1asi3")
+region = Rect2(0, 0, 16, 16)
+
+[node name="TurnBlockPart" unique_id=1549879982 instance=ExtResource("1_ehk1k")]
+script = ExtResource("2_orvp0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=854670595]
+texture = SubResource("AtlasTexture_xqr8p")

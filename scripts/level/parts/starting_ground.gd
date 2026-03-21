@@ -16,10 +16,10 @@ func _process(delta: float) -> void:
 	if _grabber_cooldown < COOLDOWN:
 		_grabber_cooldown += delta
 	if _grabber_held and _grabber_cooldown >= COOLDOWN:
-		var mouse_y = mini(-1, level.to_grid(get_global_mouse_position()).y)
+		var mouse_y = mini(-1, Level.to_grid(get_global_mouse_position()).y)
 		if mouse_y != _grid_pos.y:
 			_grid_pos.y = floori(move_toward(_grid_pos.y, mouse_y, 1))
-			position = level.from_grid(_grid_pos)
+			position = Level.from_grid(_grid_pos)
 			%CollShape.shape.size.y = absf(position.y)
 			%CollShape.position.y = position.y / -2
 			var query = PhysicsShapeQueryParameters2D.new()
