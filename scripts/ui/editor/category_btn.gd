@@ -1,6 +1,8 @@
 class_name CategoryBtn
 extends Button
 
+static var category_btn_group := ButtonGroup.new()
+
 @export var category: PaletteCategory:
 	set(v):
 		text = tr(v.name)
@@ -15,7 +17,7 @@ extends Button
 func _ready() -> void:
 	mouse_entered.connect(_effect.start)
 	mouse_exited.connect(_effect.stop)
-	print(button_group)
+	button_group = category_btn_group
 
 
 func _process(_delta: float) -> void:
@@ -60,8 +62,7 @@ func _toggled(toggled_on: bool) -> void:
 			tween.tween_method(_text_alpha, _get_alpha(), 1.0, 0.125) \
 					.set_delay(0.125) \
 					.set_ease(Tween.EASE_IN_OUT)
-		%PaletteRing.color = category.color
-		%PaletteRing.page = category.pages[0]
+		%PaletteRing.category = category
 	else:
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_QUAD)

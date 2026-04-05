@@ -14,91 +14,33 @@ const SOUNDS = [
 	preload("uid://c5kof8soyg2pd"),
 ]
 
-## The page this ring is currently on.
-@export var page: PalettePage:
-	set(v):
-		if v == null:
-			return
-		page = v
-		if not is_node_ready():
-			await ready
-		match v.items.size():
-			7:
-				texture = preload("uid://bjkjvbo5dxhvr")
-				%Sector.texture = preload("uid://ckdt2mc8m05xn")
-			8:
-				texture = preload("uid://b3gv0ahuwc2i")
-				%Sector.texture = preload("uid://b34qwm4hjf88r")
-			10:
-				texture = preload("uid://y12fpgvjyfv5")
-				%Sector.texture = preload("uid://y1u6304a0jj3")
-		if %Editor.level == null:
-			await %Editor.loaded
-		for i in _icons:
-			i.queue_free()
-		_icons.clear()
-		if v.items[0] == null:
-			%CenterIcon.texture = null
-		else:
-			%CenterIcon.texture = page.items[0].part.get_part_icon(
-					%Editor.level.current_sub_area)
-			%CenterIcon.texture_filter = page.items[0].part \
-					.get_part_icon_filter(%Editor.level.current_sub_area)
-		for i in v.items.size():
-			if v.items[i] == null:
-				return
-			var icon = _create_icon(v.items[i].part)
-			var angle = TAU / v.items.size() * i
-			icon.position = Vector2(sin(angle), -cos(angle)) * 147 \
-					+ Vector2(204, 204) - Vector2(33, 33)
-			if v.items[i].disabled:
-				icon.modulate = Color("a5a5a5")
-			add_child(icon)
-
+## The currently selected category.
 @export var category: PaletteCategory:
 	set = _set_category
+## The currently open category page index.
 @export var page_index: int:
 	set = _set_page_index
 
-
+## The currently hovered sector.
 var selected: int:
-	set(v):
-		if page.items[v] == null or page.items[v].disabled:
-			v = -1
-		if v != selected:
-			%Sector.visible = v >= 0
-			if page != null:
-				%Sector.rotation = TAU / page.items.size() * v
-			if %Sector.visible:
-				UISoundPlayer.stream = SOUNDS.get(v)
-				if UISoundPlayer.stream != null:
-					UISoundPlayer.play()
-				if %Editor.level == null:
-					await %Editor.loaded
-				%CenterIcon.texture = page.items[v].part.get_part_icon(
-						%Editor.level.current_sub_area)
-				%CenterIcon.texture_filter = page.items[v].part \
-						.get_part_icon_filter(%Editor.level.current_sub_area)
-		selected = v
+	set = _set_selected
+## The color of the palette ring.
 var color: Color:
-	get():
-		return material.get_shader_parameter(&"color")
-	set(v):
-		var tween = create_tween()
-		tween.tween_method(func(c): material.set_shader_parameter(&"color", c),
-				material.get_shader_parameter(&"color"), v, 0.25)
+	get = _get_color,
+	set = _set_color
 
 var _mouse_in_window := true
-var _icons: Array[TextureRect]
 
 
 func _process(_delta: float) -> void:
 	# process hovered sector
 	# is the mouse in the sectors?
-	if Geometry2D.is_point_in_circle(get_local_mouse_position(),
-			Vector2(204, 204), 204) and not Geometry2D.is_point_in_circle(
-			get_local_mouse_position(), Vector2(204, 204), 81) \
-			and _mouse_in_window and is_visible_in_tree():
+	var in_ring = Geometry2D.is_point_in_circle(get_local_mouse_position(),
+			Vector2(204, 204), 204)
+	var in_center = Geometry2D.is_point_in_circle(
+			get_local_mouse_position(), Vector2(204, 204), 81)
+	if get_page() != null and _mouse_in_window and is_visible_in_tree() \
+			and in_ring and not in_center:
 		# algorithm to find hovered sector
 		# starting processing direction
 		var direction = 0
@@ -108,7 +50,7 @@ func _process(_delta: float) -> void:
 		mouse.y = -mouse.y
 		while true:
 			# sector edge angle
-			var angle = TAU / page.items.size() * (sector - 0.5) + (PI / 2)
+			var angle = TAU / get_page().items.size() * (sector - 0.5) + (PI / 2)
 			var normal = Vector2(sin(angle), cos(angle))
 			# negative if left, positive if right
 			var s = normal.dot(mouse)
@@ -119,7 +61,7 @@ func _process(_delta: float) -> void:
 					sector -= 1
 				break
 			# move to next sector edge
-			sector = posmod(sector + direction, page.items.size())
+			sector = posmod(sector + direction, get_page().items.size())
 		selected = sector
 	else:
 		selected = -1
@@ -133,14 +75,14 @@ func _gui_input(event: InputEvent) -> void:
 			var card: EditorCard
 			# find an existing card with this part
 			for i: EditorCard in %Cards.get_children():
-				if i.part == page.items[selected].part:
+				if i.part == get_page().items[selected].part:
 					card = i
 			# otherwise, add a new one
 			if card == null:
 				%Cards.remove_child(%Cards.get_child(0))
 				card = preload("uid://b16vc6ry30e6p").instantiate()
 				%Cards.add_child(card)
-				card.part = page.items[selected].part
+				card.part = get_page().items[selected].part
 			# trigger the sound
 			card.button_pressed = false
 			card.button_pressed = true
@@ -175,11 +117,93 @@ func get_page() -> PalettePage:
 
 
 func _set_category(v: PaletteCategory) -> void:
-	pass
+	if v == null:
+		return
+	color = v.color
+	category = v
+	page_index = 0
 
 
 func _set_page_index(v: int) -> void:
-	pass
+	if category == null:
+		return
+	# preparation and cleanup
+	var page = category.pages[v]
+	if not is_node_ready():
+		await ready
+	if %Editor.level == null:
+		await %Editor.loaded
+	for i in %Icons.get_children():
+		if i != %PaletteCenter:
+			i.queue_free()
+	# set ring textures
+	match page.items.size():
+		7:
+			texture = preload("uid://bjkjvbo5dxhvr")
+			%Sector.texture = preload("uid://ckdt2mc8m05xn")
+		8:
+			texture = preload("uid://b3gv0ahuwc2i")
+			%Sector.texture = preload("uid://b34qwm4hjf88r")
+		10:
+			texture = preload("uid://y12fpgvjyfv5")
+			%Sector.texture = preload("uid://y1u6304a0jj3")
+	# set the center icon
+	if page.items[0] == null:
+		%CenterIcon.texture = null
+	else:
+		%CenterIcon.texture = page.items[0].part.get_part_icon(
+				%Editor.level.current_sub_area)
+		%CenterIcon.texture_filter = page.items[0].part \
+				.get_part_icon_filter(%Editor.level.current_sub_area)
+	# add sector icons
+	for i in page.items.size():
+		if page.items[i] == null:
+			continue
+		var icon = _create_icon(page.items[i].part)
+		var angle = TAU / page.items.size() * i
+		icon.position = Vector2(sin(angle), -cos(angle)) * 147 \
+				+ Vector2(204, 204) - Vector2(33, 33)
+		if page.items[i].disabled:
+			icon.modulate = Color("a5a5a5")
+		%Icons.add_child(icon)
+	# fade in
+	var tween = create_tween()
+	tween.tween_property(%Icons, "modulate:a", 1.0, 0.25) \
+			.from(0.0) \
+			.set_trans(Tween.TRANS_QUAD) \
+			.set_ease(Tween.EASE_OUT)
+	page_index = v
+
+
+func _set_selected(v: int) -> void:
+	var page = get_page()
+	if page.items[v] == null or page.items[v].disabled:
+		v = -1
+	if v != selected:
+		%Sector.visible = v >= 0
+		if page != null:
+			%Sector.rotation = TAU / page.items.size() * v
+		if %Sector.visible:
+			UISoundPlayer.stream = SOUNDS.get(v)
+			if UISoundPlayer.stream != null:
+				UISoundPlayer.play()
+			if %Editor.level == null:
+				await %Editor.loaded
+			%CenterIcon.texture = page.items[v].part.get_part_icon(
+					%Editor.level.current_sub_area)
+			%CenterIcon.texture_filter = page.items[v].part \
+					.get_part_icon_filter(%Editor.level.current_sub_area)
+	selected = v
+
+
+func _get_color() -> Color:
+	return material.get_shader_parameter(&"color")
+
+
+func _set_color(v: Color) -> void:
+	var tween = create_tween()
+	tween.tween_method(func(c): material.set_shader_parameter(&"color", c),
+			material.get_shader_parameter(&"color"), v, 0.25)
 
 
 # create a sector icon for a part
@@ -196,7 +220,6 @@ func _create_icon(part: Script) -> TextureRect:
 	icon.set_anchors_and_offsets_preset(PRESET_CENTER)
 	cutout.add_child(icon)
 	background.add_child(cutout)
-	_icons.append(background)
 	return background
 
 
