@@ -107,9 +107,11 @@ func _notification(what: int) -> void:
 				tween.tween_property(self, "scale", Vector2(1, 1), 0.25) \
 						.from(Vector2(0, 0)) \
 						.set_ease(Tween.EASE_OUT)
+				%Editor.part_interact = false
 			else:
 				tween.tween_property(self, "scale", Vector2(0, 0), 0.25) \
 						.set_ease(Tween.EASE_IN)
+				%Editor.part_interact = true
 
 
 func get_page() -> PalettePage:

@@ -8,7 +8,7 @@ const SPEED = 240.0
 
 func _process(delta: float) -> void:
 	super(delta)
-	if level.status == Level.Status.EDITING:
+	if level.status == Level.Status.EDITING and level.editor.part_interact:
 		var speed = Vector2(
 				Input.get_axis(&"player_left", &"player_right") * SPEED,
 				Input.get_axis(&"player_up", &"player_down") * SPEED)

@@ -27,6 +27,13 @@ func _pressed() -> void:
 				%PaletteRing.category.pages.size())
 
 
+func _input(event: InputEvent) -> void:
+	if is_visible_in_tree():
+		if event.is_action_pressed(&"palette_right") and not flip_h \
+				or event.is_action_pressed(&"palette_left") and flip_h:
+			_pressed()
+
+
 func _move_category(step: int) -> void:
 	var current = CategoryBtn.category_btn_group.get_pressed_button()
 	var idx = current.get_index()

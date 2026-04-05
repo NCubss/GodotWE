@@ -25,5 +25,4 @@ func _pressed() -> void:
 	%LeftPanel.status = EditorPanel.Status.HIDDEN
 	%TopPanel.status = EditorPanel.Status.HIDDEN
 	%Clapperboard.off_screen = true
-	%Editor.part_interact = false
 	%PaletteMenu.show()
