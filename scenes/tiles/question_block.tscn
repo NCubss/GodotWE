@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://c4qpbj5epsp55"]
 
-[ext_resource type="Script" uid="uid://bvwombbno8x7s" path="res://scripts/ext/static_body_ext.gd" id="1_o3ngx"]
+[ext_resource type="Script" uid="uid://bm4k8itf7gi2c" path="res://scripts/level/tiles/question_block.gd" id="1_om2ma"]
 [ext_resource type="Texture2D" uid="uid://dm510dlk0st0r" path="res://textures/tiles/question_block.png" id="2_om2ma"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_m05ia"]
 [ext_resource type="Script" uid="uid://dedgj7iu2ix2b" path="res://scripts/components/block_component.gd" id="4_ab850"]
-[ext_resource type="Script" uid="uid://crxc20f4jyeky" path="res://scripts/components/tile_component.gd" id="5_m05ia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lx66l"]
 size = Vector2(16, 16)
@@ -47,16 +46,18 @@ animations = [{
 
 [node name="QuestionBlock" type="StaticBody2D" unique_id=1370141498]
 z_index = 20
-z_as_relative = false
-script = ExtResource("1_o3ngx")
+script = ExtResource("1_om2ma")
 metadata/_custom_type_script = "uid://bvwombbno8x7s"
 
 [node name="CollShape" type="CollisionShape2D" parent="." unique_id=824003433]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_lx66l")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1793359615]
+[node name="Graphics" type="Node2D" parent="." unique_id=89257521]
 position = Vector2(8, 8)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Graphics" unique_id=1793359615]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_4quxa")
 animation = &"idle"
 autoplay = "idle"
@@ -64,10 +65,9 @@ script = ExtResource("3_m05ia")
 metadata/_custom_type_script = "uid://vedwoxfxibus"
 
 [node name="BlockComponent" type="Node" parent="." unique_id=1469256663 node_paths=PackedStringArray("sprite")]
+unique_name_in_owner = true
 script = ExtResource("4_ab850")
-sprite = NodePath("../Sprite")
+sprite = NodePath("../Graphics")
 metadata/_custom_type_script = "uid://dedgj7iu2ix2b"
 
-[node name="TileComponent" type="Node" parent="." unique_id=1935140796]
-script = ExtResource("5_m05ia")
-metadata/_custom_type_script = "uid://crxc20f4jyeky"
+[connection signal="sprout_end" from="BlockComponent" to="." method="_sprout_end"]

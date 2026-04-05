@@ -3,30 +3,45 @@ extends Sprout
 
 @export var item: PackedScene
 @export var texture: Texture2D
+@export var offset: Vector2
 
 
-func _ready() -> void:
-	%Sprite.texture = texture
+func end_sprout(position: Vector2, direction: Vector2) -> void:
+	var sprouter = Sprouter.new()
+	sprouter.item = item.instantiate()
+	sprouter.texture = texture
+	sprouter.global_position = position + (Vector2(-8, -8) * direction)
+	sprouter.pos = position
+	sprouter.dir = direction
+	sprouter.off = offset
+	body.get_parent().add_child(sprouter)
+	print(body.get_tree().get_frame())
+	body.get_parent().move_child(sprouter, body.get_index())
+	empty = true
 
 
-func end_sprout(direction: Vector2) -> SproutReturnData:
-	%Sprite.visible = true
-	%Sound.play()
-	var tween = %Sprite.create_tween()
-	# shadow fix
-	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.tween_property(%Sprite, "position", direction * 16, 0.5)
-	tween.finished.connect(_die)
-	var data = SproutReturnData.new()
-	data.new_tile = preload("uid://vxvp8itjp1cv")
-	return data
-
-
-func _die() -> void:
-	if item != null:
-		var node = item.instantiate()
-		node.position = position + Vector2(0, -8)
-		get_parent().add_child(node)
-	if %Sound.playing:
-		await %Sound.finished
-	queue_free()
+class Sprouter extends Sprite2D:
+	var pos: Vector2
+	var dir: Vector2
+	var off: Vector2
+	var item: Node
+	var audio := AudioStreamPlayer.new()
+	
+	
+	func _ready() -> void:
+		z_index = GameConstants.Layers.Z_SPROUT
+		add_child(audio)
+		audio.stream = preload("uid://bexd6cvyd4onk")
+		audio.play()
+		var tween = create_tween()
+		tween.tween_property(self, "global_position", pos + (Vector2(8, 8) * dir), 0.5)
+		tween.tween_callback(_spawn)
+	
+	
+	func _spawn() -> void:
+		item.global_position = global_position + off
+		add_sibling(item)
+		if audio.playing:
+			hide()
+			await audio.finished
+		queue_free()

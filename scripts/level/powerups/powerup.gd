@@ -11,10 +11,11 @@ static func default_animate(
 		new_graphics: Node2D
 ) -> void:
 	tree.paused = true
+	MusicPlayer.process_mode = Node.PROCESS_MODE_ALWAYS
+	new_graphics.visible = false
 	var tween = tree.create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(old_graphics, "visible", false, 0.1)
-	new_graphics.visible = false
 	tween.parallel().tween_property(new_graphics, "visible", true, 0.1)
 	tween.tween_property(old_graphics, "visible", true, 0.1)
 	tween.parallel().tween_property(new_graphics, "visible", false, 0.1)
@@ -24,7 +25,11 @@ static func default_animate(
 	tween.parallel().tween_property(new_graphics, "visible", false, 0.1)
 	tween.tween_property(old_graphics, "visible", false, 0.1)
 	tween.parallel().tween_property(new_graphics, "visible", true, 0.1)
-	tween.finished.connect(func(): tree.paused = false; old_graphics.queue_free())
+	tween.finished.connect(func():
+		tree.paused = false
+		MusicPlayer.process_mode = Node.PROCESS_MODE_INHERIT
+		old_graphics.queue_free()
+	)
 
 
 ## Runs once the state has just been enabled.

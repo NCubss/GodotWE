@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://cmjolsltwwkx1"]
 
 [ext_resource type="Script" uid="uid://c1vevfranvnvu" path="res://scripts/level/sub_area.gd" id="1_d1g1m"]
-[ext_resource type="Shader" uid="uid://bmus0fg8xjypt" path="res://shaders/shadow.gdshader" id="2_d1g1m"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1g1m"]
-shader = ExtResource("2_d1g1m")
 
 [node name="SubArea" type="Node2D" unique_id=986670251]
 script = ExtResource("1_d1g1m")
@@ -16,10 +12,9 @@ max_water_height = null
 meteorites = null
 autoscroll = null
 
-[node name="Foreground" type="CanvasGroup" parent="." unique_id=1554830974]
+[node name="Foreground" type="Node2D" parent="." unique_id=21920964]
 unique_name_in_owner = true
 z_index = 100
-material = SubResource("ShaderMaterial_d1g1m")
 
 [node name="Parts" type="Node2D" parent="." unique_id=1999903179]
 unique_name_in_owner = true

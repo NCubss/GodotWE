@@ -262,6 +262,7 @@ func kill() -> void:
 ## the powering up animation will not be played.
 func set_powerup(powerup: Powerup, animate := true) -> void:
 	_powerup.end()
+	powerup.player = self
 	powerup.start(animate)
 	_powerup = powerup
 

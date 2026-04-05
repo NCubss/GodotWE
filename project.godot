@@ -55,7 +55,7 @@ movie_writer/video_quality=1.0
 movie_writer/audio_bit_depth=32
 movie_writer/ogv/audio_quality=1.0
 movie_writer/ogv/encoding_speed=1
-movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/extra/video.avi"
+movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/dist/movie.ogv"
 
 [editor_plugins]
 

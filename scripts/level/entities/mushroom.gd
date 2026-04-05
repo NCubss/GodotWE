@@ -7,9 +7,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _body_entered(body: Node2D) -> void:
-	print(body.name)
 	body = body as Player
 	if body == null:
 		return
-	body.set_powerup(SuperPowerup.new(body), true)
+	body.set_powerup(SuperPowerup.new(), true)
 	queue_free()
