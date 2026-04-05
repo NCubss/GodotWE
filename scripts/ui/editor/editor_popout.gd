@@ -71,12 +71,13 @@ func _ready() -> void:
 	patch_margin_top = 57
 	patch_margin_bottom = 15
 	visible = false
+	clip_contents = true
 	add_child(sound_player)
 	if has_close_button:
 		add_child(close_btn)
 		close_btn.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
 		close_btn.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
-		close_btn.texture_normal = preload("uid://b0tiwkw7ublhx")
+		close_btn.texture_normal = preload("uid://d4gqbswp2mkdv")
 		close_btn.offset_top = 9
 		close_btn.offset_bottom = close_btn.size.y + 9
 		close_btn.pressed.connect(close)
@@ -90,6 +91,7 @@ func open() -> void:
 	if _tween != null:
 		_tween.kill()
 	status = Status.OPENING
+	mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 	_tween = create_tween().set_trans(Tween.TRANS_QUAD) \
 			.set_ease(Tween.EASE_OUT).set_parallel()
 	visible = true
@@ -105,10 +107,12 @@ func open() -> void:
 					.from(target_rect.end.x - get_combined_minimum_size().x)
 		PopoutDirection.TO_RIGHT:
 			position = target_rect.position
-	_tween.finished.connect(func(): status = Status.OPEN)
+	_tween.finished.connect(func():
+		status = Status.OPEN
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
+	)
 	%Editor.part_interact = false
 	%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
-	mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
 
 
 func close() -> void:
@@ -136,7 +140,7 @@ func close() -> void:
 	_tween.finished.connect(func(): status = Status.CLOSED)
 	%Editor.part_interact = true
 	%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
-	mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+	mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 
 
 

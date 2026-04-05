@@ -12,5 +12,5 @@ dest_files=["res://.godot/imported/btn_mask_circular.svg-708d8e7eee75703a2c7ab71
 
 [params]
 
-create_from=0
+create_from=1
 threshold=0.5

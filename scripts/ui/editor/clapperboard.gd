@@ -1,6 +1,12 @@
 class_name Clapperboard
 extends TextureButton
 
+var off_screen := false:
+	set(v):
+		var tween = create_tween()
+		mouse_filter = MOUSE_FILTER_IGNORE if v else MOUSE_FILTER_STOP
+		tween.tween_property(self, "position:x", -117 if v else 15, 0.1)
+		off_screen = v
 var body_rotation := 0.0
 var top_rotation := 0.0
 

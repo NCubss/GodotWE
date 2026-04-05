@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="PaletteCategory" format=3 uid="uid://bisixphutjm6u"]
+
+[ext_resource type="Texture2D" uid="uid://dsoyyq5op8pov" path="res://textures/ui/editor/palette/category_enemies.svg" id="1_m86ct"]
+[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/palette_page.gd" id="1_p8sr8"]
+[ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/palette_category.gd" id="2_l1v8a"]
+[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/palette_item.gd" id="3_oc72v"]
+
+[sub_resource type="Resource" id="Resource_pe0op"]
+script = ExtResource("1_p8sr8")
+items = Array[ExtResource("3_oc72v")]([null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[resource]
+script = ExtResource("2_l1v8a")
+color = Color(0.43137255, 0.98039216, 0.1254902, 1)
+name = &"CATEGORY_ENEMIES"
+icon = ExtResource("1_m86ct")
+pages = Array[ExtResource("1_p8sr8")]([SubResource("Resource_pe0op")])
+metadata/_custom_type_script = "uid://c0p35artiwbxc"

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/hover.svg-5fae5df7f237ecd50555bbc7d265acb3.dp
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 compress=true

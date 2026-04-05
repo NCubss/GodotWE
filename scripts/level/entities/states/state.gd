@@ -52,3 +52,9 @@ func process(entity: Node2D, delta: float) -> Variant:
 @warning_ignore("unused_parameter")
 func physics_process(entity: Node2D, delta: float) -> Variant:
 	return null
+
+
+## Runs when an input event is received. Clone of [method Node._input].
+@warning_ignore("unused_parameter")
+func input(entity: Node2D, event: InputEvent) -> Variant:
+	return null

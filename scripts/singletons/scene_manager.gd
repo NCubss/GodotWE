@@ -61,6 +61,15 @@ func _ready() -> void:
 			_enter_tween.tween_callback(_polygon.hide)
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_F11:
+			if get_window().mode == Window.MODE_FULLSCREEN:
+				get_window().mode = Window.MODE_WINDOWED
+			elif get_window().mode == Window.MODE_WINDOWED:
+				get_window().mode = Window.MODE_FULLSCREEN
+
+
 func fade_to(
 		path: String,
 		trans_in := Transition.FADE,

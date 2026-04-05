@@ -26,6 +26,10 @@ func _physics_process(delta: float) -> void:
 	_state_stuff(current_state.physics_process.bind(get_parent(), delta))
 
 
+func _input(event: InputEvent) -> void:
+	_state_stuff(current_state.input.bind(get_parent(), event))
+
+
 func _state_stuff(function: Callable) -> void:
 	if current_state == null:
 		return

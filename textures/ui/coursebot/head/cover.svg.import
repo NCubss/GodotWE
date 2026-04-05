@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cover.svg-9a55437b6217199fca3d5b0ef9c46838.dp
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 compress=true

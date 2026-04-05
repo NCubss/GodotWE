@@ -2,19 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dojthokq7bspk" path="res://scripts/ui/editor/editor_card.gd" id="1_gww7u"]
 [ext_resource type="ButtonGroup" uid="uid://dhdt3ovnv8ci2" path="res://resources/ui/editor_card_group.tres" id="1_phg84"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gww7u"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+[ext_resource type="Texture2D" uid="uid://b3tx16rivyjy4" path="res://textures/ui/editor/palette/item_mask.svg" id="3_js4xj"]
 
 [node name="Card" type="TextureButton" unique_id=1935482387]
 custom_minimum_size = Vector2(66, 75)
 offset_right = 40.0
 offset_bottom = 40.0
 toggle_mode = true
+action_mode = 0
 button_group = ExtResource("1_phg84")
 ignore_texture_size = true
 script = ExtResource("1_gww7u")
@@ -22,23 +17,22 @@ script = ExtResource("1_gww7u")
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=2133009575]
 unique_name_in_owner = true
 
-[node name="IconContainer" type="Panel" parent="." unique_id=603080196]
+[node name="Cutout" type="TextureRect" parent="." unique_id=1930014093]
 unique_name_in_owner = true
 clip_children = 1
 layout_mode = 0
-offset_left = 6.0
-offset_top = 9.0
-offset_right = 60.0
-offset_bottom = 63.0
+offset_top = 3.0
+offset_right = 66.0
+offset_bottom = 69.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gww7u")
+texture = ExtResource("3_js4xj")
 
-[node name="Icon" type="TextureRect" parent="IconContainer" unique_id=442450484]
+[node name="Icon" type="TextureRect" parent="Cutout" unique_id=442450484]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 57.0
-offset_bottom = 57.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 63.0
+offset_bottom = 63.0
 mouse_filter = 2
 expand_mode = 1

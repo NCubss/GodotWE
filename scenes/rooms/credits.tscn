@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://mh1ipma5q530"]
+
+[ext_resource type="Script" uid="uid://by1hr0on5ywpf" path="res://scripts/ui/credits.gd" id="1_6srs4"]
+[ext_resource type="Script" uid="uid://imtq6gf8pnq3" path="res://scripts/ui/logo.gd" id="2_qc20a"]
+[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://resources/ui/text.ttf" id="3_qc20a"]
+[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://textures/ui/btn_close.svg" id="4_k4ywg"]
+
+[sub_resource type="FontVariation" id="FontVariation_k4ywg"]
+base_font = ExtResource("3_qc20a")
+spacing_glyph = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_jyle0"]
+font = SubResource("FontVariation_k4ywg")
+font_size = 24
+
+[node name="Credits" type="ColorRect" unique_id=187400815]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_6srs4")
+
+[node name="Container" type="VBoxContainer" parent="." unique_id=891944867]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -313.5
+offset_top = 198.0
+offset_right = 313.5
+offset_bottom = 5319.0
+grow_horizontal = 2
+theme_override_constants/separation = 210
+
+[node name="Logo" type="Control" parent="Container" unique_id=505630218]
+layout_mode = 2
+script = ExtResource("2_qc20a")
+metadata/_custom_type_script = "uid://imtq6gf8pnq3"
+
+[node name="Label" type="Label" parent="Container/Logo" unique_id=1570052069]
+layout_mode = 0
+offset_left = 21.5
+offset_top = 183.0
+offset_right = 372.5
+offset_bottom = 225.0
+text = "2019 - 2026"
+label_settings = SubResource("LabelSettings_jyle0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="Container" unique_id=1363707871]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=dfc58c]%s[/color][br][color=c0c0c0]Franyer Farías[/color][br]NCubs[br]Andoyt[br]Geoblue[br]Sicraft[br]NoobTime[br]Les[br]
+[color=dfc58c]%s[/color][br]manunu546 ❤️[br]Salvadorban ❤️[br]Turret 3471[br]SMW Central - VLDC7[br]AdamCrossing[br]SiIvaGunner[br]FatCat[br]Randomcity Remixes[br]NCubs[br]KHInsider[br][color=c0c0c0]DangerousZone[br]Julia[/color][br]
+[color=dfc58c]%s[/color][br]ImKike19[br]NaNo[br]Apolos[br]Suil[br]Urikett[br]NoobTime[br]David Nintenplay[br]Venezuela (VeneFarias)[br]El Prisco Maker[br]Varnat[br]Cupaban[br]Mega Mario Bros 789[br]Gatuping[br]Nameless[br]BlueGoomba79[br]AndyMaker[br]Keira S[br]ImYereX[br]KrisXD17[br]Daniel Stevan[br]Zugar[br]noteblockhead[br]NCubs[br][color=c0c0c0]Danny Silverd[br]EmaxCapoYT[br]Francozkai29[br]Isaías[br]JoaDash[br]Julia[br]LucasGamer[br]MauroGRF[br]Nintenderos Android[br]Policombo[br]TheMaker[br]!z014yfsi_[/color][br]
+[color=dfc58c]%s[/color][br]GustaSaiyajin06[br]Vini[br]Nameless[br]Andoyt[br]NickoPlayz 2018[br]CRYRIK[br]Blazelord[br]OrangeCake_[br]NCubs[br]
+[color=dfc58c]%s[/color][br]NCubs[br][color=c0c0c0]Isaías[br]Julia[br]Tokarev[/color][br]
+[color=dfc58c]%s[/color][br]Noto Sans[br][color=c0c0c0]Aseprite[/color][br]
+[color=dfc58c]%s[/color][br]Varnat[br]DangerousZone[br]New-Drago[br]TheWatermelon24[br]ponkis[br]fran_6666667[br]Venezuela (VeneFarias)[br]AndyMaker[br]Gianex[br]Ighorlima[br]Nemiad[br]C0playeR[br]%s[br][color=c0c0c0]Alexader R.[br]Angela Gonzalez[br]Endood[br]Gabriel Gamer 2.0[br]Gatu's[br]iDomi[br]MatheusGamer[br]Med Animations[br]Nicolas Peixoto[br]TheMario[br]¡TraxerGames[br]WillyMaker[br]Zaid Eduardo[/color][br]
+[color=dfc58c]%s[/color][br]Kirikaze Chiyuki (Yidao)[br]MarioFranyer[br]ToMaTe[br]Chara Maker[br]LiliStalker[br]DangerousZone[br][color=c0c0c0]AlexisJR[br]Androacks22[br]Anndy Mike[br]Francozkai29[br]Gabs[br]Gatete[br]iDomi[br]Jeanyer[br]Julia[br]MauroGRF[br]Winter[/color][br]
+[color=dfc58c]%s[/color][br]Godot Engine[br][color=c0c0c0]GameMaker[br]Gatete Mario Engine[br]Hello Mario Engine[br]Mario Worlds Delta[br]Unimaker[/color][br]
+%s"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="CloseBtn" type="TextureButton" parent="." unique_id=2085998896]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 48.0
+offset_right = -99.0
+offset_bottom = 93.0
+grow_horizontal = 0
+action_mode = 0
+texture_normal = ExtResource("4_k4ywg")
+
+[connection signal="pressed" from="CloseBtn" to="." method="_close_btn_pressed"]

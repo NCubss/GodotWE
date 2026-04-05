@@ -239,6 +239,13 @@ const SWE_OBJECT_TABLE = {
 ## this will be [code]null[/code] and an error will be pushed if level editing
 ## is attempted.
 @export var editor: Editor
+## The online level ID for this level. Empty if this level [b]is not[/b] being
+## played online. See [member file_path] for the local counterpart.
+@export var online_id := ""
+## The path to the file that represents this level. Empty if this level
+## [b]is[/b] being played online. See [member online_id] for the online
+## counterpart.
+@export var file_path := ""
 
 ## The level's automatically assigned sub-areas.
 var sub_areas: Array[SubArea] = []
@@ -443,8 +450,10 @@ func get_current_time() -> int:
 
 
 func reload() -> void:
-	pass
-	SceneManager.fade_to_scene(load(scene_file_path))
+	# :)
+	edit()
+	Utility.camera_position_raw = Vector2(0, -get_viewport().get_visible_rect().size.y)
+	play()
 
 
 func _camera_clamp() -> void:

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_settings.svg-82095ff5e18b0ef6489df346ae0c
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 compress=true

@@ -1,24 +1,14 @@
 [gd_scene format=3 uid="uid://ctnffmabe0h4f"]
 
+[ext_resource type="Script" uid="uid://b6bo0iwsfipx1" path="res://scripts/level/background.gd" id="1_6p2lh"]
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://textures/background.png" id="1_mwgmk"]
 
-[node name="Background" type="Node" unique_id=777833003]
+[node name="Background" type="CanvasLayer" unique_id=1079128947]
+layer = -1
+follow_viewport_enabled = true
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1723056460]
-z_index = -2
-z_as_relative = false
-scroll_scale = Vector2(0.5, 1)
-scroll_offset = Vector2(-256, 0)
-repeat_size = Vector2(512, 0)
-
-[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1381600414]
-position = Vector2(0, -432)
+[node name="Background" type="Node2D" parent="." unique_id=313745906]
+script = ExtResource("1_6p2lh")
 texture = ExtResource("1_mwgmk")
-centered = false
-region_rect = Rect2(0, 0, 512, 432)
-
-[node name="Background2" type="Sprite2D" parent="Parallax2D" unique_id=721399940]
-position = Vector2(512, -432)
-texture = ExtResource("1_mwgmk")
-centered = false
-region_rect = Rect2(0, 0, 512, 432)
+follow_scale = Vector2(0.5, 1)
+metadata/_custom_type_script = "uid://b6bo0iwsfipx1"
