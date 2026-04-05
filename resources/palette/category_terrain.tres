@@ -148,5 +148,5 @@ script = ExtResource("2_077e1")
 color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 name = &"CATEGORY_TERRAIN"
 icon = ExtResource("1_prh7l")
-pages = Array[ExtResource("1_eebnt")]([SubResource("Resource_bfwuo")])
+pages = Array[ExtResource("1_eebnt")]([SubResource("Resource_bfwuo"), SubResource("Resource_bfwuo")])
 metadata/_custom_type_script = "uid://c0p35artiwbxc"

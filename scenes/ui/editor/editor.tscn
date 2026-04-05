@@ -13,20 +13,20 @@
 [ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://textures/ui/editor/btn_square.svg" id="5_8eg8w"]
 [ext_resource type="Texture2D" uid="uid://ckdt2mc8m05xn" path="res://textures/ui/editor/palette/sector_7.svg" id="5_a6583"]
 [ext_resource type="Resource" uid="uid://d15pdc5d1rkwr" path="res://resources/palette/category_items.tres" id="5_fhqrb"]
-[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/palette_item.gd" id="5_sp7ve"]
 [ext_resource type="Resource" uid="uid://bisixphutjm6u" path="res://resources/palette/category_enemies.tres" id="6_d4hij"]
 [ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="6_fp6e3"]
 [ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_0l6sx"]
 [ext_resource type="Resource" uid="uid://kxjxg3sfdp1g" path="res://resources/palette/category_gizmos.tres" id="7_4qrp7"]
-[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/palette_page.gd" id="7_6snt5"]
 [ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/coursebot_btn.gd" id="8_kunuo"]
 [ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/btn_eraser.svg" id="9_khafc"]
 [ext_resource type="Texture2D" uid="uid://bgcosxahmopj8" path="res://textures/ui/editor/palette/item.svg" id="10_w63je"]
 [ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://textures/ui/btn_mask_circular.svg" id="10_wxv2j"]
 [ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="11_a6583"]
 [ext_resource type="Texture2D" uid="uid://b3tx16rivyjy4" path="res://textures/ui/editor/palette/item_mask.svg" id="11_w8smy"]
+[ext_resource type="Texture2D" uid="uid://bo0yp2ox3rtas" path="res://textures/ui/editor/palette/next.svg" id="12_crwvd"]
 [ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://textures/ui/editor/btn_dog.svg" id="12_dyxkw"]
 [ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://textures/ui/btn_close.svg" id="12_w8smy"]
+[ext_resource type="Script" uid="uid://5qkuotbsd64b" path="res://scripts/ui/editor/palette/palette_navigation_btn.gd" id="13_fhqrb"]
 [ext_resource type="Texture2D" uid="uid://c0omteb87asj0" path="res://textures/ui/editor/palette/category.svg" id="13_pr0l3"]
 [ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://textures/ui/editor/btn_rocket.svg" id="13_rtyax"]
 [ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="14_sp7ve"]
@@ -38,7 +38,6 @@
 [ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="18_fep4b"]
 [ext_resource type="Texture2D" uid="uid://2hd1xfqj4ix3" path="res://textures/ui/editor/btn_coursebot_load.svg" id="18_fp6e3"]
 [ext_resource type="PackedScene" uid="uid://b16vc6ry30e6p" path="res://scenes/ui/editor/card.tscn" id="19_qv7f8"]
-[ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="20_sfxmt"]
 [ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/style_cards/btn.svg" id="22_crwvd"]
 [ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
 [ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
@@ -48,142 +47,18 @@
 shader = ExtResource("2_wxv2j")
 shader_parameter/color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 
-[sub_resource type="Resource" id="Resource_prh7l"]
-script = ExtResource("5_sp7ve")
-part = ExtResource("20_sfxmt")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_qhyt5"]
-script/source = "extends Part
-## Slope placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://gjyyk5m1ftc\")
-"
-
-[sub_resource type="Resource" id="Resource_td1aq"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_qhyt5")
-disabled = true
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_prh7l"]
-script/source = "extends Part
-## Pipebase placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://61p7dqcpmbkb\")
-"
-
-[sub_resource type="Resource" id="Resource_qhyt5"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_prh7l")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_td1aq"]
-script/source = "extends Part
-## Pipe placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://cjuqthhe8eq86\")
-"
-
-[sub_resource type="Resource" id="Resource_d7a27"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_td1aq")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_bfwuo"]
-script/source = "extends Part
-## Spiketrap placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://ckiyycc2wu7db\")
-"
-
-[sub_resource type="Resource" id="Resource_1mf7o"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_bfwuo")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_d7a27"]
-script/source = "extends Part
-## Mushroom platform placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://byhgr4scsrepq\")
-"
-
-[sub_resource type="Resource" id="Resource_nvt8u"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_d7a27")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_1mf7o"]
-script/source = "extends Part
-## Semi-solid platform placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://dgm5dxxcvt7rq\")
-"
-
-[sub_resource type="Resource" id="Resource_dwnrp"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_1mf7o")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="GDScript" id="GDScript_nvt8u"]
-script/source = "extends Part
-## Bridge placeholder
-
-
-static func get_category() -> PaletteCategory:
-	return load(\"uid://wtetnd7c3nmk\")
-
-
-static func get_part_icon(_environment: SubArea) -> Texture2D:
-	return preload(\"uid://bvtarfyokhukk\")
-"
-
-[sub_resource type="Resource" id="Resource_hndda"]
-script = ExtResource("5_sp7ve")
-part = SubResource("GDScript_nvt8u")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
-
-[sub_resource type="Resource" id="Resource_w8smy"]
-script = ExtResource("7_6snt5")
-items = Array[ExtResource("5_sp7ve")]([SubResource("Resource_prh7l"), SubResource("Resource_td1aq"), SubResource("Resource_qhyt5"), SubResource("Resource_d7a27"), SubResource("Resource_1mf7o"), SubResource("Resource_nvt8u"), SubResource("Resource_dwnrp"), SubResource("Resource_hndda")])
-metadata/_custom_type_script = "uid://bjs845vgkw44b"
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qv7f8"]
+resource_local_to_scene = true
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("13_pr0l3")
+texture_margin_left = 33.0
+texture_margin_top = 33.0
+texture_margin_right = 33.0
+texture_margin_bottom = 39.0
+expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr0l3"]
 resource_local_to_scene = true
@@ -212,19 +87,6 @@ texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crwvd"]
-resource_local_to_scene = true
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-texture = ExtResource("13_pr0l3")
-texture_margin_left = 33.0
-texture_margin_top = 33.0
-texture_margin_right = 33.0
-texture_margin_bottom = 39.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fhqrb"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -332,7 +194,6 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("4_dyxkw")
 script = ExtResource("4_rtyax")
-page = SubResource("Resource_w8smy")
 
 [node name="Shadow" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing" unique_id=1117463354]
 show_behind_parent = true
@@ -356,7 +217,18 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("5_a6583")
 stretch_mode = 2
 
-[node name="PaletteCenter" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing" unique_id=697929468]
+[node name="Icons" type="Control" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing" unique_id=2140958595]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PaletteCenter" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing/Icons" unique_id=697929468]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 171.0
 offset_top = 171.0
@@ -364,14 +236,14 @@ offset_right = 237.0
 offset_bottom = 237.0
 texture = ExtResource("10_w63je")
 
-[node name="Cutout" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing/PaletteCenter" unique_id=2117410450]
+[node name="Cutout" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing/Icons/PaletteCenter" unique_id=2117410450]
 clip_children = 1
 layout_mode = 0
 offset_right = 66.0
 offset_bottom = 66.0
 texture = ExtResource("11_w8smy")
 
-[node name="CenterIcon" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing/PaletteCenter/Cutout" unique_id=62411630]
+[node name="CenterIcon" type="TextureRect" parent="Editor/PaletteMenu/RingContainer/Control/PaletteRing/Icons/PaletteCenter/Cutout" unique_id=62411630]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -385,6 +257,41 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BackBtn" type="TextureButton" parent="Editor/PaletteMenu/RingContainer/Control" unique_id=1752538872]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -453.0
+offset_top = -70.5
+offset_right = -309.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+texture_normal = ExtResource("12_crwvd")
+flip_h = true
+script = ExtResource("13_fhqrb")
+
+[node name="NextBtn" type="TextureButton" parent="Editor/PaletteMenu/RingContainer/Control" unique_id=1056736734]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 309.0
+offset_top = -70.5
+offset_right = 453.0
+offset_bottom = 73.5
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+texture_normal = ExtResource("12_crwvd")
+script = ExtResource("13_fhqrb")
 
 [node name="Tabs" type="HBoxContainer" parent="Editor/PaletteMenu" unique_id=713539155]
 unique_name_in_owner = true
@@ -402,31 +309,31 @@ theme_override_constants/separation = 18
 
 [node name="Terrain" parent="Editor/PaletteMenu/Tabs" unique_id=828071019 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_pr0l3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_pr0l3")
-theme_override_styles/hover = SubResource("StyleBoxTexture_pr0l3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qv7f8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qv7f8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qv7f8")
 button_pressed = true
 category = ExtResource("4_crwvd")
 
 [node name="Items" parent="Editor/PaletteMenu/Tabs" unique_id=183601785 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_5gafy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5gafy")
-theme_override_styles/hover = SubResource("StyleBoxTexture_5gafy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pr0l3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pr0l3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pr0l3")
 category = ExtResource("5_fhqrb")
 
 [node name="Enemies" parent="Editor/PaletteMenu/Tabs" unique_id=1842016254 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_crwvd")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_crwvd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_crwvd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5gafy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5gafy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5gafy")
 category = ExtResource("6_d4hij")
 
 [node name="Gizmos" parent="Editor/PaletteMenu/Tabs" unique_id=633540572 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_fhqrb")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_fhqrb")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fhqrb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_crwvd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_crwvd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_crwvd")
 category = ExtResource("7_4qrp7")
 
 [node name="CloseBtn" type="TextureButton" parent="Editor/PaletteMenu" unique_id=1133375105]
@@ -698,15 +605,19 @@ alignment = 1
 
 [node name="Card1" parent="Editor/TopPanel/Cards" unique_id=1935482387 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
+disabled = true
 
 [node name="Card2" parent="Editor/TopPanel/Cards" unique_id=605082263 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
+disabled = true
 
 [node name="Card3" parent="Editor/TopPanel/Cards" unique_id=1513476386 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
+disabled = true
 
 [node name="Card4" parent="Editor/TopPanel/Cards" unique_id=423114736 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
+disabled = true
 
 [node name="Card5" parent="Editor/TopPanel/Cards" unique_id=1986320930 instance=ExtResource("19_qv7f8")]
 layout_mode = 2
