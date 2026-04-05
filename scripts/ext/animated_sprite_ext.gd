@@ -1,6 +1,7 @@
 class_name AnimatedSpriteExt
 extends AnimatedSprite2D
-#
+## @deprecated: 
+
 #var shadows: Shadows
 #
 #

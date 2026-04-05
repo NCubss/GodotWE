@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PaletteCategory" format=3 uid="uid://wtetnd7c3nmk"]
 
-[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/palette_page.gd" id="1_eebnt"]
+[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/ui/editor/palette/palette_page.gd" id="1_eebnt"]
 [ext_resource type="Texture2D" uid="uid://cmf3y1dlfbpb" path="res://textures/ui/editor/palette/category_terrain.svg" id="1_prh7l"]
-[ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/palette_category.gd" id="2_077e1"]
-[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/palette_item.gd" id="2_eebnt"]
+[ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_077e1"]
+[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="2_eebnt"]
 [ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="3_prh7l"]
 
 [sub_resource type="Resource" id="Resource_prh7l"]

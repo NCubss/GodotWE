@@ -15,7 +15,6 @@ var turning := false:
 var turns_done := 0
 
 func _sprout_end(_eject_direction: Vector2, _activator: PhysicsBody2D) -> void:
-	print("ok")
 	turning = true
 
 func _sprite_animation_looped() -> void:

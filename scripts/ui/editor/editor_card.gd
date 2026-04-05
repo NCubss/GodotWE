@@ -59,7 +59,6 @@ func _draw() -> void:
 func _toggled(toggled_on: bool) -> void:
 	if Engine.is_editor_hint():
 		return
-	prints(self, toggled_on)
 	if toggled_on:
 		%SoundPlayer.stream = preload("uid://srqkyx5dmd3p") # selected
 		if _icon_offset_tween != null:

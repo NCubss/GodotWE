@@ -268,4 +268,3 @@ texture_filter = 2
 scale = Vector2(0.333, 0.333)
 sprite_frames = SubResource("SpriteFrames_um04y")
 autoplay = "default"
-frame = 35

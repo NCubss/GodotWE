@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PaletteCategory" format=3 uid="uid://kxjxg3sfdp1g"]
 
 [ext_resource type="Texture2D" uid="uid://b8qu7f3bt0r25" path="res://textures/ui/editor/palette/category_gizmos.svg" id="1_jh0kp"]
-[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/palette_page.gd" id="1_ll0gb"]
-[ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/palette_category.gd" id="2_78qcp"]
-[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/palette_item.gd" id="3_6r1nn"]
+[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/ui/editor/palette/palette_page.gd" id="1_ll0gb"]
+[ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_78qcp"]
+[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="3_6r1nn"]
 
 [sub_resource type="Resource" id="Resource_ruryj"]
 script = ExtResource("1_ll0gb")

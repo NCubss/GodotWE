@@ -14,10 +14,3 @@ signal collided(collision: KinematicCollision2D)
 ## collisions.
 @warning_ignore("unused_signal")
 signal just_collided(collision: KinematicCollision2D)
-
-var _test: Tween
-
-
-func _process(_delta: float) -> void:
-	if _test != null:
-		print(_test.is_running())
