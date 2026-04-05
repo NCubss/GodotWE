@@ -28,3 +28,21 @@ CLAPPERBOARD_PLAY,Play,Jugar
 CLAPPERBOARD_EDIT,Make,Editar
 TITLE_CLAPPERBOARD_EDIT,Make,Crear
 TITLE_CLAPPERBOARD_PLAY,Play,Jugar
+EDITOR_COURSEBOT_SAVE_NEW,Save as,Guardar nuevo nivel
+EDITOR_COURSEBOT_SAVE_CHANGES,Save changes,Guardar cambios
+EDITOR_COURSEBOT_LOAD,Load,Cargar
+CREDITS_PROGRAMMERS,Programmers,Programadores
+CREDITS_SOUNDS_MUSIC,Sounds and Music,Sonido y Música
+CREDITS_SPRITERS,Sprites,Sprites
+CREDITS_TRANSLATIONS,Translations,Traducciones
+CREDITS_ANIMATION_EFFECTS,Animation and Effects,Animación y Efectos
+CREDITS_TYPOGRAPHY,Typography,Tipografía
+CREDITS_ADDITIONAL,Additional Contributions,Contribuciones Adicionales
+CREDITS_SPECIAL_THANKS,Special Thanks,Agradecimientos Especiales
+CREDITS_POWERED_BY,Powered by / Resources,Hecho con / Recursos
+CREDITS_EK_CONTRIBUTIONS,Engine Kingdom contributions,Contribuciones de Engine Kingdom
+CREDITS_AND_YOU,"And you, %s ❤️","Y a tí, %s ❤️"
+CATEGORY_TERRAIN,Terrain,Superfícies
+CATEGORY_ITEMS,Items,Objetos
+CATEGORY_ENEMIES,Enemies,Enemigos
+CATEGORY_GIZMOS,Gizmos,Artilugios

@@ -7,8 +7,12 @@ variation_embolden = 0.7
 
 [resource]
 default_font_size = 24
-Button/colors/font_color = Color(0.352941, 0.0784314, 0.109804, 1)
+Button/colors/font_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+Button/colors/font_disabled_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+Button/colors/font_focus_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
 Button/colors/font_hover_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/styles/normal = SubResource("StyleBoxTexture_y5boi")
 Label/font_sizes/font_size = 24
 RichTextLabel/constants/paragraph_separation = 16

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://7myvf40h2mob"]
+
+[ext_resource type="Texture2D" uid="uid://c0omteb87asj0" path="res://textures/ui/editor/palette/category.svg" id="1_clty1"]
+[ext_resource type="Script" uid="uid://dec6uhakyw2vv" path="res://scripts/ui/editor/category_btn.gd" id="2_wcrwf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kmnsq"]
+resource_local_to_scene = true
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("1_clty1")
+texture_margin_left = 33.0
+texture_margin_top = 33.0
+texture_margin_right = 33.0
+texture_margin_bottom = 39.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clty1"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ds1e7"]
+resource_local_to_scene = false
+
+[node name="CategoryBtn" type="Button" unique_id=828071019]
+custom_minimum_size = Vector2(66, 66)
+offset_right = 66.0
+offset_bottom = 66.0
+theme_override_colors/font_pressed_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_constants/h_separation = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_kmnsq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kmnsq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kmnsq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_clty1")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_ds1e7")
+clip_text = true
+script = ExtResource("2_wcrwf")

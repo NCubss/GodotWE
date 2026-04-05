@@ -19,8 +19,11 @@ func _draw() -> void:
 
 
 func _pressed() -> void:
-	UISoundPlayer.stream = preload("uid://cra6louyi26t1")
-	UISoundPlayer.play()
+	%PaletteSounds.stream = preload("uid://cra6louyi26t1")
+	%PaletteSounds.play()
 	%RightPanel.status = EditorPanel.Status.HIDDEN
 	%LeftPanel.status = EditorPanel.Status.HIDDEN
 	%TopPanel.status = EditorPanel.Status.HIDDEN
+	%Clapperboard.off_screen = true
+	%Editor.part_interact = false
+	%PaletteMenu.show()

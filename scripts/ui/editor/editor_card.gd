@@ -3,7 +3,18 @@ class_name EditorCard
 extends TextureButton
 
 ## The part this card represents.
-@export var part: Script
+@export var part: Script:
+	set(v):
+		if v == null:
+			return
+		if not is_node_ready():
+			await ready
+		if _editor().level == null:
+			await _editor().loaded
+		%Icon.texture = v.get_part_icon(_editor().level.current_sub_area)
+		%Icon.texture_filter = v.get_part_icon_filter(
+				_editor().level.current_sub_area)
+		part = v
 
 var _card_offset := Vector2(0, 0)
 var _icon_offset := Vector2(0, 0)
@@ -24,14 +35,14 @@ func _process(_delta: float) -> void:
 		return
 	if _card_offset_tween != null and _card_offset_tween.is_running():
 		queue_redraw()
-	%IconContainer.position = _card_offset + Vector2(6, 9)
-	%Icon.position = _icon_offset - Vector2(3, 3)
+	%Cutout.position = _card_offset + Vector2(0, 3)
+	%Icon.position = _icon_offset + Vector2(3, 3)
 
 
 func _draw() -> void:
 	var color: Color
 	if part != null:
-		color = Part.get_category_color(part.get_category())
+		color = Part.get_category().color
 	else:
 		color = Color.GRAY
 	draw_texture(preload("uid://bcyyrpipyld5c"), _card_offset, color)
@@ -45,15 +56,10 @@ func _draw() -> void:
 	draw_texture(texture, _card_offset + Vector2(0, 6))
 
 
-func _editor_loaded() -> void:
-	if part != null:
-		%Icon.texture = part.get_part_icon(%Editor.level.current_sub_area)
-		%Icon.texture_filter = part.get_part_icon_filter(%Editor.level.current_sub_area)
-
-
 func _toggled(toggled_on: bool) -> void:
 	if Engine.is_editor_hint():
 		return
+	prints(self, toggled_on)
 	if toggled_on:
 		%SoundPlayer.stream = preload("uid://srqkyx5dmd3p") # selected
 		if _icon_offset_tween != null:
@@ -102,3 +108,7 @@ func _exited() -> void:
 	_card_offset_tween.tween_property(self, "_card_offset",
 			Vector2(0, 0), 0.1) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
+func _editor() -> Editor:
+	return (get_tree().current_scene as Level).editor

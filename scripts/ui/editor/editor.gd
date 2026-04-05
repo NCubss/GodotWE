@@ -33,6 +33,7 @@ func _ready():
 	%LeftPanel.status = EditorPanel.Status.OPEN
 	%TopPanel.status = EditorPanel.Status.OPEN
 	%RightPanel.status = EditorPanel.Status.OPEN
+	%Clapperboard.off_screen = false
 
 
 func _process(_delta: float) -> void:
@@ -77,7 +78,7 @@ func load() -> void:
 	level.playing.connect(_play)
 	level.editing.connect(_edit)
 	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
-	MusicPlayer.play()
+	MusicPlayer.play.call_deferred()
 	loaded.emit()
 
 

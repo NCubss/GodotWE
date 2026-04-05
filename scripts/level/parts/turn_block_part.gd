@@ -2,8 +2,8 @@ class_name TurnBlockPart
 extends Part
 
 
-static func get_category() -> Category:
-	return Category.TERRAIN
+static func get_category() -> PaletteCategory:
+	return load("uid://wtetnd7c3nmk")
 
 
 static func get_part_icon(_environment: SubArea) -> Texture2D:

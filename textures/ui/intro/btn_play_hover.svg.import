@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_play_hover.svg-a1e9f1692a320c8d0517bf7b0e
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 compress=true

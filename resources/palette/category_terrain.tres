@@ -1,0 +1,152 @@
+[gd_resource type="Resource" script_class="PaletteCategory" format=3 uid="uid://wtetnd7c3nmk"]
+
+[ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/palette_page.gd" id="1_eebnt"]
+[ext_resource type="Texture2D" uid="uid://cmf3y1dlfbpb" path="res://textures/ui/editor/palette/category_terrain.svg" id="1_prh7l"]
+[ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/palette_category.gd" id="2_077e1"]
+[ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/palette_item.gd" id="2_eebnt"]
+[ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="3_prh7l"]
+
+[sub_resource type="Resource" id="Resource_prh7l"]
+script = ExtResource("2_eebnt")
+part = ExtResource("3_prh7l")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_qhyt5"]
+script/source = "extends Part
+## Slope placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://gjyyk5m1ftc\")
+"
+
+[sub_resource type="Resource" id="Resource_td1aq"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_qhyt5")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_prh7l"]
+script/source = "extends Part
+## Pipebase placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://61p7dqcpmbkb\")
+"
+
+[sub_resource type="Resource" id="Resource_qhyt5"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_prh7l")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_td1aq"]
+script/source = "extends Part
+## Pipe placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://cjuqthhe8eq86\")
+"
+
+[sub_resource type="Resource" id="Resource_d7a27"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_td1aq")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_bfwuo"]
+script/source = "extends Part
+## Spiketrap placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://ckiyycc2wu7db\")
+"
+
+[sub_resource type="Resource" id="Resource_1mf7o"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_bfwuo")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_d7a27"]
+script/source = "extends Part
+## Mushroom platform placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://byhgr4scsrepq\")
+"
+
+[sub_resource type="Resource" id="Resource_nvt8u"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_d7a27")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_1mf7o"]
+script/source = "extends Part
+## Semi-solid platform placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://dgm5dxxcvt7rq\")
+"
+
+[sub_resource type="Resource" id="Resource_dwnrp"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_1mf7o")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_nvt8u"]
+script/source = "extends Part
+## Bridge placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://bvtarfyokhukk\")
+"
+
+[sub_resource type="Resource" id="Resource_hndda"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_nvt8u")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_bfwuo"]
+script = ExtResource("1_eebnt")
+items = Array[ExtResource("2_eebnt")]([SubResource("Resource_prh7l"), SubResource("Resource_td1aq"), SubResource("Resource_qhyt5"), SubResource("Resource_d7a27"), SubResource("Resource_1mf7o"), SubResource("Resource_nvt8u"), SubResource("Resource_dwnrp"), SubResource("Resource_hndda")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[resource]
+script = ExtResource("2_077e1")
+color = Color(0.07058824, 0.83137256, 0.92941177, 1)
+name = &"CATEGORY_TERRAIN"
+icon = ExtResource("1_prh7l")
+pages = Array[ExtResource("1_eebnt")]([SubResource("Resource_bfwuo")])
+metadata/_custom_type_script = "uid://c0p35artiwbxc"

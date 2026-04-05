@@ -12,6 +12,7 @@ size = Vector2(16, 16)
 resource_local_to_scene = true
 atlas = ExtResource("2_83ppi")
 region = Rect2(80, 160, 16, 16)
+filter_clip = true
 
 [node name="GroundPart" unique_id=573506870 instance=ExtResource("1_6ie8e")]
 script = ExtResource("2_akctd")

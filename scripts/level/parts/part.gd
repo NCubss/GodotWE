@@ -62,9 +62,9 @@ var _window: EditorWindow
 var _window_timer: SceneTreeTimer
 
 
-## Gets this part's [enum Category].
-static func get_category() -> Category:
-	return Category.TERRAIN
+## Gets this part's [PaletteCategory].
+static func get_category() -> PaletteCategory:
+	return load("uid://wtetnd7c3nmk")
 
 
 ## Gets the name of this part based on the [param environment].
@@ -106,22 +106,6 @@ static func is_placeable(grid_pos: Vector2i, world: World2D) -> bool:
 ## Creates an instance of this [Part].
 static func create() -> Part:
 	return load("uid://jr7c4ykh8awq").instantiate()
-
-
-## Gets the given category's ([param c]) color.
-static func get_category_color(c: Category) -> Color:
-	match c:
-		Category.TERRAIN:
-			return Color("12d4ed")
-		Category.ITEMS:
-			return Color("d851e1")
-		Category.ENEMIES:
-			return Color("6efa20")
-		Category.GIZMOS:
-			return Color("f2ef08")
-		_:
-			assert(false, "Invalid category %d" % c)
-			return Color.GRAY
 
 
 ## Useful when creating your own part and overriding [method is_placeable].

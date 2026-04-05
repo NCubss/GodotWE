@@ -39,6 +39,11 @@ var username: String:
 		ProjectSettings.set_setting("game/user/username", v)
 
 
+func _ready() -> void:
+	pass
+	#Input.use_accumulated_input = false
+
+
 ## Finds a child in the node [param parent] of [param type] type. This function
 ## only looks at direct children, not descendants.
 func find_child_by_class(parent: Node, type: Variant) -> Node:
