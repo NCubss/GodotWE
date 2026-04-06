@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dm510dlk0st0r" path="res://textures/tiles/question_block.png" id="2_om2ma"]
 [ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_m05ia"]
 [ext_resource type="Script" uid="uid://dedgj7iu2ix2b" path="res://scripts/components/block_component.gd" id="4_ab850"]
+[ext_resource type="Script" uid="uid://cgyfl6rnmoxnv" path="res://scripts/level/sprouts/coin_sprout.gd" id="5_m05ia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lx66l"]
 size = Vector2(16, 16)
@@ -44,6 +45,11 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="Resource" id="Resource_ab850"]
+resource_local_to_scene = true
+script = ExtResource("5_m05ia")
+metadata/_custom_type_script = "uid://cgyfl6rnmoxnv"
+
 [node name="QuestionBlock" type="StaticBody2D" unique_id=1370141498]
 z_index = 20
 script = ExtResource("1_om2ma")
@@ -67,6 +73,7 @@ metadata/_custom_type_script = "uid://vedwoxfxibus"
 [node name="BlockComponent" type="Node" parent="." unique_id=1469256663 node_paths=PackedStringArray("sprite")]
 unique_name_in_owner = true
 script = ExtResource("4_ab850")
+sprout = SubResource("Resource_ab850")
 sprite = NodePath("../Graphics")
 metadata/_custom_type_script = "uid://dedgj7iu2ix2b"
 

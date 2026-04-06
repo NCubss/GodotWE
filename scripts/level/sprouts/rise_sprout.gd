@@ -14,9 +14,7 @@ func end_sprout(position: Vector2, direction: Vector2) -> void:
 	sprouter.pos = position
 	sprouter.dir = direction
 	sprouter.off = offset
-	body.get_parent().add_child(sprouter)
-	print(body.get_tree().get_frame())
-	body.get_parent().move_child(sprouter, body.get_index())
+	body.add_sibling(sprouter)
 	empty = true
 
 

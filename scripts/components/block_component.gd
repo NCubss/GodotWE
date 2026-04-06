@@ -92,7 +92,7 @@ func _finish_sprout(
 ) -> void:
 	animate_sprout_end(sprite) \
 			.tween_property(get_parent(), "z_index", _old_z, 0)
-	if sprout != null and not sprout.empty:
+	if sprout != null:
 		sprout.end_sprout(_get_sprout_pos(eject_direction), eject_direction)
 		sprout_end.emit(normal, activator, sprout.empty)
 

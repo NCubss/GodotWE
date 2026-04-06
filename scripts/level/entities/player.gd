@@ -158,6 +158,8 @@ var jump_buffer_time := 2.0/60
 @export_custom(PROPERTY_HINT_NONE, "suffix:s")
 var coyote_time := 4.0/60
 
+## The player's collected coin count.
+var coins := 0
 ## The player's P-Meter value, from 0 to 7.
 var p_meter := 0
 ## The direction the player is facing. This value is either -1 or 1, and
@@ -172,7 +174,6 @@ var direction := 1:
 			held_item_tween.tween_interval(7/60.0)
 			held_item_tween.tween_property(self._held_item, "position", Vector2(-11 * direction, -1.5), 0)
 			direction = value
-			
 ## Used in processing coyote time.
 var just_fell := false
 ## The tween used to move the held item side to side when moving and turning.
@@ -195,6 +196,7 @@ const VOID_LEVEL = 64
 
 
 func _ready() -> void:
+	level.hud.player = self
 	# trigger setter
 	starting_powerup = starting_powerup
 	_powerup = starting_powerup
