@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cxu0namx61nsi"]
+
+[ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_okoou"]
+[ext_resource type="Texture2D" uid="uid://dwfdg8tvtkrwu" path="res://textures/tiles/coin.png" id="2_m65o8"]
+[ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="2_qjurq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjurq"]
+atlas = ExtResource("2_m65o8")
+region = Rect2(0, 0, 16, 16)
+filter_clip = true
+
+[node name="CoinPart" unique_id=1549879982 instance=ExtResource("1_okoou")]
+script = ExtResource("2_qjurq")
+
+[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=606453958]
+texture = SubResource("AtlasTexture_qjurq")

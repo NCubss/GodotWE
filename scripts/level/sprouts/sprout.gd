@@ -2,11 +2,16 @@
 class_name Sprout
 extends Resource
 ## Responsible for ejecting an item from a container with a [BlockComponent].
+## 
+## [b]Note:[/b] [member resource_local_to_scene] must be enabled otherwise the
+## sprout will fail to create.
 
 ## This sprout's container. Can be either [CharacterBodyExt] or [StaticBodyExt].
 var body: PhysicsBody2D
 ## Whether this sprout is done sprouting and the containing block should
-## continue.
+## continue. Note that once the sprout is empty, the container will no longer
+## call [method start_sprout] and [method end_sprout]. If this is set during
+## [method start_sprout], [method end_sprout] will still be called.
 var empty := false
 
 

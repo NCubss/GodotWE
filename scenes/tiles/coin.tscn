@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dt15xtlk2twqj"]
+
+[ext_resource type="Script" uid="uid://brhp856mtsw" path="res://scripts/level/tiles/coin.gd" id="1_7bo8k"]
+[ext_resource type="SpriteFrames" uid="uid://bbjiq1okyrimt" path="res://resources/coin_frames.tres" id="2_jmhxw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jiqiv"]
+size = Vector2(16, 16)
+
+[node name="Coin" type="Area2D" unique_id=1596163296]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_7bo8k")
+
+[node name="CollShape" type="CollisionShape2D" parent="." unique_id=1346587417]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_jiqiv")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1900332748]
+position = Vector2(8, 8)
+sprite_frames = ExtResource("2_jmhxw")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_body_entered"]

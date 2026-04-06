@@ -5,15 +5,21 @@
 [ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_rbwsn"]
 [ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="3_pamtw"]
 [ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="4_oeltg"]
+[ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="5_pamtw"]
 
 [sub_resource type="Resource" id="Resource_uerrj"]
 script = ExtResource("3_pamtw")
 part = ExtResource("4_oeltg")
 metadata/_custom_type_script = "uid://2lamiomhq6u3"
 
+[sub_resource type="Resource" id="Resource_oeltg"]
+script = ExtResource("3_pamtw")
+part = ExtResource("5_pamtw")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
 [sub_resource type="Resource" id="Resource_pdk8d"]
 script = ExtResource("1_055fs")
-items = Array[ExtResource("3_pamtw")]([SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj"), SubResource("Resource_uerrj")])
+items = Array[ExtResource("3_pamtw")]([SubResource("Resource_uerrj"), SubResource("Resource_oeltg"), null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]
