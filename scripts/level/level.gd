@@ -391,6 +391,9 @@ func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 
 
 func _ready() -> void:
+	hud = load(GameConstants.HUDS[game_style]).instantiate()
+	hud.level = self
+	add_child(hud)
 	for i in get_children():
 		if i is SubArea:
 			sub_areas.append(i)
@@ -399,9 +402,6 @@ func _ready() -> void:
 	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
 	if current_sub_area == null:
 		current_sub_area = sub_areas[0]
-	hud = load(GameConstants.HUDS[game_style]).instantiate()
-	hud.level = self
-	add_child(hud)
 	if editor != null:
 		editor.level = self
 		editor.load()
