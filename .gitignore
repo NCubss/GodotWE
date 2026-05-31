@@ -4,3 +4,6 @@ android/
 
 # Don't commit builds
 dist/
+
+# rider
+.idea/
