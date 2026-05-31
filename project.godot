@@ -35,6 +35,7 @@ SceneManager="*res://scripts/singletons/scene_manager.gd"
 GameSettings="*res://scripts/singletons/game_settings.gd"
 MainMenu="*uid://cqa781bc5m3v7"
 MusicPlayer="*uid://b57y74tgiebkd"
+EventBus="*uid://biiv8g05vscjt"
 
 [debug]
 
@@ -59,7 +60,7 @@ movie_writer/movie_file="C:/Users/NCubs/Code/Godot/Super Secret/dist/movie.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/terrain_icon_gen/plugin.cfg")
+enabled=PackedStringArray("res://addons/event_bus_plugin/plugin.cfg", "res://addons/terrain_icon_gen/plugin.cfg")
 
 [file_customization]
 
