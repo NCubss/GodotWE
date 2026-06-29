@@ -12,19 +12,17 @@ func _pressed() -> void:
 		else:
 			%PaletteSounds.stream = preload("uid://danwpgbsl7wsb")
 			%PaletteSounds.play()
-		%PaletteRing.page_index = posmod(%PaletteRing.page_index - 1,
-				%PaletteRing.category.pages.size())
+			%PaletteRing.page_index -= 1
 	# go forwards
 	else:
-		# go a category backwards
+		# go a category forwards
 		if %PaletteRing.page_index == %PaletteRing.category.pages.size() - 1:
 			_move_category(1)
-		# go a page backwards
+		# go a page forwards
 		else:
 			%PaletteSounds.stream = preload("uid://doegrnl8yjdr0")
 			%PaletteSounds.play()
-		%PaletteRing.page_index = posmod(%PaletteRing.page_index + 1,
-				%PaletteRing.category.pages.size())
+			%PaletteRing.page_index += 1
 
 
 func _input(event: InputEvent) -> void:
@@ -40,3 +38,5 @@ func _move_category(step: int) -> void:
 	var next: CategoryBtn = %Tabs.get_child(
 			posmod(idx + step, %Tabs.get_child_count()))
 	next.button_pressed = true
+	if step == -1:
+		%PaletteRing.page_index = next.category.pages.size() - 1

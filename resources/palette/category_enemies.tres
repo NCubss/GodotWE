@@ -4,10 +4,828 @@
 [ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/ui/editor/palette/palette_page.gd" id="1_p8sr8"]
 [ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_l1v8a"]
 [ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="3_oc72v"]
+[ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="4_oc72v"]
+
+[sub_resource type="Resource" id="Resource_3u3g6"]
+script = ExtResource("3_oc72v")
+part = ExtResource("4_oc72v")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_lcobj"]
+script/source = "extends Part
+## Koopa placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://i6yqrkdrb4c8\")
+"
+
+[sub_resource type="Resource" id="Resource_qyyxf"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_lcobj")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_oc72v"]
+script/source = "extends Part
+## Buzzy beetle placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://w0md0f0jr8kl\")
+"
+
+[sub_resource type="Resource" id="Resource_lcobj"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_oc72v")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_pe0op"]
+script/source = "extends Part
+## Spiketop placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://d33c2hmuje2hw\")
+"
+
+[sub_resource type="Resource" id="Resource_xmvi4"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_pe0op")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_3u3g6"]
+script/source = "extends Part
+## Spiny placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://bjvtsuha6v4xn\")
+"
+
+[sub_resource type="Resource" id="Resource_8tpfy"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_3u3g6")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_qyyxf"]
+script/source = "extends Part
+## Blooper placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://tgk2cknx1qss\")
+"
+
+[sub_resource type="Resource" id="Resource_tws55"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_qyyxf")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_3jr5i"]
+script/source = "extends Part
+## Cheep Cheep placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://c4ggg7c0cx34b\")
+"
+
+[sub_resource type="Resource" id="Resource_0ghnh"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_3jr5i")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
 
 [sub_resource type="Resource" id="Resource_pe0op"]
 script = ExtResource("1_p8sr8")
-items = Array[ExtResource("3_oc72v")]([null, null, null, null, null, null, null])
+items = Array[ExtResource("3_oc72v")]([SubResource("Resource_3u3g6"), SubResource("Resource_qyyxf"), SubResource("Resource_lcobj"), SubResource("Resource_xmvi4"), SubResource("Resource_8tpfy"), SubResource("Resource_tws55"), SubResource("Resource_0ghnh")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[sub_resource type="GDScript" id="GDScript_f8v0l"]
+script/source = "extends Part
+## Piranha Plant placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://be55dhcf7owoa\")
+"
+
+[sub_resource type="Resource" id="Resource_qi5br"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_f8v0l")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_5sx6i"]
+script/source = "extends Part
+## Muncher placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://df1ca7bh7vtc6\")
+"
+
+[sub_resource type="Resource" id="Resource_v6v60"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_5sx6i")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_fqrfm"]
+script/source = "extends Part
+## Thwomp placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://wlv1iyybjggv\")
+"
+
+[sub_resource type="Resource" id="Resource_70eak"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_fqrfm")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_c57vx"]
+script/source = "extends Part
+## Monty Mole placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://hgaalm06tenc\")
+"
+
+[sub_resource type="Resource" id="Resource_5a12q"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_c57vx")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_xmvi4"]
+script/source = "extends Part
+## Rocky Wrench placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://cl1x8ewcjgbn1\")
+"
+
+[sub_resource type="Resource" id="Resource_ghqc4"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_xmvi4")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_8tpfy"]
+script/source = "extends Part
+## Hammer Bro placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_2uv51"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_8tpfy")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_tws55"]
+script/source = "extends Part
+## Chain Chomp placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://bf7hqg3s8l65b\")
+"
+
+[sub_resource type="Resource" id="Resource_52iea"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_tws55")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_0ghnh"]
+script/source = "extends Part
+## Spike placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_cs4mw"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_0ghnh")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_3jr5i"]
+script = ExtResource("1_p8sr8")
+items = Array[ExtResource("3_oc72v")]([SubResource("Resource_qi5br"), SubResource("Resource_v6v60"), SubResource("Resource_70eak"), SubResource("Resource_5a12q"), SubResource("Resource_ghqc4"), SubResource("Resource_2uv51"), SubResource("Resource_52iea"), SubResource("Resource_cs4mw")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[sub_resource type="GDScript" id="GDScript_qi5br"]
+script/source = "extends Part
+## Wiggler placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://d0cpyos8h6jak\")
+"
+
+[sub_resource type="Resource" id="Resource_idq43"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_qi5br")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_v6v60"]
+script/source = "extends Part
+## Boo placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_hw8jr"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_v6v60")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_70eak"]
+script/source = "extends Part
+## Podoboo placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://di4dq4nld3js5\")
+"
+
+[sub_resource type="Resource" id="Resource_obibg"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_70eak")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_5a12q"]
+script/source = "extends Part
+## Bob-Omb placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://churdrgnwqjyd\")
+"
+
+[sub_resource type="Resource" id="Resource_eteww"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_5a12q")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_ghqc4"]
+script/source = "extends Part
+## Dry Bones placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_alpds"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_ghqc4")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_2uv51"]
+script/source = "extends Part
+## Fishbone placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_0pqoq"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_2uv51")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_52iea"]
+script/source = "extends Part
+## Kamek placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_hlxhq"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_52iea")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_cs4mw"]
+script/source = "extends Part
+## Pokey placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_n0ckh"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_cs4mw")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_f8v0l"]
+script = ExtResource("1_p8sr8")
+items = Array[ExtResource("3_oc72v")]([SubResource("Resource_idq43"), SubResource("Resource_hw8jr"), SubResource("Resource_obibg"), SubResource("Resource_eteww"), SubResource("Resource_alpds"), SubResource("Resource_0pqoq"), SubResource("Resource_hlxhq"), SubResource("Resource_n0ckh")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[sub_resource type="GDScript" id="GDScript_idq43"]
+script/source = "extends Part
+## Bowser placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_hxvlo"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_idq43")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_hw8jr"]
+script/source = "extends Part
+## Bowser Jr. placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_gg616"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_hw8jr")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_obibg"]
+script/source = "extends Part
+## Boom Boom placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_ka0l8"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_obibg")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_eteww"]
+script/source = "extends Part
+## Mechakoopa placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_auyi0"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_eteww")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_alpds"]
+script/source = "extends Part
+## Angry Sun / Moon placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	if _environment.night_mode:
+		return preload(\"uid://ynif4t72mw2q\")
+	else:
+		return preload(\"uid://cin4oqsp5sclo\")
+"
+
+[sub_resource type="Resource" id="Resource_w804p"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_alpds")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_0pqoq"]
+script/source = "extends Part
+## Lakitu placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_xxfyw"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_0pqoq")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_hlxhq"]
+script/source = "extends Part
+## Clown Car placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_xrhds"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_hlxhq")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_5sx6i"]
+script = ExtResource("1_p8sr8")
+items = Array[ExtResource("3_oc72v")]([SubResource("Resource_hxvlo"), SubResource("Resource_gg616"), SubResource("Resource_ka0l8"), SubResource("Resource_auyi0"), SubResource("Resource_w804p"), SubResource("Resource_xxfyw"), SubResource("Resource_xrhds")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[sub_resource type="GDScript" id="GDScript_n0ckh"]
+script/source = "extends Part
+## Bony Beetle placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_heaqc"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_n0ckh")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_hxvlo"]
+script/source = "extends Part
+## Goalkeeper placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_0yb7y"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_hxvlo")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_gg616"]
+script/source = "extends Part
+## Huckit Crab placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_htyj5"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_gg616")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_ka0l8"]
+script/source = "extends Part
+## Grrrol placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_o0f42"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_ka0l8")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_auyi0"]
+script/source = "extends Part
+## Ninji placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_sbxrb"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_auyi0")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_w804p"]
+script/source = "extends Part
+## Waddlewing placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_t3bmm"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_w804p")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_xxfyw"]
+script/source = "extends Part
+## Cooligan placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_jm0eh"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_xxfyw")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_fqrfm"]
+script = ExtResource("1_p8sr8")
+items = Array[ExtResource("3_oc72v")]([SubResource("Resource_heaqc"), SubResource("Resource_0yb7y"), SubResource("Resource_htyj5"), SubResource("Resource_o0f42"), SubResource("Resource_sbxrb"), SubResource("Resource_t3bmm"), SubResource("Resource_jm0eh")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
+[sub_resource type="GDScript" id="GDScript_xrhds"]
+script/source = "extends Part
+## Iggy placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_n7omv"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_xrhds")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_heaqc"]
+script/source = "extends Part
+## Larry placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_0ab58"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_heaqc")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_0yb7y"]
+script/source = "extends Part
+## Wendy placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_6u6tp"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_0yb7y")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_htyj5"]
+script/source = "extends Part
+## Lemmy placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_5sk08"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_htyj5")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_o0f42"]
+script/source = "extends Part
+## Roy placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_jwwe7"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_o0f42")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_sbxrb"]
+script/source = "extends Part
+## Morton placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_s7ndr"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_sbxrb")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_t3bmm"]
+script/source = "extends Part
+## Ludwig placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://bisixphutjm6u\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return
+"
+
+[sub_resource type="Resource" id="Resource_m5l20"]
+script = ExtResource("3_oc72v")
+part = SubResource("GDScript_t3bmm")
+disabled = true
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_c57vx"]
+script = ExtResource("1_p8sr8")
+items = Array[ExtResource("3_oc72v")]([SubResource("Resource_n7omv"), SubResource("Resource_0ab58"), SubResource("Resource_6u6tp"), SubResource("Resource_5sk08"), SubResource("Resource_jwwe7"), SubResource("Resource_s7ndr"), SubResource("Resource_m5l20")])
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]
@@ -15,5 +833,5 @@ script = ExtResource("2_l1v8a")
 color = Color(0.43137255, 0.98039216, 0.1254902, 1)
 name = &"CATEGORY_ENEMIES"
 icon = ExtResource("1_m86ct")
-pages = Array[ExtResource("1_p8sr8")]([SubResource("Resource_pe0op")])
+pages = Array[ExtResource("1_p8sr8")]([SubResource("Resource_pe0op"), SubResource("Resource_3jr5i"), SubResource("Resource_f8v0l"), SubResource("Resource_5sx6i"), SubResource("Resource_fqrfm"), SubResource("Resource_c57vx")])
 metadata/_custom_type_script = "uid://c0p35artiwbxc"

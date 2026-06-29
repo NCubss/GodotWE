@@ -21,7 +21,7 @@ func load(placed_from_editor := false) -> void:
 	refresh_sprite(placed_from_editor)
 
 
-func _atlas(x: int, y: int) -> void:
+func atlas(x: int, y: int) -> void:
 	_tex.region.position = Vector2(x, y) * 16
 
 
@@ -90,7 +90,7 @@ func refresh_sprite(refresh_nearby := true) -> void:
 
 
 func reset_sprite() -> void:
-	_atlas(5, 10)
+	atlas(5, 10)
 
 
 func _get_nearby_tiles(
@@ -154,132 +154,132 @@ func _connect(pos: Vector2i, data: Dictionary[Vector2i, GroundPart]) -> void:
 						if left:
 							if bottom_left:
 								if top_left:
-									_atlas(randi_range(1, 4), 1)
+									atlas(randi_range(1, 4), 1)
 								else:
-									_atlas(2, 9)
+									atlas(2, 9)
 							elif top_left:
-								_atlas(2, 10)
+								atlas(2, 10)
 							else:
-								_atlas(2, 8)
+								atlas(2, 8)
 						elif right_right:
-							_atlas(0, randi_range(1, 4))
+							atlas(0, randi_range(1, 4))
 						else:
-							_atlas(1, 3)
+							atlas(1, 3)
 					elif left:
 						if bottom_left:
 							if top_left:
-								_atlas(3, 10)
+								atlas(3, 10)
 							else:
-								_atlas(4, 4)
+								atlas(4, 4)
 						elif top_left:
-							_atlas(1, 10)
+							atlas(1, 10)
 						else:
-							_atlas(4, 2)
+							atlas(4, 2)
 					else:
-						_atlas(0, 10)
+						atlas(0, 10)
 				elif left:
 					if top_left:
-						_atlas(randi_range(1, 4), 5)
+						atlas(randi_range(1, 4), 5)
 					else:
-						_atlas(2, 11)
+						atlas(2, 11)
 				elif right_right or bottom_right:
-					_atlas(0, 5)
+					atlas(0, 5)
 				else:
-					_atlas(1, 4)
+					atlas(1, 4)
 			elif bottom:
 				if bottom_right:
 					if left:
 						if bottom_left:
 							if top_left:
-								_atlas(3, 9)
+								atlas(3, 9)
 							else:
-								_atlas(1, 9)
+								atlas(1, 9)
 						elif top_left:
-							_atlas(3, 4)
+							atlas(3, 4)
 						else:
-							_atlas(4, 3)
+							atlas(4, 3)
 					else:
-						_atlas(0, 9)
+						atlas(0, 9)
 				elif left:
 					if bottom_left:
 						if top_left:
-							_atlas(3, 8)
+							atlas(3, 8)
 						else:
-							_atlas(3, 3)
+							atlas(3, 3)
 					elif top_left:
-						_atlas(3, 2)
+						atlas(3, 2)
 					else:
-						_atlas(1, 8)
+						atlas(1, 8)
 				else:
-					_atlas(0, 8)
+					atlas(0, 8)
 			elif left:
 				if top_left:
-					_atlas(3, 11)
+					atlas(3, 11)
 				else:
-					_atlas(1, 11)
+					atlas(1, 11)
 			else:
-				_atlas(0, 11)
+				atlas(0, 11)
 		elif bottom:
 			if left:
 				if bottom_left:
 					if top_left:
 						if left_left:
-							_atlas(5, randi_range(1, 4))
+							atlas(5, randi_range(1, 4))
 						else:
-							_atlas(2, 3)
+							atlas(2, 3)
 					else:
-						_atlas(4, 9)
+						atlas(4, 9)
 				elif top_left:
-					_atlas(4, 10)
+					atlas(4, 10)
 				else:
-					_atlas(4, 8)
+					atlas(4, 8)
 			else:
-				_atlas(5, 8)
+				atlas(5, 8)
 		elif left:
 			if top_left:
 				if left_left or bottom_left:
-					_atlas(5, 5)
+					atlas(5, 5)
 				else:
-					_atlas(2, 4)
+					atlas(2, 4)
 			else:
-				_atlas(4, 11)
+				atlas(4, 11)
 		else:
-			_atlas(5, 9)
+			atlas(5, 9)
 	elif right:
 		if bottom:
 			if bottom_right:
 				if left:
 					if bottom_left:
-						_atlas(randi_range(1, 4), 0)
+						atlas(randi_range(1, 4), 0)
 					else:
-						_atlas(2, 7)
+						atlas(2, 7)
 				elif right_right or top_right:
-					_atlas(0, 0)
+					atlas(0, 0)
 				else:
-					_atlas(1, 2)
+					atlas(1, 2)
 			elif left:
 				if bottom_left:
-					_atlas(3, 7)
+					atlas(3, 7)
 				else:
-					_atlas(1, 7)
+					atlas(1, 7)
 			else:
-				_atlas(0, 7)
+				atlas(0, 7)
 		elif left:
-			_atlas(randi_range(1, 4), 6)
+			atlas(randi_range(1, 4), 6)
 		else:
-			_atlas(0, 6)
+			atlas(0, 6)
 	elif bottom:
 		if left:
 			if bottom_left:
 				if left_left or top_left:
-					_atlas(5, 0)
+					atlas(5, 0)
 				else:
-					_atlas(2, 2)
+					atlas(2, 2)
 			else:
-				_atlas(4, 7)
+				atlas(4, 7)
 		else:
-			_atlas(5, 7)
+			atlas(5, 7)
 	elif left:
-		_atlas(5, 6)
+		atlas(5, 6)
 	else:
-		_atlas(5, 10)
+		atlas(5, 10)

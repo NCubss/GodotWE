@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cij4fce4dx1vh" path="res://scripts/level/tiles/turn_block_tile.gd" id="1_jh353"]
 [ext_resource type="Texture2D" uid="uid://3gg35twlis0l" path="res://textures/tiles/turn_block.png" id="2_idixh"]
-[ext_resource type="Script" uid="uid://vedwoxfxibus" path="res://scripts/ext/animated_sprite_ext.gd" id="3_o4nxb"]
 [ext_resource type="Script" uid="uid://dedgj7iu2ix2b" path="res://scripts/components/block_component.gd" id="4_6rsai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idixh"]
@@ -77,17 +76,15 @@ collision_mask = 6
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_ximpl")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=144360478]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1062112311]
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_u7ide")
 animation = &"idle"
 autoplay = "idle"
-script = ExtResource("3_o4nxb")
-metadata/_custom_type_script = "uid://vedwoxfxibus"
 
 [node name="BlockComponent" type="Node" parent="." unique_id=978985610 node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_6rsai")
-sprite = NodePath("../Sprite")
+sprite = NodePath("")
 metadata/_custom_type_script = "uid://dedgj7iu2ix2b"
 
 [connection signal="animation_looped" from="Sprite" to="." method="_sprite_animation_looped"]

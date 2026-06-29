@@ -42,7 +42,7 @@ func _process(_delta: float) -> void:
 func _draw() -> void:
 	var color: Color
 	if part != null:
-		color = Part.get_category().color
+		color = part.get_category().color
 	else:
 		color = Color.GRAY
 	draw_texture(preload("uid://bcyyrpipyld5c"), _card_offset, color)

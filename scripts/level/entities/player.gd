@@ -64,7 +64,7 @@ extends Entity
 #}
 
 ## The player's sprite.
-@onready var sprite: AnimatedSpriteExt = %Sprite
+@onready var sprite: AnimatedSprite2D = %Sprite
 ## The player's sound player.
 @onready var sounds: AudioStreamPlayer = %Sounds
 ## The player's state machine.
@@ -196,6 +196,8 @@ const VOID_LEVEL = 64
 
 
 func _ready() -> void:
+	if not level.is_node_ready():
+		await level.ready
 	level.hud.player = self
 	# trigger setter
 	starting_powerup = starting_powerup

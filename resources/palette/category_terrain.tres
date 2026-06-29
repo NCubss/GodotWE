@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_077e1"]
 [ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="2_eebnt"]
 [ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="3_prh7l"]
+[ext_resource type="Script" uid="uid://ck5lib6hmitri" path="res://scripts/level/parts/turn_block_part.gd" id="5_td1aq"]
+[ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="6_bfwuo"]
 
 [sub_resource type="Resource" id="Resource_prh7l"]
 script = ExtResource("2_eebnt")
@@ -143,10 +145,133 @@ script = ExtResource("1_eebnt")
 items = Array[ExtResource("2_eebnt")]([SubResource("Resource_prh7l"), SubResource("Resource_td1aq"), SubResource("Resource_qhyt5"), SubResource("Resource_d7a27"), SubResource("Resource_1mf7o"), SubResource("Resource_nvt8u"), SubResource("Resource_dwnrp"), SubResource("Resource_hndda")])
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
+[sub_resource type="Resource" id="Resource_3pfnl"]
+script = ExtResource("2_eebnt")
+part = ExtResource("5_td1aq")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_g0pju"]
+script = ExtResource("2_eebnt")
+part = ExtResource("6_bfwuo")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_is2gh"]
+script/source = "extends Part
+## Hard block placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://ih0ox8aky6pd\")
+"
+
+[sub_resource type="Resource" id="Resource_4c5ih"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_is2gh")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_dwnrp"]
+script/source = "extends Part
+## Invisible question block placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://dt0m124qymd5e\")
+"
+
+[sub_resource type="Resource" id="Resource_is2gh"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_dwnrp")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_hndda"]
+script/source = "extends Part
+## Donut block placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://tsqlmrlcux26\")
+"
+
+[sub_resource type="Resource" id="Resource_5p0ud"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_hndda")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_3pfnl"]
+script/source = "extends Part
+## Note block placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://dkfixlm1hlm2b\")
+"
+
+[sub_resource type="Resource" id="Resource_u1m1b"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_3pfnl")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_g0pju"]
+script/source = "extends Part
+## Cloud placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://c34kegao1ny5i\")
+"
+
+[sub_resource type="Resource" id="Resource_8dauk"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_g0pju")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_4c5ih"]
+script/source = "extends Part
+## Ice block placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://wtetnd7c3nmk\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://bdjyordmlhryd\")
+"
+
+[sub_resource type="Resource" id="Resource_4eqib"]
+script = ExtResource("2_eebnt")
+part = SubResource("GDScript_4c5ih")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="Resource" id="Resource_yiidc"]
+script = ExtResource("1_eebnt")
+items = Array[ExtResource("2_eebnt")]([SubResource("Resource_3pfnl"), SubResource("Resource_g0pju"), SubResource("Resource_4c5ih"), SubResource("Resource_is2gh"), SubResource("Resource_5p0ud"), SubResource("Resource_u1m1b"), SubResource("Resource_8dauk"), SubResource("Resource_4eqib")])
+metadata/_custom_type_script = "uid://bjs845vgkw44b"
+
 [resource]
 script = ExtResource("2_077e1")
 color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 name = &"CATEGORY_TERRAIN"
 icon = ExtResource("1_prh7l")
-pages = Array[ExtResource("1_eebnt")]([SubResource("Resource_bfwuo"), SubResource("Resource_bfwuo")])
+pages = Array[ExtResource("1_eebnt")]([SubResource("Resource_bfwuo"), SubResource("Resource_yiidc")])
 metadata/_custom_type_script = "uid://c0p35artiwbxc"

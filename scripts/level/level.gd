@@ -124,81 +124,86 @@ const SWE_LEVEL_THEME_TABLE = {
 	"mountain": LevelTheme.MOUNTAIN,
 }
 const SWE_GROUND_FRAME_TABLE = [
-	Rect2(80, 144, 16, 16),
-	Rect2(0, 96, 16, 16),
-	Rect2(80, 112, 16, 16),
-	Rect2(80, 96, 16, 16),
-	Rect2(0, 176, 16, 16),
-	Rect2(0, 112, 16, 16),
-	Rect2(64, 112, 16, 16),
-	Rect2(64, 176, 16, 16),
-	Rect2(0, 80, 16, 16),
-	Rect2(0, 0, 16, 16),
-	Rect2(80, 0, 16, 16),
-	Rect2(80, 80, 16, 16),
-	Rect2(0, 128, 16, 16),
-	Rect2(16, 112, 16, 16),
-	Rect2(64, 128, 16, 16),
-	Rect2(16, 176, 16, 16),
-	Rect2(0, 160, 16, 16),
-	Rect2(0, 144, 16, 16),
-	Rect2(0, 16, 16, 16),
-	Rect2(32, 112, 16, 16),
-	Rect2(48, 112, 16, 16),
-	Rect2(16, 0, 16, 16),
-	Rect2(64, 144, 16, 16),
-	Rect2(64, 160, 16, 16),
-	Rect2(80, 16, 16, 16),
-	Rect2(32, 176, 16, 16),
-	Rect2(48, 176, 16, 16),
-	Rect2(16, 80, 16, 16),
-	Rect2(16, 128, 16, 16),
-	Rect2(64, 32, 16, 16),
-	Rect2(64, 48, 16, 16),
-	Rect2(48, 48, 16, 16),
-	Rect2(48, 32, 16, 16),
-	Rect2(32, 128, 16, 16),
-	Rect2(16, 144, 16, 16),
-	Rect2(48, 128, 16, 16),
-	Rect2(16, 160, 16, 16),
-	Rect2(64, 64, 16, 16),
-	Rect2(48, 64, 16, 16),
-	Rect2(32, 144, 16, 16),
-	Rect2(32, 160, 16, 16),
-	Rect2(48, 160, 16, 16),
-	Rect2(48, 144, 16, 16),
-	Rect2(80, 160, 16, 16),
-	Rect2(80, 128, 16, 16),
-	Rect2(16, 96, 16, 16),
-	Rect2(32, 16, 16, 16),
-	Rect2(48, 16, 16, 16),
-	Rect2(64, 16, 16, 16),
-	Rect2(32, 96, 16, 16),
-	Rect2(48, 96, 16, 16),
-	Rect2(64, 96, 16, 16),
-	Rect2(32, 0, 16, 16),
-	Rect2(48, 0, 16, 16),
-	Rect2(64, 0, 16, 16),
-	Rect2(32, 80, 16, 16),
-	Rect2(48, 80, 16, 16),
-	Rect2(64, 80, 16, 16),
-	Rect2(0, 32, 16, 16),
-	Rect2(0, 48, 16, 16),
-	Rect2(0, 64, 16, 16),
-	Rect2(80, 32, 16, 16),
-	Rect2(80, 48, 16, 16),
-	Rect2(80, 64, 16, 16),
-	Rect2(16, 32, 16, 16),
-	Rect2(32, 32, 16, 16),
-	Rect2(16, 48, 16, 16),
-	Rect2(32, 48, 16, 16),
-	Rect2(16, 64, 16, 16),
-	Rect2(32, 64, 16, 16),
+	Vector2(80, 144),
+	Vector2(0, 96),
+	Vector2(80, 112),
+	Vector2(80, 96),
+	Vector2(0, 176),
+	Vector2(0, 112),
+	Vector2(64, 112),
+	Vector2(64, 176),
+	Vector2(0, 80),
+	Vector2(0, 0),
+	Vector2(80, 0),
+	Vector2(80, 80),
+	Vector2(0, 128),
+	Vector2(16, 112),
+	Vector2(64, 128),
+	Vector2(16, 176),
+	Vector2(0, 160),
+	Vector2(0, 144),
+	Vector2(0, 16),
+	Vector2(32, 112),
+	Vector2(48, 112),
+	Vector2(16, 0),
+	Vector2(64, 144),
+	Vector2(64, 160),
+	Vector2(80, 16),
+	Vector2(32, 176),
+	Vector2(48, 176),
+	Vector2(16, 80),
+	Vector2(16, 128),
+	Vector2(64, 32),
+	Vector2(64, 48),
+	Vector2(48, 48),
+	Vector2(48, 32),
+	Vector2(32, 128),
+	Vector2(16, 144),
+	Vector2(48, 128),
+	Vector2(16, 160),
+	Vector2(64, 64),
+	Vector2(48, 64),
+	Vector2(32, 144),
+	Vector2(32, 160),
+	Vector2(48, 160),
+	Vector2(48, 144),
+	Vector2(80, 160),
+	Vector2(80, 128),
+	Vector2(16, 96),
+	Vector2(32, 16),
+	Vector2(48, 16),
+	Vector2(64, 16),
+	Vector2(32, 96),
+	Vector2(48, 96),
+	Vector2(64, 96),
+	Vector2(32, 0),
+	Vector2(48, 0),
+	Vector2(64, 0),
+	Vector2(32, 80),
+	Vector2(48, 80),
+	Vector2(64, 80),
+	Vector2(0, 32),
+	Vector2(0, 48),
+	Vector2(0, 64),
+	Vector2(80, 32),
+	Vector2(80, 48),
+	Vector2(80, 64),
+	Vector2(16, 32),
+	Vector2(32, 32),
+	Vector2(16, 48),
+	Vector2(32, 48),
+	Vector2(16, 64),
+	Vector2(32, 64),
 ]
 const SWE_OBJECT_TABLE = {
-	"obj_block_res": preload("uid://d1pyovyuwelpw"),
-	"obj_qblock_res": preload("uid://c4qpbj5epsp55"),
+	"obj_block_res": preload("uid://k7sykscno8vb"),
+	"obj_qblock_res": preload("uid://b7i6hre4grgbn"),
+	"obj_coin_res": preload("uid://cxu0namx61nsi"),
+	"obj_goomba_res": preload("uid://bqogj600unc0d"),
 }
+
+## The [Thread] that is used for level saving and loading.
+static var thread := Thread.new()
 
 ## The current status of the level.
 @export var status: Status
@@ -253,123 +258,195 @@ var sub_areas: Array[SubArea] = []
 var hud: HUD
 
 
-static func from_swe(path: String) -> Level:
-	var data = _unpack_swe(path)
-	var wrapper: Dictionary
-	var list: Array
-	var use_s: bool
-	if "MAIN" in data:
-		# old format
-		wrapper = data["MAIN"]
-		list = wrapper["AJUSTES"]
-		use_s = false
-	elif "S0" in data:
-		# new format
-		wrapper = data["S0"]
-		list = wrapper["S1"]
-		use_s = true
+static func _static_init() -> void:
+	thread.start(_thread)
+
+
+
+
+## Decodes a SWE file's JSON content. The returned array contains two elements:
+## a [bool] for whether the hash within the file is correct as an "anti-tamper"
+## measure, and the parsed JSON data. Returns an empty array if decoding failed.
+## Note that the parsed JSON can be any valid JSON value, however, if
+## untampered, the parsed data should always be a [Dictionary].
+static func decode_swe(data: PackedByteArray) -> Array:
+	print("Decoding SWE file...")
+	if data.size() < 41:
+		push_error("File is too small")
+		return []
+	var end_size: int
+	if data.decode_u8(data.size() - 1) == 0:
+		print("End contains null byte")
+		end_size = -1
 	else:
-		assert(false, "No 'S0' or 'MAIN' found in data")
+		print("End does not contain null byte")
+		end_size = 0
+	#var stored_hash = file.substr(file.length() - end_size, 40)
+	var stored_hash = data.slice(end_size - 40, data.size() + end_size) \
+			.get_string_from_utf8()
+	var b64 = data.slice(0, end_size - 40)
+	var crypto = Crypto.new()
+	var json = JSON.new()
+	var expected_hash = crypto.hmac_digest(HashingContext.HASH_SHA1,
+			SWE_HMAC_KEY.to_utf8_buffer(), b64).hex_encode()
+	print("Stored hash: %s" % stored_hash)
+	print("Expected hash: %s" % expected_hash)
+	var raw = Marshalls.base64_to_utf8(b64.get_string_from_utf8())
+	if raw == "":
+		push_error("Base64 decoding failed or raw JSON is empty")
+		return []
+	var err = json.parse(raw)
+	if err != OK:
+		push_error("JSON parsing failed (%s) at line %d: %s" % [
+				err,
+				json.get_error_line(),
+				json.get_error_message()])
+		return []
+	print("SWE decoding done!")
+	return [stored_hash == expected_hash, json.data]
+
+
+## Loads a [Level] from an SMM:WE SWE level file. Only loads basic level
+## information if [param meta_only] is [code]true[/code]. The loader is very
+## lenient and accepts unusual values and missing fields that are only possible
+## by tampering. If a value is unusable, it uses the default values.
+static func from_swe(path: String, meta_only := false) -> Level:
+	#region decoding and preparation
+	print_rich("[b]Loading level at path [code]%s[/code]...[/b]" % path)
+	var result = decode_swe(FileAccess.get_file_as_bytes(path))
+	if result.is_empty():
+		push_error("SWE decoding failed during level loading")
 		return
 	var lvl: Level = load("uid://b16kyjui2n3qv").instantiate()
+	if not result[0]:
+		push_error("Level file is tampered (hashes do not match)")
+		return lvl
+	if result[1] is not Dictionary:
+		push_error("Expected Dictionary at root, got %s" %
+				type_string(typeof(result[1])))
+		return lvl
+	#endregion
+	#region sections
+	var data: Dictionary = result[1]
+	var wrapper: Dictionary
+	var list: Array
+	var terrain: Array
+	var objects: Array
+	
+	var _wrapper = _get_value(data, "S0", "MAIN")
+	if _wrapper is Dictionary:
+		wrapper = _wrapper
+	else:
+		_warn_type("Wrapper", _wrapper)
+		return lvl
+		
+	var _list = _get_value(wrapper, "S1", "AJUSTES")
+	if _list is Array:
+		list = _list
+	else:
+		_warn_type("Settings list", _list)
+		return lvl
+	
+	var _terrain = _get_value(wrapper, "S2", "SUELO")
+	if _terrain is Array:
+		terrain = _terrain
+	else:
+		_warn_type("Terrain", _terrain)
+		return lvl
+	
+	var _objects = _get_value(wrapper, "S4", "NIVEL")
+	if _objects is Array:
+		objects = _objects
+	else:
+		_warn_type("Objects", _objects)
+		return lvl
+	#endregion
+	#region level metadata
 	var map = list[0]
-	var use_new: bool
-	if "t" in map:
-		use_new = map["t"]
+	
+	lvl.level_name = path.trim_suffix("." + path.get_extension())
+	
+	var _author = map.get("user")
+	if _author != null:
+		lvl.author = str(_author)
 	else:
-		use_new = false
-	assert("user" in map, "No author in metadata")
-	lvl.author = map["user"]
-	assert(("gamestyle" if use_new else "apariencia") in map,
-			"No game style in metadata")
-	lvl.game_style = GameStyle.SMW#map["gamestyle" if use_new else "apariencia"]
-	if lvl.game_style < 0 or lvl.game_style > 3:
-		lvl.game_style = randi_range(0, 3) as GameStyle
-	if ("desc" if use_new else "description") in map:
-		lvl.description = map["desc" if use_new else "description"]
-	var sub: SubArea = lvl.get_node(^"%SubArea0")
-	assert(("gametheme" if use_new else "entorno") in map,
-			"No level theme in metadata")
-	sub.level_theme = LevelTheme.OVERWORLD#SWE_LEVEL_THEME_TABLE[map["gametheme" if use_new else "entorno"]]
-	assert(("nightmode" if use_new else "modo_noche") in map,
-			"No night mode in metadata")
-	sub.night_mode = false#bool(map["nightmode" if use_new else "modo_noche"])
-	assert(("timer" if use_new else "cronometro") in map,
-			"No time in metadata")
-	var _time = map["timer" if use_new else "cronometro"]
-	if _time < 10 or _time > 500:
-		_time = 300
-	lvl.time = _time
-	# TERRAIN
-	assert(("S2" if use_s else "SUELO") in wrapper, "No terrain data found")
-	var terrain: Array = wrapper["S2" if use_s else "SUELO"]
-	var fore = sub.get_node(^"%Foreground")
-	for i: Dictionary in terrain:
-		var ground: GroundTile = preload("uid://bpy1sebdq7k7s").instantiate()
-		fore.add_child(ground)
-		ground.owner = lvl
-		assert(("xx" if use_s else "x_pos") in i, "No X position in terrain tile")
-		assert(("yy" if use_s else "y_pos") in i, "No Y position in terrain tile")
-		ground.position = Vector2(
-				i["xx" if use_s else "x_pos"],
-				i["yy" if use_s else "y_pos"] - 432)
-		assert(("i" if use_s else "index") in i, "No index in terrain tile")
-		var spr: Sprite2D = ground.get_node(^"%Sprite")
-		spr.texture.region = SWE_GROUND_FRAME_TABLE[i["i" if use_new else "index"]]
-	assert(("start_y" if use_new else "ground2") in map,
-			"No start height in metadata")
-	var start_height: float = map["start_y" if use_new else "ground2"] - 432
-	for x in range(0, 112, 16):
-		for y in range(int(start_height), 0, 16):
-			var ground = preload("uid://bpy1sebdq7k7s").instantiate()
-			fore.add_child(ground)
+		_warn_type("Author", _author)
+	
+	var _game_style = _int(_get_value(map, "gamestyle", "apariencia"))
+	if _game_style is int and _game_style == clampi(_game_style, 0, 3):
+		lvl.game_style = GameStyle.SMW # _game_style as GameStyle
+	else:
+		_warn_type("Game style", _game_style)
+	
+	var _description = _get_value(map, "desc", "description")
+	if _description != null:
+		lvl.description = str(_description)
+	else:
+		_warn_type("Description", _description)
+	#endregion
+	#region sub-area metadata
+	
+	var sub: SubArea = lvl.current_sub_area
+	
+	var _level_theme = _get_value(map, "gametheme", "entorno")
+	if _level_theme != null and str(_level_theme) in SWE_LEVEL_THEME_TABLE:
+		sub.level_theme = LevelTheme.OVERWORLD # SWE_LEVEL_THEME_TABLE[str(_level_theme)]
+	else:
+		_warn_type("Level theme", _level_theme)
+	
+	
+	var _night_mode = _int(_get_value(map, "nightmode", "modo_noche"))
+	if _night_mode is int:
+		sub.night_mode = false # bool(_night_mode)
+	else:
+		_warn_type("Night mode", _night_mode)
+	#endregion
+	if meta_only:
+		return lvl
+	#region sub-area terrain
+	for i in terrain:
+		if i is Dictionary:
+			var ground: GroundPart = preload("uid://dpfaa6qawfnk1").instantiate()
+			sub.add_part(ground)
 			ground.owner = lvl
-			ground.position = Vector2(x, y)
-	var start = Sprite2D.new()
-	start.z_as_relative = false
-	start.texture = preload("uid://cgslc0o8upncx")
-	fore.add_child(start)
-	start.owner = lvl
-	start.position = Vector2(40, -56)
-	# OBJECTS
-	var objects: Array = wrapper["S4" if use_s else "NIVEL"]
-	for i: Dictionary in objects:
-		assert(("ID" if use_s else "object") in i, "No ID in object")
-		var id = i["ID" if use_s else "object"]
-		if id not in SWE_OBJECT_TABLE:
-			continue
-		var scn: PackedScene = SWE_OBJECT_TABLE[id]
-		var obj = scn.instantiate()
-		fore.add_child(obj)
-		obj.owner = lvl
-		assert(("xx" if use_s else "x_pos") in i, "No X position in object")
-		assert(("yy" if use_s else "y_pos") in i, "No Y position in object")
-		obj.position = Vector2(
-				i["xx" if use_s else "x_pos"],
-				i["yy" if use_s else "y_pos"] - 432)
+			var xx = _int(_get_value(i, "xx", "x_pos"))
+			if xx == null:
+				continue
+			var yy = _int(_get_value(i, "yy", "y_pos"))
+			if yy == null:
+				continue
+			ground.global_position = snap(Vector2(xx, yy - 432))
+			#var idx = _int(_get_value(i, "i", "index"))
+			#if idx == null:
+				#continue
+			#var atlas = SWE_GROUND_FRAME_TABLE.get(idx)
+			#ground.atlas(atlas.x, atlas.y)
+	
+	# TODO: start height: _get_value(map, "start_y", "ground2")
+	#endregion
+	#region sub-area objects
+	for i in objects:
+		if i is Dictionary:
+			var id = _get_value(i, "ID", "object")
+			if id == null:
+				continue
+			else:
+				id = str(id)
+			if id not in SWE_OBJECT_TABLE:
+				continue
+			var xx = _int(_get_value(i, "xx", "x_pos"))
+			if xx == null:
+				continue
+			var yy = _int(_get_value(i, "yy", "y_pos"))
+			if yy == null:
+				continue
+			var scn: PackedScene = SWE_OBJECT_TABLE[id]
+			var obj = scn.instantiate()
+			obj.global_position = snap(Vector2(xx, yy - 432))
+			sub.add_part(obj)
+			obj.owner = lvl
+	#endregion
 	return lvl
-
-
-static func _unpack_swe(path: String) -> Dictionary:
-	# Ah god I hope there won't be the same problem
-	var file = FileAccess.get_file_as_string(path)
-	var end_size: int
-	# Godot's a dum dum and keeps crying in the output about NUL characters if I
-	# type the NUL character any other way
-	if file.ends_with(String.chr(0)):
-		end_size = 41
-	else:
-		end_size = 40
-	var stored_hash = file.substr(file.length() - end_size, 40)
-	var b64 = file.substr(0, file.length() - end_size)
-	var crypto = Crypto.new()
-	var expected_hash = crypto.hmac_digest(HashingContext.HASH_SHA1,
-			SWE_HMAC_KEY.to_utf8_buffer(),
-			file.substr(0, file.length() - end_size).to_utf8_buffer()).hex_encode()
-	assert(expected_hash == stored_hash, "Tampered level file")
-	var data = JSON.parse_string(Marshalls.base64_to_utf8(b64))
-	assert(data is Dictionary, "Level file JSON is not an object")
-	return data
 
 
 static func to_grid(pos: Vector2) -> Vector2i:
@@ -384,6 +461,28 @@ static func snap(pos: Vector2) -> Vector2:
 	return (pos / GRID_SIZE).floor() * GRID_SIZE
 
 
+static func _warn_type(key: String, value: Variant) -> void:
+	push_warning("%s is invalid value %s (type %s)" %
+			[key, value, type_string(typeof(value))])
+ 
+
+static func _get_value(dict: Dictionary, new: String, old: String) -> Variant:
+	return dict.get(new if new in dict else old)
+
+
+static func _int(value: Variant) -> Variant:
+	if value is float:
+		return roundi(value)
+	elif value is String:
+		return value.to_int()
+	else:
+		return null
+
+
+static func _thread() -> void:
+	pass
+
+
 func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 	game_style = _game_style
 	level_name = _level_name
@@ -391,6 +490,9 @@ func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
 
 
 func _ready() -> void:
+	hud = load(GameConstants.HUDS[game_style]).instantiate()
+	hud.level = self
+	add_child(hud)
 	for i in get_children():
 		if i is SubArea:
 			sub_areas.append(i)
@@ -399,9 +501,6 @@ func _ready() -> void:
 	assert(not sub_areas.is_empty(), "Level does not have any sub-areas.")
 	if current_sub_area == null:
 		current_sub_area = sub_areas[0]
-	hud = load(GameConstants.HUDS[game_style]).instantiate()
-	hud.level = self
-	add_child(hud)
 	if editor != null:
 		editor.level = self
 		editor.load()

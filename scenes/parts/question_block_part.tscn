@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_y7aef"]
 [ext_resource type="Texture2D" uid="uid://dm510dlk0st0r" path="res://textures/tiles/question_block.png" id="2_pyfjg"]
 [ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="2_vhijl"]
-[ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_vhijl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mkou"]
 atlas = ExtResource("2_pyfjg")
@@ -12,7 +11,5 @@ region = Rect2(0, 0, 16, 16)
 [node name="QuestionBlockPart" unique_id=1549879982 instance=ExtResource("1_y7aef")]
 script = ExtResource("2_vhijl")
 
-[node name="SpriteExt" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=744579737]
+[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=1266149202]
 texture = SubResource("AtlasTexture_7mkou")
-script = ExtResource("3_vhijl")
-metadata/_custom_type_script = "uid://ct8v8svsomclf"

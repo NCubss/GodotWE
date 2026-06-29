@@ -4,22 +4,178 @@
 [ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/ui/editor/palette/palette_page.gd" id="1_055fs"]
 [ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_rbwsn"]
 [ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="3_pamtw"]
-[ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="4_oeltg"]
 [ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="5_pamtw"]
-
-[sub_resource type="Resource" id="Resource_uerrj"]
-script = ExtResource("3_pamtw")
-part = ExtResource("4_oeltg")
-metadata/_custom_type_script = "uid://2lamiomhq6u3"
 
 [sub_resource type="Resource" id="Resource_oeltg"]
 script = ExtResource("3_pamtw")
 part = ExtResource("5_pamtw")
 metadata/_custom_type_script = "uid://2lamiomhq6u3"
 
+[sub_resource type="GDScript" id="GDScript_5pp4w"]
+script/source = "extends Part
+## 10-coin placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://dyeno2eyv7q3l\")
+"
+
+[sub_resource type="Resource" id="Resource_pamtw"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_5pp4w")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_oeltg"]
+script/source = "extends Part
+## Key coin placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://bl1qp5a1cnwri\")
+"
+
+[sub_resource type="Resource" id="Resource_uerrj"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_oeltg")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_pdk8d"]
+script/source = "extends Part
+## Mushroom placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://r27a566o13yi\")
+"
+
+[sub_resource type="Resource" id="Resource_vfdnt"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_pdk8d")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_pamtw"]
+script/source = "extends Part
+## Fire flower placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://dsdlgw67a2elr\")
+"
+
+[sub_resource type="Resource" id="Resource_qmqod"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_pamtw")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_m1owt"]
+script/source = "extends Part
+## Game style power-up 1 placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://mdtfeumiigs2\")
+"
+
+[sub_resource type="Resource" id="Resource_d21q8"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_m1owt")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_uerrj"]
+script/source = "extends Part
+## Game style power-up 2 placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://b036toh4vby0\")
+"
+
+[sub_resource type="Resource" id="Resource_m1owt"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_uerrj")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_vfdnt"]
+script/source = "extends Part
+## Star placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://bao4x6jn0a5tm\")
+"
+
+[sub_resource type="Resource" id="Resource_5ux26"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_vfdnt")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_qmqod"]
+script/source = "extends Part
+## 1-UP placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://ch604d77yhkbi\")
+"
+
+[sub_resource type="Resource" id="Resource_fd2ji"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_qmqod")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
+[sub_resource type="GDScript" id="GDScript_d21q8"]
+script/source = "extends Part
+## Yoshi egg / Shoe goomba placeholder
+
+
+static func get_category() -> PaletteCategory:
+	return load(\"uid://d15pdc5d1rkwr\")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
+	return preload(\"uid://7vub6vqbudgq\")
+"
+
+[sub_resource type="Resource" id="Resource_kvb1y"]
+script = ExtResource("3_pamtw")
+part = SubResource("GDScript_d21q8")
+metadata/_custom_type_script = "uid://2lamiomhq6u3"
+
 [sub_resource type="Resource" id="Resource_pdk8d"]
 script = ExtResource("1_055fs")
-items = Array[ExtResource("3_pamtw")]([SubResource("Resource_uerrj"), SubResource("Resource_oeltg"), null, null, null, null, null, null, null, null])
+items = Array[ExtResource("3_pamtw")]([SubResource("Resource_oeltg"), SubResource("Resource_pamtw"), SubResource("Resource_uerrj"), SubResource("Resource_vfdnt"), SubResource("Resource_qmqod"), SubResource("Resource_d21q8"), SubResource("Resource_m1owt"), SubResource("Resource_5ux26"), SubResource("Resource_fd2ji"), SubResource("Resource_kvb1y")])
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]

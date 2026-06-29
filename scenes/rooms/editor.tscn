@@ -9,4 +9,13 @@ editor = NodePath("EditorLayer/Editor")
 
 [node name="EditorLayer" parent="." index="0" unique_id=727278229 instance=ExtResource("3_oubuj")]
 
+[node name="SubArea0" parent="." index="1" unique_id=1880988790]
+level_theme = 0
+night_mode = false
+water_speed = 0
+min_water_height = 1
+max_water_height = 1
+meteorites = false
+autoscroll = 0
+
 [editable path="SubArea0"]

@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://jr7c4ykh8awq" path="res://scenes/parts/part.tscn" id="1_6ie8e"]
 [ext_resource type="Texture2D" uid="uid://clwe7seivxsur" path="res://textures/tiles/ground.png" id="2_83ppi"]
 [ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="2_akctd"]
-[ext_resource type="Script" uid="uid://ct8v8svsomclf" path="res://scripts/ext/sprite_ext.gd" id="3_akctd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83ppi"]
 size = Vector2(16, 16)
@@ -20,8 +19,6 @@ script = ExtResource("2_akctd")
 [node name="CollShape" parent="." index="0" unique_id=751260987]
 shape = SubResource("RectangleShape2D_83ppi")
 
-[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=599116263]
+[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=1523118331]
 unique_name_in_owner = true
 texture = SubResource("AtlasTexture_a0kg4")
-script = ExtResource("3_akctd")
-metadata/_custom_type_script = "uid://ct8v8svsomclf"

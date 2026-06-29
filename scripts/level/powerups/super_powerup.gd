@@ -10,7 +10,7 @@ func start(animate := true) -> void:
 		player.sounds.stream = preload("uid://b20440v3vqlik")
 		player.sounds.play()
 		var new_graphics = Node2D.new()
-		var new_sprite = AnimatedSpriteExt.new()
+		var new_sprite = AnimatedSprite2D.new()
 		new_sprite.sprite_frames = preload("uid://b1p8m6j6up5pm")
 		new_sprite.animation = player.sprite.animation
 		new_sprite.frame = player.sprite.frame
