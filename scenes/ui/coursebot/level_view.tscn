@@ -1,0 +1,370 @@
+[gd_scene format=3 uid="uid://bdytsrr80hbee"]
+
+[ext_resource type="Script" uid="uid://cf377fe2lxmkd" path="res://scripts/ui/coursebot/level_view.gd" id="1_lfbwq"]
+[ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://textures/ui/btn_close.svg" id="1_tpj53"]
+[ext_resource type="Texture2D" uid="uid://3x3slhrgwopo" path="res://textures/ui/coursebot/user.svg" id="2_nssrh"]
+[ext_resource type="Script" uid="uid://bscm0yy6tcvon" path="res://scripts/ui/coursebot/level_close_btn.gd" id="3_0vp71"]
+[ext_resource type="Texture2D" uid="uid://85dh255fk01f" path="res://textures/ui/coursebot/tag_stamps/standard.tres" id="3_wlxia"]
+[ext_resource type="Texture2D" uid="uid://bujkeimnw5g7e" path="res://textures/ui/coursebot/clear_condition.svg" id="4_26bkd"]
+[ext_resource type="Texture2D" uid="uid://qmwkrqmfb83r" path="res://textures/ui/coursebot/tag.svg" id="5_vxykq"]
+[ext_resource type="Texture2D" uid="uid://bjmlt6p2wk4jb" path="res://textures/ui/coursebot/edit.svg" id="6_vxykq"]
+[ext_resource type="Texture2D" uid="uid://upnqfgsworcx" path="res://textures/ui/coursebot/play.svg" id="7_pw65s"]
+[ext_resource type="Script" uid="uid://b424y8q4y8m8f" path="res://scripts/ui/coursebot/level_action_btn.gd" id="9_7vjtd"]
+[ext_resource type="Texture2D" uid="uid://b2j83b708idne" path="res://textures/ui/coursebot/export.svg" id="9_gxb5d"]
+[ext_resource type="Texture2D" uid="uid://ct7nsivikgx8h" path="res://textures/ui/editor/style_cards/smb.svg" id="10_lfbwq"]
+[ext_resource type="Texture2D" uid="uid://cfi4ovngm2jod" path="res://textures/ui/coursebot/delete.svg" id="11_gxb5d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3h5ri"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0.101960786, 0.16862746, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.49411765, 0.69411767, 0.57254905, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0.11372549, 0.16470589, 0.2627451, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0rqn"]
+font_size = 24
+font_color = Color(0.11372549, 0.16470589, 0.2627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57qmd"]
+bg_color = Color(0.8745098, 0.8666667, 0.9019608, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 24
+font_color = Color(0.43137255, 0.46666667, 0.49411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcnqv"]
+draw_center = false
+border_width_bottom = 3
+border_color = Color(0.6156863, 0.62352943, 0.6509804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0u6y"]
+bg_color = Color(0, 0, 0, 0.57254905)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yf5fn"]
+font_size = 24
+font_color = Color(0.43137255, 0.46666667, 0.49411765, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_yyrpg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7numd"]
+bg_color = Color(0.78431374, 0.7921569, 0.8352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gngh"]
+content_margin_left = 57.0
+content_margin_top = 0.0
+content_margin_right = 57.0
+content_margin_bottom = 0.0
+bg_color = Color(0.78431374, 0.7921569, 0.8352941, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_57qmd"]
+font_size = 24
+font_color = Color(0.43137255, 0.46666667, 0.49411765, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[node name="LevelView" type="PanelContainer" unique_id=1169299201]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3h5ri")
+script = ExtResource("1_lfbwq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1967259814]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitleBar" type="Panel" parent="VBoxContainer" unique_id=795099339]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+
+[node name="Circle" type="Panel" parent="VBoxContainer/TitleBar" unique_id=2015849194]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -12.0
+offset_right = 39.0
+offset_bottom = 12.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="Name" type="Label" parent="VBoxContainer/TitleBar" unique_id=706464966]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 48.0
+offset_right = 49.0
+offset_bottom = 60.0
+label_settings = SubResource("LabelSettings_j0rqn")
+vertical_alignment = 1
+
+[node name="CloseBtn" type="TextureButton" parent="VBoxContainer/TitleBar" unique_id=4328144]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.5
+offset_top = -22.5
+offset_right = -7.5
+offset_bottom = 22.5
+grow_horizontal = 0
+grow_vertical = 2
+action_mode = 0
+texture_normal = ExtResource("1_tpj53")
+script = ExtResource("3_0vp71")
+
+[node name="MainPanel" type="PanelContainer" parent="VBoxContainer" unique_id=119980326]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_57qmd")
+
+[node name="MainContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel" unique_id=1241527359]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="InfoBar" type="Control" parent="VBoxContainer/MainPanel/MainContainer" unique_id=1777220441]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="AuthorIcon" type="TextureRect" parent="VBoxContainer/MainPanel/MainContainer/InfoBar" unique_id=2034632573]
+modulate = Color(0.43137255, 0.46666667, 0.49411765, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 33.0
+offset_top = -15.0
+offset_right = 57.0
+offset_bottom = 15.0
+grow_vertical = 2
+texture = ExtResource("2_nssrh")
+
+[node name="Author" type="Label" parent="VBoxContainer/MainPanel/MainContainer/InfoBar" unique_id=612891885]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 68.945
+offset_right = 69.945
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_g4v7s")
+vertical_alignment = 1
+
+[node name="Size" type="Label" parent="VBoxContainer/MainPanel/MainContainer/InfoBar" unique_id=1058869407]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.999878
+offset_right = -17.999878
+grow_horizontal = 0
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ControlPanel" type="PanelContainer" parent="VBoxContainer/MainPanel/MainContainer" unique_id=1134585284]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_fcnqv")
+
+[node name="ControlContainer" type="HBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel" unique_id=1855269570]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MetaColumn" type="VBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer" unique_id=1360057269]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Stamp" type="TextureRect" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn" unique_id=800385175]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_wlxia")
+
+[node name="CreationTimePanel" type="Panel" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/Stamp" unique_id=1160875670]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d0u6y")
+
+[node name="CreationDate" type="Label" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/Stamp/CreationTimePanel" unique_id=156981825]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_right = 10.0
+grow_vertical = 2
+vertical_alignment = 1
+
+[node name="CreationTime" type="Label" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/Stamp/CreationTimePanel" unique_id=1429451809]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MetaRow" type="HBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn" unique_id=1926508749]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ClearConditionField" type="HBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/MetaRow" unique_id=1122513657]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/MetaRow/ClearConditionField" unique_id=948135246]
+modulate = Color(0.43137255, 0.46666667, 0.49411765, 1)
+layout_mode = 2
+texture = ExtResource("4_26bkd")
+stretch_mode = 3
+
+[node name="ClearCondition" type="Label" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/MetaRow/ClearConditionField" unique_id=313666809]
+unique_name_in_owner = true
+layout_mode = 2
+text = "---"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="TagField" type="HBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/MetaRow" unique_id=766497242]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/MetaRow/TagField" unique_id=827645766]
+modulate = Color(0.43137255, 0.46666667, 0.49411765, 1)
+layout_mode = 2
+texture = ExtResource("5_vxykq")
+stretch_mode = 3
+
+[node name="Tag" type="Label" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/MetaColumn/MetaRow/TagField" unique_id=1063897619]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="ActionColumn" type="VBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer" unique_id=1118783481]
+custom_minimum_size = Vector2(327, 0)
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="EditBtn" type="Button" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/ActionColumn" unique_id=32055162]
+layout_mode = 2
+theme_type_variation = &"CoursebotLevelButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_yyrpg")
+text = "LEVEL_EDIT"
+icon = ExtResource("6_vxykq")
+script = ExtResource("9_7vjtd")
+
+[node name="PlayBtn" type="Button" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/ActionColumn" unique_id=1833743289]
+layout_mode = 2
+theme_type_variation = &"CoursebotLevelButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_yyrpg")
+text = "LEVEL_PLAY"
+icon = ExtResource("7_pw65s")
+script = ExtResource("9_7vjtd")
+action = 1
+
+[node name="ExportBtn" type="Button" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/ActionColumn" unique_id=374648646]
+layout_mode = 2
+theme_type_variation = &"CoursebotLevelButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_yyrpg")
+text = "LEVEL_EXPORT"
+icon = ExtResource("9_gxb5d")
+script = ExtResource("9_7vjtd")
+action = 2
+
+[node name="RenameBtn" type="Button" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/ActionColumn" unique_id=1529110426]
+layout_mode = 2
+theme_type_variation = &"CoursebotLevelButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_yyrpg")
+text = "LEVEL_RENAME"
+icon = ExtResource("6_vxykq")
+script = ExtResource("9_7vjtd")
+action = 3
+
+[node name="EnvironmentColumn" type="VBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer" unique_id=63137547]
+custom_minimum_size = Vector2(138, 0)
+layout_mode = 2
+
+[node name="EnvironmentContainer" type="VBoxContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/EnvironmentColumn" unique_id=588434938]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="GameStylePanel" type="PanelContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/EnvironmentColumn/EnvironmentContainer" unique_id=572271452]
+custom_minimum_size = Vector2(138, 78)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7numd")
+
+[node name="GameStyle" type="TextureRect" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/EnvironmentColumn/EnvironmentContainer/GameStylePanel" unique_id=1198927123]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("10_lfbwq")
+stretch_mode = 3
+
+[node name="LevelThemePanel" type="PanelContainer" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/EnvironmentColumn/EnvironmentContainer" unique_id=1153368286]
+custom_minimum_size = Vector2(138, 78)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7numd")
+
+[node name="LevelTheme" type="TextureRect" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/EnvironmentColumn/EnvironmentContainer/LevelThemePanel" unique_id=991534299]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("10_lfbwq")
+stretch_mode = 3
+
+[node name="DeleteBtn" type="Button" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/EnvironmentColumn" unique_id=1466058703]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_type_variation = &"CoursebotLevelButton"
+icon = ExtResource("11_gxb5d")
+icon_alignment = 1
+
+[node name="DescriptionPanel" type="PanelContainer" parent="VBoxContainer" unique_id=1991024940]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3gngh")
+
+[node name="Description" type="Label" parent="VBoxContainer/DescriptionPanel" unique_id=1012427118]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_57qmd")
+vertical_alignment = 1
+autowrap_mode = 3

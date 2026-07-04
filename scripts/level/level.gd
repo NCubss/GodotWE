@@ -62,10 +62,10 @@ enum Autoscroll {
 ## Represents a clear condition type.
 enum ClearCondition {
 	NONE,
-	NO_COINS,
-	WATER_ONLY,
-	DONT_LAND_ON_GROUND,
 	NO_DAMAGE,
+	DONT_LAND_ON_GROUND,
+	WATER_ONLY,
+	NO_COINS,
 }
 
 ## Represents a level tag.
@@ -251,6 +251,15 @@ static var thread := Thread.new()
 ## [b]is[/b] being played online. See [member online_id] for the online
 ## counterpart.
 @export var file_path := ""
+## The author's local time when this level was saved in the format "HH:MM".
+## Empty if unknown. Using this as a level creation timestamp can be unreliable
+## as this is saved as a string and can be tampered, leading to possible parse
+## errors.
+@export var creation_time := ""
+## The date when this level was saved in the format "DD/MM/YYYY". Empty if
+## unknown. Using this as a level creation timestamp can be unreliable as this
+## is saved as a string and can be tampered, leading to possible parse errors.
+@export var creation_date :=  ""
 
 ## The level's automatically assigned sub-areas.
 var sub_areas: Array[SubArea] = []
@@ -317,7 +326,7 @@ static func from_swe(path: String, meta_only := false) -> Level:
 	if result.is_empty():
 		push_error("SWE decoding failed during level loading")
 		return
-	var lvl: Level = load("uid://b16kyjui2n3qv").instantiate()
+	var lvl: Level = preload("uid://b16kyjui2n3qv").instantiate()
 	if not result[0]:
 		push_error("Level file is tampered (hashes do not match)")
 		return lvl
@@ -364,7 +373,20 @@ static func from_swe(path: String, meta_only := false) -> Level:
 	#region level metadata
 	var map = list[0]
 	
-	lvl.level_name = path.trim_suffix("." + path.get_extension())
+	lvl.level_name = path.get_basename().get_file()
+	
+	lvl.creation_date = str(_get_value(map, "date", "date"))
+	lvl.creation_time = str(_get_value(map, "time", "time"))
+	
+	var _tag_1 = int(_get_value(map, "label_1", "etiqueta1")) + 1 % 14
+	var _tag_2 = int(_get_value(map, "label_2", "etiqueta2")) + 1 % 14
+	# handling casting manually so 'as' doesn't make a runtime error
+	lvl.tag_1 = _tag_1 as Tag if _tag_1 in Tag.values() else Tag.NONE
+	lvl.tag_2 = _tag_2 as Tag if _tag_2 in Tag.values() else Tag.NONE
+	
+	var condition = int(_get_value(map, "c_conditions", "condiciones_count"))
+	lvl.clear_condition = condition as ClearCondition \
+			if condition in ClearCondition.values() else ClearCondition.NONE
 	
 	var _author = map.get("user")
 	if _author != null:
@@ -409,6 +431,8 @@ static func from_swe(path: String, meta_only := false) -> Level:
 			var ground: GroundPart = preload("uid://dpfaa6qawfnk1").instantiate()
 			sub.add_part(ground)
 			ground.owner = lvl
+			ground.level = lvl
+			ground.sub_area = sub
 			var xx = _int(_get_value(i, "xx", "x_pos"))
 			if xx == null:
 				continue
@@ -421,6 +445,7 @@ static func from_swe(path: String, meta_only := false) -> Level:
 				#continue
 			#var atlas = SWE_GROUND_FRAME_TABLE.get(idx)
 			#ground.atlas(atlas.x, atlas.y)
+			
 	
 	# TODO: start height: _get_value(map, "start_y", "ground2")
 	#endregion
@@ -445,6 +470,8 @@ static func from_swe(path: String, meta_only := false) -> Level:
 			obj.global_position = snap(Vector2(xx, yy - 432))
 			sub.add_part(obj)
 			obj.owner = lvl
+			obj.level = lvl
+			obj.sub_area = sub
 	#endregion
 	return lvl
 
@@ -479,8 +506,9 @@ static func _int(value: Variant) -> Variant:
 		return null
 
 
+# TODO: Move over heavy level processing to a thread
 static func _thread() -> void:
-	pass
+	OS.set_thread_name("LevelThread")
 
 
 func _init(_level_name := "", _author := "", _game_style := GameStyle.SMW):
@@ -572,8 +600,8 @@ func _play() -> void:
 	hud.show()
 	if title_screen:
 		var date = Time.get_datetime_dict_from_system()
-		if date["month"] == Time.MONTH_DECEMBER:
-			if date["day"] == 24 or date["day"] == 25:
+		if date.month == Time.MONTH_DECEMBER:
+			if date.day == 24 or date.day == 25:
 				MusicPlayer.stream = preload("uid://bn00oxygr85n7")
 			else:
 				MusicPlayer.stream = preload("uid://6x74u4b7w0al")

@@ -12,11 +12,11 @@ to fix up!
 1. Follow the [GDScript style guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html).
    This already covers almost everything you need to know when writing GDScript.
 2. **Use comments!**
-    - Put [documentation comments](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html)
-      on all public class members. GodotWE is meant to be easy to work with, and
-      documentation helps that immensely.
-    - Put regular comments on sections of code that the average coder may find
-      confusing.
+	- Put [documentation comments](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html)
+	  on all public class members. GodotWE is meant to be easy to work with, and
+	  documentation helps that immensely.
+	- Put regular comments on sections of code that the average coder may find
+	  confusing.
 3. Write commit messages that explain your changes. We currently don't follow
    any conventions on committing.
 

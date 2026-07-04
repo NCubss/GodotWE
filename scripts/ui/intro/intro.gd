@@ -3,7 +3,7 @@ class_name Intro
 extends Control
 ## The intro scene.
 
-var background = load("uid://chxg81fg1vwfv") as Texture2D
+var background: Texture2D = preload("uid://chxg81fg1vwfv")
 var anim: Node
 var timer: SceneTreeTimer
 var tween: Tween
@@ -15,30 +15,30 @@ var skipped := false
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-	var path
+	var scn
 	match Time.get_date_dict_from_system().weekday:
 		1:
 			weekday = tr("CALENDAR_MONDAY")
-			path = "uid://brbx1wivbstu6"
+			scn = preload("uid://brbx1wivbstu6")
 		2:
 			weekday = tr("CALENDAR_TUESDAY")
-			path = "uid://brbx1wivbstu6"
+			scn = preload("uid://brbx1wivbstu6")
 		3:
 			weekday = tr("CALENDAR_WEDNESDAY")
-			path = "uid://bsxujjyxpynda"
+			scn = preload("uid://bsxujjyxpynda")
 		4:
 			weekday = tr("CALENDAR_THURSDAY")
-			path = "uid://brbx1wivbstu6"
+			scn = preload("uid://brbx1wivbstu6")
 		5:
 			weekday = tr("CALENDAR_FRIDAY")
-			path = "uid://bsxujjyxpynda"
+			scn = preload("uid://bsxujjyxpynda")
 		6:
 			weekday = tr("CALENDAR_SATURDAY")
-			path = "uid://bsxujjyxpynda"
+			scn = preload("uid://bsxujjyxpynda")
 		0:
 			weekday = tr("CALENDAR_SUNDAY")
-			path = "uid://brbx1wivbstu6"
-	anim = (load(path) as PackedScene).instantiate()
+			scn = preload("uid://brbx1wivbstu6")
+	anim = scn.instantiate()
 	%AnimContainer.add_child(anim)
 	player = anim.get_node("AnimationPlayer") as AnimationPlayer
 	timer = get_tree().create_timer(1.5)
@@ -90,7 +90,7 @@ func _finish_intro(_anim_name: StringName) -> void:
 
 
 func _title_call() -> void:
-	UISoundPlayer.stream = load("uid://d384dtx16muau")
+	UISoundPlayer.stream = preload("uid://d384dtx16muau")
 	UISoundPlayer.play()
 
 

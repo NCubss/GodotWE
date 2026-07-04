@@ -80,7 +80,7 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 		_skidding = true
 		_do_skid_smoke(player)
 		if player.p_meter > 5 and player.is_on_floor():
-			player.sounds.stream.resource_path = load("uid://vxfegf1r2emq")
+			player.sounds.stream.resource_path = preload("uid://vxfegf1r2emq")
 			player.sounds.play()
 	
 	# animations

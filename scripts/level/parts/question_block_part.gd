@@ -2,8 +2,11 @@ class_name QuestionBlockPart
 extends Part
 
 
-@warning_ignore("unused_parameter")
-static func get_part_icon(environment: SubArea) -> Texture2D:
+static func get_category() -> PaletteCategory:
+	return load("uid://wtetnd7c3nmk")
+
+
+static func get_part_icon(_environment: SubArea) -> Texture2D:
 	return preload("uid://ditkrlf2ksiwo")
 
 

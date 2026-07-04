@@ -25,7 +25,7 @@ func start(entity: Node2D) -> Variant:
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	
-	player.sounds.stream = load("uid://dt7f4s3d4u5k6")
+	player.sounds.stream = preload("uid://dt7f4s3d4u5k6")
 	player.sounds.play()
 	
 	# animations

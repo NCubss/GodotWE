@@ -3,11 +3,11 @@ extends TextureButton
 ## @deprecated: Use [ButtonHoverEffect] instead
 
 @export var hover_offset: Rect2
-@export var hover_sound := load("uid://bbc6fa1b5njqq")
+@export var hover_sound: AudioStream = preload("uid://bbc6fa1b5njqq")
 
 var _hover := 3.0
 var _hover_active := false
-var _hover_sprite := load("uid://bxk3nfis807iy")
+var _hover_sprite: Texture2D = preload("uid://bxk3nfis807iy")
 var _hover_tween: Tween
 
 func _init() -> void:

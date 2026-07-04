@@ -4,13 +4,9 @@ extends Button
 enum Page {
 	EDITOR,
 	COURSEBOT,
-	ENDLESS,
-	ONLINE,
 }
 
 const SCN_EDITOR = preload("uid://cbc3kaegk4jn3")
-const SCN_ENDLESS = preload("uid://dtq1i14h6pmvn")
-const SCN_ONLINE = preload("uid://h4t4thecwdfc")
 const SCN_COURSEBOT = preload("uid://nc2x1hq5ysrg")
 
 @export var page: Page
@@ -32,10 +28,6 @@ func _get_scn() -> PackedScene:
 	match page:
 		Page.EDITOR:
 			return SCN_EDITOR
-		Page.ENDLESS:
-			return SCN_ENDLESS
-		Page.ONLINE:
-			return SCN_ONLINE
 		Page.COURSEBOT:
 			return SCN_COURSEBOT
 		_:
@@ -65,15 +57,10 @@ func _scene_changed() -> void:
 
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on and load(get_tree().current_scene.scene_file_path) != _get_scn():
-		if page == Page.ONLINE:
-			MainMenu.menu_player.stream = preload("uid://druyd4ts46cgu")
-			MainMenu.menu_player.play()
-			%LoginLayer.show()
-		else:
-			MusicPlayer.stop()
-			MainMenu.menu_player.stream = preload("uid://c1ddsd1m5j2lh")
-			MainMenu.menu_player.play()
-			SceneManager.fade_to_scene(_get_scn())
+		MusicPlayer.stop()
+		MainMenu.menu_player.stream = preload("uid://c1ddsd1m5j2lh")
+		MainMenu.menu_player.play()
+		SceneManager.fade_to_scene(_get_scn())
 
 
 func _draw() -> void:

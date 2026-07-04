@@ -36,7 +36,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y8t2u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 0.0
 }, {
@@ -53,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sqs7m")
 }],
-"loop": true,
+"loop": 1,
 "name": &"turning",
 "speed": 9.0
 }]
@@ -84,7 +84,7 @@ autoplay = "idle"
 
 [node name="BlockComponent" type="Node" parent="." unique_id=978985610 node_paths=PackedStringArray("sprite")]
 script = ExtResource("4_6rsai")
-sprite = NodePath("")
+sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://dedgj7iu2ix2b"
 
 [connection signal="animation_looped" from="Sprite" to="." method="_sprite_animation_looped"]

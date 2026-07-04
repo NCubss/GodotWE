@@ -7,16 +7,10 @@
 [ext_resource type="Script" uid="uid://cfbamgq6chgy4" path="res://scripts/ui/main_menu/page_btn.gd" id="6_ayp64"]
 [ext_resource type="Texture2D" uid="uid://b5soj05vomb2b" path="res://textures/ui/main_menu/btn_coursebot.svg" id="6_y2j7i"]
 [ext_resource type="Texture2D" uid="uid://dc0qa3tgges4d" path="res://textures/ui/main_menu/btn_coursebot_pressed.svg" id="7_y1h5l"]
-[ext_resource type="Texture2D" uid="uid://b6vp18qj84cym" path="res://textures/ui/main_menu/btn_endless.svg" id="8_pw24t"]
-[ext_resource type="Texture2D" uid="uid://oorwsyfidxgw" path="res://textures/ui/main_menu/btn_endless_pressed.svg" id="9_5dct7"]
-[ext_resource type="Texture2D" uid="uid://b1oubn068jtas" path="res://textures/ui/main_menu/btn_online.svg" id="10_qilvv"]
-[ext_resource type="Texture2D" uid="uid://cemsl6r52ys77" path="res://textures/ui/main_menu/btn_online_pressed.svg" id="11_jbte4"]
 [ext_resource type="Texture2D" uid="uid://bpok5vme0o047" path="res://textures/ui/main_menu/btn_profile.svg" id="12_e0hcc"]
 [ext_resource type="Texture2D" uid="uid://3q5eke7ejjg4" path="res://textures/ui/main_menu/btn_mini_settings.svg" id="13_qch7b"]
-[ext_resource type="Texture2D" uid="uid://cuhdgl6ittrbs" path="res://textures/ui/main_menu/btn_mini_logout.svg" id="14_4ovp2"]
 [ext_resource type="Script" uid="uid://bssox7408h4no" path="res://scripts/ui/main_menu/mini_btn.gd" id="14_y2j7i"]
 [ext_resource type="Texture2D" uid="uid://b7krwd3ixsdd7" path="res://textures/ui/main_menu/btn_mini_title.svg" id="15_1mexh"]
-[ext_resource type="PackedScene" uid="uid://66t6go77oisx" path="res://scenes/ui/login.tscn" id="17_y2j7i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_877pj"]
 bg_color = Color(0, 0, 0, 0.2509804)
@@ -49,54 +43,6 @@ texture_margin_bottom = 12.0
 expand_margin_bottom = 6.0
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_877pj"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y2j7i"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("8_pw24t")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1h5l"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("9_5dct7")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pw24t"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("10_qilvv")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dct7"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("11_jbte4")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_877pj"]
 content_margin_left = 90.0
@@ -216,36 +162,6 @@ button_group = SubResource("ButtonGroup_877pj")
 text = "PAGE_EDITOR"
 script = ExtResource("6_ayp64")
 
-[node name="BtnEndless" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=566984957]
-custom_minimum_size = Vector2(486, 87)
-layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxTexture_y2j7i")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_y1h5l")
-theme_override_styles/hover = SubResource("StyleBoxTexture_y2j7i")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_877pj")
-text = "PAGE_ENDLESS"
-script = ExtResource("6_ayp64")
-page = 2
-
-[node name="BtnOnline" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=1760266962]
-custom_minimum_size = Vector2(486, 87)
-layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxTexture_pw24t")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5dct7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_pw24t")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_877pj")
-text = "PAGE_ONLINE"
-script = ExtResource("6_ayp64")
-page = 3
-
 [node name="BtnCoursebot" type="Button" parent="MainMenuUI/PageBtnBar" unique_id=1291317763]
 custom_minimum_size = Vector2(486, 87)
 layout_mode = 2
@@ -282,20 +198,16 @@ size_flags_vertical = 8
 action_mode = 0
 texture_normal = ExtResource("12_e0hcc")
 
+[node name="Spacer" type="Control" parent="MainMenuUI/BottomBar" unique_id=719849517]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="BtnMiniSettings" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=447934041]
 layout_mode = 2
 size_flags_vertical = 8
 action_mode = 0
 texture_normal = ExtResource("13_qch7b")
 script = ExtResource("14_y2j7i")
-
-[node name="BtnMiniLogout" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1632560707]
-layout_mode = 2
-size_flags_vertical = 8
-action_mode = 0
-texture_normal = ExtResource("14_4ovp2")
-script = ExtResource("14_y2j7i")
-type = 1
 
 [node name="BtnMiniTitle" type="TextureButton" parent="MainMenuUI/BottomBar" unique_id=1829249709]
 layout_mode = 2
@@ -304,7 +216,3 @@ action_mode = 0
 texture_normal = ExtResource("15_1mexh")
 script = ExtResource("14_y2j7i")
 type = 2
-
-[node name="LoginLayer" parent="." unique_id=2102270892 instance=ExtResource("17_y2j7i")]
-unique_name_in_owner = true
-visible = false

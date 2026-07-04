@@ -38,5 +38,5 @@ func _entered() -> void:
 	if not can_process():
 		return
 	if not DisplayServer.is_touchscreen_available():
-		UISoundPlayer.stream = load("uid://dn2weik3slobr")
+		UISoundPlayer.stream = preload("uid://dn2weik3slobr")
 		UISoundPlayer.play()

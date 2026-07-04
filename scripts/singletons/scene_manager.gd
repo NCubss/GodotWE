@@ -70,26 +70,21 @@ func _input(event: InputEvent) -> void:
 				get_window().mode = Window.MODE_FULLSCREEN
 
 
-func fade_to(
-		path: String,
-		trans_in := Transition.FADE,
-		trans_out := Transition.FADE
-) -> void:
-	
-	var scn = load(path) as PackedScene
-	if scn == null:
-		assert(false, "Resource at path '%s' does not exist or is not a scene" \
-				% path)
-		return
-	_fade_to_what(load(path), trans_in, trans_out)
-
-
 func fade_to_scene(
 		scene: PackedScene,
 		trans_in := Transition.FADE,
 		trans_out := Transition.FADE
 ) -> void:
-	_fade_to_what(scene, trans_in, trans_out)
+	fade_to_callback(func switch_to_scene(): return scene.instantiate(),
+			trans_in, trans_out)
+
+
+func fade_to_node(
+		node: Node,
+		trans_in := Transition.FADE,
+		trans_out := Transition.FADE
+) -> void:
+	fade_to_callback(func switch_to_node(): return node, trans_in, trans_out)
 
 
 func fade_in_progress() -> bool:
@@ -97,14 +92,11 @@ func fade_in_progress() -> bool:
 			or (_fade_tween.is_running() if _fade_tween != null else false)
 
 
-func _fade_to_what(
-		scene: PackedScene,
+func fade_to_callback(
+		callback: Callable,
 		trans_in: Transition,
 		trans_out: Transition
 ) -> void:
-	if not scene.can_instantiate():
-		assert(false, "Empty scene")
-		return
 	_fade_tween = create_tween()
 	transition_started.emit()
 	match trans_in:
@@ -119,7 +111,7 @@ func _fade_to_what(
 					.set_trans(Tween.TRANS_SINE) \
 					.set_ease(Tween.EASE_IN)
 			_fade_tween.tween_callback(_polygon.hide)
-	_fade_tween.tween_callback(_change_scene.bind(scene.instantiate()))
+	_fade_tween.tween_callback(_change_scene.bind(await callback.call()))
 	match trans_out:
 		Transition.NONE:
 			pass

@@ -4,6 +4,10 @@ extends Part
 @onready var _tex: Texture2D = %Sprite.texture
 
 
+static func get_category() -> PaletteCategory:
+	return load("uid://wtetnd7c3nmk")
+
+
 static func get_part_icon(_environment: SubArea) -> Texture2D:
 	return preload("uid://du8vtxsylbi78")
 

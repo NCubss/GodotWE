@@ -45,7 +45,7 @@ var parent: CanvasItem
 
 var _tween: Tween
 var _offset: float = arrow_start_pos
-var _sprite: Texture2D = load("uid://bxk3nfis807iy")
+var _sprite: Texture2D = preload("uid://bxk3nfis807iy")
 
 func _init(
 		_parent: CanvasItem,

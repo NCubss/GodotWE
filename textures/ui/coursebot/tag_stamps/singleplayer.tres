@@ -5,3 +5,4 @@
 [resource]
 atlas = ExtResource("1_jb4it")
 region = Rect2(405, 912, 405, 228)
+filter_clip = true

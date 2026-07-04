@@ -1,11 +1,26 @@
 class_name Coursebot
 extends Panel
 
+@export var content: Control
+@export var main_page: Control
+@export var level_list: Control
+
 
 func _ready() -> void:
 	MusicPlayer.stream = preload("uid://dy4vtu7spkpub")
 	MusicPlayer.play()
 	_create_head_tween()
+	if DirAccess.dir_exists_absolute(GameSettings.LEVELS_PATH):
+		for i in DirAccess.get_files_at(GameSettings.LEVELS_PATH):
+			if i.get_extension() != "swe":
+				continue
+			var absolute = GameSettings.LEVELS_PATH.path_join(i)
+			var card = LevelCard.create(absolute, self)
+			level_list.add_child(card)
+	else:
+		var err = DirAccess.make_dir_absolute(GameSettings.LEVELS_PATH)
+		if err != OK:
+			printerr("Failed to create level directory: %s" % error_string(err))
 
 
 func _create_head_tween() -> void:
@@ -79,3 +94,27 @@ func _cover_animation(shut: bool) -> Tween:
 	tween.parallel()
 	tween.tween_property(%BottomCover, "position:y", 24 if shut else 48, 3)
 	return tween
+
+
+func transition(node: Control, free_old: bool) -> void:
+	var old = content
+	old.pivot_offset_ratio.x = 0.5
+	old.offset_transform_enabled = true
+	node.pivot_offset_ratio.x = 0.5
+	node.offset_transform_enabled = true
+	var tween = create_tween()
+	old.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+	tween.tween_property(old, "offset_transform_scale:x", 0, 0.1)
+	tween.tween_callback(func coursebot_transition_switch():
+		if free_old:
+			old.queue_free()
+		else:
+			old.hide()
+		content = node
+		node.show()
+		if node.get_parent() == null:
+			%Container.add_child(node)
+		node.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED)
+	tween.tween_property(node, "offset_transform_scale:x", 1, 0.1).from(0)
+	tween.tween_callback(func():
+		node.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED)

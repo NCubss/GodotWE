@@ -19,7 +19,7 @@ func start(entity: Node2D) -> Variant:
 	else:
 		player.sprite.play("dead", 0)
 	MusicPlayer.stop()
-	UISoundPlayer.stream = load("uid://cpvqy2k0d2cju")
+	UISoundPlayer.stream = preload("uid://cpvqy2k0d2cju")
 	UISoundPlayer.play()
 	var grav_comp: GravityComponent = Utility.find_child_by_class(player,
 			GravityComponent)

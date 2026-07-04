@@ -3,10 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://mrei6lubm7l" path="res://textures/ui/coursebot/background.svg" id="1_kq7ia"]
 [ext_resource type="Script" uid="uid://bltuie3eilpq4" path="res://scripts/ui/coursebot/coursebot.gd" id="2_t5nfv"]
 [ext_resource type="PackedScene" uid="uid://ibw5lxq8xlyx" path="res://scenes/ui/menu_btn.tscn" id="3_151ym"]
+[ext_resource type="Texture2D" uid="uid://c37q8y3oc7137" path="res://textures/ui/coursebot/window.svg" id="4_1r63l"]
 [ext_resource type="Texture2D" uid="uid://bp1rhy2ww83xl" path="res://textures/ui/coursebot/head/speaker.svg" id="4_bdi8c"]
 [ext_resource type="Texture2D" uid="uid://bvvpjsvo73k6o" path="res://textures/ui/coursebot/head/body.svg" id="5_fv4ap"]
 [ext_resource type="Texture2D" uid="uid://dislujghhncy5" path="res://textures/ui/coursebot/head/eye.svg" id="6_1r63l"]
 [ext_resource type="Texture2D" uid="uid://w0j656cxq215" path="res://textures/ui/coursebot/head/cover.svg" id="6_fv4ap"]
+[ext_resource type="Texture2D" uid="uid://b41dgwyelfafy" path="res://textures/ui/coursebot/window_background.svg" id="6_mte4v"]
 [ext_resource type="Texture2D" uid="uid://c7px88rubk7dm" path="res://textures/ui/coursebot/head/shine_mask.svg" id="7_clouw"]
 [ext_resource type="Texture2D" uid="uid://c73rip8f6efhy" path="res://textures/ui/coursebot/head/shine.svg" id="8_mte4v"]
 
@@ -15,7 +17,41 @@ texture = ExtResource("1_kq7ia")
 texture_margin_left = 576.0
 texture_margin_right = 576.0
 
-[node name="Coursebot" type="Panel" unique_id=277150053]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+content_margin_left = 18.0
+content_margin_top = 18.0
+content_margin_right = 18.0
+content_margin_bottom = 18.0
+texture = ExtResource("4_1r63l")
+texture_margin_left = 21.0
+texture_margin_top = 21.0
+texture_margin_right = 21.0
+texture_margin_bottom = 21.0
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+bg_color = Color(0.21960784, 0.30980393, 0.4627451, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yf5fn"]
+texture = ExtResource("6_mte4v")
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0, 0, 0, 0.30980393)
+border_width_left = 6
+border_width_right = 6
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57qmd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0u6y"]
+bg_color = Color(0.2627451, 0.3254902, 0.3764706, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Coursebot" type="Panel" unique_id=277150053 node_paths=PackedStringArray("content", "main_page", "level_list")]
 texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +60,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_t5nfv")
 script = ExtResource("2_t5nfv")
+content = NodePath("Window/Content/Container/ScrollContainer")
+main_page = NodePath("Window/Content/Container/ScrollContainer")
+level_list = NodePath("Window/Content/Container/ScrollContainer/Margin/LevelList")
 
 [node name="MenuBtn" parent="." unique_id=1482968884 instance=ExtResource("3_151ym")]
 layout_mode = 1
@@ -35,6 +74,59 @@ offset_top = 12.0
 offset_right = -9.0
 offset_bottom = 78.0
 grow_horizontal = 0
+
+[node name="Window" type="PanelContainer" parent="." unique_id=1914417895]
+custom_minimum_size = Vector2(984, 561)
+custom_maximum_size = Vector2(984, 561)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -492.0
+offset_top = 75.0
+offset_right = 492.0
+offset_bottom = 636.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4v7s")
+
+[node name="Content" type="VBoxContainer" parent="Window" unique_id=292146481]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="Window/Content" unique_id=2069101477]
+custom_minimum_size = Vector2(0, 57)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4v7s")
+text = "COURSEBOT_COURSES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="PanelContainer" parent="Window/Content" unique_id=2035718218]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_yf5fn")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Window/Content/Container" unique_id=1868253192]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Window/Content/Container/ScrollContainer" unique_id=1509829058]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 15
+
+[node name="LevelList" type="GridContainer" parent="Window/Content/Container/ScrollContainer/Margin" unique_id=1230228434]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3
 
 [node name="HeadContainer" type="Control" parent="." unique_id=423679349]
 layout_mode = 1
@@ -170,3 +262,19 @@ offset_top = -3.75
 offset_right = 36.25
 offset_bottom = 36.25
 texture = ExtResource("8_mte4v")
+
+[node name="VScrollBar" type="VScrollBar" parent="." unique_id=1793906000]
+visible = false
+custom_minimum_size = Vector2(24, 0)
+custom_maximum_size = Vector2(24, -1)
+layout_mode = 0
+offset_left = 1101.0
+offset_top = 109.0
+offset_right = 1125.0
+offset_bottom = 620.0
+theme_override_styles/scroll = SubResource("StyleBoxFlat_yf5fn")
+theme_override_styles/scroll_focus = SubResource("StyleBoxEmpty_57qmd")
+theme_override_styles/grabber = SubResource("StyleBoxFlat_d0u6y")
+theme_override_styles/grabber_highlight = SubResource("StyleBoxFlat_d0u6y")
+theme_override_styles/grabber_pressed = SubResource("StyleBoxFlat_d0u6y")
+max_value = 0.0

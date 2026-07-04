@@ -253,7 +253,7 @@ func damage() -> void:
 	if _powerup is SmallPowerup:
 		kill()
 	else:
-		sounds.stream = load("uid://0nbemimuo3b6")
+		sounds.stream = preload("uid://0nbemimuo3b6")
 		sounds.play()
 
 
@@ -322,7 +322,7 @@ func _just_collided(collision: KinematicCollision2D) -> void:
 	var coll = collision.get_collider()
 	if collision.get_normal().y == 1 and \
 			(coll is CollisionObject2D and coll.collision_layer == 1):
-		sounds.stream = load("uid://7ec5u6l30bgt")
+		sounds.stream = preload("uid://7ec5u6l30bgt")
 		sounds.play()
 
 

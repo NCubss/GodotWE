@@ -6,12 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dbr0kayg8o8ga" path="res://textures/ui/title/start_btn.svg" id="6_vytx3"]
 [ext_resource type="AudioStream" uid="uid://cdi0jrkmhuxs6" path="res://audio/ui/editor/clapperboard.wav" id="7_jdmft"]
 [ext_resource type="Script" uid="uid://dfv6h0ixfnvsc" path="res://scripts/ui/title/start_btn.gd" id="7_vytx3"]
-[ext_resource type="Texture2D" uid="uid://b6vp18qj84cym" path="res://textures/ui/main_menu/btn_endless.svg" id="7_x1m5c"]
-[ext_resource type="Texture2D" uid="uid://oorwsyfidxgw" path="res://textures/ui/main_menu/btn_endless_pressed.svg" id="8_jdmft"]
 [ext_resource type="Script" uid="uid://c5a2f8nsxxpk6" path="res://scripts/ui/title/title_clapperboard.gd" id="8_yme3e"]
 [ext_resource type="Script" uid="uid://cfbamgq6chgy4" path="res://scripts/ui/main_menu/page_btn.gd" id="9_hr1db"]
-[ext_resource type="Texture2D" uid="uid://b1oubn068jtas" path="res://textures/ui/main_menu/btn_online.svg" id="10_ppi1v"]
-[ext_resource type="Texture2D" uid="uid://cemsl6r52ys77" path="res://textures/ui/main_menu/btn_online_pressed.svg" id="11_2xyws"]
 [ext_resource type="Texture2D" uid="uid://b5soj05vomb2b" path="res://textures/ui/main_menu/btn_coursebot.svg" id="12_d0x66"]
 [ext_resource type="Texture2D" uid="uid://dc0qa3tgges4d" path="res://textures/ui/main_menu/btn_coursebot_pressed.svg" id="13_3lujo"]
 [ext_resource type="Texture2D" uid="uid://bl7gsi2cidfvv" path="res://textures/ui/logo/world_engine_black.svg" id="14_7qv5q"]
@@ -23,56 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bcoi5ad4r8i6u" path="res://textures/ui/logo/o_black.svg" id="20_2ak66"]
 [ext_resource type="Texture2D" uid="uid://d3eu5ogdnqobn" path="res://textures/ui/logo/i_black.svg" id="21_7ylv1"]
 [ext_resource type="Texture2D" uid="uid://dcaeq18ofu4gu" path="res://textures/ui/logo/super_black.svg" id="22_5eax3"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_18lw1"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("7_x1m5c")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1v7at"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("8_jdmft")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_7qv5q"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7a3o8"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("10_ppi1v")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3fq24"]
-content_margin_left = 90.0
-content_margin_top = 0.0
-content_margin_right = 9.0
-content_margin_bottom = 0.0
-texture = ExtResource("11_2xyws")
-texture_margin_left = 90.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 12.0
-expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ymeme"]
 content_margin_left = 90.0
@@ -97,6 +43,8 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 12.0
 expand_margin_bottom = 6.0
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_7qv5q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vytx3"]
 content_margin_left = 18.0
@@ -197,47 +145,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -243.0
-offset_top = -324.0
+offset_top = -225.0
 offset_right = 243.0
-offset_bottom = -39.0
+offset_bottom = -138.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="BtnEndless" type="Button" parent="TitleLayer/Title/Pages" index="0" unique_id=1882975721]
-custom_minimum_size = Vector2(486, 87)
-layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxTexture_18lw1")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_1v7at")
-theme_override_styles/hover = SubResource("StyleBoxTexture_18lw1")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_7qv5q")
-text = "PAGE_ENDLESS"
-script = ExtResource("9_hr1db")
-page = 2
-in_main_menu = false
-
-[node name="BtnOnline" type="Button" parent="TitleLayer/Title/Pages" index="1" unique_id=1419253364]
-custom_minimum_size = Vector2(486, 87)
-layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxTexture_7a3o8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_3fq24")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7a3o8")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_7qv5q")
-text = "PAGE_ONLINE"
-script = ExtResource("9_hr1db")
-page = 3
-in_main_menu = false
-
-[node name="BtnCoursebot" type="Button" parent="TitleLayer/Title/Pages" index="2" unique_id=163161250]
+[node name="BtnCoursebot" type="Button" parent="TitleLayer/Title/Pages" index="0" unique_id=163161250]
 custom_minimum_size = Vector2(486, 87)
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)

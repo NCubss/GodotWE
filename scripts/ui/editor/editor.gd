@@ -68,7 +68,7 @@ func place(pos: Vector2i) -> Part:
 	part.global_position = Level.from_grid(pos)
 	level.current_sub_area.add_part(part)
 	part.load(true)
-	UISoundPlayer.stream = load("uid://2x6kk0s4njjp")
+	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 	return part
 

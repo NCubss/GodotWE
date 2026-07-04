@@ -31,6 +31,25 @@ TITLE_CLAPPERBOARD_PLAY,Play,Jugar
 EDITOR_COURSEBOT_SAVE_NEW,Save as,Guardar nuevo nivel
 EDITOR_COURSEBOT_SAVE_CHANGES,Save changes,Guardar cambios
 EDITOR_COURSEBOT_LOAD,Load,Cargar
+COURSEBOT_COURSES,Courses,Niveles
+LEVEL_EDIT,Edit,Editar
+LEVEL_PLAY,Play,Jugar
+LEVEL_EXPORT,Export,Exportar
+LEVEL_RENAME,Rename,Renombrar
+TAG_NONE,---,---
+TAG_PUZZLE_SOLVING,Puzzle-solving,Puzles
+TAG_SPEEDRUN,Speedrun,Contrarreloj
+TAG_AUTO_MARIO,Auto-Mario,Autoavance
+TAG_SHORT_AND_SWEET,Short and Sweet,Corto pero intenso
+TAG_MULTIPLAYER_VERSUS,Multiplayer Versus,Competitivo
+TAG_THEMED,Themed,Tematico
+TAG_MUSIC,Music,Música
+TAG_ART,Art,Artístico
+TAG_TECHNICAL,Technical,Habilidad
+TAG_SHOOTER,Shooter,Disparos
+TAG_BOSS_BATTLE,Boss battle,Contra jefes
+TAG_SINGLEPLAYER,Singleplayer,En solitario
+TAG_LINK,Link,Link
 CREDITS_PROGRAMMERS,Programmers,Programadores
 CREDITS_SOUNDS_MUSIC,Sounds and Music,Sonido y Música
 CREDITS_SPRITERS,Sprites,Sprites

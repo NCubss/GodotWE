@@ -7,6 +7,8 @@ const MOUSE_ADDITIVE_SCROLL_SPEED = 200.0
 const MOUSE_DECEL = 120.0
 const TOUCH_DECEL = 60.0
 
+@export var panel: StyleBox
+
 var speed := Vector2.ZERO
 var scroll_value := Vector2.ZERO
 
@@ -22,7 +24,7 @@ func _init() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_SORT_CHILDREN:
-		var box = get_theme_stylebox("panel")
+		var box = panel
 		var pos = Vector2.ZERO
 		var end = Vector2.ZERO
 		if box != null:
@@ -98,4 +100,4 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func _draw() -> void:
-	draw_style_box(get_theme_stylebox("panel"), get_rect())
+	draw_style_box(panel, Rect2(0, 0, size.x, size.y))

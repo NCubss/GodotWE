@@ -26,7 +26,7 @@ func start(entity: Node2D) -> Variant:
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	
-	player.sounds.stream = load("uid://bhxmp70u556sv")
+	player.sounds.stream = preload("uid://bhxmp70u556sv")
 	player.sounds.play()
 	
 	# apply jump speed

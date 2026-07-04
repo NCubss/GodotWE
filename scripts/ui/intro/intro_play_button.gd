@@ -11,8 +11,8 @@ func _ready() -> void:
 
 func _pressed() -> void:
 	if not SceneManager.fade_in_progress():
-		SceneManager.fade_to("uid://d11xvcdkd38jq", SceneManager.Transition.FADE,
-				SceneManager.Transition.CIRCLE)
+		SceneManager.fade_to_scene(preload("uid://d11xvcdkd38jq"),
+				SceneManager.Transition.FADE, SceneManager.Transition.CIRCLE)
 
 
 func _process(_delta: float) -> void:

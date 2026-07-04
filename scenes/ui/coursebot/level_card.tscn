@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://to3p8asx0wuv"]
+
+[ext_resource type="Texture2D" uid="uid://hjxjng1dl8nd" path="res://textures/ui/coursebot/card.svg" id="1_wmx0l"]
+[ext_resource type="Script" uid="uid://bktq45k8j7dhm" path="res://scripts/ui/coursebot/level_card.gd" id="2_wmx0l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 24
+font_color = Color(0.34509805, 0.3372549, 0.5176471, 1)
+
+[node name="LevelCard" type="TextureButton" unique_id=933978976]
+custom_maximum_size = Vector2(300, 144)
+offset_right = 300.0
+offset_bottom = 144.0
+action_mode = 0
+texture_normal = ExtResource("1_wmx0l")
+script = ExtResource("2_wmx0l")
+
+[node name="Label" type="Label" parent="." unique_id=364657064]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 99.0
+offset_right = -18.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hi Hi Hi Hi Hi Hi Hi Hi Hi "
+label_settings = SubResource("LabelSettings_g4v7s")
+text_overrun_behavior = 3
+
+[node name="Sounds" type="AudioStreamPlayer" parent="." unique_id=1561615821]
+unique_name_in_owner = true

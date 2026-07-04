@@ -10,6 +10,7 @@ var _flags: Array[StringName]
 
 ## The game's config file path.
 const GAME_CONFIG_PATH = "user://SMMWE.cfg"
+const LEVELS_PATH = "user://Levels/"
 
 
 func _init() -> void:

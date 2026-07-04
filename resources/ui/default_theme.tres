@@ -2,6 +2,48 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y5boi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg6ak"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6666667, 0.6901961, 0.72156864, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0.13725491)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k08gy"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0.13725491)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_roe6r"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0.13725491)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_bottom = 3.0
+
 [sub_resource type="FontVariation" id="FontVariation_y5boi"]
 variation_embolden = 0.7
 
@@ -14,6 +56,17 @@ Button/colors/font_hover_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/styles/normal = SubResource("StyleBoxTexture_y5boi")
+CoursebotLevelButton/base_type = &"Button"
+CoursebotLevelButton/colors/font_color = Color(0.11372549, 0.16470589, 0.2627451, 1)
+CoursebotLevelButton/colors/font_disabled_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+CoursebotLevelButton/colors/font_focus_color = Color(0.11372549, 0.16470589, 0.2627451, 1)
+CoursebotLevelButton/colors/font_hover_color = Color(0.11372549, 0.16470589, 0.2627451, 1)
+CoursebotLevelButton/colors/font_hover_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+CoursebotLevelButton/colors/font_pressed_color = Color(0.98039216, 0.8039216, 0, 1)
+CoursebotLevelButton/styles/disabled = SubResource("StyleBoxFlat_qg6ak")
+CoursebotLevelButton/styles/hover = SubResource("StyleBoxFlat_k08gy")
+CoursebotLevelButton/styles/normal = SubResource("StyleBoxFlat_k08gy")
+CoursebotLevelButton/styles/pressed = SubResource("StyleBoxFlat_roe6r")
 Label/font_sizes/font_size = 24
 RichTextLabel/constants/paragraph_separation = 16
 RichTextLabel/fonts/bold_font = SubResource("FontVariation_y5boi")
