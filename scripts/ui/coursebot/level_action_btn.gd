@@ -1,9 +1,13 @@
 class_name LevelActionBtn
 extends Button
 
+signal _level_loaded
+
 @onready var _effect: ButtonHoverEffect
 
 @export var action: LevelView.Action
+
+var _level: Level
 
 
 func _enter_tree() -> void:
@@ -29,9 +33,16 @@ func _toggled(toggled_on: bool) -> void:
 	match action:
 		LevelView.Action.EDIT:
 			UISoundPlayer.stream = preload("uid://xgqdhf77bhmt")
-			var level = Level.from_swe(owner.path)
-			level.status = Level.Status.EDITING
-			SceneManager.fade_to_node(level)
+			# Wrapping this in a lambda to wait for the level asynchronously
+			var level_load = func coursebot_level_edit_async():
+				_level = await LevelProcessor.from_swe(owner.path)
+				_level.status = Level.Status.EDITING
+				_level_loaded.emit()
+			level_load.call()
+			SceneManager.fade_to_callback(func coursebot_level_switch_async():
+				if _level == null:
+					await _level_loaded
+				return _level)
 		LevelView.Action.PLAY:
 			UISoundPlayer.stream = preload("uid://e1c77rl0cw86")
 		LevelView.Action.EXPORT:

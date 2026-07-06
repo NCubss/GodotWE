@@ -36,6 +36,7 @@ SceneManager="*res://scripts/singletons/scene_manager.gd"
 GameSettings="*res://scripts/singletons/game_settings.gd"
 MainMenu="*uid://cqa781bc5m3v7"
 MusicPlayer="*uid://b57y74tgiebkd"
+LevelProcessor="*uid://cg57aqi4w627t"
 
 [debug]
 

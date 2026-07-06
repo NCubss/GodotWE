@@ -284,6 +284,7 @@ button_group = SubResource("ButtonGroup_yyrpg")
 text = "LEVEL_EDIT"
 icon = ExtResource("6_vxykq")
 script = ExtResource("9_7vjtd")
+action = null
 
 [node name="PlayBtn" type="Button" parent="VBoxContainer/MainPanel/MainContainer/ControlPanel/ControlContainer/ActionColumn" unique_id=1833743289]
 layout_mode = 2

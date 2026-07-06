@@ -94,8 +94,8 @@ func fade_in_progress() -> bool:
 
 func fade_to_callback(
 		callback: Callable,
-		trans_in: Transition,
-		trans_out: Transition
+		trans_in := Transition.FADE,
+		trans_out := Transition.FADE
 ) -> void:
 	_fade_tween = create_tween()
 	transition_started.emit()
@@ -111,7 +111,7 @@ func fade_to_callback(
 					.set_trans(Tween.TRANS_SINE) \
 					.set_ease(Tween.EASE_IN)
 			_fade_tween.tween_callback(_polygon.hide)
-	_fade_tween.tween_callback(_change_scene.bind(await callback.call()))
+	_fade_tween.tween_callback(_change_scene.bind(callback))
 	match trans_out:
 		Transition.NONE:
 			pass
@@ -126,7 +126,8 @@ func fade_to_callback(
 	_fade_tween.tween_callback(transition_ended.emit)
 
 
-func _change_scene(scene: Node) -> void:
+func _change_scene(callback: Callable) -> void:
+	var scene = await callback.call()
 	get_tree().unload_current_scene()
 	Utility.camera_scale = Vector2(1, 1)
 	Utility.camera_position = Vector2(0, 0)

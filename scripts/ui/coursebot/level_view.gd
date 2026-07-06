@@ -18,7 +18,7 @@ var level: Level:
 
 
 static func create(_coursebot: Coursebot, _path: String,
-		_level := Level.from_swe(_path, true)) -> LevelView:
+		_level := await LevelProcessor.from_swe(_path, true)) -> LevelView:
 	var view = preload("uid://bdytsrr80hbee").instantiate()
 	view.coursebot = _coursebot
 	view.path = _path

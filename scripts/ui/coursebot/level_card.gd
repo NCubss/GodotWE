@@ -32,8 +32,8 @@ func _pressed() -> void:
 	%Sounds.stream = preload("uid://xgqdhf77bhmt")
 	%Sounds.play()
 	if level == null:
-		level = Level.from_swe(path, true)
-	coursebot.transition(LevelView.create(coursebot, path, level), false)
+		level = await LevelProcessor.from_swe(path, true)
+	coursebot.transition(await LevelView.create(coursebot, path, level), false)
 
 
 func _mouse_entered() -> void:
