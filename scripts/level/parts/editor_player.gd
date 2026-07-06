@@ -6,6 +6,10 @@ var player: Player
 const SPEED = 240.0
 
 
+func load(_placed_from_editor := false) -> void:
+	level.playing.connect(_lets_go)
+
+
 func _process(delta: float) -> void:
 	super(delta)
 	if level.status == Level.Status.EDITING and level.editor.part_interact:
@@ -64,3 +68,8 @@ func erase(_silent := false) -> void:
 func _check_validity() -> void:
 	_grid_pos = Level.to_grid(level.get_local_mouse_position())
 	_valid_space = true
+
+
+func _lets_go() -> void:
+	if level.editor != null:
+		%LetsGo.play()
