@@ -1,5 +1,5 @@
 class_name IntroPlayButton
-extends TextureButton
+extends Button
 
 @onready var _effect = ButtonHoverEffect.new(self)
 

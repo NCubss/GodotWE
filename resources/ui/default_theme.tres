@@ -44,6 +44,20 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 expand_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu2p7"]
+bg_color = Color(0.20784314, 0.57254905, 0.75686276, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoqj8"]
+bg_color = Color(1, 1, 1, 0.23137255)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="FontVariation" id="FontVariation_y5boi"]
 variation_embolden = 0.7
 
@@ -67,6 +81,15 @@ CoursebotLevelButton/styles/disabled = SubResource("StyleBoxFlat_qg6ak")
 CoursebotLevelButton/styles/hover = SubResource("StyleBoxFlat_k08gy")
 CoursebotLevelButton/styles/normal = SubResource("StyleBoxFlat_k08gy")
 CoursebotLevelButton/styles/pressed = SubResource("StyleBoxFlat_roe6r")
+IntroPlayButton/base_type = &"Button"
+IntroPlayButton/colors/font_color = Color(1, 1, 1, 1)
+IntroPlayButton/colors/font_hover_color = Color(1, 1, 1, 1)
+IntroPlayButton/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+IntroPlayButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+IntroPlayButton/styles/hover = SubResource("StyleBoxFlat_mu2p7")
+IntroPlayButton/styles/hover_pressed = SubResource("StyleBoxFlat_mu2p7")
+IntroPlayButton/styles/normal = SubResource("StyleBoxFlat_qoqj8")
+IntroPlayButton/styles/pressed = SubResource("StyleBoxFlat_mu2p7")
 Label/font_sizes/font_size = 24
 RichTextLabel/constants/paragraph_separation = 16
 RichTextLabel/fonts/bold_font = SubResource("FontVariation_y5boi")

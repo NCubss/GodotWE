@@ -3,15 +3,10 @@
 [ext_resource type="Script" uid="uid://46u20dtv31sb" path="res://scripts/ui/intro/intro.gd" id="1_63hat"]
 [ext_resource type="Texture2D" uid="uid://dvva2pouu4mrs" path="res://textures/ui/intro/calendar.svg" id="3_646do"]
 [ext_resource type="Script" uid="uid://imtq6gf8pnq3" path="res://scripts/ui/logo.gd" id="3_hv022"]
-[ext_resource type="Texture2D" uid="uid://d1t7qnxkp67wj" path="res://textures/ui/intro/btn_globe.svg" id="4_2q4qt"]
-[ext_resource type="Texture2D" uid="uid://caicrvs32vwn5" path="res://textures/ui/intro/btn_globe_hover.svg" id="5_60qwf"]
 [ext_resource type="Script" uid="uid://c5e248w3nm1tq" path="res://scripts/ui/intro/intro_link_button.gd" id="6_0i2tv"]
-[ext_resource type="Texture2D" uid="uid://0opsxp8rerjn" path="res://textures/ui/intro/btn_play.svg" id="6_r0cr4"]
 [ext_resource type="Texture2D" uid="uid://dtdxfmwley10o" path="res://textures/ui/intro/btn_link_website.svg" id="7_0i2tv"]
-[ext_resource type="Texture2D" uid="uid://ba3mheouc6ly3" path="res://textures/ui/intro/btn_play_hover.svg" id="7_60qwf"]
 [ext_resource type="Texture2D" uid="uid://drtwd6vyoac66" path="res://textures/ui/intro/btn_link_website_hover.svg" id="8_v04hj"]
 [ext_resource type="Texture2D" uid="uid://epvbkprbk5bo" path="res://textures/ui/intro/btn_link_facebook.svg" id="9_duawr"]
-[ext_resource type="FontFile" uid="uid://bk3vwucreh07k" path="res://resources/ui/text.ttf" id="9_v04hj"]
 [ext_resource type="Texture2D" uid="uid://ueoj1sysn3by" path="res://textures/ui/intro/btn_link_facebook_hover.svg" id="10_1sgqr"]
 [ext_resource type="Script" uid="uid://dwc1gchew0ft4" path="res://scripts/ui/intro/intro_play_button.gd" id="10_tcqqm"]
 [ext_resource type="Texture2D" uid="uid://cn8og0wqiascu" path="res://textures/ui/intro/btn_link_discord.svg" id="11_tcqqm"]
@@ -23,10 +18,6 @@
 [ext_resource type="AudioStream" uid="uid://kngwefcobxbe" path="res://audio/ui/editor/part/apply_parachute.wav" id="22_1sgqr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_apfq8"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_duawr"]
-font = ExtResource("9_v04hj")
 font_size = 24
 
 [node name="Intro" type="Control" unique_id=850145229]
@@ -100,7 +91,6 @@ vertical_alignment = 1
 
 [node name="UI" type="Control" parent="." unique_id=1509192157]
 unique_name_in_owner = true
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -122,33 +112,12 @@ grow_horizontal = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="OnlineBtn" type="TextureButton" parent="UI/Center" unique_id=1895235097]
-custom_minimum_size = Vector2(72, 72)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("4_2q4qt")
-texture_hover = ExtResource("5_60qwf")
-script = ExtResource("6_0i2tv")
-
-[node name="PlayBtn" type="TextureButton" parent="UI/Center" unique_id=1554145651]
+[node name="PlayBtn" type="Button" parent="UI/Center" unique_id=1749889622]
 custom_minimum_size = Vector2(336, 72)
 layout_mode = 2
-texture_normal = ExtResource("6_r0cr4")
-texture_hover = ExtResource("7_60qwf")
-script = ExtResource("10_tcqqm")
-
-[node name="Label" type="Label" parent="UI/Center/PlayBtn" unique_id=1113761538]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+theme_type_variation = &"IntroPlayButton"
 text = "TITLE_PLAY"
-label_settings = SubResource("LabelSettings_duawr")
-horizontal_alignment = 1
-vertical_alignment = 1
+script = ExtResource("10_tcqqm")
 
 [node name="BottomRight" type="HBoxContainer" parent="UI" unique_id=1013743009]
 layout_mode = 1
