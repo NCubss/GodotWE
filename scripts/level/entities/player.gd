@@ -134,7 +134,7 @@ var spin_jump_speed := 198.0
 var night_spin_jump_speed := 138.0
 ## The bounce speed used when an enemy is stomped.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
-var stomp_bounce_speed := 235.5
+var stomp_bounce_speed := 253.5
 
 @export_group("Gravity")
 ## The default gravity.
@@ -176,6 +176,11 @@ var direction := 1:
 			direction = value
 ## Used in processing coyote time.
 var just_fell := false
+## The player's [b]global[/b] position before the [method move_and_slide] call.
+## Used in scenarios where
+## [url=https://github.com/godotengine/godot/issues/38983]Godot's area detection
+## is late[/url].
+var previous_position: Vector2
 ## The tween used to move the held item side to side when moving and turning.
 var held_item_tween: Tween
 
@@ -217,13 +222,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	super(delta)
 	if _held_item != null and not Input.is_action_pressed("player_run"):
 		drop_item()
-	_attempt_correction(delta, 2)
-	move_and_slide()
 	_powerup.physics_process(delta)
 	_p_timer += delta
+	_attempt_correction(delta, 2)
+	previous_position = global_position
+	move_and_slide()
+	super(delta)
 
 
 func _process(delta: float) -> void:
@@ -244,6 +250,16 @@ func _process(delta: float) -> void:
 				#Vector2(INF, -get_viewport().get_visible_rect().size.y \
 				#/ Utility.camera_scale.y))
 		Utility.camera_position = Utility.camera_position.lerp(target, 6 * delta)
+
+
+func bounce() -> void:
+	if state_machine.current_state is PlayerSpinJumpingState:
+		state_machine.switch(PlayerSpinJumpingState)
+	else:
+		state_machine.switch(PlayerJumpingState)
+	sounds.stop()
+	velocity.y = -stomp_bounce_speed
+	position.y -= 1
 
 
 ## Downgrades the player into a lower-tier powerup.
@@ -283,7 +299,7 @@ func give_item(item: Entity) -> void:
 	assert(pickup_comp != null,
 			"Attempting to give player item without it having a Pickup" +
 			"Component")
-	call_deferred("_deferred_hold", item, pickup_comp)
+	_deferred_hold.call_deferred(item, pickup_comp)
 
 
 ## Drops whatever item the player is currently holding and returns it. The
@@ -344,7 +360,10 @@ func _attempt_correction(delta: float, amount: int) -> void:
 
 
 func _deferred_hold(item: Entity, pickup_comp: PickupComponent) -> void:
-	item.reparent(self)
+	if item.get_parent() == null:
+		add_child(item)
+	else:
+		item.reparent(self)
 	item.position = HELD_ITEM_OFFSET * Vector2(direction, 1)
 	_held_item = item
 	_held_item_z_index = item.z_index

@@ -65,19 +65,17 @@ func _ready() -> void:
 
 
 func _stomped(player: Player) -> void:
-	player.velocity.y = -player.stomp_bounce_speed
-	var spin_thump = preload("uid://clqrm38rakunb").instantiate()
+	player.bounce()
 	if player.state_machine.current_state is PlayerJumpingState:
-		player.state_machine.switch(PlayerJumpingState)
-	elif player.state_machine.current_state is PlayerFallingState:
-		player.state_machine.switch(PlayerJumpingState)
+		player.sounds.stream = preload("uid://c345xnns7om3m")
+		player.sounds.play()
+		player.spawn_spin_thump()
 	elif player.state_machine.current_state is PlayerSpinJumpingState:
-		player.state_machine.switch(PlayerSpinJumpingState)
-	player.sounds.stream = preload("uid://c345xnns7om3m")
-	player.sounds.play()
-	call_deferred("add_sibling", spin_thump)
-	spin_thump.global_position = player.global_position
-	kill()
+		var spin_smoke = SpinSmoke.create()
+		add_sibling(spin_smoke)
+		spin_smoke.global_position = global_position
+		spin_smoke.position.y -= 8
+		queue_free()
 
 
 func _turned(direction: Vector2) -> void:
@@ -95,24 +93,17 @@ func _body_handling(entering: bool, body: Node2D) -> void:
 	var player = body as Player
 	if player == null:
 		return
-	var player_coll_shape = Utility.find_child_by_class(player,
-			CollisionShape2D) as CollisionShape2D
-	if player_coll_shape == null:
+	var player_rect = Utility.get_bounding_box(player)
+	player_rect.position -= player.global_position
+	player_rect.position += player.previous_position
+	var self_rect = Utility.get_bounding_box(self)
+	
+	if entering:
+		_player_stomped_on_enter = true
+	elif _player_stomped_on_enter:
+		_player_stomped_on_enter = false
 		return
-	var player_rect = player_coll_shape.shape.get_rect()
-	player_rect.position += player_coll_shape.global_position
-	var self_coll_shape = Utility.find_child_by_class(self,
-			CollisionShape2D) as CollisionShape2D
-	if self_coll_shape == null:
-		return
-	var self_rect = self_coll_shape.shape.get_rect()
-	self_rect.position += self_coll_shape.global_position
-	if player_rect.end.y < self_rect.position.y + 8:
-		if entering:
-			_player_stomped_on_enter = true
-		elif _player_stomped_on_enter:
-			_player_stomped_on_enter = false
-			return
+	if player_rect.end.y < self_rect.position.y + 5:
 		stomped.emit(player)
 	else:
 		player.damage()

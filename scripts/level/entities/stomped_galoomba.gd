@@ -1,15 +1,12 @@
 class_name StompedGaloomba
 extends Entity
 
-@onready var pickup_component: PickupComponent = Utility.find_child_by_class(
-		self, PickupComponent)
-
 const DECEL = 10.2
 
 
 func _physics_process(_delta: float) -> void:
 	super(_delta)
-	if pickup_component.held:
+	if %PickupComponent.held:
 		velocity = Vector2.ZERO
 		return
 	var old_velocity = velocity

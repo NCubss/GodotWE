@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://i6qiojuqmpnm"]
+
+[ext_resource type="SpriteFrames" uid="uid://c6hew0redd15u" path="res://textures/spin_smoke.tres" id="1_ppbih"]
+[ext_resource type="Script" uid="uid://dsoeehsxo4ujt" path="res://scripts/other/spin_smoke.gd" id="2_6ouy7"]
+[ext_resource type="AudioStream" uid="uid://uewiw0k705ux" path="res://audio/smw/player/spin_stomp.wav" id="3_kkhi6"]
+
+[node name="SpinSmoke" type="AnimatedSprite2D" unique_id=903388165]
+z_as_relative = false
+sprite_frames = ExtResource("1_ppbih")
+autoplay = "default"
+script = ExtResource("2_6ouy7")
+
+[node name="Sound" type="AudioStreamPlayer" parent="." unique_id=594440935]
+unique_name_in_owner = true
+stream = ExtResource("3_kkhi6")
+autoplay = true

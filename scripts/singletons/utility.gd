@@ -175,3 +175,13 @@ func snap2(x: Vector2, size: Vector2, offset := Vector2.ZERO) -> Vector2:
 func snap2i(x: Vector2i, size: Vector2i, offset := Vector2i.ZERO) -> Vector2i:
 	@warning_ignore("integer_division")
 	return ((x / size) * size) + offset
+
+
+func get_bounding_box(obj: CollisionObject2D) -> Rect2:
+	var rect = Rect2()
+	for own in obj.get_shape_owners():
+		for idx in obj.shape_owner_get_shape_count(own):
+			var transform = obj.shape_owner_get_transform(own)
+			var shape_rect = obj.shape_owner_get_shape(own, idx).get_rect()
+			rect = rect.merge(transform * shape_rect)
+	return obj.global_transform * rect
