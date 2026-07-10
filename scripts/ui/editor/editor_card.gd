@@ -7,19 +7,27 @@ extends TextureButton
 	set(v):
 		if v == null:
 			return
+		part = v
+		if Engine.is_editor_hint():
+			queue_redraw()
+			return
 		if not is_node_ready():
 			await ready
-		if _editor().level == null:
-			await _editor().loaded
-		%Icon.texture = v.get_part_icon(_editor().level.current_sub_area)
-		%Icon.texture_filter = v.get_part_icon_filter(
-				_editor().level.current_sub_area)
-		part = v
+		if editor.level == null:
+			await editor.loaded
+		%Icon.texture = part.get_part_icon(editor.level.current_sub_area)
+		%Icon.texture_filter = part.get_part_icon_filter(
+				editor.level.current_sub_area)
+@export var editor: Editor
 
 var _card_offset := Vector2(0, 0)
 var _icon_offset := Vector2(0, 0)
 var _card_offset_tween: Tween
 var _icon_offset_tween: Tween
+
+
+static func create() -> EditorCard:
+	return preload("uid://b16vc6ry30e6p").instantiate()
 
 
 func _ready() -> void:
@@ -31,7 +39,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		queue_redraw()
 		return
 	if _card_offset_tween != null and _card_offset_tween.is_running():
 		queue_redraw()
@@ -60,7 +67,7 @@ func _toggled(toggled_on: bool) -> void:
 	if Engine.is_editor_hint():
 		return
 	if toggled_on:
-		%SoundPlayer.stream = preload("uid://srqkyx5dmd3p") # selected
+		%SoundPlayer.stream = preload("uid://srqkyx5dmd3p")
 		if _icon_offset_tween != null:
 			_icon_offset_tween.kill()
 		_icon_offset_tween = create_tween()
@@ -79,7 +86,7 @@ func _toggled(toggled_on: bool) -> void:
 				.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		_icon_offset_tween.set_loops()
 	else:
-		#%SoundPlayer.stream = preload("") # deselected
+		%SoundPlayer.stream = preload("uid://5m44h24yoh7l")
 		_icon_offset_tween.kill()
 		_icon_offset = Vector2(0, 0)
 	%SoundPlayer.play()
@@ -107,7 +114,3 @@ func _exited() -> void:
 	_card_offset_tween.tween_property(self, "_card_offset",
 			Vector2(0, 0), 0.1) \
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
-
-func _editor() -> Editor:
-	return (get_tree().current_scene as Level).editor

@@ -42,6 +42,11 @@
 [ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
 [ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
+[ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="39_d4hij"]
+[ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="40_4qrp7"]
+[ext_resource type="Script" uid="uid://ck5lib6hmitri" path="res://scripts/level/parts/turn_block_part.gd" id="41_r5hjk"]
+[ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="42_o86k2"]
+[ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="43_v7i5c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtyax"]
 shader = ExtResource("2_wxv2j")
@@ -603,53 +608,65 @@ grow_horizontal = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Card1" parent="Editor/TopPanel/Cards" unique_id=1935482387 instance=ExtResource("19_qv7f8")]
+[node name="Card1" parent="Editor/TopPanel/Cards" unique_id=1935482387 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card2" parent="Editor/TopPanel/Cards" unique_id=605082263 instance=ExtResource("19_qv7f8")]
+[node name="Card2" parent="Editor/TopPanel/Cards" unique_id=605082263 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card3" parent="Editor/TopPanel/Cards" unique_id=1513476386 instance=ExtResource("19_qv7f8")]
+[node name="Card3" parent="Editor/TopPanel/Cards" unique_id=1513476386 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card4" parent="Editor/TopPanel/Cards" unique_id=423114736 instance=ExtResource("19_qv7f8")]
+[node name="Card4" parent="Editor/TopPanel/Cards" unique_id=423114736 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card5" parent="Editor/TopPanel/Cards" unique_id=1986320930 instance=ExtResource("19_qv7f8")]
+[node name="Card5" parent="Editor/TopPanel/Cards" unique_id=1986320930 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
+part = ExtResource("39_d4hij")
+editor = NodePath("../../..")
 
-[node name="Card6" parent="Editor/TopPanel/Cards" unique_id=888207126 instance=ExtResource("19_qv7f8")]
+[node name="Card6" parent="Editor/TopPanel/Cards" unique_id=888207126 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card7" parent="Editor/TopPanel/Cards" unique_id=89941245 instance=ExtResource("19_qv7f8")]
+[node name="Card7" parent="Editor/TopPanel/Cards" unique_id=89941245 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
+part = ExtResource("40_4qrp7")
+editor = NodePath("../../..")
 
-[node name="Card8" parent="Editor/TopPanel/Cards" unique_id=1521276554 instance=ExtResource("19_qv7f8")]
+[node name="Card8" parent="Editor/TopPanel/Cards" unique_id=1521276554 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card9" parent="Editor/TopPanel/Cards" unique_id=99899848 instance=ExtResource("19_qv7f8")]
+[node name="Card9" parent="Editor/TopPanel/Cards" unique_id=99899848 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
+part = ExtResource("41_r5hjk")
+editor = NodePath("../../..")
 
-[node name="Card10" parent="Editor/TopPanel/Cards" unique_id=1005791055 instance=ExtResource("19_qv7f8")]
+[node name="Card10" parent="Editor/TopPanel/Cards" unique_id=1005791055 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
+part = ExtResource("42_o86k2")
+editor = NodePath("../../..")
 
-[node name="Card11" parent="Editor/TopPanel/Cards" unique_id=1315505386 instance=ExtResource("19_qv7f8")]
+[node name="Card11" parent="Editor/TopPanel/Cards" unique_id=1315505386 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
 disabled = true
+editor = NodePath("../../..")
 
-[node name="Card12" parent="Editor/TopPanel/Cards" unique_id=1846010607 instance=ExtResource("19_qv7f8")]
+[node name="Card12" parent="Editor/TopPanel/Cards" unique_id=1846010607 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
+part = ExtResource("43_v7i5c")
+editor = NodePath("../../..")
 
 [node name="LeftPanel" type="NinePatchRect" parent="Editor" unique_id=1202118082]
 unique_name_in_owner = true

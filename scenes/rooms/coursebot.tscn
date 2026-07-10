@@ -77,15 +77,14 @@ grow_horizontal = 0
 
 [node name="Window" type="PanelContainer" parent="." unique_id=1914417895]
 custom_minimum_size = Vector2(984, 561)
-custom_maximum_size = Vector2(984, 561)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -492.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 84.0
 offset_top = 75.0
-offset_right = 492.0
-offset_bottom = 636.0
+offset_right = -84.0
+offset_bottom = -12.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_g4v7s")
 

@@ -44,6 +44,8 @@ enum Layers {
 	Z_DEAD = 45,
 	## The gameplay HUD.
 	Z_HUD = 50,
+	## Currently held parts in the editor.
+	Z_HELD_PART = 55,
 }
 
 ## The game's config file path.

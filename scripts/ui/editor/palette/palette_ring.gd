@@ -80,7 +80,8 @@ func _gui_input(event: InputEvent) -> void:
 			# otherwise, add a new one
 			if card == null:
 				%Cards.remove_child(%Cards.get_child(0))
-				card = preload("uid://b16vc6ry30e6p").instantiate()
+				card = EditorCard.create()
+				card.editor = %Editor
 				%Cards.add_child(card)
 				card.part = get_page().items[selected].part
 			# trigger the sound

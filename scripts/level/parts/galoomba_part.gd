@@ -3,7 +3,7 @@ extends Part
 
 
 static func get_category() -> PaletteCategory:
-	return load("uid://wtetnd7c3nmk")
+	return load("uid://bisixphutjm6u")
 
 
 static func get_part_icon(_environment: SubArea) -> Texture2D:

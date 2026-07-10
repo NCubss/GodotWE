@@ -19,10 +19,9 @@ enum Category {
 	GIZMOS,
 }
 
-
-const _TOP_Z = 55
-
+## The [Level] this part is in.
 var level: Level
+## The [SubArea] this part is in.
 var sub_area: SubArea
 ## Whether this part is currently being dragged around.
 var held := false:
@@ -78,7 +77,8 @@ static func get_part_name(environment: SubArea) -> String:
 ## animations where the icon moves.
 @warning_ignore("unused_parameter")
 static func get_part_icon(environment: SubArea) -> Texture2D:
-	return ImageTexture.create_from_image(Image.create(60, 60, false, Image.FORMAT_RGBA8))
+	return ImageTexture.create_from_image(
+			Image.create(60, 60, false, Image.FORMAT_RGBA8))
 
 
 ## Gets the part icon's [enum TextureFilter] to draw it with. For example, this
@@ -128,6 +128,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if held:
+		# held behavior
 		queue_redraw()
 		global_position = get_global_mouse_position() - _grab_offset
 		var new_grid_pos = Level.to_grid(global_position + Vector2(8, 8))
@@ -155,7 +156,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		held = false
 
 
-func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int
+		) -> void:
 	if Engine.get_process_frames() == _start_frame:
 		return
 	if not level.editor.part_interact:
@@ -174,9 +176,7 @@ func _notification(what: int) -> void:
 
 
 func _draw():
-	if level == null:
-		return
-	if is_queued_for_deletion():
+	if level == null or is_queued_for_deletion():
 		return
 	if held:
 		var color
@@ -189,12 +189,16 @@ func _draw():
 		_draw_highlight(Vector2(0, 0), Color(0, 0, 1, 0.5))
 
 
+## Called when the [member level] and [member sub_area] are valid. Part
+## initialization that relies on these should be put here.
 func load(placed_from_editor := false) -> void:
 	_grid_pos = Level.to_grid(global_position)
 	if placed_from_editor:
 		_anim_place()
 
 
+## Erases the part. [param silent] is used when the part gets deleted for any
+## other reason than being erased by the user.
 func erase(silent := false) -> void:
 	queue_free()
 	if not silent:
@@ -202,6 +206,8 @@ func erase(silent := false) -> void:
 		UISoundPlayer.play()
 
 
+## Builds the gameplay element this part represents in the [member
+## SubArea.foreground].
 func build() -> void:
 	pass
 
@@ -240,10 +246,15 @@ func _hold() -> void:
 	collision_layer = 0
 	_original_pos = _grid_pos
 	_original_z = %Graphics.z_index
-	%Graphics.z_index = _TOP_Z
+	
+	%Graphics.z_index = GameConstants.Layers.Z_HELD_PART
 	level.editor.held_part = self
+	_grab_offset = get_global_mouse_position() - global_position
+	_moved_out = false
+	
 	_window_timer = get_tree().create_timer(0.5)
 	_window_timer.timeout.connect(_create_window)
+	
 	_anim_held()
 	if level.editor.touch_effect == null:
 		level.editor.touch_effect = preload("uid://chv4mkls3f538") \
@@ -252,8 +263,7 @@ func _hold() -> void:
 				level.editor.touch_effect.queue_free)
 		level.add_child(level.editor.touch_effect)
 		level.editor.touch_effect.global_position = get_global_mouse_position()
-	_grab_offset = get_global_mouse_position() - global_position
-	_moved_out = false
+	
 	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
 	UISoundPlayer.play()
 
@@ -262,14 +272,17 @@ func _unhold() -> void:
 	collision_layer = _coll_layers
 	%Graphics.z_index = _original_z
 	level.editor.held_part = null
+	
 	_tween.kill()
 	_anim_place()
 	_check_validity()
 	_stop_window_timer()
+	
 	if not _valid_space:
 		_grid_pos = _original_pos
 	position = Level.from_grid(_grid_pos)
 	%Graphics.rotation = 0
+	
 	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 
