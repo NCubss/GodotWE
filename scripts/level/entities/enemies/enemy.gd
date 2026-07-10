@@ -6,14 +6,17 @@ extends Entity
 ## Defines what type of stomping is allowed on an enemy.
 enum Stompability {
 	## Allows the player to stomp this enemy with any kind of jump. Triggers the
-	## [signal Enemy.stomped] signal.
+	## [signal stomped] signal.
 	STOMPABLE,
-	## Allows the player to stomp this enemy only with a spin jump. Triggers the
-	## [signal Enemy.stomped] signal.
-	SPIN_JUMP_ONLY,
+	## Allows the player to only recoil off the enemy with a spin jump. Triggers
+	## the [signal stomped] signal.
+	RECOIL,
 	## Does not allow the player to stomp this enemy. Does not trigger the
-	## [signal Enemy.stomped] signal.
+	## [signal stomped] signal.
 	NONE,
+	## Does nothing; doesn't bounce the player and doesn't damage it. Triggers
+	## the [signal stomped] signal.
+	CUSTOM,
 }
 
 ## Fired when the enemy is stomped on by the player. Only fires if 
@@ -23,7 +26,7 @@ signal stomped(player: Player)
 @export var hitbox: Area2D
 
 ## The stompability of this enemy.
-var stomp_behavior: Stompability
+var stomp_behavior := Stompability.STOMPABLE
 
 var _player_stomped_on_enter := false
 
@@ -65,17 +68,34 @@ func _ready() -> void:
 
 
 func _stomped(player: Player) -> void:
-	player.bounce()
-	if player.state_machine.current_state is PlayerJumpingState:
-		player.sounds.stream = preload("uid://c345xnns7om3m")
-		player.sounds.play()
-		player.spawn_spin_thump()
-	elif player.state_machine.current_state is PlayerSpinJumpingState:
-		var spin_smoke = SpinSmoke.create()
-		add_sibling(spin_smoke)
-		spin_smoke.global_position = global_position
-		spin_smoke.position.y -= 8
-		queue_free()
+	match stomp_behavior:
+		Stompability.STOMPABLE:
+			player.bounce()
+			if player.state_machine.current_state is PlayerJumpingState:
+				player.sounds.stream = preload("uid://c345xnns7om3m")
+				player.sounds.play()
+				player.spawn_spin_thump()
+			elif player.state_machine.current_state is PlayerSpinJumpingState:
+				_spin_stomp()
+		Stompability.RECOIL:
+			if player.state_machine.current_state is PlayerSpinJumpingState:
+				player.bounce()
+				player.sounds.stream = preload("uid://e8157k7h45xi")
+				player.sounds.play()
+				player.spawn_spin_thump()
+			else:
+				player.damage()
+		Stompability.NONE:
+				player.damage()
+		# Stompability.CUSTOM has no default behavior
+
+
+func _spin_stomp() -> void:
+	var spin_smoke = SpinSmoke.create()
+	add_sibling(spin_smoke)
+	spin_smoke.global_position = global_position
+	spin_smoke.position.y -= 8
+	queue_free()
 
 
 func _turned(direction: Vector2) -> void:
@@ -92,6 +112,10 @@ func _physics_process(_delta: float) -> void:
 func _body_handling(entering: bool, body: Node2D) -> void:
 	var player = body as Player
 	if player == null:
+		return
+	if stomp_behavior == Stompability.NONE:
+		if entering:
+			player.damage()
 		return
 	var player_rect = Utility.get_bounding_box(player)
 	player_rect.position -= player.global_position
