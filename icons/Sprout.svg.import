@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/Sprout.svg-8a5d29eaa91764606fe9564a8e76351f.d
 base_scale=1.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true
