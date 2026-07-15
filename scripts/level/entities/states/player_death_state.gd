@@ -14,6 +14,7 @@ func start(entity: Node2D) -> Variant:
 	var player: Player = entity
 	player.process_mode = Node.PROCESS_MODE_ALWAYS
 	player.level.process_mode = Node.PROCESS_MODE_DISABLED
+	player.sprite.speed_scale = 1
 	if player.global_position.y > player.VOID_LEVEL:
 		player.sprite.hide()
 	else:
