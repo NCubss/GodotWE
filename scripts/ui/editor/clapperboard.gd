@@ -63,7 +63,7 @@ func _draw() -> void:
 			TextServer.JUSTIFICATION_NONE,
 			TextServer.DIRECTION_AUTO,
 			TextServer.ORIENTATION_HORIZONTAL,
-			2)
+			get_viewport().get_oversampling() * 1.5)
 	_effect.draw()
 
 
@@ -95,3 +95,4 @@ func _level_state_changed() -> void:
 	_tween.parallel()
 	_tween.tween_property(self, "top_rotation", 0, 0.2) \
 			.set_ease(Tween.EASE_IN)
+	_tween.tween_callback(queue_redraw)

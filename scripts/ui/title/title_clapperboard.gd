@@ -62,7 +62,7 @@ func _draw() -> void:
 			TextServer.JUSTIFICATION_NONE,
 			TextServer.DIRECTION_AUTO,
 			TextServer.ORIENTATION_HORIZONTAL,
-			2)
+			get_viewport().get_oversampling() * 1.5)
 	_effect.draw()
 
 
