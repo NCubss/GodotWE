@@ -1,19 +1,10 @@
 class_name PlayerIdleState
-extends State
+extends PlayerState
 ## Provides a basic idle behavior to the player.
 
 
-func _init() -> void:
-	intended_class = Player
-
-
-func physics_process(entity: Node2D, delta: float) -> Variant:
-	# type hinting
-	var player = entity as Player
-	
-	# check for void
-	if player.global_position.y > player.VOID_LEVEL:
-		return PlayerDeathState
+func physics_process(delta: float) -> Script:
+	super(delta)
 	
 	# player is not on floor, go to the falling state
 	if not player.is_on_floor():
@@ -23,34 +14,32 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	player.velocity.x = move_toward(player.velocity.x, 0, player.deceleration)
 	
 	# animations
-	if player.velocity.x == 0:
-		player.sprite.speed_scale = 1
-		player.sprite.play("idle")
-	else:
-		player.sprite.speed_scale = abs(player.velocity.x) * 12 * delta
-		if player.p_meter > 5:
-			player.sprite.play("run")
+	if player.can_change_sprite():
+		if player.velocity.x == 0:
+			player.sprite.speed_scale = 1
+			if Input.is_action_pressed("player_up"):
+				if player.held_item == null:
+					player.sprite.play("look_up")
+				else:
+					player.sprite.play("hold_look_up")
+			else:
+				if player.held_item == null:
+					player.sprite.play("idle")
+				else:
+					player.sprite.play("hold_idle")
 		else:
-			player.sprite.play("walk")
+			player.sprite.speed_scale = abs(player.velocity.x) * 12 * delta
+			if player.held_item == null:
+				if player.p_meter > 5:
+					player.sprite.play("run")
+				else:
+					player.sprite.play("walk")
+			else:
+				player.sprite.play("hold_walk")
 	
-	return
+	return null
 
 
-func input(entity: Node2D, event: InputEvent) -> Variant:
-	# type hinting
-	var player = entity as Player
-	
-	# player is jumping, go to jumping state
-	if event.is_action_pressed("player_jump"):
-		return PlayerJumpingState
-	
-	# player is spin jumping, go to the spin jumping state
-	if event.is_action_pressed("player_spin_jump"):
-		player.just_fell = true
-		return PlayerSpinJumpingState
-	
-	# moving, go to moving state
-	if Input.get_axis("player_left", "player_right") != 0:
-		return PlayerMovingState
-	
-	return
+func input(event: InputEvent) -> Script:
+	super(event)
+	return move_check(event)

@@ -4,12 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://c2ghbdcbsyk30" path="res://textures/player/mario/dead.png" id="1_hgfbl"]
 [ext_resource type="Texture2D" uid="uid://geq1roewmv1k" path="res://textures/player/mario/small/fall.png" id="2_hgfbl"]
 [ext_resource type="Texture2D" uid="uid://i1hdwfv63uvg" path="res://textures/player/mario/small/idle.png" id="3_lungf"]
+[ext_resource type="Texture2D" uid="uid://bav58bp5s01l8" path="res://textures/player/mario/small/hold_duck.png" id="4_0xcha"]
+[ext_resource type="Texture2D" uid="uid://bo43n8rh3u8mx" path="res://textures/player/mario/small/hold_airborne.png" id="4_durvf"]
 [ext_resource type="Texture2D" uid="uid://cv5q4gi6k8oi1" path="res://textures/player/mario/small/jump.png" id="4_ouou7"]
+[ext_resource type="Texture2D" uid="uid://qilh0k44rt02" path="res://textures/player/mario/small/hold_idle.png" id="5_ckkpt"]
 [ext_resource type="Texture2D" uid="uid://dsbpgg6geewwj" path="res://textures/player/mario/small/p_jump.png" id="5_phm6r"]
+[ext_resource type="Texture2D" uid="uid://dfjwikoq12dpq" path="res://textures/player/mario/small/hold_look_up.png" id="6_durvf"]
 [ext_resource type="Texture2D" uid="uid://ckyxmkostqpdd" path="res://textures/player/mario/small/run.png" id="6_xx84f"]
+[ext_resource type="Texture2D" uid="uid://dqfgkt6ni7xb6" path="res://textures/player/mario/small/hold_walk.png" id="7_7ptfa"]
 [ext_resource type="Texture2D" uid="uid://cmr57i1et5gyy" path="res://textures/player/mario/small/skid.png" id="7_wms1a"]
 [ext_resource type="Texture2D" uid="uid://d4gyuxu12h8wy" path="res://textures/player/mario/small/spin_jump.png" id="8_qfgb1"]
 [ext_resource type="Texture2D" uid="uid://du3cmcu5y6hsm" path="res://textures/player/mario/small/walk.png" id="9_lnd0r"]
+[ext_resource type="Texture2D" uid="uid://box7yv1x8r4qx" path="res://textures/player/mario/small/look_up.png" id="10_2a1d3"]
+[ext_resource type="Texture2D" uid="uid://dbaq5xfwhx5au" path="res://textures/player/mario/small/kick.png" id="10_ckkpt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lungf"]
 atlas = ExtResource("1_hgfbl")
@@ -27,12 +34,24 @@ region = Rect2(0, 0, 16, 32)
 atlas = ExtResource("2_hgfbl")
 region = Rect2(0, 0, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbtf3"]
+atlas = ExtResource("7_7ptfa")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp32m"]
+atlas = ExtResource("7_7ptfa")
+region = Rect2(16, 0, 16, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u6hq"]
 atlas = ExtResource("3_lungf")
 region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c5rqy"]
 atlas = ExtResource("4_ouou7")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_durvf"]
+atlas = ExtResource("10_ckkpt")
 region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5sgd"]
@@ -106,6 +125,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_durvf")
+}],
+"loop": 0,
+"name": &"hold_airborne",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0xcha")
+}],
+"loop": 0,
+"name": &"hold_duck",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ckkpt")
+}],
+"loop": 0,
+"name": &"hold_idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_durvf")
+}],
+"loop": 0,
+"name": &"hold_look_up",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbtf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp32m")
+}],
+"loop": 1,
+"name": &"hold_walk",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5u6hq")
 }],
 "loop": 0,
@@ -118,6 +180,22 @@ animations = [{
 }],
 "loop": 0,
 "name": &"jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_durvf")
+}],
+"loop": 0,
+"name": &"kick",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_2a1d3")
+}],
+"loop": 0,
+"name": &"look_up",
 "speed": 0.0
 }, {
 "frames": [{
@@ -171,7 +249,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ss7kx")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"walk",
 "speed": 1.0
 }]

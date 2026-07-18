@@ -21,16 +21,18 @@ extends Node
 ## [/codeblock]
 ## If the state isn't found in the [StateMachine], it will throw an error.
 
-## The class this state is designed for. The state will raise an error if this
-## class does not match the node this state is applied to.
+## The class this state is designed for. The state machine will raise an error
+## if this class does not match the node this state is applied to.
 var intended_class: Variant = Node2D
+
+## The node the state is interacting with (i.e. the parent of the
+## [StateMachine]). This is set before [method start] is called.
+var node: Node
 
 
 ## Runs once the state has just been enabled.
 @warning_ignore("unused_parameter")
-func start(entity: Node2D) -> Variant:
-	assert(is_instance_of(entity, intended_class),
-			"Using a state not applied to its intended class")
+func start() -> Script:
 	return null
 
 
@@ -38,23 +40,23 @@ func start(entity: Node2D) -> Variant:
 ## return a different state to switch to in this function, as the next state is
 ## already selected.
 @warning_ignore("unused_parameter")
-func end(entity: Node2D) -> void:
+func end() -> void:
 	pass
 
 
 ## Runs every frame. Clone of [method Node._process].
 @warning_ignore("unused_parameter")
-func process(entity: Node2D, delta: float) -> Variant:
+func process(delta: float) -> Script:
 	return null
 
 
 ## Runs every physics tick. Clone of [method Node._physics_process].
 @warning_ignore("unused_parameter")
-func physics_process(entity: Node2D, delta: float) -> Variant:
+func physics_process(delta: float) -> Script:
 	return null
 
 
 ## Runs when an input event is received. Clone of [method Node._input].
 @warning_ignore("unused_parameter")
-func input(entity: Node2D, event: InputEvent) -> Variant:
+func input(event: InputEvent) -> Script:
 	return null

@@ -1,5 +1,5 @@
 class_name PlayerJumpingState
-extends State
+extends PlayerState
 ## Provides jumping behavior to the player.
 
 # The type of jump that should be buffered
@@ -13,18 +13,15 @@ var _long_jump := false
 var _grav_comp: GravityComponent
 var _jump_buffer: _JumpBufferType
 var _jump_buffer_timer := 0.0
+var _was_holding_item := false
 
 
-func _init() -> void:
-	intended_class = Player
-
-
-func start(entity: Node2D) -> Variant:
-	super(entity)
-	var player = entity as Player
+func start() -> Script:
+	super()
 	var running = Input.is_action_pressed("player_run")
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
+	_was_holding_item = player.held_item != null
 	
 	player.sounds.stream = preload("uid://bhxmp70u556sv")
 	player.sounds.play()
@@ -40,32 +37,21 @@ func start(entity: Node2D) -> Variant:
 	elif running and abs(player.velocity.x) >= player.max_run_speed:
 		player.velocity.y = -player.fast_jump_speed
 	
-	return
+	return null
 
 
-func end(entity: Node2D) -> void:
-	# type hinting
-	var player = entity as Player
-	
+func end() -> void:
+	super()
 	# reset gravity
 	var grav = Utility.find_child_by_class(player, GravityComponent)
 	grav.gravity = Vector2(0, player.gravity)
 
 
-func physics_process(entity: Node2D, delta: float) -> Variant:
-	# type hinting
-	var player = entity as Player
-	
-	# check for void
-	if player.global_position.y > player.VOID_LEVEL:
-		return PlayerDeathState
-	
+func physics_process(delta: float) -> Script:
 	var direction = Input.get_axis("player_left", "player_right")
-	var max_speed = (
-		player.max_run_speed
-		if Input.is_action_pressed("player_run")
-		else player.max_walk_speed
-	)
+	var max_speed = player.max_run_speed \
+			if Input.is_action_pressed("player_run") \
+			else player.max_walk_speed
 	
 	# jump buffer stuff
 	if _jump_buffer != _JumpBufferType.NONE:
@@ -80,24 +66,22 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 		_jump_buffer = _JumpBufferType.SPIN_JUMP
 		_jump_buffer_timer = 0
 	
-	if (
-		not Input.is_action_pressed("player_jump")
-		or player.velocity.y >= -player.long_jump_stop_speed
-	):
+	if (not Input.is_action_pressed("player_jump")
+			and (not Input.is_action_pressed("player_spin_jump")
+			or not _was_holding_item)) \
+			or player.velocity.y >= -player.long_jump_stop_speed:
 		_long_jump = false
 	
-	# switch to other states
 	if player.is_on_floor():
 		# jump if the player jumped close enough
 		if _jump_buffer == _JumpBufferType.JUMP:
 			return PlayerJumpingState
 		elif _jump_buffer == _JumpBufferType.SPIN_JUMP:
 			return PlayerSpinJumpingState
+		elif direction == 0:
+			return PlayerIdleState
 		else:
-			if direction == 0:
-				return PlayerIdleState
-			else:
-				return PlayerMovingState
+			return PlayerMovingState
 	
 	# change gravity for variable jump height
 	if _long_jump:
@@ -105,23 +89,37 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	else:
 		_grav_comp.gravity = Vector2(0, player.gravity)
 	
+	position_held_item(direction)
+	
 	# accelerate
 	if direction != 0:
-		player.direction = direction
+		player.direction = int(direction)
 		player.velocity.x = move_toward(
 				player.velocity.x,
 				max_speed * direction,
 				player.acceleration
 		)
 	
-	# animations
-	if player.velocity.y < 0:
-		player.sprite.play("jump")
-	else:
-		player.sprite.play("fall")
+	if player.can_change_sprite():
+		# animations
+		if player.held_item != null:
+			player.sprite.play("hold_airborne")
+		elif player.velocity.y < 0:
+			player.sprite.play("jump")
+		else:
+			player.sprite.play("fall")
 	if direction < 0:
 		player.sprite.flip_h = true
 	elif direction > 0:
 		player.sprite.flip_h = false
 	
-	return
+	return null
+
+
+func input(event: InputEvent) -> Script:
+	super(event)
+	
+	if player.is_on_floor():
+		return move_check(event)
+	
+	return null

@@ -1,5 +1,5 @@
 class_name PlayerSpinJumpingState
-extends State
+extends PlayerState
 ## Provides a spin jumping behavior to the player.
 
 # The type of jump that should be buffered
@@ -15,13 +15,12 @@ var _jump_buffer: _JumpBufferType
 var _jump_buffer_timer := 0.0
 
 
-func _init() -> void:
-	intended_class = Player
-
-
-func start(entity: Node2D) -> Variant:
-	super(entity)
-	var player = entity as Player
+func start() -> Script:
+	super()
+	
+	if player.held_item != null:
+		return PlayerJumpingState
+	
 	_long_jump = true
 	_grav_comp = Utility.find_child_by_class(player, GravityComponent)
 	
@@ -31,7 +30,6 @@ func start(entity: Node2D) -> Variant:
 	# animations
 	player.sprite.speed_scale = 1
 	player.sprite.flip_h = false
-	player.sprite.play("spin_jump")
 	
 	# apply jump speed
 	player.velocity.y = -player.spin_jump_speed
@@ -39,22 +37,16 @@ func start(entity: Node2D) -> Variant:
 	return
 
 
-func end(entity: Node2D) -> void:
-	# type hinting
-	var player = entity as Player
+func end() -> void:
+	super()
 	
 	# reset gravity
 	var grav = Utility.find_child_by_class(player, GravityComponent)
 	grav.gravity = Vector2(0, player.gravity)
 
 
-func physics_process(entity: Node2D, delta: float) -> Variant:
-	# type hinting
-	var player = entity as Player
-	
-	# check for void
-	if player.global_position.y > player.VOID_LEVEL:
-		return PlayerDeathState
+func physics_process(delta: float) -> Script:
+	super(delta)
 	
 	var direction = Input.get_axis("player_left", "player_right")
 	var max_speed = (
@@ -89,11 +81,10 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 			return PlayerJumpingState
 		elif _jump_buffer == _JumpBufferType.SPIN_JUMP:
 			return PlayerSpinJumpingState
+		elif direction == 0:
+			return PlayerIdleState
 		else:
-			if direction == 0:
-				return PlayerIdleState
-			else:
-				return PlayerMovingState
+			return PlayerMovingState
 	
 	# change gravity for variable jump height
 	if _long_jump:
@@ -103,11 +94,27 @@ func physics_process(entity: Node2D, delta: float) -> Variant:
 	
 	# accelerate
 	if direction != 0:
-		player.direction = direction
+		player.direction = int(direction)
 		player.velocity.x = move_toward(
 				player.velocity.x,
 				max_speed * direction,
-				player.acceleration
-		)
+				player.acceleration)
+	
+	if player.can_change_sprite():
+		player.sprite.play("spin_jump")
 	
 	return
+
+
+func input(event: InputEvent) -> Script:
+	super(event)
+	
+	if player.is_on_floor():
+		return move_check(event)
+	
+	return null
+
+
+func item_dropped(held_item: Entity) -> void:
+	super(held_item)
+	get_parent().switch(PlayerFallingState)
