@@ -10,6 +10,10 @@ var gravity: Vector2 = default()
 ## The maximum fall speed.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
 var max_fall_speed := 258.0
+## This is a multiplier document this later pls
+@export var bounce := false
+@export var bounce_strength := 0.5
+@export var minimum_bounce_velocity := 30
 
 
 ## Returns the default gravity value from the project settings as a vector.
@@ -27,3 +31,6 @@ func _physics_process(_delta: float) -> void:
 	get_parent().velocity += gravity
 	if get_parent().velocity.y > max_fall_speed:
 		get_parent().velocity.y = max_fall_speed
+	if get_parent().is_on_floor() and bounce \
+			and get_parent().velocity.y > minimum_bounce_velocity:
+		get_parent().velocity.y = get_parent().velocity.y * -bounce_strength
