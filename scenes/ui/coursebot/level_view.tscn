@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://upnqfgsworcx" path="res://textures/ui/coursebot/play.svg" id="7_pw65s"]
 [ext_resource type="Script" uid="uid://b424y8q4y8m8f" path="res://scripts/ui/coursebot/level_action_btn.gd" id="9_7vjtd"]
 [ext_resource type="Texture2D" uid="uid://b2j83b708idne" path="res://textures/ui/coursebot/export.svg" id="9_gxb5d"]
-[ext_resource type="Texture2D" uid="uid://ct7nsivikgx8h" path="res://textures/ui/editor/style_cards/smb.svg" id="10_lfbwq"]
+[ext_resource type="Texture2D" uid="uid://ct7nsivikgx8h" path="res://textures/ui/editor/left_panel/style_cards/smb.svg" id="10_lfbwq"]
 [ext_resource type="Texture2D" uid="uid://cfi4ovngm2jod" path="res://textures/ui/coursebot/delete.svg" id="11_gxb5d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3h5ri"]

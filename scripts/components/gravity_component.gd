@@ -10,10 +10,16 @@ var gravity: Vector2 = default()
 ## The maximum fall speed.
 @export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
 var max_fall_speed := 258.0
-## This is a multiplier document this later pls
+## Whether the body will bounce on landing.
 @export var bounce := false
+## Multiplier of the downward velocity for how strong the bounce will be. This
+## shouldn't be negative because it is already negated in processing. Making
+## this 1 will result in just as much velocity going up as it was going down,
+## bouncing forever and reaching the starting height.
 @export var bounce_strength := 0.5
-@export var minimum_bounce_velocity := 30
+## The minimum velocity for the body to bounce.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px/s")
+var minimum_bounce_velocity := 30
 
 
 ## Returns the default gravity value from the project settings as a vector.

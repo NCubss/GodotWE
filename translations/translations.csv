@@ -24,6 +24,10 @@ PAGE_ENDLESS,Endless Challenge,Desafío Super Mario
 PAGE_ONLINE,Course World,Niveles Mundiales
 EDITOR_POPOUT_COURSEBOT,Save | Load,Guardar | Cargar
 EDITOR_POPOUT_GAME_STYLE,Game Style,Apariencia
+EDITOR_POPOUT_LEVEL_THEME,Course Theme,Entorno
+EDITOR_POPOUT_AUTOSCROLL,Autoscroll,Autoavance
+EDITOR_POPOUT_TIME,Timer,Cronómetro
+EDITOR_POPOUT_CLEAR_CONDITION,Clear Condition,Condición Especial
 CLAPPERBOARD_PLAY,Play,Jugar
 CLAPPERBOARD_EDIT,Make,Editar
 TITLE_CLAPPERBOARD_EDIT,Make,Crear

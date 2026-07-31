@@ -4,56 +4,81 @@
 [ext_resource type="PackedScene" uid="uid://7myvf40h2mob" path="res://scenes/ui/editor/category_btn.tscn" id="2_fep4b"]
 [ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://textures/ui/editor/panel.svg" id="2_sfxmt"]
 [ext_resource type="Shader" uid="uid://c0fq1n323ej38" path="res://shaders/ring_color.gdshader" id="2_wxv2j"]
-[ext_resource type="Texture2D" uid="uid://b3drwl34ueoi5" path="res://textures/ui/editor/palette/ring_shadow.svg" id="3_a6583"]
+[ext_resource type="Texture2D" uid="uid://b3drwl34ueoi5" path="res://textures/ui/editor/top_panel/palette/ring_shadow.svg" id="3_a6583"]
 [ext_resource type="Script" uid="uid://7ycjqet4htd0" path="res://scripts/ui/editor/editor_panel.gd" id="3_bm1wd"]
 [ext_resource type="PackedScene" uid="uid://ibw5lxq8xlyx" path="res://scenes/ui/menu_btn.tscn" id="4_51isn"]
 [ext_resource type="Resource" uid="uid://wtetnd7c3nmk" path="res://resources/palette/category_terrain.tres" id="4_crwvd"]
-[ext_resource type="Texture2D" uid="uid://bjkjvbo5dxhvr" path="res://textures/ui/editor/palette/ring_7.svg" id="4_dyxkw"]
+[ext_resource type="Texture2D" uid="uid://bjkjvbo5dxhvr" path="res://textures/ui/editor/top_panel/palette/ring_7.svg" id="4_dyxkw"]
 [ext_resource type="Script" uid="uid://bw6ubutesaogk" path="res://scripts/ui/editor/palette/palette_ring.gd" id="4_rtyax"]
 [ext_resource type="Texture2D" uid="uid://bg4fnwdmq7h00" path="res://textures/ui/editor/btn_square.svg" id="5_8eg8w"]
-[ext_resource type="Texture2D" uid="uid://ckdt2mc8m05xn" path="res://textures/ui/editor/palette/sector_7.svg" id="5_a6583"]
+[ext_resource type="Texture2D" uid="uid://ckdt2mc8m05xn" path="res://textures/ui/editor/top_panel/palette/sector_7.svg" id="5_a6583"]
 [ext_resource type="Resource" uid="uid://d15pdc5d1rkwr" path="res://resources/palette/category_items.tres" id="5_fhqrb"]
 [ext_resource type="Resource" uid="uid://bisixphutjm6u" path="res://resources/palette/category_enemies.tres" id="6_d4hij"]
-[ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="6_fp6e3"]
 [ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_0l6sx"]
 [ext_resource type="Resource" uid="uid://kxjxg3sfdp1g" path="res://resources/palette/category_gizmos.tres" id="7_4qrp7"]
-[ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/coursebot_btn.gd" id="8_kunuo"]
-[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/btn_eraser.svg" id="9_khafc"]
-[ext_resource type="Texture2D" uid="uid://bgcosxahmopj8" path="res://textures/ui/editor/palette/item.svg" id="10_w63je"]
+[ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/right_panel/coursebot_btn.gd" id="8_kunuo"]
+[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/right_panel/btn_eraser.svg" id="9_khafc"]
+[ext_resource type="Texture2D" uid="uid://bgcosxahmopj8" path="res://textures/ui/editor/top_panel/palette/item.svg" id="10_w63je"]
 [ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://textures/ui/btn_mask_circular.svg" id="10_wxv2j"]
 [ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="11_a6583"]
-[ext_resource type="Texture2D" uid="uid://b3tx16rivyjy4" path="res://textures/ui/editor/palette/item_mask.svg" id="11_w8smy"]
-[ext_resource type="Texture2D" uid="uid://bo0yp2ox3rtas" path="res://textures/ui/editor/palette/next.svg" id="12_crwvd"]
-[ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://textures/ui/editor/btn_dog.svg" id="12_dyxkw"]
+[ext_resource type="Texture2D" uid="uid://b3tx16rivyjy4" path="res://textures/ui/editor/top_panel/palette/item_mask.svg" id="11_w8smy"]
+[ext_resource type="Texture2D" uid="uid://bo0yp2ox3rtas" path="res://textures/ui/editor/top_panel/palette/next.svg" id="12_crwvd"]
+[ext_resource type="Texture2D" uid="uid://cgy3nbg46tgq7" path="res://textures/ui/editor/right_panel/btn_dog.svg" id="12_dyxkw"]
 [ext_resource type="Texture2D" uid="uid://b0tiwkw7ublhx" path="res://textures/ui/btn_close.svg" id="12_w8smy"]
 [ext_resource type="Script" uid="uid://5qkuotbsd64b" path="res://scripts/ui/editor/palette/palette_navigation_btn.gd" id="13_fhqrb"]
-[ext_resource type="Texture2D" uid="uid://c0omteb87asj0" path="res://textures/ui/editor/palette/category.svg" id="13_pr0l3"]
-[ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://textures/ui/editor/btn_rocket.svg" id="13_rtyax"]
+[ext_resource type="Texture2D" uid="uid://c0omteb87asj0" path="res://textures/ui/editor/top_panel/palette/category.svg" id="13_pr0l3"]
+[ext_resource type="Texture2D" uid="uid://c5ghklhl8yxor" path="res://textures/ui/editor/right_panel/btn_rocket.svg" id="13_rtyax"]
 [ext_resource type="Script" uid="uid://5rqyli5oor8d" path="res://scripts/ui/editor/editor_popout.gd" id="14_sp7ve"]
 [ext_resource type="AudioStream" uid="uid://dun72febcjtln" path="res://audio/ui/coursebot/open.wav" id="15_6snt5"]
 [ext_resource type="AudioStream" uid="uid://dvblsjft053ru" path="res://audio/ui/coursebot/close.wav" id="16_w63je"]
-[ext_resource type="Texture2D" uid="uid://cw4x4gcgmcnca" path="res://textures/ui/editor/btn_coursebot_save.svg" id="17_8eg8w"]
-[ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://textures/ui/editor/btn_palette.svg" id="17_w8smy"]
-[ext_resource type="Script" uid="uid://th7g1fgn07e3" path="res://scripts/ui/editor/coursebot_popout_btn.gd" id="18_0l6sx"]
-[ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/palette_btn.gd" id="18_fep4b"]
-[ext_resource type="Texture2D" uid="uid://2hd1xfqj4ix3" path="res://textures/ui/editor/btn_coursebot_load.svg" id="18_fp6e3"]
+[ext_resource type="Texture2D" uid="uid://cw4x4gcgmcnca" path="res://textures/ui/editor/right_panel/coursebot/btn_save.svg" id="17_8eg8w"]
+[ext_resource type="Texture2D" uid="uid://g3vf8dudbk2v" path="res://textures/ui/editor/top_panel/btn_palette.svg" id="17_w8smy"]
+[ext_resource type="Script" uid="uid://th7g1fgn07e3" path="res://scripts/ui/editor/right_panel/coursebot/coursebot_popout_btn.gd" id="18_0l6sx"]
+[ext_resource type="Script" uid="uid://nw1y4rkdjw4e" path="res://scripts/ui/editor/top_panel/palette_btn.gd" id="18_fep4b"]
+[ext_resource type="Texture2D" uid="uid://2hd1xfqj4ix3" path="res://textures/ui/editor/right_panel/coursebot/btn_load.svg" id="18_fp6e3"]
 [ext_resource type="PackedScene" uid="uid://b16vc6ry30e6p" path="res://scenes/ui/editor/card.tscn" id="19_qv7f8"]
-[ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/style_cards/btn.svg" id="22_crwvd"]
-[ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
-[ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
+[ext_resource type="Texture2D" uid="uid://xivud6voxkjm" path="res://textures/ui/editor/left_panel/style_cards/btn.svg" id="22_crwvd"]
+[ext_resource type="Texture2D" uid="uid://c43s2s45r2ldw" path="res://textures/ui/editor/btn_square_pressed.svg" id="22_osne0"]
+[ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/left_panel/style_cards/btn_pressed.svg" id="23_fhqrb"]
+[ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/left_panel/game_style_btn.gd" id="24_d4hij"]
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
+[ext_resource type="Texture2D" uid="uid://cghxg8d80ngy" path="res://textures/ui/editor/top_panel/btn_sounds_open.svg" id="37_c42vp"]
+[ext_resource type="Script" uid="uid://3ixu44y7v84c" path="res://scripts/ui/editor/top_panel/part_type_btn.gd" id="37_vwxkl"]
 [ext_resource type="Script" uid="uid://dgrnevvgtgm4b" path="res://scripts/level/parts/koopa_part.gd" id="39_4qrp7"]
 [ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="39_d4hij"]
 [ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="40_4qrp7"]
 [ext_resource type="Script" uid="uid://ck5lib6hmitri" path="res://scripts/level/parts/turn_block_part.gd" id="41_r5hjk"]
 [ext_resource type="Script" uid="uid://du2xth7h5b1gr" path="res://scripts/level/parts/question_block_part.gd" id="42_o86k2"]
 [ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="43_v7i5c"]
+[ext_resource type="Texture2D" uid="uid://cjt6vqgprv8fg" path="res://textures/ui/editor/top_panel/btn_objects.svg" id="45_mwi86"]
+[ext_resource type="Texture2D" uid="uid://bk3uaw82l87vx" path="res://textures/ui/editor/left_panel/left_panel.svg" id="45_v7i5c"]
+[ext_resource type="Texture2D" uid="uid://b2u251oyxlkbi" path="res://textures/ui/editor/left_panel/btn_music_off.svg" id="49_2ut02"]
+[ext_resource type="Texture2D" uid="uid://csro1hek4vu70" path="res://textures/ui/editor/left_panel/btn_music.svg" id="50_17mwu"]
+[ext_resource type="Texture2D" uid="uid://blts26tib7gf2" path="res://textures/ui/editor/left_panel/theme_cards/short/button.svg" id="50_jogh0"]
+[ext_resource type="Texture2D" uid="uid://dwrlfui1chtv6" path="res://textures/ui/editor/left_panel/btn_trail_off.svg" id="51_17mwu"]
+[ext_resource type="Texture2D" uid="uid://cqr7y117byxg2" path="res://textures/ui/editor/left_panel/btn_water_level.svg" id="51_rqkgo"]
+[ext_resource type="Texture2D" uid="uid://qn0mlfvdq4vr" path="res://textures/ui/editor/left_panel/theme_cards/short/button_pressed.svg" id="51_wy0ar"]
+[ext_resource type="Script" uid="uid://cfeuo70yyi2rv" path="res://scripts/ui/editor/left_panel/level_theme_btn.gd" id="52_1jh8r"]
+[ext_resource type="Texture2D" uid="uid://c2k4vdo0e14ss" path="res://textures/ui/editor/left_panel/btn_trail_on.svg" id="52_dnrd8"]
+[ext_resource type="Texture2D" uid="uid://bc808e8jtxkba" path="res://textures/ui/editor/left_panel/btn_no_level.svg" id="52_k677a"]
+[ext_resource type="Texture2D" uid="uid://crbpivf5qjq3h" path="res://textures/ui/editor/left_panel/btn_meteorites_off.svg" id="53_wy0ar"]
+[ext_resource type="Texture2D" uid="uid://c0kbtuqb8t32o" path="res://textures/ui/editor/left_panel/btn_meteorites_on.svg" id="54_mahnq"]
+[ext_resource type="Texture2D" uid="uid://cesvt7pbr2ff6" path="res://textures/ui/editor/left_panel/btn_meteorites_none.svg" id="55_1jh8r"]
+[ext_resource type="Script" uid="uid://ce4b00vmkvhqb" path="res://scripts/ui/editor/left_panel/autoscroll_btn.gd" id="55_mahnq"]
+[ext_resource type="Texture2D" uid="uid://c2rs61fytlafw" path="res://textures/ui/editor/left_panel/btn_time.svg" id="56_osne0"]
+[ext_resource type="Texture2D" uid="uid://4g3pjmw1f8k5" path="res://textures/ui/editor/left_panel/btn_time_pressed.svg" id="57_vwxkl"]
+[ext_resource type="Texture2D" uid="uid://ddebqulm6yj7h" path="res://textures/ui/editor/left_panel/btn_clear_condition.svg" id="58_c42vp"]
+[ext_resource type="Script" uid="uid://4kopicuy5th0" path="res://scripts/ui/editor/left_panel/time_btn.gd" id="58_jogh0"]
+[ext_resource type="Script" uid="uid://c6q47qnusnble" path="res://scripts/ui/editor/left_panel/binary_btn.gd" id="58_wy0ar"]
+[ext_resource type="Texture2D" uid="uid://b7r2g38vp8jga" path="res://textures/ui/editor/left_panel/btn_clear_condition_pressed.svg" id="59_p1dnx"]
+[ext_resource type="AudioStream" uid="uid://d3lha2xpakko2" path="res://audio/ui/common/hover04.wav" id="59_rqkgo"]
+[ext_resource type="Script" uid="uid://ctb6g03wyrir4" path="res://scripts/ui/editor/left_panel/clear_condition_btn.gd" id="65_1jh8r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtyax"]
 shader = ExtResource("2_wxv2j")
 shader_parameter/color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qv7f8"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c42vp"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -66,7 +91,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr0l3"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1dnx"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -79,7 +104,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5gafy"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x5dd"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -92,7 +117,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crwvd"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei6ow"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -315,31 +340,31 @@ theme_override_constants/separation = 18
 
 [node name="Terrain" parent="Editor/PaletteMenu/Tabs" unique_id=828071019 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_qv7f8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_qv7f8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qv7f8")
+theme_override_styles/normal = SubResource("StyleBoxTexture_c42vp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_c42vp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_c42vp")
 button_pressed = true
 category = ExtResource("4_crwvd")
 
 [node name="Items" parent="Editor/PaletteMenu/Tabs" unique_id=183601785 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_pr0l3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_pr0l3")
-theme_override_styles/hover = SubResource("StyleBoxTexture_pr0l3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p1dnx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p1dnx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p1dnx")
 category = ExtResource("5_fhqrb")
 
 [node name="Enemies" parent="Editor/PaletteMenu/Tabs" unique_id=1842016254 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_5gafy")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5gafy")
-theme_override_styles/hover = SubResource("StyleBoxTexture_5gafy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6x5dd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6x5dd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6x5dd")
 category = ExtResource("6_d4hij")
 
 [node name="Gizmos" parent="Editor/PaletteMenu/Tabs" unique_id=633540572 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_crwvd")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_crwvd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_crwvd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ei6ow")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ei6ow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ei6ow")
 category = ExtResource("7_4qrp7")
 
 [node name="CloseBtn" type="TextureButton" parent="Editor/PaletteMenu" unique_id=1133375105]
@@ -397,62 +422,22 @@ offset_right = 87.0
 offset_bottom = 87.0
 focus_neighbor_top = NodePath("../../../TopPanel/PaletteBtn")
 
-[node name="CoursebotBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1707782701]
+[node name="CoursebotBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1707782701 node_paths=PackedStringArray("popout")]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 108.0
 offset_right = 87.0
-offset_bottom = 174.0
+offset_bottom = 168.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 toggle_mode = true
 action_mode = 0
 texture_normal = ExtResource("5_8eg8w")
-texture_pressed = ExtResource("6_fp6e3")
-texture_click_mask = ExtResource("7_0l6sx")
+texture_pressed = ExtResource("22_osne0")
+ignore_texture_size = true
 script = ExtResource("8_kunuo")
-
-[node name="EraserBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1195686216]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 288.0
-offset_right = 90.0
-offset_bottom = 357.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("9_khafc")
-texture_click_mask = ExtResource("10_wxv2j")
-script = ExtResource("11_a6583")
-hover_offset = Rect2(3, 3, -6, -12)
-
-[node name="DogBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=183154998]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 369.0
-offset_right = 87.0
-offset_bottom = 435.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("12_dyxkw")
-texture_click_mask = ExtResource("7_0l6sx")
-script = ExtResource("11_a6583")
-hover_offset = Rect2(0, 0, 0, -6)
-
-[node name="RocketBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1993628880]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 456.0
-offset_right = 87.0
-offset_bottom = 522.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-action_mode = 0
-texture_normal = ExtResource("13_rtyax")
-texture_click_mask = ExtResource("7_0l6sx")
-script = ExtResource("11_a6583")
-hover_offset = Rect2(0, 0, 0, -6)
+popout = NodePath("../CoursebotPanel")
+connect_rect = Rect2(-19, 0, 31, 60)
 
 [node name="CoursebotPanel" type="NinePatchRect" parent="Editor/RightPanelContainer/RightPanel" unique_id=1035022736]
 unique_name_in_owner = true
@@ -562,6 +547,48 @@ alignment = 0
 script = ExtResource("18_0l6sx")
 type = 2
 
+[node name="EraserBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1195686216]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 288.0
+offset_right = 90.0
+offset_bottom = 357.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("9_khafc")
+texture_click_mask = ExtResource("10_wxv2j")
+script = ExtResource("11_a6583")
+hover_offset = Rect2(3, 3, -6, -12)
+
+[node name="DogBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=183154998]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 369.0
+offset_right = 87.0
+offset_bottom = 435.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("12_dyxkw")
+texture_click_mask = ExtResource("7_0l6sx")
+script = ExtResource("11_a6583")
+hover_offset = Rect2(0, 0, 0, -6)
+
+[node name="RocketBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1993628880]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 456.0
+offset_right = 87.0
+offset_bottom = 522.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("13_rtyax")
+texture_click_mask = ExtResource("7_0l6sx")
+script = ExtResource("11_a6583")
+hover_offset = Rect2(0, 0, 0, -6)
+
 [node name="TopPanel" type="NinePatchRect" parent="Editor" unique_id=1001892793]
 unique_name_in_owner = true
 layout_mode = 1
@@ -579,21 +606,18 @@ closed_pos = Vector2(0, -102)
 hidden_pos = Vector2(0, -108)
 status = 2
 
-[node name="PaletteBtn" type="TextureButton" parent="Editor/TopPanel" unique_id=1931505885]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -84.0
+[node name="PartTypeBtn" type="TextureButton" parent="Editor/TopPanel" unique_id=1752140388]
+layout_mode = 0
+offset_left = 18.0
 offset_top = 15.0
-offset_right = -15.0
-offset_bottom = 90.0
-grow_horizontal = 0
-size_flags_horizontal = 4
-size_flags_vertical = 0
+offset_right = 87.0
+offset_bottom = 84.0
+toggle_mode = true
 action_mode = 0
-texture_normal = ExtResource("17_w8smy")
-script = ExtResource("18_fep4b")
+texture_normal = ExtResource("45_mwi86")
+texture_pressed = ExtResource("37_c42vp")
+ignore_texture_size = true
+script = ExtResource("37_vwxkl")
 
 [node name="Cards" type="HBoxContainer" parent="Editor/TopPanel" unique_id=513030384]
 unique_name_in_owner = true
@@ -669,7 +693,24 @@ layout_mode = 2
 part = ExtResource("43_v7i5c")
 editor = NodePath("../../..")
 
-[node name="LeftPanel" type="NinePatchRect" parent="Editor" unique_id=1202118082]
+[node name="PaletteBtn" type="TextureButton" parent="Editor/TopPanel" unique_id=1931505885]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 84.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+action_mode = 0
+texture_normal = ExtResource("17_w8smy")
+ignore_texture_size = true
+script = ExtResource("18_fep4b")
+
+[node name="LeftPanel" type="TextureRect" parent="Editor" unique_id=343088543]
 unique_name_in_owner = true
 layout_mode = 1
 offset_left = -168.0
@@ -677,28 +718,28 @@ offset_top = 108.0
 offset_bottom = 546.0
 focus_mode = 2
 mouse_filter = 0
-texture = ExtResource("2_sfxmt")
-region_rect = Rect2(15, 0, 18, 27)
-patch_margin_top = 9
-patch_margin_right = 15
-patch_margin_bottom = 15
+texture = ExtResource("45_v7i5c")
 script = ExtResource("3_bm1wd")
 open_pos = Vector2(0, 108)
 closed_pos = Vector2(-162, 108)
 hidden_pos = Vector2(-168, 108)
 status = 2
 
-[node name="GameStyleBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=768974657]
+[node name="GameStyleBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=768974657 node_paths=PackedStringArray("popout")]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 15.0
 offset_right = 144.0
-offset_bottom = 81.0
+offset_bottom = 78.0
 toggle_mode = true
 action_mode = 0
 texture_normal = ExtResource("22_crwvd")
 texture_pressed = ExtResource("23_fhqrb")
+ignore_texture_size = true
 script = ExtResource("24_d4hij")
+popout = NodePath("../GameStylePanel")
+connect_rect = Rect2(120, 0, 22, 63)
+hover_sound = ExtResource("59_rqkgo")
 
 [node name="GameStylePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=647132783]
 unique_name_in_owner = true
@@ -712,19 +753,268 @@ script = ExtResource("14_sp7ve")
 side = 1
 title = "EDITOR_POPOUT_GAME_STYLE"
 
-[node name="Clapperboard" type="TextureButton" parent="Editor" unique_id=1851851393]
+[node name="LevelThemeBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=27242946 node_paths=PackedStringArray("popout")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 87.0
+offset_right = 75.0
+offset_bottom = 144.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("50_jogh0")
+texture_pressed = ExtResource("51_wy0ar")
+ignore_texture_size = true
+script = ExtResource("52_1jh8r")
+popout = NodePath("../LevelThemePanel")
+connect_rect = Rect2(48, 0, 94, 57)
+hover_sound = ExtResource("59_rqkgo")
+
+[node name="LevelThemePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=1726202433]
 unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 159.0
+offset_right = 657.0
+offset_bottom = 438.0
+mouse_filter = 0
+script = ExtResource("14_sp7ve")
+side = 1
+title = "EDITOR_POPOUT_LEVEL_THEME"
+
+[node name="LiquidLevelBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=392959033]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 87.0
+offset_right = 144.0
+offset_bottom = 144.0
+disabled = true
+action_mode = 0
+texture_normal = ExtResource("51_rqkgo")
+texture_disabled = ExtResource("52_k677a")
+ignore_texture_size = true
+
+[node name="AutoscrollBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=407424250 node_paths=PackedStringArray("popout")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 153.0
+offset_right = 75.0
+offset_bottom = 210.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("50_jogh0")
+texture_pressed = ExtResource("51_wy0ar")
+ignore_texture_size = true
+script = ExtResource("55_mahnq")
+popout = NodePath("../AutoscrollPanel")
+connect_rect = Rect2(48, 0, 94, 57)
+hover_sound = ExtResource("59_rqkgo")
+
+[node name="AutoscrollPanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=1778266208]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 159.0
+offset_right = 657.0
+offset_bottom = 438.0
+mouse_filter = 0
+script = ExtResource("14_sp7ve")
+side = 1
+title = "EDITOR_POPOUT_AUTOSCROLL"
+
+[node name="MeteoritesBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=1574550253]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 153.0
+offset_right = 144.0
+offset_bottom = 210.0
+disabled = true
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("53_wy0ar")
+texture_pressed = ExtResource("54_mahnq")
+texture_disabled = ExtResource("55_1jh8r")
+ignore_texture_size = true
+script = ExtResource("58_wy0ar")
+type = 2
+
+[node name="TimeBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=450724282 node_paths=PackedStringArray("popout")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 219.0
+offset_right = 144.0
+offset_bottom = 282.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("56_osne0")
+texture_pressed = ExtResource("57_vwxkl")
+ignore_texture_size = true
+script = ExtResource("58_jogh0")
+popout = NodePath("../TimePanel")
+connect_rect = Rect2(120, 0, 22, 63)
+hover_sound = ExtResource("59_rqkgo")
+
+[node name="TimePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=1267857179]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 159.0
+offset_right = 537.0
+offset_bottom = 438.0
+mouse_filter = 0
+script = ExtResource("14_sp7ve")
+side = 1
+title = "EDITOR_POPOUT_TIME"
+
+[node name="ClearConditionBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=740036798 node_paths=PackedStringArray("popout")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 291.0
+offset_right = 144.0
+offset_bottom = 354.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("58_c42vp")
+texture_pressed = ExtResource("59_p1dnx")
+ignore_texture_size = true
+script = ExtResource("65_1jh8r")
+popout = NodePath("../ClearConditionPanel")
+connect_rect = Rect2(120, 0, 22, 63)
+hover_sound = ExtResource("59_rqkgo")
+
+[node name="ClearConditionPanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=103761882]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 159.0
+offset_right = 1032.0
+offset_bottom = 438.0
+mouse_filter = 0
+script = ExtResource("14_sp7ve")
+side = 1
+title = "EDITOR_POPOUT_CLEAR_CONDITION"
+
+[node name="MusicBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=1510378956]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 369.0
+offset_right = 75.0
+offset_bottom = 423.0
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+texture_normal = ExtResource("49_2ut02")
+texture_pressed = ExtResource("50_17mwu")
+ignore_texture_size = true
+script = ExtResource("58_wy0ar")
+
+[node name="TrailBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=2140431990]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 369.0
+offset_right = 144.0
+offset_bottom = 423.0
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("51_17mwu")
+texture_pressed = ExtResource("52_dnrd8")
+ignore_texture_size = true
+script = ExtResource("58_wy0ar")
+type = 1
+
+[node name="Clapperboard" type="BaseButton" parent="Editor" unique_id=665088114]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
 custom_minimum_size = Vector2(117, 93)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
 layout_mode = 1
 anchors_preset = 2
+anchor_left = 0.0
 anchor_top = 1.0
+anchor_right = 0.0
 anchor_bottom = 1.0
 offset_left = -117.0
 offset_top = -99.0
+offset_right = 0.0
 offset_bottom = -6.0
+grow_horizontal = 1
 grow_vertical = 0
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
 action_mode = 0
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
 script = ExtResource("25_sfxmt")
+metadata/_custom_type_script = "uid://dtbujdjarydml"
 
 [node name="CameraArea" type="Panel" parent="Editor" unique_id=2042006306]
 unique_name_in_owner = true

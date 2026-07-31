@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PaletteCategory" format=3 uid="uid://d15pdc5d1rkwr"]
 
-[ext_resource type="Texture2D" uid="uid://fhqyng8jt8k1" path="res://textures/ui/editor/palette/category_items.svg" id="1_5pp4w"]
+[ext_resource type="Texture2D" uid="uid://fhqyng8jt8k1" path="res://textures/ui/editor/top_panel/palette/category_items.svg" id="1_5pp4w"]
 [ext_resource type="Script" uid="uid://bjs845vgkw44b" path="res://scripts/ui/editor/palette/palette_page.gd" id="1_055fs"]
 [ext_resource type="Script" uid="uid://c0p35artiwbxc" path="res://scripts/ui/editor/palette/palette_category.gd" id="2_rbwsn"]
 [ext_resource type="Script" uid="uid://2lamiomhq6u3" path="res://scripts/ui/editor/palette/palette_item.gd" id="3_pamtw"]

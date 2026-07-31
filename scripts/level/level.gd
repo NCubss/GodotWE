@@ -6,6 +6,8 @@ extends Node2D
 signal times_up
 ## Emitted when the game style changes.
 signal game_style_changed(old: GameStyle)
+## Emitted when the [member time] changes.
+signal time_changed
 signal playing
 signal editing
 
@@ -136,6 +138,7 @@ const LEVEL_HEIGHT = 27
 @export_range(10, 500, 10) var time := 430:
 	set(value):
 		time = clamp(value, 10, 500)
+		time_changed.emit()
 ## The clear condition for this level.
 @export var clear_condition := ClearCondition.NONE
 ## The current [SubArea], that is, the [SubArea] in which entities are active

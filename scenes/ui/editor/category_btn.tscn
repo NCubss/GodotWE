@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7myvf40h2mob"]
 
-[ext_resource type="Texture2D" uid="uid://c0omteb87asj0" path="res://textures/ui/editor/palette/category.svg" id="1_clty1"]
-[ext_resource type="Script" uid="uid://dec6uhakyw2vv" path="res://scripts/ui/editor/category_btn.gd" id="2_wcrwf"]
+[ext_resource type="Texture2D" uid="uid://c0omteb87asj0" path="res://textures/ui/editor/top_panel/palette/category.svg" id="1_clty1"]
+[ext_resource type="Script" uid="uid://dec6uhakyw2vv" path="res://scripts/ui/editor/palette/category_btn.gd" id="2_wcrwf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kmnsq"]
 resource_local_to_scene = true
