@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 			for i in get_world_2d().direct_space_state.intersect_shape(query):
 				if i["collider"] is Part:
 					i["collider"].erase(true)
-			UISoundPlayer.stream = preload("uid://mtek8lrj63d5")
+			UISoundPlayer.stream = preload("uid://b4d2q2idv2khi")
 			UISoundPlayer.play()
 			_grabber_cooldown = 0
 			%Graphics.queue_redraw()
@@ -47,6 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			if _grabber_held:
+				UISoundPlayer.stream = preload("uid://r55em6pfkmqk")
+				UISoundPlayer.play()
 				_grabber_held = false
 				level.editor.part_interact = true
 

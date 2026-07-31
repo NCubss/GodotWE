@@ -1,5 +1,5 @@
 class_name Clapperboard
-extends TextureButton
+extends BaseButton
 
 var off_screen := false:
 	set(v):
@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if _tween != null and _tween.is_running():
+	if _tween != null and _tween.is_valid():
 		queue_redraw()
 	_effect.check_redraw()
 

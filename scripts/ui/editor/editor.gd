@@ -26,6 +26,7 @@ var _last_mouse_pos: Vector2i
 
 
 func _ready():
+	grid.z_index = -1
 	grid.minor_color = Color("00000099")
 	grid.major_color = Color("000000ff")
 	grid.modulate = Color("ffffff40")

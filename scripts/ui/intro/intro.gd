@@ -17,25 +17,25 @@ func _ready() -> void:
 		return
 	var scn
 	match Time.get_date_dict_from_system().weekday:
-		1:
+		Time.WEEKDAY_MONDAY:
 			weekday = tr("CALENDAR_MONDAY")
 			scn = preload("uid://brbx1wivbstu6")
-		2:
+		Time.WEEKDAY_TUESDAY:
 			weekday = tr("CALENDAR_TUESDAY")
 			scn = preload("uid://brbx1wivbstu6")
-		3:
+		Time.WEEKDAY_WEDNESDAY:
 			weekday = tr("CALENDAR_WEDNESDAY")
 			scn = preload("uid://bsxujjyxpynda")
-		4:
+		Time.WEEKDAY_THURSDAY:
 			weekday = tr("CALENDAR_THURSDAY")
 			scn = preload("uid://brbx1wivbstu6")
-		5:
+		Time.WEEKDAY_FRIDAY:
 			weekday = tr("CALENDAR_FRIDAY")
 			scn = preload("uid://bsxujjyxpynda")
-		6:
+		Time.WEEKDAY_SATURDAY:
 			weekday = tr("CALENDAR_SATURDAY")
 			scn = preload("uid://bsxujjyxpynda")
-		0:
+		Time.WEEKDAY_SUNDAY:
 			weekday = tr("CALENDAR_SUNDAY")
 			scn = preload("uid://brbx1wivbstu6")
 	anim = scn.instantiate()

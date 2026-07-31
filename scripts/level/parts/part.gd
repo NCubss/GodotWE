@@ -7,18 +7,6 @@ extends Area2D
 ## seen as an equivalent to [code]obj_parent_resource[/code].
 
 
-## Represents a category in the palette.
-enum Category {
-	## Stationary platforms, decorations and pipes.
-	TERRAIN,
-	## Collectibles.
-	ITEMS,
-	## Moving characters that typically harm or inconvenience the player.
-	ENEMIES,
-	## Everything else. May include ideas of other categories.
-	GIZMOS,
-}
-
 ## The [Level] this part is in.
 var level: Level
 ## The [SubArea] this part is in.
@@ -124,6 +112,7 @@ static func _check_rect(rect: Rect2i, world: World2D) -> bool:
 func _ready() -> void:
 	mouse_entered.connect(_mouse_update.bind(true))
 	mouse_exited.connect(_mouse_update.bind(false))
+	z_index = %Graphics.z_index - 1
 
 
 func _process(_delta: float) -> void:
@@ -141,7 +130,8 @@ func _process(_delta: float) -> void:
 				if _window != null:
 					_window.close()
 				sound = preload("uid://b87gjrl17xs2k")
-			if not UISoundPlayer.playing:
+			if not (UISoundPlayer.stream == preload("uid://b87gjrl17xs2k")
+					and UISoundPlayer.playing):
 				UISoundPlayer.stream = sound
 				UISoundPlayer.play()
 			_check_validity()
@@ -185,7 +175,8 @@ func _draw():
 		else:
 			color = Color(1, 0, 0, 0.5)
 		_draw_highlight(Level.from_grid(_grid_pos) - global_position, color)
-	elif _mouse_in and level.editor.part_interact:
+	elif _mouse_in and level.editor.part_interact \
+			and level.editor.held_part == null:
 		_draw_highlight(Vector2(0, 0), Color(0, 0, 1, 0.5))
 
 
@@ -210,6 +201,57 @@ func erase(silent := false) -> void:
 ## SubArea.foreground].
 func build() -> void:
 	pass
+
+
+## Called when the part is held.
+func _hold() -> void:
+	_coll_layers = collision_layer
+	collision_layer = 0
+	
+	_original_pos = _grid_pos
+	_original_z = %Graphics.z_index
+	_grab_offset = get_global_mouse_position() - global_position
+	_moved_out = false
+	
+	z_index = GameConstants.Layers.Z_HELD_PART
+	%Graphics.z_index = GameConstants.Layers.Z_HELD_GRAPHICS
+	level.editor.held_part = self
+	
+	_window_timer = get_tree().create_timer(0.5)
+	_window_timer.timeout.connect(_create_window)
+	
+	_anim_held()
+	_create_touch_effect()
+	
+	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
+	UISoundPlayer.play()
+
+
+## Called when the part is dropped.
+func _unhold() -> void:
+	collision_layer = _coll_layers
+	%Graphics.z_index = _original_z
+	z_index = _original_z - 1
+	level.editor.held_part = null
+	
+	_tween.kill()
+	_anim_place()
+	_check_validity()
+	_stop_window_timer()
+	
+	if not _valid_space:
+		_grid_pos = _original_pos
+	global_position = Level.from_grid(_grid_pos)
+	%Graphics.rotation = 0
+	
+	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
+	UISoundPlayer.play()
+
+
+## Override this to customize the appearance of the highlight, as it is a single
+## tile by default. Expect [param pos] to be relative to this part's position.
+func _draw_highlight(pos: Vector2, color: Color) -> void:
+	draw_rect(Rect2(pos, Level.GRID_SIZE), color)
 
 
 func _anim_place() -> void:
@@ -241,54 +283,8 @@ func _mouse_update(state: bool) -> void:
 		level.editor.hovered_part = null
 
 
-func _hold() -> void:
-	_coll_layers = collision_layer
-	collision_layer = 0
-	_original_pos = _grid_pos
-	_original_z = %Graphics.z_index
-	
-	%Graphics.z_index = GameConstants.Layers.Z_HELD_PART
-	level.editor.held_part = self
-	_grab_offset = get_global_mouse_position() - global_position
-	_moved_out = false
-	
-	_window_timer = get_tree().create_timer(0.5)
-	_window_timer.timeout.connect(_create_window)
-	
-	_anim_held()
-	if level.editor.touch_effect == null:
-		level.editor.touch_effect = preload("uid://chv4mkls3f538") \
-				.instantiate()
-		level.editor.touch_effect.animation_finished.connect(
-				level.editor.touch_effect.queue_free)
-		level.add_child(level.editor.touch_effect)
-		level.editor.touch_effect.global_position = get_global_mouse_position()
-	
-	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
-	UISoundPlayer.play()
-
-
-func _unhold() -> void:
-	collision_layer = _coll_layers
-	%Graphics.z_index = _original_z
-	level.editor.held_part = null
-	
-	_tween.kill()
-	_anim_place()
-	_check_validity()
-	_stop_window_timer()
-	
-	if not _valid_space:
-		_grid_pos = _original_pos
-	position = Level.from_grid(_grid_pos)
-	%Graphics.rotation = 0
-	
-	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
-	UISoundPlayer.play()
-
-
 func _check_validity() -> void:
-	_grid_pos = Level.to_grid(level.get_local_mouse_position())
+	_grid_pos = Level.to_grid(global_position + Vector2(8, 8))
 	var query = PhysicsPointQueryParameters2D.new()
 	query.collide_with_areas = true
 	query.collide_with_bodies = true
@@ -297,6 +293,15 @@ func _check_validity() -> void:
 	query.position = Level.from_grid(_grid_pos) + Level.GRID_SIZE / 2
 	_valid_space = get_world_2d().direct_space_state \
 			.intersect_point(query, 1).is_empty()
+
+
+func _create_touch_effect() -> void:
+	level.editor.touch_effect = preload("uid://chv4mkls3f538") \
+			.instantiate()
+	level.editor.touch_effect.animation_finished.connect(
+			level.editor.touch_effect.queue_free)
+	level.add_child(level.editor.touch_effect)
+	level.editor.touch_effect.global_position = get_global_mouse_position()
 
 
 func _create_window() -> void:
@@ -309,9 +314,3 @@ func _stop_window_timer() -> void:
 	if _window_timer != null:
 		if _window_timer.timeout.is_connected(_create_window):
 			_window_timer.timeout.disconnect(_create_window)
-
-
-## Override this to customize the appearance of the highlight, as it is a single
-## tile by default. Expect [param pos] to be relative to this part's position.
-func _draw_highlight(pos: Vector2, color: Color) -> void:
-	draw_rect(Rect2(pos, Level.GRID_SIZE), color)

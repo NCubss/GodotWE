@@ -1,5 +1,5 @@
 class_name EditorPanel
-extends NinePatchRect
+extends Control
 ## A panel in the editor.
 
 ## Represents a panel state.
