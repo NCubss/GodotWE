@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o7gds")
 }],
-"loop": false,
+"loop": 0,
 "name": &"default",
 "speed": 18.0
 }]
@@ -53,4 +53,3 @@ sprite_frames = SubResource("SpriteFrames_8x6fv")
 autoplay = "default"
 offset = Vector2(0, -4)
 script = ExtResource("2_rf3g5")
-metadata/_custom_type_script = "uid://vedwoxfxibus"

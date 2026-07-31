@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/super_christmas_white.svg-1914a0f3e63ffae7944
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

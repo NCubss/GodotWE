@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/clapperboard_top.svg-e953c0e41c9b4c643ab34a2b
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

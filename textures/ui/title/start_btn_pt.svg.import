@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/start_btn_pt.svg-7e21d54208477b24f4d78cdb9f1d
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

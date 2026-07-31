@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/btn_mini_disclaimer.svg-acb6a12d110b4104862df
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

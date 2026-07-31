@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/popout.svg-96dbc9a83e886c92d0e522b56072e177.d
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

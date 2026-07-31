@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/jump.svg-4b8432c321bf32d986d3b8eb96e22e43.dpi
 base_scale=1.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/SlideComponent.svg-cf2a6e1070984aafa7e6daf3dc
 base_scale=1.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

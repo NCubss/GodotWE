@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/touch_effect.svg-63ec67061e2fbed502912cc02327
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

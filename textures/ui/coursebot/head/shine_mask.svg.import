@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/shine_mask.svg-0418d8238e9991b2eab79fb1ea60d3
 base_scale=3.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true

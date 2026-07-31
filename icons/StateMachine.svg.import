@@ -15,4 +15,6 @@ dest_files=["res://.godot/imported/StateMachine.svg-6b8440c4d43d0788225cc956dcf2
 base_scale=1.0
 saturation=1.0
 color_map={}
+fix_alpha_border=false
+premult_alpha=false
 compress=true
