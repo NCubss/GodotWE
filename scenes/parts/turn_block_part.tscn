@@ -11,5 +11,8 @@ region = Rect2(0, 0, 16, 16)
 [node name="TurnBlockPart" unique_id=1549879982 instance=ExtResource("1_ehk1k")]
 script = ExtResource("2_orvp0")
 
-[node name="Sprite2D" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=854670595]
+[node name="Graphics" parent="." index="1" unique_id=1571586840]
+z_index = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics" index="0" unique_id=854670595]
 texture = SubResource("AtlasTexture_xqr8p")

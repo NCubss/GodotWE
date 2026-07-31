@@ -12,5 +12,8 @@ filter_clip = true
 [node name="CoinPart" unique_id=1549879982 instance=ExtResource("1_okoou")]
 script = ExtResource("2_qjurq")
 
-[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=606453958]
+[node name="Graphics" parent="." index="1" unique_id=1571586840]
+z_index = 20
+
+[node name="Sprite" type="Sprite2D" parent="Graphics" index="0" unique_id=606453958]
 texture = SubResource("AtlasTexture_qjurq")

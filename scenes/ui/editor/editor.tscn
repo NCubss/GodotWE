@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/style_cards/btn_pressed.svg" id="23_fhqrb"]
 [ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/game_style_btn.gd" id="24_d4hij"]
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
+[ext_resource type="Script" uid="uid://dgrnevvgtgm4b" path="res://scripts/level/parts/koopa_part.gd" id="39_4qrp7"]
 [ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="39_d4hij"]
 [ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="40_4qrp7"]
 [ext_resource type="Script" uid="uid://ck5lib6hmitri" path="res://scripts/level/parts/turn_block_part.gd" id="41_r5hjk"]
@@ -625,7 +626,7 @@ editor = NodePath("../../..")
 
 [node name="Card4" parent="Editor/TopPanel/Cards" unique_id=423114736 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]
 layout_mode = 2
-disabled = true
+part = ExtResource("39_4qrp7")
 editor = NodePath("../../..")
 
 [node name="Card5" parent="Editor/TopPanel/Cards" unique_id=1986320930 node_paths=PackedStringArray("editor") instance=ExtResource("19_qv7f8")]

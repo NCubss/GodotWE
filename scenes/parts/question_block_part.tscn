@@ -11,5 +11,8 @@ region = Rect2(0, 0, 16, 16)
 [node name="QuestionBlockPart" unique_id=1549879982 instance=ExtResource("1_y7aef")]
 script = ExtResource("2_vhijl")
 
-[node name="Sprite" type="Sprite2D" parent="Graphics" parent_id_path=PackedInt32Array(1571586840) index="0" unique_id=1266149202]
+[node name="Graphics" parent="." index="1" unique_id=1571586840]
+z_index = 20
+
+[node name="Sprite" type="Sprite2D" parent="Graphics" index="0" unique_id=1266149202]
 texture = SubResource("AtlasTexture_7mkou")
