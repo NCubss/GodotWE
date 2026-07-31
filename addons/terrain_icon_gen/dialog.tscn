@@ -1,50 +1,102 @@
 [gd_scene format=3 uid="uid://drd2p1iat7a70"]
 
+[ext_resource type="Script" uid="uid://tl3pc7ge5g2g" path="res://addons/terrain_icon_gen/preview.gd" id="1_ilbqf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilbqf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4v7s"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
 [node name="Dialog" type="AcceptDialog" unique_id=457243104]
 oversampling_override = 1.0
 title = "Terrain Icon Generator"
 position = Vector2i(0, 36)
-size = Vector2i(235, 229)
+size = Vector2i(656, 357)
+max_size = Vector2i(700, 16384)
 ok_button_text = "Generate"
+dialog_hide_on_ok = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1952676556]
+[node name="Full" type="VBoxContainer" parent="." unique_id=2091462958]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 227.0
-offset_bottom = 176.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 648.0
+offset_bottom = 305.0
 
-[node name="SheetPathLabel" type="Label" parent="VBoxContainer" unique_id=1278997784]
+[node name="Description" type="Label" parent="Full" unique_id=1533526169]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+text = "This tool generates a ground part icon for a given ground sheet. Sheet must be formatted correctly!"
+autowrap_mode = 3
+
+[node name="Content" type="HBoxContainer" parent="Full" unique_id=1396127733]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Input" type="VBoxContainer" parent="Full/Content" unique_id=1952676556]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SheetPathLabel" type="Label" parent="Full/Content/Input" unique_id=1278997784]
 layout_mode = 2
 text = "Ground sheet path:"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=600333472]
+[node name="SheetPath" type="HBoxContainer" parent="Full/Content/Input" unique_id=600333472]
 layout_mode = 2
 
-[node name="SheetPathInput" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=679240265]
+[node name="SheetPathInput" type="LineEdit" parent="Full/Content/Input/SheetPath" unique_id=679240265]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SheetPathOpen" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2080113737]
+[node name="SheetPathOpen" type="Button" parent="Full/Content/Input/SheetPath" unique_id=2080113737]
 unique_name_in_owner = true
 layout_mode = 2
 text = "..."
 
-[node name="ResultPathLabel" type="Label" parent="VBoxContainer" unique_id=646487228]
+[node name="ResultPathLabel" type="Label" parent="Full/Content/Input" unique_id=646487228]
 layout_mode = 2
 text = "Result path:"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1859114194]
+[node name="ResultPath" type="HBoxContainer" parent="Full/Content/Input" unique_id=1859114194]
 layout_mode = 2
 
-[node name="ResultPathInput" type="LineEdit" parent="VBoxContainer/HBoxContainer2" unique_id=738559344]
+[node name="ResultPathInput" type="LineEdit" parent="Full/Content/Input/ResultPath" unique_id=738559344]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ResultPathOpen" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=208198031]
+[node name="ResultPathOpen" type="Button" parent="Full/Content/Input/ResultPath" unique_id=208198031]
 unique_name_in_owner = true
 layout_mode = 2
 text = "..."
+
+[node name="Gridlines" type="CheckButton" parent="Full/Content/Input" unique_id=191889138]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Show gridlines"
+
+[node name="Output" type="VBoxContainer" parent="Full/Content" unique_id=937569543]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Full/Content/Output" unique_id=1085758270]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Output preview:"
+label_settings = SubResource("LabelSettings_ilbqf")
+
+[node name="Outline" type="PanelContainer" parent="Full/Content/Output" unique_id=1745129539]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
+
+[node name="Preview" type="TextureRect" parent="Full/Content/Output/Outline" unique_id=1256821755]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_ilbqf")
