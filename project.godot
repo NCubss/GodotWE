@@ -101,18 +101,6 @@ level=""
 theme/custom="uid://cpr7p83ljnpes"
 theme/custom_font="uid://bk3vwucreh07k"
 
-[importer_defaults]
-
-texture={
-&"svg/scale": 3.0
-}
-svg={
-"base_scale": 3.0,
-"color_map": {},
-"compress": true,
-"saturation": 1.0
-}
-
 [input]
 
 player_left={
