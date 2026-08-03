@@ -1,7 +1,7 @@
 class_name StaticBodyExt
 extends StaticBody2D
 ## A modified version of [StaticBody2D] that adds useful collision signals.
-## 
+##
 ## Unlike [CharacterBodyExt], this does not check for collision and relies on
 ## [CharacterBodyExt] to report collisions.
 

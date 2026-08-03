@@ -10,25 +10,33 @@ signal collided(collision: KinematicCollision2D)
 ## collisions.
 signal just_collided(collision: KinematicCollision2D)
 
-## Array of all bodies this body has collided with last frame.
+## Array of all bodies this body has collided within the last [method
+## move_and_slide] call.
 var last_collided: Array[Node2D] = []
 
+
 func _physics_process(_delta: float) -> void:
-	var data = {}
+	var collisions = {}
+
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		data[collision.get_collider()] = collision
-	for i in Utility.array_merge(last_collided, data.keys()):
-		if i in last_collided and not data.has(i):
-			last_collided.erase(i)
-		elif i in last_collided and data.has(i):
-			collided.emit(data[i])
-			if i is CharacterBodyExt or i is StaticBodyExt:
-				i.collided.emit(data[i])
-		elif i not in last_collided and data.has(i):
-			last_collided.append(i)
-			just_collided.emit(data[i])
-			collided.emit(data[i])
-			if i is CharacterBodyExt or i is StaticBodyExt:
-				i.just_collided.emit(data[i])
-				i.collided.emit(data[i])
+		collisions[collision.get_collider()] = collision
+
+	for collider in Utility.array_merge(
+				last_collided, collisions.keys()):
+		# already collided
+		if collider in last_collided:
+			if collider in collisions:
+				collided.emit(collisions[collider])
+				if collider is StaticBodyExt:
+					collider.collided.emit(collisions[collider])
+			else:
+				last_collided.erase(collider)
+		# just collided
+		elif collider in collisions:
+			last_collided.append(collider)
+			just_collided.emit(collisions[collider])
+			collided.emit(collisions[collider])
+			if collider is StaticBodyExt:
+				collider.just_collided.emit(collisions[collider])
+				collider.collided.emit(collisions[collider])
