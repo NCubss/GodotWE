@@ -11,6 +11,7 @@ items = Array[ExtResource("3_6r1nn")]([null, null, null, null, null, null, null]
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]
+resource_name = "Gizmos"
 script = ExtResource("2_78qcp")
 color = Color(0.9490196, 0.9372549, 0.03137255, 1)
 name = &"CATEGORY_GIZMOS"

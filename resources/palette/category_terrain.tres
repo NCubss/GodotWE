@@ -269,6 +269,7 @@ items = Array[ExtResource("2_eebnt")]([SubResource("Resource_3pfnl"), SubResourc
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]
+resource_name = "Terrain"
 script = ExtResource("2_077e1")
 color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 name = &"CATEGORY_TERRAIN"

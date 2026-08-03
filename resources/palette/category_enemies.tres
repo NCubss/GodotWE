@@ -817,6 +817,7 @@ items = Array[ExtResource("3_oc72v")]([SubResource("Resource_n7omv"), SubResourc
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]
+resource_name = "Enemies"
 script = ExtResource("2_l1v8a")
 color = Color(0.43137255, 0.98039216, 0.1254902, 1)
 name = &"CATEGORY_ENEMIES"

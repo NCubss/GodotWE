@@ -179,6 +179,7 @@ items = Array[ExtResource("3_pamtw")]([SubResource("Resource_oeltg"), SubResourc
 metadata/_custom_type_script = "uid://bjs845vgkw44b"
 
 [resource]
+resource_name = "Items"
 script = ExtResource("2_rbwsn")
 color = Color(0.84705883, 0.31764707, 0.88235295, 1)
 name = &"CATEGORY_ITEMS"
