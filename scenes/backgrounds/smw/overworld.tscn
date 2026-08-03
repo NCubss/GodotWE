@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b6bo0iwsfipx1" path="res://scripts/level/background.gd" id="1_6p2lh"]
 [ext_resource type="Texture2D" uid="uid://b0qp3majrpmtk" path="res://textures/background.png" id="1_mwgmk"]
+[ext_resource type="PackedScene" uid="uid://ijhoqb2ro4yo" path="res://scenes/backgrounds/background.tscn" id="1_ng8dw"]
 
-[node name="Background" type="CanvasLayer" unique_id=1079128947]
-layer = -1
-follow_viewport_enabled = true
+[node name="Background" unique_id=1335431421 instance=ExtResource("1_ng8dw")]
 
-[node name="Background" type="Node2D" parent="." unique_id=313745906]
+[node name="Background" type="Node2D" parent="." index="0" unique_id=1456360933]
 script = ExtResource("1_6p2lh")
 texture = ExtResource("1_mwgmk")
 follow_scale = Vector2(0.5, 1)

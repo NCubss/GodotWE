@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ijhoqb2ro4yo"]
+
+[node name="Background" type="CanvasLayer" unique_id=1335431421]
+layer = -1
+follow_viewport_enabled = true
