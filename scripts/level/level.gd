@@ -1,3 +1,4 @@
+@icon("uid://b8aflf3mqg20l")
 class_name Level
 extends Node2D
 ## Represents a level.

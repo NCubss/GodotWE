@@ -1,3 +1,4 @@
+@icon("uid://df4s8fh7js7tm")
 class_name SubArea
 extends Node2D
 ## Represents a separated world in a level.

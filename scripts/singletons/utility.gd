@@ -1,3 +1,4 @@
+@icon("uid://6rga5nmncirq")
 extends Node
 ## A class that holds utility functions.
 

@@ -1,7 +1,8 @@
+@icon("uid://b3njsqgklsg01")
 class_name Part
 extends Area2D
 ## A gameplay element in a [Level].
-## 
+##
 ## [Part]s are what [SubArea]s are made of. They represent gameplay elements,
 ## which parts generate on request via [method build]. In SMM:WE this can be
 ## seen as an equivalent to [code]obj_parent_resource[/code].
@@ -207,22 +208,22 @@ func build() -> void:
 func _hold() -> void:
 	_coll_layers = collision_layer
 	collision_layer = 0
-	
+
 	_original_pos = _grid_pos
 	_original_z = %Graphics.z_index
 	_grab_offset = get_global_mouse_position() - global_position
 	_moved_out = false
-	
+
 	z_index = GameConstants.Layers.Z_HELD_PART
 	%Graphics.z_index = GameConstants.Layers.Z_HELD_GRAPHICS
 	level.editor.held_part = self
-	
+
 	_window_timer = get_tree().create_timer(0.5)
 	_window_timer.timeout.connect(_create_window)
-	
+
 	_anim_held()
 	_create_touch_effect()
-	
+
 	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
 	UISoundPlayer.play()
 
@@ -233,17 +234,17 @@ func _unhold() -> void:
 	%Graphics.z_index = _original_z
 	z_index = _original_z - 1
 	level.editor.held_part = null
-	
+
 	_tween.kill()
 	_anim_place()
 	_check_validity()
 	_stop_window_timer()
-	
+
 	if not _valid_space:
 		_grid_pos = _original_pos
 	global_position = Level.from_grid(_grid_pos)
 	%Graphics.rotation = 0
-	
+
 	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
 
