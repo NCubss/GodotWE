@@ -1,7 +1,13 @@
 class_name Editor
 extends Control
+## The game's editor.
+##
+## The [Editor] manages the level view while editing the level. [Part]s are
+## tightly integrated with the editor as it handles keeping track of held parts,
+## whether they can be interacted with and how they are interacted with. It also
+## shares a reference to the level itself for the rest of the editor UI.
 
-## Emitted when the level and editor is ready.
+## Emitted when the editor is ready (i.e. [member level] has been set).
 signal loaded
 
 ## The level this [Editor] is associated with.
@@ -30,7 +36,9 @@ func _ready():
 	grid.minor_color = Color("00000099")
 	grid.major_color = Color("000000ff")
 	grid.modulate = Color("ffffff40")
+	
 	theme = ThemeDB.get_project_theme()
+	
 	%LeftPanel.status = EditorPanel.Status.OPEN
 	%TopPanel.status = EditorPanel.Status.OPEN
 	%RightPanel.status = EditorPanel.Status.OPEN
@@ -38,9 +46,7 @@ func _ready():
 
 
 func _process(_delta: float) -> void:
-	_process_place(true)
-	#_camera_clamp.call_deferred()
-	#get_viewport().canvas_transform.origin = tf.origin.clamp(Vector2(-INF, get_viewport().get_visible_rect().size.y), Vector2(0, INF))
+	_process_placing(true)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -48,7 +54,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		match event.button_index:
 			MouseButton.MOUSE_BUTTON_LEFT:
 				_mouse_down = event.pressed
-				_process_place(false)
+				_process_placing(false)
 			MouseButton.MOUSE_BUTTON_RIGHT:
 				erasing = event.pressed
 
@@ -65,35 +71,45 @@ func get_selected_part() -> Script:
 
 ## Places a tile at [param pos] and returns the placed [Part].
 func place(pos: Vector2i) -> Part:
+	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
+	UISoundPlayer.play()
+	
 	var part: Part = get_selected_part().create()
 	part.global_position = Level.from_grid(pos)
 	level.current_sub_area.add_part(part)
 	part.load(true)
-	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
-	UISoundPlayer.play()
+	
 	return part
 
 
+## Called by the [Level] when it has given the editor a reference to itself and
+## the editor needs to do initialization with it.
 func load() -> void:
+	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
+	MusicPlayer.play.call_deferred()
+	
 	level.add_child(grid)
 	level.playing.connect(_play)
 	level.editing.connect(_edit)
-	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
-	MusicPlayer.play.call_deferred()
+	
 	loaded.emit()
 
 
-func _process_place(multi_place_allowed: bool) -> void:
+func _process_placing(process_multiplaceables: bool) -> void:
 	_last_mouse_pos = level.get_global_mouse_position()
+	
 	var selected = get_selected_part()
 	if selected == null or not _mouse_down:
 		return
 	if not part_interact or erasing:
 		return
-	if selected.is_multiplaceable() != multi_place_allowed:
+	# makes sure whether this method should place multiplaceable parts,
+	# as multiplaceable and non-multiplaceable are handled in different places
+	if selected.is_multiplaceable() != process_multiplaceables:
 		return
 	if held_part != null:
 		return
+	
 	if selected.is_placeable(Level.to_grid(_last_mouse_pos), get_world_2d()):
 		place(Level.to_grid(_last_mouse_pos))
 
@@ -107,10 +123,11 @@ func _play() -> void:
 
 
 func _edit() -> void:
+	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
+	MusicPlayer.play()
+	
 	part_interact = true
 	%TopPanel.status = EditorPanel.Status.OPEN
 	%LeftPanel.status = EditorPanel.Status.OPEN
 	%RightPanel.status = EditorPanel.Status.OPEN
 	grid.show()
-	MusicPlayer.stream = preload("uid://dq3thvj6cinc0")
-	MusicPlayer.play()
