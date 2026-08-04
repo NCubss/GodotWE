@@ -22,26 +22,31 @@ func _process(_delta: float) -> void:
 
 
 func _draw() -> void:
-	var rect = Utility.get_visible_rect().grow(max(minor_width, major_width) / 2)
+	var rect = Utility.get_visible_rect() \
+			.grow(max(minor_width, major_width) / 2)
+
 	for x in Utility.rangef(
 			ceil(rect.position.x / space_size.x) * space_size.x,
 			ceil(rect.end.x / space_size.x) * space_size.x,
-			space_size.x
-	):
+			space_size.x):
 		if fposmod(x / space_size.x, major_grid_size.x) == 0:
+			# major line
 			draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y),
 					major_color, major_width)
 		else:
+			# minor line
 			draw_line(Vector2(x, rect.position.y), Vector2(x, rect.end.y),
 					minor_color, minor_width)
+
 	for y in Utility.rangef(
 			ceil(rect.position.y / space_size.y) * space_size.y,
 			ceil(rect.end.y / space_size.y) * space_size.y,
-			space_size.y
-	):
+			space_size.y):
 		if fposmod(y / space_size.y, major_grid_size.y) == 0:
+			# major line
 			draw_line(Vector2(rect.position.x, y), Vector2(rect.end.x, y),
 					major_color, major_width)
 		else:
+			# minor line
 			draw_line(Vector2(rect.position.x, y), Vector2(rect.end.x, y),
 					minor_color, minor_width)
