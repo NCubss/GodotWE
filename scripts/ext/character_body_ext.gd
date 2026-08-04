@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 		collisions[collision.get_collider()] = collision
 
 	for collider in Utility.array_merge(
-				last_collided, collisions.keys()):
+				last_collided.duplicate(), collisions.keys()):
 		# already collided
 		if collider in last_collided:
 			if collider in collisions:
