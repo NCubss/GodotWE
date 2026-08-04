@@ -78,19 +78,6 @@
 shader = ExtResource("2_wxv2j")
 shader_parameter/color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c42vp"]
-resource_local_to_scene = true
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-texture = ExtResource("13_pr0l3")
-texture_margin_left = 33.0
-texture_margin_top = 33.0
-texture_margin_right = 33.0
-texture_margin_bottom = 39.0
-expand_margin_bottom = 6.0
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1dnx"]
 resource_local_to_scene = true
 content_margin_left = 0.0
@@ -118,6 +105,19 @@ texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei6ow"]
+resource_local_to_scene = true
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("13_pr0l3")
+texture_margin_left = 33.0
+texture_margin_top = 33.0
+texture_margin_right = 33.0
+texture_margin_bottom = 39.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5jlb"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -340,31 +340,31 @@ theme_override_constants/separation = 18
 
 [node name="Terrain" parent="Editor/PaletteMenu/Tabs" unique_id=828071019 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_c42vp")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_c42vp")
-theme_override_styles/hover = SubResource("StyleBoxTexture_c42vp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p1dnx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p1dnx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p1dnx")
 button_pressed = true
 category = ExtResource("4_crwvd")
 
 [node name="Items" parent="Editor/PaletteMenu/Tabs" unique_id=183601785 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_p1dnx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_p1dnx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_p1dnx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6x5dd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6x5dd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6x5dd")
 category = ExtResource("5_fhqrb")
 
 [node name="Enemies" parent="Editor/PaletteMenu/Tabs" unique_id=1842016254 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_6x5dd")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6x5dd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6x5dd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ei6ow")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ei6ow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ei6ow")
 category = ExtResource("6_d4hij")
 
 [node name="Gizmos" parent="Editor/PaletteMenu/Tabs" unique_id=633540572 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_ei6ow")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ei6ow")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ei6ow")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a5jlb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a5jlb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a5jlb")
 category = ExtResource("7_4qrp7")
 
 [node name="CloseBtn" type="TextureButton" parent="Editor/PaletteMenu" unique_id=1133375105]
@@ -439,17 +439,19 @@ script = ExtResource("8_kunuo")
 popout = NodePath("../CoursebotPanel")
 connect_rect = Rect2(-19, 0, 31, 60)
 
-[node name="CoursebotPanel" type="NinePatchRect" parent="Editor/RightPanelContainer/RightPanel" unique_id=1035022736]
+[node name="CoursebotPanel" type="Control" parent="Editor/RightPanelContainer/RightPanel" unique_id=2060581089]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = -435.0
 offset_right = 9.0
 offset_bottom = 495.0
+offset_transform_enabled = true
 focus_mode = 1
 mouse_filter = 1
 script = ExtResource("14_sp7ve")
-title = "EDITOR_POPOUT_COURSEBOT"
+title = &"EDITOR_POPOUT_COURSEBOT"
 open_sound = ExtResource("15_6snt5")
 close_sound = ExtResource("16_w63je")
 
@@ -741,17 +743,18 @@ popout = NodePath("../GameStylePanel")
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="GameStylePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=647132783]
+[node name="GameStylePanel" type="Control" parent="Editor/LeftPanel" unique_id=1895015191]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = 159.0
 offset_right = 522.0
 offset_bottom = 438.0
-mouse_filter = 0
+offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
-title = "EDITOR_POPOUT_GAME_STYLE"
+title = &"EDITOR_POPOUT_GAME_STYLE"
 
 [node name="LevelThemeBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=27242946 node_paths=PackedStringArray("popout")]
 layout_mode = 0
@@ -769,17 +772,18 @@ popout = NodePath("../LevelThemePanel")
 connect_rect = Rect2(48, 0, 94, 57)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="LevelThemePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=1726202433]
+[node name="LevelThemePanel" type="Control" parent="Editor/LeftPanel" unique_id=1170354568]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = 159.0
 offset_right = 657.0
 offset_bottom = 438.0
-mouse_filter = 0
+offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
-title = "EDITOR_POPOUT_LEVEL_THEME"
+title = &"EDITOR_POPOUT_LEVEL_THEME"
 
 [node name="LiquidLevelBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=392959033]
 layout_mode = 0
@@ -809,17 +813,18 @@ popout = NodePath("../AutoscrollPanel")
 connect_rect = Rect2(48, 0, 94, 57)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="AutoscrollPanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=1778266208]
+[node name="AutoscrollPanel" type="Control" parent="Editor/LeftPanel" unique_id=1101914548]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = 159.0
 offset_right = 657.0
 offset_bottom = 438.0
-mouse_filter = 0
+offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
-title = "EDITOR_POPOUT_AUTOSCROLL"
+title = &"EDITOR_POPOUT_AUTOSCROLL"
 
 [node name="MeteoritesBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=1574550253]
 layout_mode = 0
@@ -853,17 +858,18 @@ popout = NodePath("../TimePanel")
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="TimePanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=1267857179]
+[node name="TimePanel" type="Control" parent="Editor/LeftPanel" unique_id=1882383199]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = 159.0
 offset_right = 537.0
 offset_bottom = 438.0
-mouse_filter = 0
+offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
-title = "EDITOR_POPOUT_TIME"
+title = &"EDITOR_POPOUT_TIME"
 
 [node name="ClearConditionBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=740036798 node_paths=PackedStringArray("popout")]
 layout_mode = 0
@@ -881,17 +887,18 @@ popout = NodePath("../ClearConditionPanel")
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="ClearConditionPanel" type="NinePatchRect" parent="Editor/LeftPanel" unique_id=103761882]
+[node name="ClearConditionPanel" type="Control" parent="Editor/LeftPanel" unique_id=1686677428]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = 159.0
 offset_right = 1032.0
 offset_bottom = 438.0
-mouse_filter = 0
+offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
-title = "EDITOR_POPOUT_CLEAR_CONDITION"
+title = &"EDITOR_POPOUT_CLEAR_CONDITION"
 
 [node name="MusicBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=1510378956]
 layout_mode = 0

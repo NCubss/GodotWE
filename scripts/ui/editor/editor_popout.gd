@@ -1,10 +1,22 @@
+@tool
 class_name EditorPopout
-extends NinePatchRect
+extends Control
+## Additional panel in the [Editor] that can be extended.
+##
+## An [EditorPopout] holds additional UI elements in the editor that can't
+## always be displayed. Popouts are typically opened via [PopoutBtn]s and hold
+## controls relevant to specific elements of a level. When open, they disable
+## the rest of the editor with [member mouse_filter] and [member
+## Editor.part_interact].
+## [br][br]
+## [b]Note:[/b] Popouts control the [member Color.a] of their childrens'
+## [member modulate]. You can avoid this by using [member self_modulate] or,
+## in case of modulating children, use an extra [Control]. 
 
 ## Emitted when the [member status] changes.
 signal status_changed(old_status: Status)
 
-## A direction the popout can pop out in.
+## Directions the popout can pop out in.
 enum PopoutDirection {
 	TO_LEFT,
 	TO_RIGHT,
@@ -17,28 +29,37 @@ enum Status {
 	CLOSING,
 }
 
+## The popout's [StyleBox]es for each [enum PopoutDirection].
+const STYLEBOXES = {
+	PopoutDirection.TO_LEFT: preload("uid://bnr6dtap0gnw6"),
+	PopoutDirection.TO_RIGHT: preload("uid://bvw67auia0fcv"),
+}
+## Close button scenes for each [enum PopoutDirection]. These must have anchors
+## and offsets preconfigured.
+const CLOSE_BTNS = {
+	PopoutDirection.TO_LEFT: preload("uid://c4s40eed512te"),
+	PopoutDirection.TO_RIGHT: preload("uid://rhafm2wkc6hk"),
+}
+## The duration of the popout's open and close animation.
+const DURATION = 0.25
+## Once the [member progress] is past this constant, content inside the popout
+## starts to fade in. Higher values are better or else the content will be more
+## visible during the transition, but it mustn't be larger than 1 or [member
+## progress] will never reach it.
+const OPACITY_DELAY = 0.75
+## The [enum Tween.TransitionType] of the popout's open and close animation.
+const TRANSITION = Tween.TRANS_QUAD
+## The title text's distance from the top of the popout to its baseline.
+const TITLE_Y = 36.0
+## The title text color. Alpha does not matter as it is overwritten by the
+## transition.
+const TITLE_COLOR = Color.WHITE
+
 ## The side to which the popout will open in.
 @export var side: PopoutDirection:
-	set(value):
-		side = value
-		match value:
-			PopoutDirection.TO_LEFT:
-				region_rect = Rect2(0, 0, 27, 72)
-				patch_margin_left = 15
-				patch_margin_right = 9
-				if has_close_button:
-					close_btn.offset_right = -9
-					close_btn.offset_left = -9 - close_btn.size.x
-			PopoutDirection.TO_RIGHT:
-				region_rect = Rect2(27, 0, 27, 72)
-				patch_margin_left = 9
-				patch_margin_right = 15
-				if has_close_button:
-					close_btn.offset_right = -15
-					close_btn.offset_left = -15 - close_btn.size.x
-		queue_redraw()
-## The title of the popout that will appear in the dark top bar.
-@export var title: String
+	set = _set_side
+## The title of the popout as a translation key.
+@export var title: StringName
 ## Whether the popout will have a close button.
 @export var has_close_button := true
 ## The sound played once the popout opens.
@@ -46,119 +67,161 @@ enum Status {
 ## The sound played once the popout closes.
 @export var close_sound: AudioStream = preload("uid://dy8hcmykup336")
 
-## This popout's close button, if [member has_close_button] is [code]true[/code].
-var close_btn := TextureButton.new()
+## This popout's close button, if [member has_close_button] is
+## [code]true[/code].
+var close_btn: TextureButton
 ## The sound player used to play [member open_sound] and [member close_sound].
-var sound_player := AudioStreamPlayer.new()
+var sound_player: AudioStreamPlayer
 ## The popout's current [enum Status]. Emits [signal status_changed] when set.
 var status := Status.CLOSED:
-	set(v):
-		if status == v:
-			return
-		var old = status
-		status = v
-		status_changed.emit(old)
-
-var _tween: Tween
-var _opacity := 0.0
-
-## The target [Rect2] this popout will scale to once open.
-@onready var target_rect := get_rect()
+	set = _set_status
+## The [StyleBox] this popout is currently using. To change the appearance,
+## change the [constant STYLEBOXES] instead.
+var stylebox: StyleBox
+## Tween responsible for changing the popout's transition [member progress].
+var tween: Tween
+## Value from 0 to 1 representing how open the popout is on a linear scale (i.e.
+## the [member tween] already eases this value).
+var progress := 0.0
+## The size this popout will be once opened. This is set when the node is ready,
+## so you can simply configure the size in the editor scene.
+var target_size: Vector2
 
 
 func _ready() -> void:
-	texture = preload("uid://cy4xwj1nrr0pc")
-	patch_margin_top = 57
-	patch_margin_bottom = 15
-	visible = false
 	clip_contents = true
-	add_child(sound_player)
-	if has_close_button:
-		add_child(close_btn)
-		close_btn.action_mode = BaseButton.ACTION_MODE_BUTTON_PRESS
-		close_btn.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
-		close_btn.texture_normal = preload("uid://d4gqbswp2mkdv")
-		close_btn.offset_top = 9
-		close_btn.offset_bottom = close_btn.size.y + 9
-		close_btn.pressed.connect(close)
-	side = side
+	offset_transform_enabled = true
 
+	if not Engine.is_editor_hint():
+		visible = false
+		target_size = size
+		sound_player = AudioStreamPlayer.new()
+		add_child(sound_player)
 
-## Opens the popout.
-func open() -> void:
-	sound_player.stream = open_sound
-	sound_player.play()
-	if _tween != null:
-		_tween.kill()
-	status = Status.OPENING
-	mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
-	_tween = create_tween().set_trans(Tween.TRANS_QUAD) \
-			.set_ease(Tween.EASE_OUT).set_parallel()
-	visible = true
-	size.y = target_rect.size.y
-	_tween.tween_property(self, "size:x", target_rect.size.x, 0.25) \
-			.from(get_combined_minimum_size().x)
-	_tween.tween_property(self, "_opacity", 1, 0.125).set_delay(0.125).from(0)
-	match side:
-		PopoutDirection.TO_LEFT:
-			position.y = target_rect.position.y
-			_tween.tween_property(self, "position:x", target_rect.position.x,
-					0.25) \
-					.from(target_rect.end.x - get_combined_minimum_size().x)
-		PopoutDirection.TO_RIGHT:
-			position = target_rect.position
-	_tween.finished.connect(func():
-		status = Status.OPEN
-		mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
-	)
-	%Editor.part_interact = false
-	%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
-
-
-func close() -> void:
-	sound_player.stream = close_sound
-	sound_player.play()
-	status = Status.CLOSING
-	if _tween != null:
-		_tween.kill()
-	_tween = create_tween().set_trans(Tween.TRANS_QUAD) \
-			.set_ease(Tween.EASE_IN).set_parallel()
-	_tween.tween_property(self, "size:x", get_combined_minimum_size().x, 0.25) \
-			.from(target_rect.size.x)
-	_tween.tween_property(self, "_opacity", 0, 0.125).from(1)
-	match side:
-		PopoutDirection.TO_LEFT:
-			position.y = target_rect.position.y
-			_tween.tween_property(self, "position:x",
-					target_rect.end.x - get_combined_minimum_size().x, 0.25) \
-					.from(target_rect.position.x)
-		PopoutDirection.TO_RIGHT:
-			position = target_rect.position
-	_tween.chain().tween_property(self, "visible", false, 0)
-	_tween.tween_property(self, "size", target_rect.size, 0)
-	_tween.tween_property(self, "position", target_rect.position, 0)
-	_tween.finished.connect(func(): status = Status.CLOSED)
-	%Editor.part_interact = true
-	%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
-	mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
-
+	_set_side(side)
 
 
 func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
 	for i in get_children():
-		if i is not CanvasItem:
-			continue
-		i.modulate.a = _opacity
-	if _tween != null and _tween.is_running():
+		if i is CanvasItem:
+			i.modulate.a = get_opacity()
+
+	match side:
+		PopoutDirection.TO_LEFT:
+			offset_transform_position.x = lerpf(
+					target_size.x, get_combined_minimum_size().x, progress)
+			size.x = lerpf(
+					get_combined_minimum_size().x, target_size.x, progress)
+		PopoutDirection.TO_RIGHT:
+			offset_transform_position_ratio.x = 0
+			size.x = target_size.x * progress
+
+	if tween != null and tween.is_running():
 		queue_redraw()
 
 
 func _draw() -> void:
+	draw_style_box(STYLEBOXES[side], Rect2(Vector2(0, 0), size))
 	draw_string(
 			get_theme_default_font(),
-			Vector2(0, 36),
+			Vector2(0, TITLE_Y),
 			tr(title),
 			HORIZONTAL_ALIGNMENT_CENTER,
 			size.x,
 			get_theme_default_font_size(),
-			Color(1, 1, 1, _opacity))
+			Color(TITLE_COLOR, get_opacity()))
+
+
+## Opens the popout. Equivalent to setting [member status] to [constant
+## OPENING].
+func open() -> void:
+	status = Status.OPENING
+
+
+## Closes the popout. Equivalent to setting [member status] to [constant
+## CLOSING].
+func close() -> void:
+	status = Status.CLOSING
+
+
+## Returns how opaque this popout's children should be based on [member
+## progress]. The popout already manages its childrens' opacity, so this is
+## rarely needed outside of the popout itself.
+func get_opacity() -> float:
+	return clampf(remap(progress, 0.75, 1, 0, 1), 0, 1)
+
+
+func _set_side(v: PopoutDirection) -> void:
+		side = v
+		stylebox = STYLEBOXES[v]
+		queue_redraw()
+
+		if has_close_button and not Engine.is_editor_hint():
+			if close_btn != null:
+				close_btn.queue_free()
+			close_btn = CLOSE_BTNS[v].instantiate()
+			add_child(close_btn)
+			close_btn.pressed.connect(close)
+
+
+func _set_status(v: Status) -> void:
+	if status == v or Engine.is_editor_hint():
+		return
+	var old = status
+	status = v
+
+	match v:
+		Status.OPENING:
+			sound_player.stream = open_sound
+			sound_player.play()
+
+			visible = true
+			mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+			%Editor.part_interact = false
+			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+
+			if tween != null and tween.is_valid():
+				tween.kill()
+			tween = create_tween() \
+					.set_trans(TRANSITION) \
+					.set_ease(Tween.EASE_OUT)
+			tween.tween_property(self, ^"progress", 1.0, DURATION)
+			tween.tween_callback(func(): status = Status.OPEN)
+
+		Status.OPEN:
+			visible = true
+			progress = 1
+			mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
+			%Editor.part_interact = false
+			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+
+		Status.CLOSING:
+			sound_player.stream = close_sound
+			sound_player.play()
+
+			visible = true
+			mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+			%Editor.part_interact = false
+			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+
+			if tween != null and tween.is_valid():
+				tween.kill()
+			tween = create_tween() \
+					.set_trans(TRANSITION) \
+					.set_ease(Tween.EASE_IN)
+			tween.tween_property(self, ^"progress", 0.0, DURATION)
+			tween.tween_callback(func(): status = Status.CLOSED)
+
+		Status.CLOSED:
+			visible = false
+			progress = 0
+			mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+			%Editor.part_interact = true
+			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+
+	queue_redraw()
+
+	status_changed.emit(old)

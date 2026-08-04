@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://rhafm2wkc6hk"]
+
+[ext_resource type="PackedScene" uid="uid://c4s40eed512te" path="res://scenes/ui/editor/popout_close_btn/to_left.tscn" id="1_y88wr"]
+
+[node name="PopoutCloseBtn" unique_id=1532685405 instance=ExtResource("1_y88wr")]
+offset_right = -15.0

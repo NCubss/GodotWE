@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c4s40eed512te"]
+
+[ext_resource type="Texture2D" uid="uid://d4gqbswp2mkdv" path="res://textures/ui/editor/btn_popout_close.svg" id="1_xevvs"]
+
+[node name="PopoutCloseBtn" type="TextureButton" unique_id=1532685405]
+custom_minimum_size = Vector2(39, 39)
+custom_maximum_size = Vector2(39, 39)
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 9.0
+offset_right = -9.0
+grow_horizontal = 0
+action_mode = 0
+texture_normal = ExtResource("1_xevvs")
