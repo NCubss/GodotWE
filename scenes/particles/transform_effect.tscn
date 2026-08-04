@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0kxkxytstbdg"]
 
 [ext_resource type="Texture2D" uid="uid://ratubfqraihb" path="res://textures/ui/editor/transform_effect.svg" id="1_njs2r"]
+[ext_resource type="Script" uid="uid://cgfsosscj8elx" path="res://scripts/other/particle.gd" id="2_6831l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_njs2r"]
 atlas = ExtResource("1_njs2r")
@@ -261,4 +262,4 @@ texture_filter = 2
 scale = Vector2(0.333, 0.333)
 sprite_frames = SubResource("SpriteFrames_njnhn")
 autoplay = "default"
-frame = 8
+script = ExtResource("2_6831l")

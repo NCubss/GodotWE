@@ -299,8 +299,6 @@ func _check_validity() -> void:
 func _create_touch_effect() -> void:
 	level.editor.touch_effect = preload("uid://chv4mkls3f538") \
 			.instantiate()
-	level.editor.touch_effect.animation_finished.connect(
-			level.editor.touch_effect.queue_free)
 	level.add_child(level.editor.touch_effect)
 	level.editor.touch_effect.global_position = get_global_mouse_position()
 
