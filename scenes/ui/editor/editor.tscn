@@ -73,6 +73,7 @@
 [ext_resource type="Texture2D" uid="uid://b7r2g38vp8jga" path="res://textures/ui/editor/left_panel/btn_clear_condition_pressed.svg" id="59_p1dnx"]
 [ext_resource type="AudioStream" uid="uid://d3lha2xpakko2" path="res://audio/ui/common/hover04.wav" id="59_rqkgo"]
 [ext_resource type="Script" uid="uid://ctb6g03wyrir4" path="res://scripts/ui/editor/left_panel/clear_condition_btn.gd" id="65_1jh8r"]
+[ext_resource type="Script" uid="uid://df0nh8v5luy05" path="res://scripts/ui/editor/left_panel/time_guy.gd" id="66_p1dnx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtyax"]
 shader = ExtResource("2_wxv2j")
@@ -855,6 +856,7 @@ texture_pressed = ExtResource("57_vwxkl")
 ignore_texture_size = true
 script = ExtResource("58_jogh0")
 popout = NodePath("../TimePanel")
+hover_rect = Rect2(0, 0, 126, 63)
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
@@ -870,6 +872,23 @@ offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
 title = &"EDITOR_POPOUT_TIME"
+
+[node name="TimeGuy" type="Control" parent="Editor/LeftPanel/TimePanel" unique_id=77961025]
+custom_minimum_size = Vector2(93, 144)
+custom_maximum_size = Vector2(93, 144)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.5
+offset_top = 123.0
+offset_right = 46.5
+offset_bottom = 267.0
+grow_horizontal = 2
+script = ExtResource("66_p1dnx")
+
+[node name="TimeSounds" type="AudioStreamPlayer" parent="Editor/LeftPanel/TimePanel" unique_id=1296839497]
+unique_name_in_owner = true
 
 [node name="ClearConditionBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=740036798 node_paths=PackedStringArray("popout")]
 layout_mode = 0
