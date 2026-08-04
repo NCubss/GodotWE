@@ -1,8 +1,8 @@
 class_name PopoutBtn
 extends TextureButton
-## Implements popout control and animation behavior.
+## Implements [EditorPopout] control and animation behavior.
 
-## The [EditorPopout] this button opens. 
+## The [EditorPopout] this button opens.
 @export var popout: EditorPopout
 ## The [Rect2] to use for the hover [member effect]. By default it uses the
 ## button [member size].
@@ -16,30 +16,51 @@ extends TextureButton
 
 ## The [ButtonHoverEffect] for this button. You must call [method
 ## ButtonHoverEffect.draw] yourself.
-var effect := ButtonHoverEffect.new(self, hover_rect) 
+var effect := ButtonHoverEffect.new(self, hover_rect)
 
 var _tween: Tween
 var _progress := 0.0
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
 	popout.status_changed.connect(_popout_status_changed)
 
 
 func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
 	effect.check_redraw()
 	if _tween != null and _tween.is_valid():
 		queue_redraw()
 
 
 func _draw() -> void:
+	if Engine.is_editor_hint():
+		return
+
 	var rect = Rect2(connect_rect)
 	rect.size.x *= _progress
 	if popout.side == EditorPopout.PopoutDirection.TO_LEFT:
 		rect.position.x = connect_rect.end.x - rect.size.x
 	draw_rect(rect, Utility.COLOR_DARK)
+
+
+func _toggled(toggled_on: bool) -> void:
+	if Engine.is_editor_hint():
+		return
+
+	if toggled_on:
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
+		popout.open()
+	else:
+		popout.close()
+		mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
 
 
 ## Called when the mouse enters the button.
@@ -66,12 +87,3 @@ func _popout_status_changed(_old_status: EditorPopout.Status) -> void:
 			set_pressed_no_signal(false)
 			_tween.kill()
 			_progress = 0
-
-
-func _toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
-		popout.open()
-	else:
-		popout.close()
-		mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
