@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/smb.svg-767f990197e5b55fe9646dd9f92670af.dpit
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

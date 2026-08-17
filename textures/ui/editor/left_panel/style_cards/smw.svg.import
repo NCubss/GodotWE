@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/smw.svg-7f3050a9dac27a928d5f4aae608365a2.dpit
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

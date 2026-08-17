@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/title_zh.svg-f933fb37168ad6945af5edea1b6a0aec
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

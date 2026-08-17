@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_mini_title.svg-afa98eaba516d63d209b3a037d
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

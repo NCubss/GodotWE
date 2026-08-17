@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_square.svg-b0381aaa47e7e205f1ef732936afb3
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

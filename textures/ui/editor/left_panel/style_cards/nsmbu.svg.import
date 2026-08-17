@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/nsmbu.svg-c54f62160029649f68000940d24b59db.dp
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/r_white.svg-56ac3444ed7d0a0e157f2c0f5e1dc0f0.
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

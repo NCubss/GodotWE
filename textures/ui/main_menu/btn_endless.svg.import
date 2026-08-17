@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_endless.svg-3bc82a0b20e36153fe267ba57313b
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

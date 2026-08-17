@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/eye.svg-a7f6b6aaa51bac61777d8dcb7d16ee44.dpit
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

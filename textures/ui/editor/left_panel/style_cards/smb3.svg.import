@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/smb3.svg-7a3c167cbdb3b875afd57efc2f8c014e.dpi
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_card_disabled.svg-937a15b15cf5c7c7360d71d
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

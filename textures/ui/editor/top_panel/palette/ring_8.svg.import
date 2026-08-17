@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/ring_8.svg-18bcc9869a058290076d9f6232c1c6c9.d
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_link_website.svg-4d3e185d2451ce34efe04d81
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

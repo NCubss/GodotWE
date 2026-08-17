@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/o_black.svg-69a17f313debe64527f8960a9682662d.
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false

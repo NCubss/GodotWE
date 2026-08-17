@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/btn_editor.svg-a4e095c16b3ca935e9fd8ff4a9d1fd
 
 [params]
 
-base_scale=3.0
+base_scale=1.0
 saturation=1.0
 color_map={}
 fix_alpha_border=false
