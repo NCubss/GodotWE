@@ -35,6 +35,7 @@ TITLE_CLAPPERBOARD_PLAY,Play,Jugar
 EDITOR_COURSEBOT_SAVE_NEW,Save as,Guardar nuevo nivel
 EDITOR_COURSEBOT_SAVE_CHANGES,Save changes,Guardar cambios
 EDITOR_COURSEBOT_LOAD,Load,Cargar
+EDITOR_OK,OK,Aceptar
 COURSEBOT_COURSES,Courses,Niveles
 LEVEL_EDIT,Edit,Editar
 LEVEL_PLAY,Play,Jugar

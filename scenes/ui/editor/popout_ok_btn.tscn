@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bqws0lmtaqjkn"]
+
+[ext_resource type="Texture2D" uid="uid://5yfd1d1do0wr" path="res://textures/ui/editor/left_panel/popout_ok_btn.svg" id="1_ptjjh"]
+[ext_resource type="Script" uid="uid://bhvexnind8k5u" path="res://scripts/ui/editor/left_panel/popout_ok_btn.gd" id="2_0lypi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1g87"]
+content_margin_left = 21.0
+texture = ExtResource("1_ptjjh")
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_admeg"]
+
+[node name="OkBtn" type="Button" unique_id=1345589881]
+custom_minimum_size = Vector2(189, 48)
+custom_maximum_size = Vector2(189, 48)
+theme_override_colors/font_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_focus_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_pressed_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_hover_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_colors/font_disabled_color = Color(0.3647059, 0.10980392, 0.10980392, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_y1g87")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_y1g87")
+theme_override_styles/hover = SubResource("StyleBoxTexture_y1g87")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_y1g87")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_admeg")
+action_mode = 0
+text = "EDITOR_OK"
+script = ExtResource("2_0lypi")
