@@ -74,12 +74,14 @@
 [ext_resource type="AudioStream" uid="uid://d3lha2xpakko2" path="res://audio/ui/common/hover04.wav" id="59_rqkgo"]
 [ext_resource type="Script" uid="uid://ctb6g03wyrir4" path="res://scripts/ui/editor/left_panel/clear_condition_btn.gd" id="65_1jh8r"]
 [ext_resource type="Script" uid="uid://df0nh8v5luy05" path="res://scripts/ui/editor/left_panel/time_guy.gd" id="66_p1dnx"]
+[ext_resource type="Texture2D" uid="uid://d2wbhd87lk68a" path="res://textures/ui/editor/left_panel/time/arrow.svg" id="67_6x5dd"]
+[ext_resource type="Script" uid="uid://dm137f1hrfyav" path="res://scripts/ui/editor/left_panel/time_change_btn.gd" id="68_ei6ow"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtyax"]
 shader = ExtResource("2_wxv2j")
 shader_parameter/color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1dnx"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epgea"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -92,7 +94,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x5dd"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hx4p7"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -105,7 +107,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei6ow"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0sqta"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -118,7 +120,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5jlb"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_prwqr"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -341,31 +343,31 @@ theme_override_constants/separation = 18
 
 [node name="Terrain" parent="Editor/PaletteMenu/Tabs" unique_id=828071019 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_p1dnx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_p1dnx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_p1dnx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_epgea")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_epgea")
+theme_override_styles/hover = SubResource("StyleBoxTexture_epgea")
 button_pressed = true
 category = ExtResource("4_crwvd")
 
 [node name="Items" parent="Editor/PaletteMenu/Tabs" unique_id=183601785 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_6x5dd")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6x5dd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6x5dd")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hx4p7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hx4p7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hx4p7")
 category = ExtResource("5_fhqrb")
 
 [node name="Enemies" parent="Editor/PaletteMenu/Tabs" unique_id=1842016254 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_ei6ow")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ei6ow")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ei6ow")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0sqta")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0sqta")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0sqta")
 category = ExtResource("6_d4hij")
 
 [node name="Gizmos" parent="Editor/PaletteMenu/Tabs" unique_id=633540572 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_a5jlb")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_a5jlb")
-theme_override_styles/hover = SubResource("StyleBoxTexture_a5jlb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_prwqr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_prwqr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_prwqr")
 category = ExtResource("7_4qrp7")
 
 [node name="CloseBtn" type="TextureButton" parent="Editor/PaletteMenu" unique_id=1133375105]
@@ -889,6 +891,35 @@ script = ExtResource("66_p1dnx")
 
 [node name="TimeSounds" type="AudioStreamPlayer" parent="Editor/LeftPanel/TimePanel" unique_id=1296839497]
 unique_name_in_owner = true
+
+[node name="TimeUpBtn" type="TextureButton" parent="Editor/LeftPanel/TimePanel" unique_id=686861152]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.5
+offset_top = 63.0
+offset_right = 28.5
+offset_bottom = 120.0
+grow_horizontal = 2
+action_mode = 0
+texture_normal = ExtResource("67_6x5dd")
+script = ExtResource("68_ei6ow")
+
+[node name="TimeDownBtn" type="TextureButton" parent="Editor/LeftPanel/TimePanel" unique_id=140223082]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.5
+offset_top = 282.0
+offset_right = 28.5
+offset_bottom = 339.0
+grow_horizontal = 2
+action_mode = 0
+texture_normal = ExtResource("67_6x5dd")
+flip_v = true
+script = ExtResource("68_ei6ow")
 
 [node name="ClearConditionBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=740036798 node_paths=PackedStringArray("popout")]
 layout_mode = 0
