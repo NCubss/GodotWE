@@ -76,6 +76,7 @@
 [ext_resource type="Script" uid="uid://df0nh8v5luy05" path="res://scripts/ui/editor/left_panel/time_guy.gd" id="66_p1dnx"]
 [ext_resource type="Texture2D" uid="uid://d2wbhd87lk68a" path="res://textures/ui/editor/left_panel/time/arrow.svg" id="67_6x5dd"]
 [ext_resource type="Script" uid="uid://dm137f1hrfyav" path="res://scripts/ui/editor/left_panel/time_change_btn.gd" id="68_ei6ow"]
+[ext_resource type="PackedScene" uid="uid://bqws0lmtaqjkn" path="res://scenes/ui/editor/popout_ok_btn.tscn" id="69_a5jlb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtyax"]
 shader = ExtResource("2_wxv2j")
@@ -920,6 +921,17 @@ action_mode = 0
 texture_normal = ExtResource("67_6x5dd")
 flip_v = true
 script = ExtResource("68_ei6ow")
+
+[node name="OkBtn" parent="Editor/LeftPanel/TimePanel" unique_id=1345589881 instance=ExtResource("69_a5jlb")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.5
+offset_top = 363.0
+offset_right = 94.5
+offset_bottom = 411.0
+grow_horizontal = 2
 
 [node name="ClearConditionBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=740036798 node_paths=PackedStringArray("popout")]
 layout_mode = 0
