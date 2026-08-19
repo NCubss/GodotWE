@@ -37,6 +37,7 @@ GameSettings="*res://scripts/singletons/game_settings.gd"
 MainMenu="*uid://cqa781bc5m3v7"
 MusicPlayer="*uid://b57y74tgiebkd"
 LevelProcessor="*uid://cg57aqi4w627t"
+Cursor="*uid://dh74s5e2ur2pl"
 
 [debug]
 

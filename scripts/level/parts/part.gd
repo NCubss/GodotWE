@@ -226,6 +226,7 @@ func _hold() -> void:
 
 	UISoundPlayer.stream = preload("uid://cjtdcx7crghtw")
 	UISoundPlayer.play()
+	Cursor.down = true
 
 
 ## Called when the part is dropped.
@@ -247,6 +248,7 @@ func _unhold() -> void:
 
 	UISoundPlayer.stream = preload("uid://2x6kk0s4njjp")
 	UISoundPlayer.play()
+	Cursor.down = false
 
 
 ## Override this to customize the appearance of the highlight, as it is a single
