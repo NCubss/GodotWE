@@ -66,6 +66,7 @@ const TITLE_COLOR = Color.WHITE
 @export var open_sound: AudioStream = preload("uid://c8fexyefwlmfs")
 ## The sound played once the popout closes.
 @export var close_sound: AudioStream = preload("uid://dy8hcmykup336")
+@export var panel_handle: EditorPanelHandle
 
 ## This popout's close button, if [member has_close_button] is
 ## [code]true[/code].
@@ -182,6 +183,7 @@ func _set_status(v: Status) -> void:
 			mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 			%Editor.part_interact = false
 			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+			panel_handle.hide()
 
 			if tween != null and tween.is_valid():
 				tween.kill()
@@ -197,6 +199,7 @@ func _set_status(v: Status) -> void:
 			mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
 			%Editor.part_interact = false
 			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+			panel_handle.hide()
 
 		Status.CLOSING:
 			sound_player.stream = close_sound
@@ -206,6 +209,7 @@ func _set_status(v: Status) -> void:
 			mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 			%Editor.part_interact = false
 			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+			panel_handle.hide()
 
 			if tween != null and tween.is_valid():
 				tween.kill()
@@ -221,6 +225,7 @@ func _set_status(v: Status) -> void:
 			mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
 			%Editor.part_interact = true
 			%Editor.mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+			panel_handle.show()
 
 	queue_redraw()
 

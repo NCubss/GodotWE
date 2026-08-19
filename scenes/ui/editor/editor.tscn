@@ -45,6 +45,8 @@
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
 [ext_resource type="Texture2D" uid="uid://cghxg8d80ngy" path="res://textures/ui/editor/top_panel/btn_sounds_open.svg" id="37_c42vp"]
 [ext_resource type="Script" uid="uid://3ixu44y7v84c" path="res://scripts/ui/editor/top_panel/part_type_btn.gd" id="37_vwxkl"]
+[ext_resource type="Texture2D" uid="uid://bwc3mfwmy3ote" path="res://textures/ui/editor/panel_handle_side.svg" id="37_ye28s"]
+[ext_resource type="Script" uid="uid://bphv8ciklmyyd" path="res://scripts/ui/editor/editor_panel_handle.gd" id="38_0ovdi"]
 [ext_resource type="Script" uid="uid://dgrnevvgtgm4b" path="res://scripts/level/parts/koopa_part.gd" id="39_4qrp7"]
 [ext_resource type="Script" uid="uid://b4s45votgxvl7" path="res://scripts/level/parts/galoomba_part.gd" id="39_d4hij"]
 [ext_resource type="Script" uid="uid://bum61i5d8ulf7" path="res://scripts/level/parts/coin_part.gd" id="40_4qrp7"]
@@ -64,6 +66,7 @@
 [ext_resource type="Script" uid="uid://cfeuo70yyi2rv" path="res://scripts/ui/editor/left_panel/level_theme_btn.gd" id="52_1jh8r"]
 [ext_resource type="Texture2D" uid="uid://c2k4vdo0e14ss" path="res://textures/ui/editor/left_panel/btn_trail_on.svg" id="52_dnrd8"]
 [ext_resource type="Texture2D" uid="uid://bc808e8jtxkba" path="res://textures/ui/editor/left_panel/btn_no_level.svg" id="52_k677a"]
+[ext_resource type="Texture2D" uid="uid://30lto52x4mv8" path="res://textures/ui/editor/top_panel/panel_handle_top.svg" id="53_qftpi"]
 [ext_resource type="Texture2D" uid="uid://crbpivf5qjq3h" path="res://textures/ui/editor/left_panel/btn_meteorites_off.svg" id="53_wy0ar"]
 [ext_resource type="Texture2D" uid="uid://c0kbtuqb8t32o" path="res://textures/ui/editor/left_panel/btn_meteorites_on.svg" id="54_mahnq"]
 [ext_resource type="Texture2D" uid="uid://cesvt7pbr2ff6" path="res://textures/ui/editor/left_panel/btn_meteorites_none.svg" id="55_1jh8r"]
@@ -465,7 +468,7 @@ script = ExtResource("8_kunuo")
 popout = NodePath("../CoursebotPanel")
 connect_rect = Rect2(-19, 0, 31, 60)
 
-[node name="CoursebotPanel" type="Control" parent="Editor/RightPanelContainer/RightPanel" unique_id=2060581089]
+[node name="CoursebotPanel" type="Control" parent="Editor/RightPanelContainer/RightPanel" unique_id=2060581089 node_paths=PackedStringArray("panel_handle")]
 unique_name_in_owner = true
 visible = false
 clip_contents = true
@@ -480,6 +483,7 @@ script = ExtResource("14_sp7ve")
 title = &"EDITOR_POPOUT_COURSEBOT"
 open_sound = ExtResource("15_6snt5")
 close_sound = ExtResource("16_w63je")
+panel_handle = NodePath("../PanelHandle")
 
 [node name="BtnSaveNew" type="Button" parent="Editor/RightPanelContainer/RightPanel/CoursebotPanel" unique_id=2046572827]
 custom_minimum_size = Vector2(396, 108)
@@ -616,6 +620,18 @@ texture_normal = ExtResource("13_rtyax")
 texture_click_mask = ExtResource("7_0l6sx")
 script = ExtResource("11_a6583")
 hover_offset = Rect2(0, 0, 0, -6)
+
+[node name="PanelHandle" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1457731156]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 192.0
+offset_right = 6.0
+offset_bottom = 261.0
+mouse_behavior_recursive = 2
+action_mode = 0
+texture_normal = ExtResource("37_ye28s")
+flip_h = true
+script = ExtResource("38_0ovdi")
 
 [node name="TopPanel" type="NinePatchRect" parent="Editor" unique_id=1001892793]
 unique_name_in_owner = true
@@ -760,6 +776,21 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 
+[node name="PanelHandle" type="TextureButton" parent="Editor/TopPanel" unique_id=989386833]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.5
+offset_top = 102.0
+offset_right = 34.5
+offset_bottom = 117.0
+grow_horizontal = 2
+mouse_behavior_recursive = 2
+action_mode = 0
+texture_normal = ExtResource("53_qftpi")
+script = ExtResource("38_0ovdi")
+
 [node name="LeftPanel" type="TextureRect" parent="Editor" unique_id=343088543]
 unique_name_in_owner = true
 layout_mode = 1
@@ -791,7 +822,7 @@ popout = NodePath("../GameStylePanel")
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="GameStylePanel" type="Control" parent="Editor/LeftPanel" unique_id=1895015191]
+[node name="GameStylePanel" type="Control" parent="Editor/LeftPanel" unique_id=1895015191 node_paths=PackedStringArray("panel_handle")]
 unique_name_in_owner = true
 visible = false
 clip_contents = true
@@ -803,6 +834,7 @@ offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
 title = &"EDITOR_POPOUT_GAME_STYLE"
+panel_handle = NodePath("../PanelHandle")
 
 [node name="LevelThemeBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=27242946 node_paths=PackedStringArray("popout")]
 layout_mode = 0
@@ -820,7 +852,7 @@ popout = NodePath("../LevelThemePanel")
 connect_rect = Rect2(48, 0, 94, 57)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="LevelThemePanel" type="Control" parent="Editor/LeftPanel" unique_id=1170354568]
+[node name="LevelThemePanel" type="Control" parent="Editor/LeftPanel" unique_id=1170354568 node_paths=PackedStringArray("panel_handle")]
 unique_name_in_owner = true
 visible = false
 clip_contents = true
@@ -832,6 +864,7 @@ offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
 title = &"EDITOR_POPOUT_LEVEL_THEME"
+panel_handle = NodePath("../PanelHandle")
 
 [node name="LiquidLevelBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=392959033]
 layout_mode = 0
@@ -861,7 +894,7 @@ popout = NodePath("../AutoscrollPanel")
 connect_rect = Rect2(48, 0, 94, 57)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="AutoscrollPanel" type="Control" parent="Editor/LeftPanel" unique_id=1101914548]
+[node name="AutoscrollPanel" type="Control" parent="Editor/LeftPanel" unique_id=1101914548 node_paths=PackedStringArray("panel_handle")]
 unique_name_in_owner = true
 visible = false
 clip_contents = true
@@ -873,6 +906,7 @@ offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
 title = &"EDITOR_POPOUT_AUTOSCROLL"
+panel_handle = NodePath("../PanelHandle")
 
 [node name="MeteoritesBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=1574550253]
 layout_mode = 0
@@ -907,7 +941,7 @@ hover_rect = Rect2(0, 0, 126, 63)
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="TimePanel" type="Control" parent="Editor/LeftPanel" unique_id=1882383199]
+[node name="TimePanel" type="Control" parent="Editor/LeftPanel" unique_id=1882383199 node_paths=PackedStringArray("panel_handle")]
 unique_name_in_owner = true
 visible = false
 clip_contents = true
@@ -919,6 +953,7 @@ offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
 title = &"EDITOR_POPOUT_TIME"
+panel_handle = NodePath("../PanelHandle")
 
 [node name="TimeGuy" type="Control" parent="Editor/LeftPanel/TimePanel" unique_id=77961025]
 custom_minimum_size = Vector2(93, 144)
@@ -993,7 +1028,7 @@ popout = NodePath("../ClearConditionPanel")
 connect_rect = Rect2(120, 0, 22, 63)
 hover_sound = ExtResource("59_rqkgo")
 
-[node name="ClearConditionPanel" type="Control" parent="Editor/LeftPanel" unique_id=1686677428]
+[node name="ClearConditionPanel" type="Control" parent="Editor/LeftPanel" unique_id=1686677428 node_paths=PackedStringArray("panel_handle")]
 unique_name_in_owner = true
 visible = false
 clip_contents = true
@@ -1005,6 +1040,7 @@ offset_transform_enabled = true
 script = ExtResource("14_sp7ve")
 side = 1
 title = &"EDITOR_POPOUT_CLEAR_CONDITION"
+panel_handle = NodePath("../PanelHandle")
 
 [node name="MusicBtn" type="TextureButton" parent="Editor/LeftPanel" unique_id=1510378956]
 layout_mode = 0
@@ -1033,6 +1069,17 @@ texture_pressed = ExtResource("52_dnrd8")
 ignore_texture_size = true
 script = ExtResource("58_wy0ar")
 type = 1
+
+[node name="PanelHandle" type="TextureButton" parent="Editor/LeftPanel" unique_id=1944568926]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 192.0
+offset_right = 177.0
+offset_bottom = 261.0
+mouse_behavior_recursive = 2
+action_mode = 0
+texture_normal = ExtResource("37_ye28s")
+script = ExtResource("38_0ovdi")
 
 [node name="Clapperboard" type="BaseButton" parent="Editor" unique_id=665088114]
 unique_name_in_owner = true
