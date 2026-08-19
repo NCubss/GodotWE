@@ -100,6 +100,7 @@ func _skip() -> void:
 	skipped = true
 	UISoundPlayer.stop()
 	%IntroFinishSound.play()
+	Cursor.show()
 	
 	# kill everything in progress
 	anim.queue_free()
