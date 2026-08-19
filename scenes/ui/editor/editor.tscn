@@ -18,9 +18,7 @@
 [ext_resource type="BitMap" uid="uid://bfe1t7f48flgq" path="res://textures/ui/btn_mask_generic.svg" id="7_0l6sx"]
 [ext_resource type="Resource" uid="uid://kxjxg3sfdp1g" path="res://resources/palette/category_gizmos.tres" id="7_4qrp7"]
 [ext_resource type="Script" uid="uid://gldh2a81sgt6" path="res://scripts/ui/editor/right_panel/coursebot_btn.gd" id="8_kunuo"]
-[ext_resource type="Texture2D" uid="uid://ckascx1aanog8" path="res://textures/ui/editor/right_panel/btn_eraser.svg" id="9_khafc"]
 [ext_resource type="Texture2D" uid="uid://bgcosxahmopj8" path="res://textures/ui/editor/top_panel/palette/item.svg" id="10_w63je"]
-[ext_resource type="BitMap" uid="uid://dh7cadmdc362" path="res://textures/ui/btn_mask_circular.svg" id="10_wxv2j"]
 [ext_resource type="Script" uid="uid://g06ew1tbdpqy" path="res://scripts/ui/texture_button_ext.gd" id="11_a6583"]
 [ext_resource type="Texture2D" uid="uid://b3tx16rivyjy4" path="res://textures/ui/editor/top_panel/palette/item_mask.svg" id="11_w8smy"]
 [ext_resource type="Texture2D" uid="uid://bo0yp2ox3rtas" path="res://textures/ui/editor/top_panel/palette/next.svg" id="12_crwvd"]
@@ -43,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://c3wqcyanu0kg2" path="res://textures/ui/editor/left_panel/style_cards/btn_pressed.svg" id="23_fhqrb"]
 [ext_resource type="Script" uid="uid://cvs7jjhgvfyf5" path="res://scripts/ui/editor/left_panel/game_style_btn.gd" id="24_d4hij"]
 [ext_resource type="Script" uid="uid://dtbujdjarydml" path="res://scripts/ui/editor/clapperboard.gd" id="25_sfxmt"]
+[ext_resource type="Script" uid="uid://bngof3mg510rh" path="res://scripts/ui/editor/right_panel/eraser_btn.gd" id="33_0ovdi"]
 [ext_resource type="Texture2D" uid="uid://cghxg8d80ngy" path="res://textures/ui/editor/top_panel/btn_sounds_open.svg" id="37_c42vp"]
 [ext_resource type="Script" uid="uid://3ixu44y7v84c" path="res://scripts/ui/editor/top_panel/part_type_btn.gd" id="37_vwxkl"]
 [ext_resource type="Texture2D" uid="uid://bwc3mfwmy3ote" path="res://textures/ui/editor/panel_handle_side.svg" id="37_ye28s"]
@@ -441,6 +440,7 @@ script = ExtResource("3_bm1wd")
 open_pos = Vector2(-105, -540)
 closed_pos = Vector2(-6, -540)
 hidden_pos = Vector2(0, -540)
+move_for_eraser = false
 status = 2
 
 [node name="MenuBtn" parent="Editor/RightPanelContainer/RightPanel" unique_id=1482968884 instance=ExtResource("4_51isn")]
@@ -579,19 +579,103 @@ alignment = 0
 script = ExtResource("18_0l6sx")
 type = 2
 
-[node name="EraserBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=1195686216]
+[node name="EraserBtn" type="BaseButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=69511730]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 0)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
 layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 27.0
 offset_top = 288.0
 offset_right = 90.0
-offset_bottom = 357.0
+offset_bottom = 351.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
 size_flags_horizontal = 4
 size_flags_vertical = 0
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
 action_mode = 0
-texture_normal = ExtResource("9_khafc")
-texture_click_mask = ExtResource("10_wxv2j")
-script = ExtResource("11_a6583")
-hover_offset = Rect2(3, 3, -6, -12)
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("33_0ovdi")
+metadata/_custom_type_script = "uid://bngof3mg510rh"
+
+[node name="EraserSounds" type="AudioStreamPlayer" parent="Editor/RightPanelContainer/RightPanel/EraserBtn" unique_id=285173526]
+unique_name_in_owner = true
 
 [node name="DogBtn" type="TextureButton" parent="Editor/RightPanelContainer/RightPanel" unique_id=183154998]
 layout_mode = 0

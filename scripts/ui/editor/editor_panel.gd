@@ -15,6 +15,7 @@ enum Status {
 @export var open_pos: Vector2
 @export var closed_pos: Vector2
 @export var hidden_pos: Vector2
+@export var move_for_eraser := true
 ## The current [enum Status] of this panel.
 @export var status := Status.OPEN:
 	set(v):
@@ -40,8 +41,11 @@ var _pre_erase_status: Status
 
 
 func _ready() -> void:
-	%Editor.erase_started.connect(_erase_started)
-	%Editor.erase_stopped.connect(_erase_stopped)
+	if move_for_eraser:
+		%Editor.erase_started.connect(_erase_started)
+		%Editor.erase_stopped.connect(_erase_stopped)
+	else:
+		set_process(false)
 
 
 func _process(_delta: float) -> void:

@@ -155,6 +155,8 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int
 		return
 	if event is not InputEventMouseButton:
 		return
+	if level.editor.erasing != Editor.EraseMode.NONE:
+		return
 	if event.button_index == MouseButton.MOUSE_BUTTON_LEFT and event.pressed:
 		held = true
 
@@ -278,8 +280,6 @@ func _mouse_update(state: bool) -> void:
 	queue_redraw()
 	if _mouse_in:
 		level.editor.hovered_part = self
-		if level.editor.erasing and not held:
-			erase()
 	elif level.editor.hovered_part == self:
 		level.editor.hovered_part = null
 
