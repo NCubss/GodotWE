@@ -9,6 +9,8 @@ extends Control
 
 ## Emitted when the editor is ready (i.e. [member level] has been set).
 signal loaded
+signal erase_started
+signal erase_stopped
 
 enum EraseMode {
 	NONE,
@@ -32,8 +34,6 @@ var grid := Grid.new()
 ## Whether parts can currently be placed and interacted with.
 var part_interact := true
 
-# Whether the mouse's left button is currently pressed.
-var _mouse_down: bool
 # The last calculated grid spot the mouse is on.
 var _last_mouse_pos: Vector2i
 
@@ -54,7 +54,6 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	_process_placing(true)
-	print(has_focus())
 	
 	if Input.is_action_pressed(&"quick_erase") and held_part == null \
 			and part_interact:
@@ -157,12 +156,16 @@ func _edit() -> void:
 
 
 func _set_erasing(v: EraseMode) -> void:
+	if v == erasing:
+		return
 	erasing = v
 	if v == EraseMode.NONE:
 		%EraseBG.hide()
 		Cursor.set_to_player()
 		Cursor.down = false
+		erase_stopped.emit()
 	else:
 		%EraseBG.show()
 		Cursor.type = Cursor.Type.ERASER
 		Cursor.down = true
+		erase_started.emit()
