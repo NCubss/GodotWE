@@ -10,14 +10,21 @@ extends Control
 ## Emitted when the editor is ready (i.e. [member level] has been set).
 signal loaded
 
+enum EraseMode {
+	NONE,
+	TOGGLE_ERASE,
+	QUICK_ERASE,
+}
+
 ## The level this [Editor] is associated with.
 var level: Level
 ## The currently held part.
 var held_part: Part
 ## The part that the mouse is currently on.
 var hovered_part: Part
-## Whether the editor is in erase mode.
-var erasing := false
+## Whether the editor is in erase mode and how it has been activated.
+var erasing := EraseMode.NONE:
+	set = _set_erasing
 ## The currently displayed touch effect. Used to limit one at a time.
 var touch_effect: AnimatedSprite2D
 ## The editor [Grid].
@@ -47,16 +54,32 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	_process_placing(true)
+	print(has_focus())
+	
+	if Input.is_action_pressed(&"quick_erase") and held_part == null \
+			and part_interact:
+		erasing = EraseMode.QUICK_ERASE
+	elif erasing == EraseMode.QUICK_ERASE:
+		erasing = EraseMode.NONE
+	
+	if erasing != EraseMode.NONE:
+		var erase_button
+		if erasing == EraseMode.TOGGLE_ERASE:
+			erase_button = &"erase"
+		elif erasing == EraseMode.QUICK_ERASE:
+			erase_button = &"quick_erase"
+		
+		if Input.is_action_pressed(erase_button):
+			Cursor.down = true
+			if hovered_part != null:
+				hovered_part.erase()
+		else:
+			Cursor.down = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		match event.button_index:
-			MouseButton.MOUSE_BUTTON_LEFT:
-				_mouse_down = event.pressed
-				_process_placing(false)
-			MouseButton.MOUSE_BUTTON_RIGHT:
-				erasing = event.pressed
+	if event.is_action_pressed("place"):
+		_process_placing(false)
 
 
 ## Returns the currently selected [Part] script from the card bar on the top
@@ -99,9 +122,9 @@ func _process_placing(process_multiplaceables: bool) -> void:
 	_last_mouse_pos = level.get_global_mouse_position()
 	
 	var selected = get_selected_part()
-	if selected == null or not _mouse_down:
+	if selected == null or not Input.is_action_pressed("place"):
 		return
-	if not part_interact or erasing:
+	if not part_interact or erasing != EraseMode.NONE or not has_focus():
 		return
 	# makes sure whether this method should place multiplaceable parts,
 	# as multiplaceable and non-multiplaceable are handled in different places
@@ -131,3 +154,15 @@ func _edit() -> void:
 	%LeftPanel.status = EditorPanel.Status.OPEN
 	%RightPanel.status = EditorPanel.Status.OPEN
 	grid.show()
+
+
+func _set_erasing(v: EraseMode) -> void:
+	erasing = v
+	if v == EraseMode.NONE:
+		%EraseBG.hide()
+		Cursor.set_to_player()
+		Cursor.down = false
+	else:
+		%EraseBG.show()
+		Cursor.type = Cursor.Type.ERASER
+		Cursor.down = true

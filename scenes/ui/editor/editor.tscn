@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjcx6mlu5ad62"]
 
 [ext_resource type="Script" uid="uid://dprmn5dejh00f" path="res://scripts/ui/editor/editor.gd" id="1_eb2t3"]
+[ext_resource type="Texture2D" uid="uid://ckeoqq8jginne" path="res://textures/ui/editor/erase_bg.svg" id="2_epgea"]
 [ext_resource type="PackedScene" uid="uid://7myvf40h2mob" path="res://scenes/ui/editor/category_btn.tscn" id="2_fep4b"]
 [ext_resource type="Texture2D" uid="uid://bvvout5k55x35" path="res://textures/ui/editor/panel.svg" id="2_sfxmt"]
 [ext_resource type="Shader" uid="uid://c0fq1n323ej38" path="res://shaders/ring_color.gdshader" id="2_wxv2j"]
@@ -77,6 +78,13 @@
 [ext_resource type="Texture2D" uid="uid://d2wbhd87lk68a" path="res://textures/ui/editor/left_panel/time/arrow.svg" id="67_6x5dd"]
 [ext_resource type="Script" uid="uid://dm137f1hrfyav" path="res://scripts/ui/editor/left_panel/time_change_btn.gd" id="68_ei6ow"]
 [ext_resource type="PackedScene" uid="uid://bqws0lmtaqjkn" path="res://scenes/ui/editor/popout_ok_btn.tscn" id="69_a5jlb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+texture = ExtResource("2_epgea")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtyax"]
 shader = ExtResource("2_wxv2j")
@@ -187,6 +195,18 @@ grow_vertical = 2
 focus_mode = 2
 mouse_filter = 1
 script = ExtResource("1_eb2t3")
+
+[node name="EraseBG" type="Panel" parent="Editor" unique_id=1969798875]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4v7s")
 
 [node name="PaletteMenu" type="ColorRect" parent="Editor" unique_id=1457063484]
 unique_name_in_owner = true

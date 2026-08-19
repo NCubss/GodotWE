@@ -1,9 +1,24 @@
 extends CanvasLayer
 
-const CURSOR = preload("uid://didh4a8ydo6sc")
-const CURSOR_HELD = preload("uid://ucurchi6bbp8")
+enum Type {
+	MARIO,
+	ERASER,
+}
+
+const TEXTURE_TABLE = {
+	Type.MARIO: {
+		false: preload("uid://didh4a8ydo6sc"),
+		true: preload("uid://ucurchi6bbp8"),
+	},
+	Type.ERASER: {
+		false: preload("uid://cmaky7tssx6nt"),
+		true: preload("uid://cxp5t1pgq1k8h"),
+	},
+}
 
 var sprite := Sprite2D.new()
+var type := Type.MARIO:
+	set = _set_type
 var down := false:
 	set = _set_down
 
@@ -27,6 +42,10 @@ func _process(_delta: float) -> void:
 	sprite.global_position = sprite.get_global_mouse_position()
 
 
+func set_to_player() -> void:
+	type = Type.MARIO
+
+
 func _mouse_entered() -> void:
 	if get_window().has_focus():
 		create_tween().tween_property(sprite, ^"modulate:a", 1.0, 0.1)
@@ -36,6 +55,15 @@ func _mouse_exited() -> void:
 	create_tween().tween_property(sprite, ^"modulate:a", 0.0, 0.1)
 
 
+func _refresh_sprite() -> void:
+	sprite.texture = TEXTURE_TABLE[type][down]
+
+
+func _set_type(v: Type) -> void:
+	type = v
+	_refresh_sprite()
+
+
 func _set_down(v: bool) -> void:
 	down = v
-	sprite.texture = CURSOR_HELD if v else CURSOR
+	_refresh_sprite()
