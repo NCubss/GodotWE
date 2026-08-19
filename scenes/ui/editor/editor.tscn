@@ -53,9 +53,11 @@
 [ext_resource type="Script" uid="uid://brqgrqkrdxhmf" path="res://scripts/level/parts/ground_part.gd" id="43_v7i5c"]
 [ext_resource type="Texture2D" uid="uid://cjt6vqgprv8fg" path="res://textures/ui/editor/top_panel/btn_objects.svg" id="45_mwi86"]
 [ext_resource type="Texture2D" uid="uid://bk3uaw82l87vx" path="res://textures/ui/editor/left_panel/left_panel.svg" id="45_v7i5c"]
+[ext_resource type="Texture2D" uid="uid://fribubtixobg" path="res://textures/ui/editor/tab.svg" id="49_0sqta"]
 [ext_resource type="Texture2D" uid="uid://b2u251oyxlkbi" path="res://textures/ui/editor/left_panel/btn_music_off.svg" id="49_2ut02"]
 [ext_resource type="Texture2D" uid="uid://csro1hek4vu70" path="res://textures/ui/editor/left_panel/btn_music.svg" id="50_17mwu"]
 [ext_resource type="Texture2D" uid="uid://blts26tib7gf2" path="res://textures/ui/editor/left_panel/theme_cards/short/button.svg" id="50_jogh0"]
+[ext_resource type="Script" uid="uid://duf3ds3aewms8" path="res://scripts/ui/editor/editor_tab.gd" id="50_prwqr"]
 [ext_resource type="Texture2D" uid="uid://dwrlfui1chtv6" path="res://textures/ui/editor/left_panel/btn_trail_off.svg" id="51_17mwu"]
 [ext_resource type="Texture2D" uid="uid://cqr7y117byxg2" path="res://textures/ui/editor/left_panel/btn_water_level.svg" id="51_rqkgo"]
 [ext_resource type="Texture2D" uid="uid://qn0mlfvdq4vr" path="res://textures/ui/editor/left_panel/theme_cards/short/button_pressed.svg" id="51_wy0ar"]
@@ -90,7 +92,7 @@ texture_margin_bottom = 24.0
 shader = ExtResource("2_wxv2j")
 shader_parameter/color = Color(0.07058824, 0.83137256, 0.92941177, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_epgea"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_esjps"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -103,7 +105,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hx4p7"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ye28s"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -116,7 +118,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0sqta"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ovdi"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -129,7 +131,7 @@ texture_margin_right = 33.0
 texture_margin_bottom = 39.0
 expand_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_prwqr"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qftpi"]
 resource_local_to_scene = true
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -364,31 +366,31 @@ theme_override_constants/separation = 18
 
 [node name="Terrain" parent="Editor/PaletteMenu/Tabs" unique_id=828071019 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_epgea")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_epgea")
-theme_override_styles/hover = SubResource("StyleBoxTexture_epgea")
+theme_override_styles/normal = SubResource("StyleBoxTexture_esjps")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_esjps")
+theme_override_styles/hover = SubResource("StyleBoxTexture_esjps")
 button_pressed = true
 category = ExtResource("4_crwvd")
 
 [node name="Items" parent="Editor/PaletteMenu/Tabs" unique_id=183601785 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_hx4p7")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_hx4p7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_hx4p7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ye28s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ye28s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ye28s")
 category = ExtResource("5_fhqrb")
 
 [node name="Enemies" parent="Editor/PaletteMenu/Tabs" unique_id=1842016254 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_0sqta")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_0sqta")
-theme_override_styles/hover = SubResource("StyleBoxTexture_0sqta")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0ovdi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0ovdi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0ovdi")
 category = ExtResource("6_d4hij")
 
 [node name="Gizmos" parent="Editor/PaletteMenu/Tabs" unique_id=633540572 instance=ExtResource("2_fep4b")]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_prwqr")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_prwqr")
-theme_override_styles/hover = SubResource("StyleBoxTexture_prwqr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qftpi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qftpi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qftpi")
 category = ExtResource("7_4qrp7")
 
 [node name="CloseBtn" type="TextureButton" parent="Editor/PaletteMenu" unique_id=1133375105]
@@ -735,6 +737,28 @@ action_mode = 0
 texture_normal = ExtResource("17_w8smy")
 ignore_texture_size = true
 script = ExtResource("18_fep4b")
+
+[node name="Tab" type="TextureRect" parent="Editor/TopPanel" unique_id=1533723640]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 102.0
+offset_right = 330.0
+offset_bottom = 142.0
+texture = ExtResource("49_0sqta")
+script = ExtResource("50_prwqr")
+
+[node name="TabText" type="Label" parent="Editor/TopPanel/Tab" unique_id=1507735625]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
 
 [node name="LeftPanel" type="TextureRect" parent="Editor" unique_id=343088543]
 unique_name_in_owner = true
