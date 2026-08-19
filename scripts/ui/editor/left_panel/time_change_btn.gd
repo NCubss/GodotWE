@@ -30,12 +30,10 @@ func _process(delta: float) -> void:
 			%TimeSounds.stream = SOUND_DOWN if flip_v else SOUND_UP
 			%TimeSounds.play()
 			sound_timer = SOUND_DELAY
-		
-	else:
-		step_timer = INF
-		sound_timer = INF
 
 
 func _pressed() -> void:
-	step_timer = 0
-	sound_timer = 0
+	if step_timer == INF:
+		step_timer = 0
+	if sound_timer == INF:
+		sound_timer = 0
