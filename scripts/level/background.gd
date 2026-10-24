@@ -18,8 +18,8 @@ func _draw() -> void:
 		return
 
 	var mult = Vector2(1, 1) - follow_scale
-	draw_set_transform(mult * Utility.camera_position)
 	var rect = Utility.get_visible_rect()
+	draw_set_transform(mult * Utility.camera_position)
 	rect.position *= follow_scale
 
 	var size = texture.get_size()

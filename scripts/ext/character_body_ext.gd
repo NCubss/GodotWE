@@ -15,6 +15,11 @@ signal just_collided(collision: KinematicCollisionExt)
 var last_collided: Array[Node2D] = []
 
 
+func _enter_tree() -> void:
+	# don't interpolate on first frame to prevent visible jumps from (0, 0)
+	reset_physics_interpolation.call_deferred()
+
+
 func _physics_process(_delta: float) -> void:
 	var collisions = {}
 

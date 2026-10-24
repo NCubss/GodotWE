@@ -19,6 +19,8 @@ var max_y_speed := 240.0
 
 
 func _init() -> void:
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	reset_physics_interpolation.call_deferred()
 	z_index = GameConstants.Layers.Z_DEAD
 	name = &"DeadEntity"
 	set_physics_process(true)

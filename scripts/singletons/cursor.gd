@@ -26,6 +26,7 @@ var down := false:
 func _ready() -> void:
 	layer = 9
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 	down = down
 	
 	sprite.name = "CursorSprite"

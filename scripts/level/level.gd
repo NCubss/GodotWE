@@ -217,10 +217,17 @@ func _ready() -> void:
 		create_editor()
 		_edit()
 	Utility.camera_scale = Vector2(3, 3)
+	_camera_clamp()
 
 
 func _process(_delta: float) -> void:
-	_camera_clamp.call_deferred()
+	if status == Status.EDITING:
+		_camera_clamp.call_deferred()
+
+
+func _physics_process(_delta: float) -> void:
+	if status == Status.PLAYING:
+		_camera_clamp.call_deferred()
 
 
 func create_editor() -> void:
@@ -275,6 +282,9 @@ func _timeout() -> void:
 
 func _play() -> void:
 	status = Status.PLAYING
+	%Camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
+	%Camera.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	%Camera.reset_physics_interpolation()
 	%LevelTimer.start(time + 1)
 	hud.show()
 	if editor != null:
@@ -306,6 +316,9 @@ func _play() -> void:
 
 func _edit() -> void:
 	status = Status.EDITING
+	%Camera.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	%Camera.process_callback = Camera2D.CAMERA2D_PROCESS_IDLE
+	%Camera.reset_physics_interpolation()
 	process_mode = Node.PROCESS_MODE_INHERIT
 	%LevelTimer.stop()
 	hud.hide()

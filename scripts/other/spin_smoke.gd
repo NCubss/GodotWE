@@ -13,6 +13,7 @@ static func create() -> SpinSmoke:
 
 
 func _ready() -> void:
+	reset_physics_interpolation.call_deferred()
 	z_index = GameConstants.Layers.Z_PARTICLES
 	_tween = create_tween()
 	_tween.tween_property(self, "_progress", 1, _LENGTH)

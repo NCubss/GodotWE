@@ -17,3 +17,4 @@ unique_name_in_owner = true
 
 [node name="Parts" type="Node2D" parent="." unique_id=1999903179]
 unique_name_in_owner = true
+physics_interpolation_mode = 2

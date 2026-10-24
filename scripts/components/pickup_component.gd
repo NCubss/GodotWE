@@ -135,6 +135,7 @@ func _body_entered(body: Node2D) -> void:
 
 func _picked_up(player: Player) -> void:
 	_player = player
+	get_parent().reset_physics_interpolation.call_deferred()
 
 
 func _dropped(player: Player, release_type: ReleaseType) -> void:

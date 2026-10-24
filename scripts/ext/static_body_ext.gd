@@ -14,3 +14,8 @@ signal collided(collision: KinematicCollisionExt)
 ## collisions.
 @warning_ignore("unused_signal")
 signal just_collided(collision: KinematicCollisionExt)
+
+
+func _enter_tree() -> void:
+	# don't interpolate on first frame to prevent visible jumps from (0, 0)
+	reset_physics_interpolation.call_deferred()

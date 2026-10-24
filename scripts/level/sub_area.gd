@@ -102,6 +102,7 @@ func _play() -> void:
 		if i is not Part:
 			continue
 		i.build()
+	reset_physics_interpolation.call_deferred()
 	%Parts.hide()
 	%Parts.process_mode = Node.PROCESS_MODE_DISABLED
 

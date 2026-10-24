@@ -100,6 +100,8 @@ func position_held_item(
 	if player.direction != direction:
 		held_item_tween = player.create_tween()
 		held_item_tween.tween_property(player.held_item, "position:x", 0, 0)
+		held_item_tween.tween_callback(player.held_item.reset_physics_interpolation)
 		held_item_tween.tween_interval(2/15.0)
 		held_item_tween.tween_property(player.held_item, "position:x",
 				Player.HELD_ITEM_OFFSET.x * direction, 0)
+		held_item_tween.tween_callback(player.held_item.reset_physics_interpolation)

@@ -4,4 +4,5 @@ extends AnimatedSprite2D
 
 
 func _ready() -> void:
+	reset_physics_interpolation.call_deferred()
 	animation_finished.connect(queue_free)
