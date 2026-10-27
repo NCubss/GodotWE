@@ -9,6 +9,7 @@ enum _Command {
 }
 
 signal _done(id: int, data: Variant)
+signal _level_serialize_done(level: Level, data: Dictionary)
 
 const SWE_HMAC_KEY = "2559F35097-2021"
 const SWE_GROUND_FRAME_TABLE = [
@@ -167,7 +168,14 @@ func from_swe(path: String, meta_only := false) -> Level:
 		"path": path,
 		"meta_only": meta_only,
 	})
-	
+
+
+## Serializes a [Level] in the SMM:WE SWE level file format.
+func to_swe(level: Level) -> PackedByteArray:
+	return await _request({
+		"command": _Command.LOAD,
+		"level": level,
+	})
 
 
 func _request(data: Dictionary) -> Variant:
@@ -345,6 +353,28 @@ func _from_swe(path: String, meta_only := false) -> Level:
 	return lvl
 
 
+func _serialize_level(level: Level) -> void:
+	_level_serialize_done.emit(level, level.serialize())
+
+
+func _to_swe(level: Level) -> PackedByteArray:
+	_serialize_level.call_deferred()
+	var result: Array
+	while true:
+		result = await _level_serialize_done
+		if result[0] == level:
+			break
+	var data: Dictionary = result[1]
+	var json = JSON.stringify(data)
+	var base64 = Marshalls.utf8_to_base64(json).to_utf8_buffer()
+	var crypto = Crypto.new()
+	var hmac = crypto.hmac_digest(HashingContext.HASH_SHA1,
+			SWE_HMAC_KEY.to_utf8_buffer(), base64)
+	base64.append_array(hmac)
+	base64.append(0) # null byte, optional in current SMM:WE but usually written
+	return base64
+
+
 func _run() -> void:
 	while true:
 		_semaphore.wait()
@@ -356,10 +386,10 @@ func _run() -> void:
 				return
 			_Command.LOAD:
 				var level = _from_swe(request.path, request.meta_only)
-				_done.emit.bind(request.id, level).call_deferred()
+				_done.emit.call_deferred(request.id, level)
 			_Command.SAVE:
-				# TODO: implement level saving
-				pass
+				var data = await _to_swe(request.level)
+				_done.emit.call_deferred(request.id, data)
 			_Command.BUILD:
 				# TODO: move part building off to thread when switching level to
 				# playing

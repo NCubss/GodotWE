@@ -97,6 +97,12 @@ func add_part(part: Part) -> void:
 	%Parts.add_child(part)
 
 
+## Serializes this sub-area by building upon the [param input]. This method is
+## usually called only by [method Level.serialize].
+func serialize(input: Dictionary) -> Dictionary:
+	return input
+
+
 func _play() -> void:
 	for i: Part in %Parts.get_children():
 		if i is not Part:

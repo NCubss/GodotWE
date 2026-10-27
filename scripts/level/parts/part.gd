@@ -207,6 +207,12 @@ func build() -> void:
 	pass
 
 
+## Serializes this part by building upon the [param input]. This method is
+## usually called only by [method SubArea.serialize].
+func serialize(input: Dictionary) -> Dictionary:
+	return input
+
+
 ## Called when the part is held.
 func _hold() -> void:
 	_coll_layers = collision_layer

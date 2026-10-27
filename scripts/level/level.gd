@@ -269,6 +269,12 @@ func reload() -> void:
 	play()
 
 
+## Returns this level as a JSON-compatible [Dictionary]. This dictionary follows
+## the same structure as the SMM:WE SWE level format.
+func serialize() -> Dictionary:
+	return {}
+
+
 func _camera_clamp() -> void:
 	Utility.camera_position_raw = Utility.camera_position_raw.clamp(
 			Vector2(0, -LEVEL_HEIGHT * GRID_SIZE.y * Utility.camera_scale.y),
